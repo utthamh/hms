@@ -1,0 +1,52 @@
+.gridLayout(@columns:'', @rows:'') {
+	display: -ms-grid;
+	display: grid;
+	& when not (@columns = '') {
+		grid-template-columns: @columns; 
+		-ms-grid-columns: @columns;
+	}
+
+	& when not (@rows = '') {
+		grid-template-rows: @rows;	
+		-ms-grid-rows: @rows;
+	}
+}
+
+
+
+.gridCell(@startColumn:0, @spanColumns: 0, @startRow: 0, @spanRows: 0) {
+	// IE11 doesn't support 'auto' placement of grid cells
+
+	& when not (@startColumn = 0 ) {
+		grid-column-start: @startColumn ; // Since we use grid lines
+		-ms-grid-column: @startColumn;	
+	}
+
+	& when not (@spanColumns =0) {
+		grid-column-end: ~"span @{spanColumns}";
+		-ms-grid-column-span: @spanColumns;
+	}
+
+	& when not (@startRow = 0) {
+		grid-row-start: @startRow;
+		-ms-grid-row: @startRow;		
+	}
+
+	& when not (@spanRows =0) {
+		grid-row-end:  ~"span @{spanRows}";
+		-ms-grid-row-span: @spanRows;
+	}
+}
+
+.gridAlign(@column:'', @row:'') { 
+	// Only 'start' | 'end' | 'center' | 'stretch' is supported by IE11 and other browsers
+	& when not(@column = '') {
+		justify-self: @column; 	
+		-ms-grid-column-align: @column; 
+	}
+
+	& when not(@row = '') {
+		align-self: @row; 
+		-ms-grid-row-align: @row;
+	}
+}

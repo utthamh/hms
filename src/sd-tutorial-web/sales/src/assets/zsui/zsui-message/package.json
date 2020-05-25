@@ -1,0 +1,71 @@
+{
+  "_from": "zsui-message",
+  "_id": "zsui-message@3.0.3",
+  "_inBundle": false,
+  "_integrity": "sha1-KSTpwhxzYyPKr7C3mkiW+fEyMtc=",
+  "_location": "/zsui-message",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "zsui-message",
+    "name": "zsui-message",
+    "escapedName": "zsui-message",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://zs-sd.pkgs.visualstudio.com/_packaging/sd/npm/registry/zsui-message/-/zsui-message-3.0.3.tgz",
+  "_shasum": "2924e9c21c736323caafb0b79a4896f9f13232d7",
+  "_spec": "zsui-message",
+  "_where": "C:\\ZS\\zsui",
+  "author": {
+    "name": "UI Architecture team"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "zsui-core": "^3.4.1",
+    "zsui-forms": "^3.3.2"
+  },
+  "deprecated": false,
+  "description": "ZSUI Library Message Module",
+  "devDependencies": {
+    "docdash": "^0.4.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-less": "^2.0.0",
+    "grunt-contrib-uglify": "^3.1.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-ejs": "^0.3.0",
+    "grunt-eslint": "^20.1.0",
+    "grunt-jsdoc": "^2.2.0",
+    "jasmine-core": "^2.8.0"
+  },
+  "homepage": "https://bitbucket.org/zssd/zsui-message#readme",
+  "keywords": [
+    "zsui",
+    "library",
+    "message",
+    "messaging",
+    "toaster"
+  ],
+  "license": "MIT",
+  "name": "zsui-message",
+  "repository": {
+    "type": "git",
+    "url": "git+https://pp14854@bitbucket.org/zssd/zsui-message.git"
+  },
+  "scripts": {
+    "build": "grunt build",
+    "prepublish": "grunt build",
+    "start": "grunt",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "3.0.3"
+}

@@ -1,0 +1,112 @@
+<h2>Auto open</h2>
+<zs-dialog class="zs-modal" open style="display:none">
+	<header>
+		<span>Title</span>
+	</header>
+	<section>
+		Content
+	</section>
+	<footer>
+		<a href="javascript:void(0)" close>Close</a>
+		<button submit class="zs-button zs-button-action">OK</button>
+	</footer>
+</zs-dialog>
+
+<h2>Open on button</h2>
+<script>
+	function btnClick() {
+		var dialog = document.getElementById('dialog2');
+		if (dialog) {
+			if (dialog.getAttribute('open') == null) {
+				dialog.open();
+			} else {
+				dialog.close();
+			}
+		}
+		return false;
+	}
+</script>
+<button class="zs-button" onclick="btnClick()">Toggle open</button>
+<zs-dialog class="zs-modal" style="display:none" id="dialog2">
+	<header>
+		Title
+	</header>
+	<section>
+		Content
+	</section>
+	<footer>
+		<a href="javascript:void(0)" close>Close</a>
+		<button submit class="zs-button zs-button-action">OK</button>
+	</footer>
+</zs-dialog>
+
+<h2>Manual</h2>
+<button class="zs-button" onclick="btnClick3()">Toggle open</button>
+<script>
+	function btnClick3() {
+
+		var dialog = document.querySelector('#dialog3');
+
+		function toggle() {
+			if (dialog.getAttribute('open') == null) {
+				dialog.open();
+			} else {
+				dialog.close();
+			}
+		}
+
+
+		if (!dialog) {
+			dialog = document.createElement('zs-dialog');
+			dialog.addEventListener('configure', function () {
+				toggle();
+			});
+
+			dialog.classList.add('zs-modal');
+			dialog.setAttribute('id', 'dialog3');
+			dialog.innerHTML = '<header>Title</header><section>Content</section>'
+			document.body.appendChild(dialog);
+		} else {
+			toggle();
+		}
+	}
+</script>
+
+<%- script(zsuiPath + '/dialog/jquery.zsModal.min.js')%>
+<%- script(zsuiPath + '/dialog/zsDialog.js')%>
+<h2>jQuery Modal</h2>
+<div data-page="modal">
+	<button class="zs-button" trigger>Open</button>
+
+	<div class="zs-overlay" style="display:none"></div>
+
+	<div class="zs-modal" style="display:none">
+		<header>Title</header>
+		<section>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor neque imperdiet
+			dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate magna.
+			Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis.
+			Fusce ultricies vehicula posuere.</section>
+		<footer>
+			<button class="zs-button zs-button-action">Action</button>
+		</footer>
+	</div>
+	<div style="height:800px">
+
+	</div>
+	<button class="zs-button" trigger>Open</button>
+</div>
+
+<%- script(zsuiPath + '/dialog/jquery.zsModal.min.js')%>
+
+<script>
+	$(document).ready(function () {
+		var $modal = $('[data-page="modal"]').find('.zs-modal');
+		$modal.zsModalDialog({
+
+		});
+		$('[trigger]').click(function () {
+			$modal.zsModalDialog('open');
+		});
+	});
+
+</script>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>ZSUI Localization Demo</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width">
+
+	<!-- Decorative Styles -->
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/core.css">
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/tables.css">
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/forms.css">
+</head>
+
+<body class="zs-style" style="padding:20px">
+	<h1>Localization (l10n)</h1>
+	<!-- Select locale form -->
+	<h2>Pick a locale</h2>
+	<form name="zsDemoLocale" class="zs-form" onchange="updateLocale(this.elements.locale.value);">
+		<fieldset>
+			<p>
+				<label>Locale: <span class="zs-select"><select name="locale">
+					<option value="en-US">en-US</option>
+					<option value="de-DE" selected>de-DE</option>
+				</select></label>
+			</p>
+		</fieldset>
+	</form>
+
+	<!-- Table with original values their types and results of localization -->
+	<h2>Localize</h2>
+	<table class="zs-data-table" id="zsDemoLocalization">
+		
+		<thead>
+			<tr>
+				<th>Type</th>
+				<th>Value</th>
+				<th>Localization</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+
+	<!-- Table with original values their types and results of formatting -->
+	<h2>Format</h2>
+	<table class="zs-data-table" id="zsDemoFormatting">
+		<thead>
+			<tr>
+				<th>Type</th>
+				<th>Original value</th>
+				<th>Options</th>
+				<th>Localized and formatted</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+	
+	<h2>Parse</h2>
+	<form name="zsDemoParse" class="zs-form" onchange="parse()">
+		<fieldset>			
+			<p>
+				<label>String value: <input type="text" name="stringValue" value="10.3" placeholder="String to parse"></label>
+			</p>
+			<p>
+				<label>Type: 
+					<span class="zs-select"><select name="valueType">
+						<option value="number" selected="">Number</option>
+						<option value="date">Date</option>
+						<option value="boolean">Boolean</option>
+					</select>
+				</span></label>
+			</p>
+			<p>
+				<label>Result: <input type="text" name="parsedValue" readonly=""></label>
+			</p>
+		</fieldset>
+	</form>
+
+	<!-- Include l10n module  -->
+	<script src="l10n/l10n.js"></script>
+
+	<script>
+		// Extract the module
+		var l10n = window.l10nM.l10n;
+		var config = {
+			'de-DE': {
+				"Home": "Zuhause",
+				"Welcome ${name} to our ${place}": "Willkommen ${name} auf unserer ${place}",
+				"true": "wahr",
+				"false": "falsch"
+			}
+		};
+
+		function updateLocale(newValue) {
+			
+			// Set the locale and translations from the config
+			if (newValue) { l10n.locale = newValue; l10n.translations = config[newValue] }			
+			
+			localize();
+			format();
+			parse();
+		}
+
+		// Apply localization and display values
+		function localize() {
+			
+			var values = [2, 2.2, false, true, "Home", new Date()];
+			var tableLocalization = document.getElementById('zsDemoLocalization');
+			
+			
+			
+			
+			tableLocalization.querySelector('tbody').innerHTML = ''; // clean-up first
+
+			// Work with values
+			values.forEach(function (value) {
+				var displayValue = value.toString();
+				var valueType = typeof value;
+				var options = undefined;
+
+
+				// Customize options
+				if (value instanceof Date) { // Set options for date					 
+					options = { year: 'numeric', day: 'numeric', month: 'numeric' }; // Could be custom 
+					displayValue = value.toLocaleString('en-US', options);
+					valueType = 'date';
+				} else if (valueType == 'string' && value.length > 10) { // Format string
+					options = ['Mike', 'Home']; // Don't translate options for display value
+					displayValue = l10n.format.apply(displayValue, options);
+					options = ['Mike', l10n.localize('Home')]; // localized options
+				}
+
+				// Localize the value
+				var localValue = l10n.localize(value, options);
+
+				// Update table rows
+				var tr = tableLocalization.querySelector('tr[name="' + value + '"]');
+				if (!tr) { tr = document.createElement('tr'); tableLocalization.querySelector('tbody').appendChild(tr); tr.setAttribute('name', value); }
+				tr.innerHTML = '<td>' + valueType + '</td><td>' + displayValue + '</td><td>' + localValue + '</td>';
+			});
+		}
+
+		function format() {
+			
+			// Values with formatting options
+			var values = [
+				{value: "Welcome ${name} to our ${place}", options: {name: 'Mike', place: 'Home'}},
+				{value: 1545606234, options: {style: 'currency', currency: 'EUR' }},
+				{value: new Date(), options: {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}}
+			]
+
+			
+			tableFormatting = document.getElementById('zsDemoFormatting');			
+			
+			tableFormatting.querySelector('tbody').innerHTML = ''; // clean
+			
+			// Work with values
+			values.forEach(function (entry) {
+				var value = entry.value;
+				var displayValue = value.toString();
+				var valueType = entry.type || typeof value;
+				var options = entry.options;
+				if (value instanceof Date) {
+					valueType = 'date';
+					displayValue = value.toLocaleDateString();
+				}
+
+				// Localize only strings
+				if (valueType == 'string') {
+					var localValue = l10n.localize(value);
+					// Localize options for strings
+					Object.keys(options).forEach(function(key) {
+						options[key] = l10n.localize(options[key]);
+					});
+
+				} else {localValue = value;}
+
+				// Format
+				var formattedValue = l10n.format(localValue, options);
+
+				// Update table rows
+				var tr = document.createElement('tr'); 
+				tr.innerHTML = '<td>' + valueType + '</td><td>' + displayValue + '</td><td>' + JSON.stringify(options) +'</td><td>' + formattedValue + '</td>';
+				tableFormatting.querySelector('tbody').appendChild(tr);
+				
+			});
+		}
+
+		function parse() {
+			var form = document.forms["zsDemoParse"];
+			var stringValue = form.elements.stringValue.value;
+			var valueType = form.elements.valueType.value;
+			var options = {};
+			var value = l10n.parse(stringValue, valueType, options);
+			form.elements.parsedValue.value = value;
+		}
+
+		// Initialize localization
+		var locale = document.forms.zsDemoLocale.elements.locale.value;
+		updateLocale(locale);
+	</script>
+</body>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" manifest="zsui.appcache">
+<head>
+	<title>ZSUI Layout</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	
+	<!-- Demo scripts  -->
+	<script src="demo.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+	<style>
+	.hljs {
+    	padding: 0.5em !important; /*Since core.css loads later and resets all spacing, we need to use !important here.*/
+	}
+	</style>
+	<script>
+	zs.demo.setPaths();
+	zs.demo.addUrlFixes({"nodejs":{},"npm":{"../node_modules/":"../../"},"nuget":{"../node_modules/zsui-[\\w]+/dist":"./"},"s3":{"../node_modules/zsui-[\\w]+/dist/":"./"}});
+	</script>
+ 
+	<script>zs.demo.script("../node_modules/zsui-core/dist/polyfills/polyfills.js");</script>
+	<script>zs.demo.script("../node_modules/zsui-core/dist/utils/customElements.js");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/core.css");</script>
+	<script>zs.demo.link("./themes/{theme}/accordion.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/tabs.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/wizard.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/card.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/drawer.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/toggleTabs.min.css");</script>
+
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/colorUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/displayUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/positionUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/alignUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/borderUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/spaceUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/sizeUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/shadowUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/floatUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/responsiveDisplayUtils.css");</script>
+
+</head>
+<body class="zs-style zs-layout-table" style="padding:1em">
+
+<script>zs.demo.link("./themes/{theme}/layoutGrid.css");</script>
+
+<script>zs.demo.link("./themes/{theme}/responsiveGrid.css");</script>
+
+<p>Responsive web design is required to make the web page looke good and aligned in all the devices(mobile, laptop, tabs, etc). With the introduction of Grid layout in ZSUI, we also have responsive design for the grid layout.</p>
+<h2>Include CSS</h2>
+<code for="prep" class="html hljs"></code>
+<div id="prep" class="zs-hidden">
+	<!---
+<link rel="stylesheet" href="path/to/zsui/dist/themes/zs/layoutGrid.css"/>
+<link rel="stylesheet" href="path/to/zsui/dist/themes/zs/responsiveGrid.css"/>
+or @import 'path/to/zsui-layout/src/layoutGrid.less';  
+and @import 'path/to/zsui-layout/src/responsiveGrid.less'; 
+//-->
+</div>
+<!-- For demo purposes to make grid cells visible -->
+	<style>
+	[class*="zs-grid-"] {
+		background: #f2f2f2;
+		padding: 0.71em 0 0 0.71em;
+	}
+	[class*="zs-grid-"]>[class*="zs-grid-"] {
+		background: white;
+		padding: 0.71em 0 0 0.71em;
+	}
+	[class*="zs-grid-"]>* {
+		padding: 0.71em;
+		margin: 0 0.71em 0.71em 0;
+		border-radius: 5px;
+		border: 1px solid #e1e9ef;
+		box-shadow: 0 1px 1px #dee3e3;
+		background: white;
+	}
+	
+	</style>
+
+<h2>Resize browser to see the impact</h2>
+
+<h3>Same grid for all screen sizes</h3>
+<div id="eg1">
+<div class="zs-grid-3cols">
+	<div class="zs-col-1 zs-row-1">Div1</div>
+	<div class="zs-col-2 zs-row-1">Div2</div>
+	<div class="zs-col-3 zs-row-1">Div3</div>
+</div>
+</div>
+<code for="eg1" class="html hljs"></code>
+
+<h3>Grid for small width and above</h3>
+<div id="eg2">
+<div class="zs-grid-4cols">
+	<div class="zs-col-1 zs-col-span-4 zs-col-sw-1 zs-col-sw-span-2 zs-row-1 zs-row-sw-1">Small Width and above</div>
+	<div class="zs-col-1 zs-col-span-4 zs-col-sw-3 zs-col-sw-span-2 zs-row-2 zs-row-sw-1">Small Width and above</div>
+	<div class="zs-col-1 zs-col-span-4 zs-col-sw-1 zs-col-sw-span-2 zs-row-3 zs-row-sw-2 ">Small Width and above</div>
+	<div class="zs-col-1 zs-col-span-4 zs-col-sw-3 zs-col-sw-span-2 zs-row-4 zs-row-sw-2 ">Small Width and above</div>
+</div>
+</div>
+<code for="eg2" class="html hljs"></code>
+
+<h3>Grid for medium width and above</h3>
+<div id="eg3">
+<div class="zs-grid-4cols">
+	<div class="zs-col-1 zs-col-span-4 zs-col-mw-1 zs-col-mw-span-2 zs-row-1 zs-row-mw-1">Medium Width and above</div>
+	<div class="zs-col-1 zs-col-span-4 zs-col-mw-3 zs-col-mw-span-2 zs-row-2 zs-row-mw-1">Medium Width and above</div>
+	<div class="zs-col-1 zs-col-span-4 zs-col-mw-1 zs-col-mw-span-4 zs-row-3 zs-row-mw-2 ">Medium Width and above</div>
+</div>
+</div>
+<code for="eg3" class="html hljs"></code>
+
+<h3>Grid for large width and above</h3>
+<div id="eg4">
+<div class="zs-grid-3cols">
+	<div class="zs-col-1 zs-col-span-4 zs-col-lw-1 zs-col-lw-span-1 zs-row-1 zs-row-lw-1">Large Width and above</div>
+	<div class="zs-col-1 zs-col-span-4 zs-col-lw-2 zs-col-lw-span-1 zs-row-2 zs-row-lw-1">Large Width and above</div>
+	<div class="zs-col-1 zs-col-span-4 zs-col-lw-3 zs-col-lw-span-1 zs-row-3 zs-row-lw-1 ">Large Width and above</div>
+	<div class="zs-col-1 zs-col-span-4 zs-col-lw-1 zs-col-lw-span-3 zs-row-4 zs-row-lw-2 ">Large Width and above</div>
+</div>
+</div>
+<code for="eg4" class="html hljs"></code>
+
+<h3>Grid for small, medium and large width</h3>
+<div id="eg5">
+<div class="zs-grid-3cols-auto">
+	<div class="zs-grid-3cols-auto  zs-col-1 zs-col-span-3 zs-col-sw-1 zs-col-sw-span-3 zs-col-mw-1 zs-col-mw-span-1 zs-col-lw-1 zs-col-lw-span-1 zs-row-1 zs-row-sw-1 zs-row-mw-1 zs-row-lw-1">
+		<div class="zs-col-1 zs-col-span-3 zs-col-sw-1 zs-col-sw-span-3 zs-col-mw-1 zs-col-mw-span-1 zs-col-lw-1 zs-col-lw-span-1 zs-row-1 zs-row-sw-1 zs-row-mw-1 zs-row-lw-1">
+			Div1-1 : Lorem ipsum dolor sit amet, cu mea quando dicant torquatos, te summo debitis elaboraret usu. Quis sanctus ut has.
+			Eos autem maiorum.
+		</div>
+		<div class="zs-col-1 zs-col-span-3 zs-col-sw-1 zs-col-sw-span-3 zs-col-mw-2 zs-col-mw-span-1 zs-col-lw-2 zs-col-lw-span-1 zs-row-2 zs-row-sw-2 zs-row-mw-1 zs-row-lw-1">
+			Div1-2 : Lorem ipsum dolor sit amet, cu mea quando dicant torquatos, te summo debitis elaboraret usu. Quis sanctus ut has.
+			Eos autem maiorum.
+		</div>
+		<div class="zs-col-1 zs-col-span-3 zs-col-sw-1  zs-col-sw-span-3 zs-col-mw-1 zs-col-mw-span-2 zs-col-lw-3 zs-col-lw-span-1 zs-row-3 zs-row-sw-3 zs-row-mw-2 zs-row-lw-1">
+			Div1-3 : Lorem ipsum dolor sit amet, cu mea quando dicant torquatos, te summo debitis elaboraret usu. Quis sanctus ut has.
+			Eos autem maiorum.
+		</div>
+	</div>
+	<div class="zs-col-1 zs-col-span-3 zs-col-sw-1  zs-col-sw-span-3 zs-col-mw-2 zs-col-mw-span-1 zs-col-lw-2 zs-col-lw-span-1 zs-row-2 zs-row-sw-2 zs-row-mw-1 zs-row-lw-1">
+		Div2 : Lorem ipsum dolor sit amet, cu mea quando dicant torquatos, te summo debitis elaboraret usu. Quis sanctus ut has.
+		Eos autem maiorum at, cum at omnes quando. Harum tritani gubergren his no, vim ne primis tamquam dolorem. Liber audire
+		placerat ad ius. Ut graeco praesent nec, vis illum graece commodo te. Sed ea doming erroribus, senserit mediocrem id eos,
+		idque officiis ad vis. Ne vix duis laudem, qui te laudem oporteat conclusionemque. Vis probo deterruisset ad, idque nobis
+		ea qui. At nam magna virtute, at vel vero scripserit interesset. Eam quando dolorum an. Reformidans referrentur per no.
+	</div>
+	<div class="zs-col-1 zs-col-span-3 zs-col-sw-1  zs-col-sw-span-3 zs-col-mw-1 zs-col-mw-span-2 zs-col-lw-3 zs-col-lw-span-1 zs-row-3 zs-row-sw-3 zs-row-mw-2 zs-row-lw-1">
+		Div3 : Lorem ipsum dolor sit amet, cu mea quando dicant torquatos, te summo debitis elaboraret usu. Quis sanctus ut has.
+		Eos autem maiorum at, cum at omnes quando. Harum tritani gubergren his no, vim ne primis tamquam dolorem. Liber audire
+		placerat ad ius. Ut graeco praesent nec, vis illum graece commodo te. Sed ea doming erroribus, senserit mediocrem id eos,
+		idque officiis ad vis. Ne vix duis laudem, qui te laudem oporteat conclusionemque. Vis probo deterruisset ad, idque nobis
+		ea qui.octus, probo nobis pericula et vel. Sumo nominati vix no, vix ut exerci appellantur. Exerci mollis consetetur ne
+		pri
+	</div>
+</div>
+</div>
+<code for="eg5" class="html hljs"></code>
+
+<h3>Portrait mode Grid</h3>
+<p>We do have classes for portrait mode and small, medium and large portrait mode as well.</p>
+<p><strong>Portrait mode</strong> implies that the height of screen is greater than its width.</p>
+<p>Check the following grid in portrait mode. You can use development tool of browser to check the impact at different screen sizes keeping height greater than the width.</p>
+
+<div id="eg6">
+<div class="zs-grid-4cols-auto background-gray padding-10">
+	<div class="zs-col-1  zs-row-1 zs-col-p-1 zs-col-p-span-4 zs-row-p-1 zs-col-sp-1 zs-col-sp-span-2 zs-row-sp-1 zs-col-mp-1 zs-col-mp-span-2 zs-row-mp-1 zs-col-lp-1 zs-col-lp-span-1 zs-row-lp-1">
+		Portrait Mode -Div1 : Lorem ipsum dolor sit amet, cu mea quando dicant torquatos, te summo debitis elaboraret usu. Quis sanctus
+		ut has. Eos autem maiorum at cum at omnes quando. Harum tritani gubergren his no, vim ne primis tamquam dolorem. Liber audire
+		placerat ad ius.
+	</div>
+	<div class="zs-col-2 zs-row-1 zs-col-p-1 zs-col-p-span-4 zs-row-p-2 zs-col-sp-3 zs-col-sp-span-2 zs-row-sp-1 zs-col-mp-3 zs-col-mp-span-2 zs-row-mp-1 zs-col-lp-2 zs-col-lp-span-1 zs-row-lp-1">
+		Portrait Mode -Div2 : Lorem ipsum dolor sit amet, cu mea quando dicant torquatos, te summo debitis elaboraret usu. Quis sanctus
+		ut has. Eos autem maiorum at cum at omnes quando. Harum tritani gubergren his no, vim ne primis tamquam dolorem. Liber audire
+		placerat ad ius.
+	</div>
+	<div class="zs-col-3  zs-row-1 zs-col-p-1 zs-col-p-span-4 zs-row-p-3 zs-col-sp-1 zs-col-sp-span-4 zs-row-sp-2 zs-col-mp-1 zs-col-mp-span-2 zs-row-mp-2 zs-col-lp-3 zs-col-lp-span-1 zs-row-lp-1">
+		Portrait Mode -Div3 : Lorem ipsum dolor sit amet, cu mea quando dicant torquatos, te summo debitis elaboraret usu. Quis sanctus
+		ut has. Eos autem maiorum at cum at omnes quando. Harum tritani gubergren his no, vim ne primis tamquam dolorem. Liber audire
+		placerat ad ius.
+	</div>
+	<div class="zs-col-4  zs-row-1 zs-col-p-1 zs-col-p-span-4 zs-row-p-4 zs-col-sp-1 zs-col-sp-span-4 zs-row-sp-2 zs-col-mp-3 zs-col-mp-span-2 zs-row-mp-2 zs-col-lp-4 zs-col-lp-span-1 zs-row-lp-1">
+		Portrait Mode -Div4 : Lorem ipsum dolor sit amet, cu mea quando dicant torquatos, te summo debitis elaboraret usu. Quis sanctus
+		ut has. Eos autem maiorum at cum at omnes quando. Harum tritani gubergren his no, vim ne primis tamquam dolorem. Liber audire
+		placerat ad ius.
+	</div>
+</div>
+</div>
+<code for="eg6" class="html hljs"></code> 
+
+<script>
+	if (zs && zs.demo) {
+		zs.demo.adjustCss();
+		zs.demo.applyTheme();
+		zs.demo.highlight();
+	}
+</script>
+
+</body>
+</html>

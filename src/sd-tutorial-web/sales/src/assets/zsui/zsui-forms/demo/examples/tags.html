@@ -1,0 +1,57 @@
+<script src="<%=zsuiPath%>/tags/zsTag.js"></script>
+<div class="tags-container">
+	<h2>Created using HTML</h2>
+	<span is="zs-tag" value="Tag1" dismissable>ZSUI</span>
+</div>
+<h2>Status colors</h2>
+<span is="zs-tag" value="Tag1" nonclickable class="zs-bg-success">Success</span>
+<span is="zs-tag" value="Tag1" nonclickable class="zs-bg-error">Error</span>
+<span is="zs-tag" value="Tag1" nonclickable class="zs-bg-warning">Warning</span>
+<script defer>
+	(function () {
+		var container = document.getElementsByClassName('tags-container')[0];
+		container.innerHTML += '<h2>Dismissable Tag</h2>';
+		var tag = document.createElement('span',{is:'zs-tag'});
+		tag.textContent = "library"
+		tag.value = "Tag2";
+		tag.dismissable = true;
+		tag.handleDismiss = function () { console.log('handled'); };
+		tag.render();
+		container.appendChild(tag);
+
+		container.innerHTML += '<h2>Non Dismissable Tag</h2>';
+		tag = document.createElement('span',{is:'zs-tag'});
+		tag.textContent = "tags";
+		tag.value = "Tag3";
+		tag.dismissable = false;
+		tag.render();
+		container.appendChild(tag);
+
+		container.innerHTML += '<h2>Non clickable Tag</h2>';
+		tag = document.createElement('span',{is:'zs-tag'});
+		tag.textContent = "example";
+		tag.value = "Tag5";
+		tag.nonclickable = true;
+		tag.render();
+		container.appendChild(tag);
+		
+		container.innerHTML += '<h2>Non Clickable and Dismissable Tag</h2>';
+		tag = document.createElement('span',{is:'zs-tag'});
+		tag.textContent = "dismissable";
+		tag.value = "Tag7";
+		tag.nonclickable = true;
+		tag.dismissable = true;
+		tag.render();
+		container.appendChild(tag);
+
+		container.innerHTML += '<h2>Highlighted Tag</h2>';
+		tag = document.createElement('span',{is:'zs-tag'});
+		tag.textContent = "Highlighted";
+		tag.value = "Tag6";
+		tag.nonclickable = true;
+		tag.render();
+		tag.classList.add("zs-highlight");
+		container.appendChild(tag);
+
+	})();
+</script>

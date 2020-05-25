@@ -1,0 +1,12 @@
+.zs-header .zs-brand-bar .zs-logo {
+  display: inline-block;
+  float: inherit;
+  vertical-align: middle;
+}
+.zs-header .zs-brand-bar .zs-brand-name {
+  display: inline-block;
+  float: inherit;
+  line-height: 100%;
+  vertical-align: middle;
+}
+/*# sourceMappingURL=headerFixes.css.map */

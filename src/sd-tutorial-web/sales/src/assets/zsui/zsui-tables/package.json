@@ -1,0 +1,68 @@
+{
+  "_from": "zsui-tables",
+  "_id": "zsui-tables@3.2.2",
+  "_inBundle": false,
+  "_integrity": "sha1-dP7ovRrxXqLbYhLpS5rJJX48pXY=",
+  "_location": "/zsui-tables",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "zsui-tables",
+    "name": "zsui-tables",
+    "escapedName": "zsui-tables",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://zs-sd.pkgs.visualstudio.com/_packaging/sd/npm/registry/zsui-tables/-/zsui-tables-3.2.2.tgz",
+  "_shasum": "74fee8bd1af15ea2db6212e94b9ac9257e3ca576",
+  "_spec": "zsui-tables",
+  "_where": "C:\\ZS\\zsui",
+  "author": {
+    "name": "UI Architecture team"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "zsui-core": "^3.4.1"
+  },
+  "deprecated": false,
+  "description": "ZSUI Library Tables component",
+  "devDependencies": {
+    "docdash": "^0.4.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-less": "^2.0.0",
+    "grunt-contrib-uglify": "^3.1.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-ejs": "^0.3.0",
+    "grunt-eslint": "^20.1.0",
+    "grunt-jsdoc": "^2.2.0",
+    "jasmine-core": "^2.8.0"
+  },
+  "homepage": "https://bitbucket.org/zssd/zsui-tables#readme",
+  "keywords": [
+    "zsui",
+    "library",
+    "tables"
+  ],
+  "license": "MIT",
+  "name": "zsui-tables",
+  "repository": {
+    "type": "git",
+    "url": "git+https://bitbucket.org/zssd/zsui-tables.git"
+  },
+  "scripts": {
+    "build": "grunt build",
+    "prepublish": "grunt build",
+    "start": "grunt",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "3.2.2"
+}

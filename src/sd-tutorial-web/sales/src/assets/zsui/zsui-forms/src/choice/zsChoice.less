@@ -1,0 +1,40 @@
+.zs-choice {
+	display:block;
+	>label {
+		.padding(1,1,0,1);
+		font-size: 13em/14;
+		font-weight: bold;	
+		display:block;		
+	}
+	>span {
+		display:block;
+		cursor: pointer;
+	}
+	>span:hover {
+		background: lighten(@zs-selected-color,3%);
+	}
+	>span.zs-active {
+		background: @zs-selected-color
+	}
+	>span.zs-active:hover {
+		background: lighten(@zs-selected-color,2%);
+	}
+	>.zs-checkbox + .zs-checkbox {
+		margin-left:0px;
+	}
+	>.zs-checkbox {
+		padding-left:@zs-font-padding-ratio*0.5;
+
+		>input{
+			.margin(1.25*@zs-input-padding,0.6,1.25*@zs-input-padding,0.6);
+			vertical-align: middle;
+			display:inline-block;
+		}
+	}
+	.display-block {
+		display: block;
+	}
+	.display-none{
+		display: none;
+	}
+}

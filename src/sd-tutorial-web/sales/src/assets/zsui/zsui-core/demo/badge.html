@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<head>
+	<title>Badge</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Dependencies -->
+	<link rel="stylesheet" href="themes/zs/core.css">
+	<link rel="stylesheet" href="themes/zs/badge.css">
+
+
+	<!-- For demo purposes only -->
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/tabs.css">
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/toggleTabs.css">
+	<style>
+		.zs-example {
+			padding:1em;
+		}
+		.samples{
+			padding:1em;
+			border: 1px solid #e1e9ef;
+		}
+
+		.samples > span.zs-icon{
+			margin-right: 0.5em;
+		}
+
+	</style>
+	<script src="polyfills/polyfills.js"></script>
+	<script src="https://ui.zsservices.com/zsui/demo.js"></script>	
+</head>
+<body class="zs-style zs-example">
+	<h2>Badges, Dots and Counters</h2>
+	<p>You can use badges, dots and counters by including following file in your HTML</p>
+	<div id="badges-ref">
+	</div>
+	<h2>Badges</h2>
+	<p>Badges are a way of displaying quantity. These are typically placed on top of, or next to other elements.</p>
+	<h3>Simple Badges containing single, double and multi-digit numeric values. Badges elongate depending on the number of digits contained.</h3>
+	<div>
+	<div class="samples">
+		<span class="zs-badge-counter">1</span>	
+		<span class="zs-badge-counter">12</span>
+		<span class="zs-badge-counter">123</span>
+		<span class="zs-badge-counter">12334567</span>	
+	</div>
+	<div id="simple-badge-eg">
+	</div>
+	</div>
+	<h3>Badges on Tabs</h3>
+	<div>
+	<div class="samples">
+		<div class="zs-tabs">
+			<ul>
+				<li active><a href="javascript:void(0)">Tab1<span class="zs-badge-counter">1</span></a></li>
+				<li><a href="javascript:void(0)">Tab2<span class="zs-badge-counter">23</span></a></li>
+			</ul>	
+		</div>	
+	</div>
+	<div id="tabs-badge-eg">
+	</div>
+	</div>
+
+	<h3>Badges on Toggle Tabs</h3>
+	<div>
+	<div class="samples">
+		<div toggletabs class="zs-tabs">
+			<ul>
+				<li is="zs-tab" active><a href="javascript:void(0)">Toggle Tab1<span class="zs-badge-counter">99</span></a></li><li is="zs-tab"><a href="javascript:void(0)">Toggle Tab2<span class="zs-badge-counter">7</span></a></li>
+			</ul>
+		</div>	
+	</div>
+	<div id="toggle-tabs-badge-eg">
+	</div>
+	</div>
+
+	<h3>Badges on Icons</h3>
+	<div>
+	<div class="samples">
+		<span class="zs-icon zs-size-xxl zs-icon-tasks">
+			<span class="zs-badge zs-badge-counter">5</span>
+		</span>
+		<span class="zs-icon zs-size-xl zs-icon-check-success zs-success">
+			<span class="zs-badge zs-badge-counter">7</span>
+		</span>
+		<span class="zs-icon zs-size-l zs-icon-warning-diamond zs-warning">
+			<span class="zs-badge zs-badge-counter">9</span>
+		</span>
+		<span class="zs-icon zs-icon-error zs-error">
+			<span class="zs-badge zs-badge-counter">11</span>
+		</span>
+	</div>
+	</div>
+
+	<h2>Dots</h2>
+	<p>Dots can also be used to bring attention to new or important pieces of information.</p>
+
+	<div class="samples">
+		<a href="#" class="zs-badge-dot">Brooklyn</a>
+		<p class="zs-badge-dot">Manchester, CT</p>
+		<span class="zs-badge-dot">Poughkeepsie</span>
+	</div>
+	</div>
+	<h2>Counters</h2>
+	<p>Counters are a text format for indicating how many items are contained within an element.</p>
+	<div class="samples">
+		<a href="#"><span class="zs-counter">20</span> Search Results</a>
+		<p>Announcements - <span class="zs-counter">9 New</span></p>	
+	</div>
+	</div>
+</body>
+</html>

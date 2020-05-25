@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Disabled</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Dependencies -->
+	<link rel="stylesheet" href="themes/zs/core.css">
+
+	<!-- For demo purposes only -->
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/card.css"/>
+	<style>
+		.zs-example {
+			padding:1em;
+		}
+	</style>
+	<script src="polyfills/polyfills.js"></script>
+	<script src="https://ui.zsservices.com/zsui/demo.js"></script>
+</head>
+
+<body class="zs-style zs-example">
+	<p>Compare normal and disabled elements.</p>
+	<article class="zs-card">
+		<header>Enabled</header>
+		<section>
+		<p>
+			<span>
+				Text
+			</span>
+		</p>
+		<p>
+			<button class="zs-button zs-button-action">
+				Button
+			</button>
+		</p>
+		<p>
+			<input class="zs-input" value="Input" style="min-width:inherit" />
+		</p>
+		<p>
+			<a href="javascript:void(0)">
+				<span class="zs-icon zs-icon-download"></span>Link with an icon</a>
+		</p>
+		<p>
+			<span>
+				Using a class
+			</span>
+		</p>
+		</section>
+	</article>
+
+	<article class="zs-card">
+		<header>Disabled</header>
+		<section>
+		<p>
+			<span disabled="disabled">
+				Text
+			</span>
+		</p>
+		<p>
+			<button class="zs-button zs-button-action" disabled="disabled">
+				Button
+			</button>
+		</p>
+		<p>
+			<input class="zs-input" value="Input" disabled="disabled" style="min-width:inherit" />
+		</p>
+		<p>
+			<a href="javascript:void(0)" disabled="disabled">
+				<span class="zs-icon zs-icon-download"></span>Link with an icon</a>
+		</p>
+		<p>
+			<span class="zs-disabled">
+				Using a class
+			</span>
+		</p>
+		</section>
+	</article>
+</body>

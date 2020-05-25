@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Responsive CSS grid</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	 crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="../../dist/themes/zs/layoutGrid.css">
+	<style>
+		.fluid {
+			width: 100%;
+			height: 100%;
+			/* can't use min-height here because of IE11*/
+		}
+
+		body,
+		html {
+			padding: 0px;
+			margin: 0px;
+			height: 100%;
+		}
+
+		.background-white {
+			background: white;
+		}
+
+		.background-gray {
+			background: #cfcfcf;
+		}
+
+		.padding {
+			padding: 5px;
+		}
+
+		.padding-10 {
+			padding: 10px;
+		}
+
+		.margin {
+			margin: 10px;
+		}
+
+		.margin-10 {
+			margin: 10px;
+		}
+
+		.overflow-hidden {
+			overflow: hidden;
+		}
+
+		.border {
+			border-radius: 5px;
+			border: 1px solid #c0c0c0;
+			box-shadow: 1px 1px 2px #c0c0c0;
+		}
+
+
+
+
+
+
+		/* Default grid system */
+
+		@media screen and (orientation: portrait) {
+			[class*="zs-grid-"] {
+				background: lightgreen;
+			}
+		}
+
+		@media screen and (max-width: 767px) {
+			[class*="-3-mw-cols"] {
+				background: blue;
+				grid-template-columns: minmax(min-content, 1fr) minmax(min-content, 1fr) minmax(min-content, 1fr);
+				-ms-grid-columns: minmax(min-content, 1fr) minmax(min-content, 1fr) minmax(min-content, 1fr);
+			}
+			[class*="-3-mw-cols"]> :nth-of-type(3n+1) {
+				grid-column-start: 1;
+				-ms-grid-column: 1;
+			}
+			[class*="-3-mw-cols"]> :nth-of-type(3n+2) {
+				grid-column-start: 2;
+				-ms-grid-column: 2;
+			}
+			[class*="-3-mw-cols"]> :nth-of-type(3n+3) {
+				grid-column-start: 3;
+				-ms-grid-column: 3;
+			}
+			[class*="-3-mw-cols"]> :nth-of-type(n + 4) {
+				grid-row-start: 2;
+				-ms-grid-row: 2;
+			}
+			[class*="-3-mw-cols"]> :nth-of-type(n + 7) {
+				grid-row-start: 3;
+				-ms-grid-row: 3;
+			}
+			[class*="-3-mw-cols"]> :nth-of-type(n + 10) {
+				grid-row-start: 4;
+				-ms-grid-row: 4;
+			}
+			[class*="-3-mw-cols"]> :nth-of-type(n + 13) {
+				grid-row-start: 5;
+				-ms-grid-row: 5;
+			}
+			[class*="-3-mw-cols"]> :nth-of-type(n + 16) {
+				grid-row-start: 6;
+				-ms-grid-row: 6;
+			}
+			[class*="-3-mw-cols"]> :nth-of-type(n + 19) {
+				grid-row-start: 7;
+				-ms-grid-row: 7;
+			}
+
+			[class*="zs-grid-"] .zs-col-3-mw:nth-of-type(n) {
+				grid-column-start: 3;
+				-ms-grid-column: 3;
+				z-index:1;
+				background: lightpink;
+			}
+		}
+
+		@media screen and (min-width: 768px) and (orientation: portrait) {
+			[class*="zs-grid-"] {
+				background: lightblue;
+			}
+		}
+
+		@media screen and (min-width:1024px) {
+			[class*="zs-grid-"] {
+				background: yellow;
+			}
+		}
+
+		@media screen and (min-width:1024px) and (orientation: portrait) {
+			[class*="zs-grid-"] {
+				background: orange;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="background-gray zs-grid-4rows zs-grid-6cols-content zs-grid-3-mw-cols-content">
+		<div class="padding border margin background-white overflow-hidden">1</div>
+		<div class="padding border margin background-white overflow-hidden">2</div>
+		<div class="padding border margin background-white overflow-hidden">3</div>
+		<div class="padding border margin background-white overflow-hidden">4</div>
+		<div class="padding border margin background-white overflow-hidden zs-col-3-mw">5</div>
+		<div class="padding border margin background-white overflow-hidden">6</div>
+		<div class="padding border margin background-white overflow-hidden">7</div>
+		<div class="padding border margin background-white overflow-hidden">8</div>
+		<div class="padding border margin background-white overflow-hidden">9</div>
+		<div class="padding border margin background-white overflow-hidden">10
+			<br>10
+			<br>10
+			<br>10</div>
+		<div class="padding border margin background-white overflow-hidden">11</div>
+		<div class="padding border margin background-white overflow-hidden">12</div>
+		<div class="padding border margin background-white overflow-hidden">131313131313131313</div>
+		<div class="padding border margin background-white overflow-hidden">14</div>
+		<div class="padding border margin background-white overflow-hidden">15</div>
+		<div class="padding border margin background-white overflow-hidden">16</div>
+		<div class="padding border margin background-white overflow-hidden">17</div>
+		<div class="padding border margin background-white overflow-hidden">18</div>
+		<div class="padding border margin background-white overflow-hidden">19</div>
+		<div class="padding border margin background-white overflow-hidden">20</div>
+		<div class="padding border margin background-white overflow-hidden">21</div>
+		<div class="padding border margin background-white overflow-hidden">22
+			<br>22
+			<br>
+		</div>
+		<div class="padding border margin background-white overflow-hidden">23</div>
+		<div class="padding border margin background-white overflow-hidden">24</div>
+	</div>
+</body>
+
+</html>

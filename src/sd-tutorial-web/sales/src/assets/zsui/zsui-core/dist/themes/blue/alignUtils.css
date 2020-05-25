@@ -1,0 +1,19 @@
+.zs-align-baseline {
+  vertical-align: baseline !important;
+}
+.zs-align-top {
+  vertical-align: top !important;
+}
+.zs-align-middle {
+  vertical-align: middle !important;
+}
+.zs-align-bottom {
+  vertical-align: bottom !important;
+}
+.zs-align-text-bottom {
+  vertical-align: text-bottom !important;
+}
+.zs-align-text-top {
+  vertical-align: text-top !important;
+}
+/*# sourceMappingURL=alignUtils.css.map */

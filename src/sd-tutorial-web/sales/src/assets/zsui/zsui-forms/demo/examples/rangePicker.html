@@ -1,0 +1,184 @@
+<%- script(nodeModules + '/zsui-core/dist/utils/smartComponent.js')%>
+<script src="<%=zsuiPath%>/dateTime/dateRangePicker.js"></script>
+
+<div data-page="rangePicker">
+	<h2>Date Range picker using HTML</h2>
+	<div id="exampleRangePickerHtml"><fieldset class="zs-fieldset">
+    <zs-date-range-picker class="zs-date-range-picker zs-paragraph" min-range="12-2016" max-range="08-2020" start-range="05-2018"
+			 end-range="05-2019">
+    </zs-date-range-picker>
+</fieldset></div>
+	<code for="exampleRangePickerHtml" class="html hljs"></code>
+
+	<h2>Date Range picker using Javascript</h2>
+	<fieldset class="zs-fieldset range-picker-container">
+
+	</fieldset>
+	
+	<div id="exampleRangePickerJS"><!---<fieldset class="zs-fieldset range-picker-container">
+</fieldset>
+<script>
+    var container = document.querySelector(".range-picker-container");
+
+    var rangePicker = document.createElement("zs-date-range-picker");
+    rangePicker.minRange = "05-2017";
+    rangePicker.maxRange = "12-2019";
+    rangePicker.startRange = "08-2017";
+    rangePicker.endRange = "08-2018";
+
+    rangePicker.classList.add("zs-paragraph");
+
+    container.appendChild(rangePicker);
+	
+	// Attach event listeners
+	var rangePickers = document.querySelectorAll("zs-date-range-picker");
+	
+	for(var i=0; i<rangePickers.length; i++){
+			
+	    rangePickers[i].addEventListener("change",function (e) {
+	        console.log("New Date Range set. 'change' event triggered. ", e.detail);
+	    });
+
+	    rangePickers[i].addEventListener("beforeOpen", function (e) {
+	        console.log("'beforeOpen' event triggered. ", e);
+	    });
+		
+	    rangePickers[i].addEventListener("open", function (e) {
+	        console.log("'open' event triggered. ", e);
+	    });
+
+	    rangePickers[i].addEventListener("close", function (e) {
+	        console.log("'close' event triggered. ", e);
+	    });
+				
+	    rangePickers[i].addEventListener("beforeClose", function (e) {
+	        console.log("'beforeClose' event triggered. ", e);
+	    });
+	}
+    });
+</script>//-->
+	</div>
+	<br/>
+	<code for="exampleRangePickerJS" class="html hljs"></code>
+
+	<h2>Date Range picker supports different locale</h2>
+	<p>You can set <b>"locale"</b> attribute/property to desired language. Eg: <b>locale = "de"</b></p>
+
+	<fieldset class="zs-fieldset">
+		<zs-date-range-picker class="zs-date-range-picker zs-paragraph" min-range="12-2016" max-range="08-2020" start-range="05-2018"
+		 end-range="05-2019" locale="de"></zs-date-range-picker>
+	</fieldset>
+	<div id="exampleRangePickerLocale"><!---<fieldset class="zs-fieldset">
+    <zs-date-range-picker class="zs-date-range-picker zs-paragraph" min-range="12-2016" max-range="08-2020" start-range="05-2018" end-range="05-2019" locale="de">
+    </zs-date-range-picker>
+</fieldset>//-->
+	</div>
+	<code for="exampleRangePickerLocale" class="html hljs">
+		
+	</code>
+	<br/>
+	<fieldset>
+		<button class="zs-button" onclick="getSelectedRange()">Get Selected Range</button>
+	</fieldset>
+
+        <br />
+	
+	<div style="height:300px;width:600px;overflow:scroll;border: 1px solid #e1e9ef;border-radius: 0.3em;text-align: center;" class="modal">
+		<br />
+		<h2>Date Range picker inside a modal can be hid on scroll</h2>
+		<br />
+		<br />
+		<br />
+		<br />
+
+		<fieldset class="zs-fieldset">
+			<zs-date-range-picker class="zs-date-range-picker zs-paragraph" min-range="12-2016" max-range="08-2020" start-range="05-2018" end-range="05-2019">
+			</zs-date-range-picker>
+		</fieldset>
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+	</div>
+	<div id="exampleRangePickerModal"><!---<fieldset class="zs-fieldset">
+    <zs-date-range-picker class="zs-date-range-picker zs-paragraph" min-range="12-2016" max-range="08-2020" start-range="05-2018" end-range="05-2019" locale="de">
+    </zs-date-range-picker>
+</fieldset>
+<script>
+    var modalRangePicker = document.querySelector(".modal zs-date-range-picker");
+    var modal = document.querySelector(".modal");
+
+    modal.addEventListener("scroll", function(){
+    modalRangePicker.closeCalendar();
+    // OR 
+    modalRangePicker.setPosition(); //calendar sticks to the field while modal scrolls
+</script>//-->
+	</div>
+	<br/>
+	<code for="exampleRangePickerModal" class="html hljs">
+		
+	</code>
+	<script defer>
+
+		var rangePickers = document.querySelectorAll("zs-date-range-picker");
+
+		var getSelectedRange = function () {
+
+			for(var i=0; i<rangePickers.length;i++){
+				console.log("Selected Range object: ", rangePickers[i].getSelectedRange());
+			}
+		}
+
+		var container = document.querySelector(".range-picker-container");
+
+		var rangePicker = document.createElement("zs-date-range-picker");
+		rangePicker.minRange = "05-2017";
+		rangePicker.maxRange = "12-2019";
+		rangePicker.startRange = "08-2017";
+		rangePicker.endRange = "08-2018";
+
+		rangePicker.classList.add("zs-paragraph");
+
+		container.appendChild(rangePicker);
+
+		for(var i=0; i<rangePickers.length; i++){
+			
+			rangePickers[i].addEventListener("change",function (e) {
+				console.log("New Date Range set. 'change' event triggered. ", e.detail);
+			});
+
+			rangePickers[i].addEventListener("beforeOpen", function (e) {
+				console.log("'beforeOpen' event triggered. ", e);
+			});
+			
+			rangePickers[i].addEventListener("open", function (e) {
+				console.log("'open' event triggered. ", e);
+			});
+
+			rangePickers[i].addEventListener("close", function (e) {
+				console.log("'close' event triggered. ", e);
+			});
+					
+			rangePickers[i].addEventListener("beforeClose", function (e) {
+				console.log("'beforeClose' event triggered. ", e);
+			});
+		}
+
+		var modalRangePicker = document.querySelector(".modal zs-date-range-picker");
+		var modal = document.querySelector(".modal");
+
+		modal.addEventListener("scroll", function(){
+			modalRangePicker.closeCalendar();
+			// OR 
+			modalRangePicker.setPosition(); //calendar sticks to the field while modal scrolls
+		});
+	</script>
+	
+</div>

@@ -1,0 +1,31 @@
+.size-utils-mixin(@list,@breakpoint:xsw){
+    .size-generator(@list, @i: 1) when (@i <= length(@list)) {
+        @size: extract(@list, @i);
+        @selector: e(replace("@{size}", "%", ""));
+        
+        .zs-height-@{selector}-@{breakpoint} {
+            height: ~"@{size}" !important;
+        }
+        
+        .zs-width-@{selector}-@{breakpoint} {
+            width: ~"@{size}" !important;
+        }    
+        .size-generator(@list, @i + 1);
+    }
+    .size-generator(@list);
+}
+
+@sizes: 25%, 50%, 75%, 100%, auto;
+    
+@media (max-width: @screen-sm-min){
+    .size-utils-mixin(@sizes,xsw);
+}
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max){
+    .size-utils-mixin(@sizes,sw);
+}
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max){
+    .size-utils-mixin(@sizes,mw);
+}
+@media (min-width: @screen-lg-min){
+    .size-utils-mixin(@sizes,lw);
+}

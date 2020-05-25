@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>zsDialog.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="zs.dialog.html">dialog</a><ul class='methods'><li data-type='method'><a href="zs.dialog.html#.close">close</a></li><li data-type='method'><a href="zs.dialog.html#.configurePlugin">configurePlugin</a></li><li data-type='method'><a href="zs.dialog.html#.open">open</a></li><li data-type='method'><a href="zs.dialog.html#.removePlugin">removePlugin</a></li><li data-type='method'><a href="zs.dialog.html#.syncAttribute">syncAttribute</a></li></ul></li><li><a href="zsModalDialog.html">zsModalDialog</a><ul class='methods'><li data-type='method'><a href="zsModalDialog.html#close">close</a></li><li data-type='method'><a href="zsModalDialog.html#configure">configure</a></li><li data-type='method'><a href="zsModalDialog.html#destroy">destroy</a></li><li data-type='method'><a href="zsModalDialog.html#escapeClick">escapeClick</a></li><li data-type='method'><a href="zsModalDialog.html#fixPosition">fixPosition</a></li><li data-type='method'><a href="zsModalDialog.html#open">open</a></li><li data-type='method'><a href="zsModalDialog.html#render">render</a></li><li data-type='method'><a href="zsModalDialog.html#renderOverlay">renderOverlay</a></li><li data-type='method'><a href="zsModalDialog.html#submitOnEnter">submitOnEnter</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">zsDialog.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>﻿
+var zs = (function (zs) {
+	'use strict';
+	/**
+ 	 * zs.dialog is a wrapper on jQuery zsModalDialog plugin. It provides options to configure the plugin and also provide callbacks and hooks for the consumer.
+ 	 * @namespace 
+ 	*/
+	zs.dialog = {
+		/**A boolean value that indicates whether dialog plugin is configured or not.*/
+		isConfigured: false,
+		/** Removes the dialog plugin */
+		removePlugin: function () {
+			$(this).zsModalDialog('destroy');
+			this.isConfigured = false;
+		},
+		/** Configures the dialog plugin 
+		 * @param afterConfigure {function} gets called after configuration of plugin.
+		*/
+		configurePlugin: function (afterConfigure) {
+			var comp = this;
+
+			var configuration = {
+				autoOpen: this.getAttribute('open') != null,
+				submitSelector: '>footer button[submit]',
+				events: {
+					open: function () {
+						comp.syncAttribute(true);
+					},
+					close: function () {
+						comp.syncAttribute(false);
+					},
+					submit: function (e) {
+						if (typeof (comp.handleSubmitAction) === 'function') {
+							comp.handleSubmitAction.call(comp);
+							e.preventDefault();
+						} else {
+							comp.close();
+						}
+					}
+				}
+			};
+
+			$(function () {
+				$(comp).zsModalDialog(configuration);
+				comp.isConfigured = true;
+				if (typeof afterConfigure == 'function') {
+					afterConfigure.apply(comp);
+				}
+				var event = new CustomEvent('configure');
+				comp.dispatchEvent(event);
+			});
+		},
+		/** Synchronizes the "open" attribute value */
+		syncAttribute: function (open) {
+			// Sync attribute value
+			this.ignoreChange = true;
+			if (open) {
+				this.setAttribute('open', '');
+			} else {
+				this.removeAttribute('open');
+			}
+		},
+		/** Opens a dialog */
+		open: function () {
+			if (!this.isConfigured) {
+				this.configurePlugin(function () {
+					$(this).zsModalDialog('open');
+				});
+			} else {
+				$(this).zsModalDialog('open');
+			}
+		},
+		/** Closes the dialog */
+		close: function () {
+			if (!this.isConfigured) {
+				this.configurePlugin(function () {
+					$(this).zsModalDialog('close');
+				});
+			} else {
+				$(this).zsModalDialog('close');
+			}
+		},
+		/** Provides callback handles for events such as attach, detach, create and attributeChange.
+		 * create method is called when an instance of the element is created.  
+		 * attach method is called when an instance was inserted into the document.
+		 * detach method is called when an instance was removed from the document.	 
+		 * attributeChange method is called when an attribute was added, removed, or updated.		
+		*/
+
+		events: {
+			attach: function () {
+				this.configurePlugin();
+			},
+			detach: function () {
+				this.removePlugin();
+			},
+			create: function () {
+				console.log('zs-dialog', 'created');
+			},
+			attributeChange: function (event) {
+				if (this.ignoreChange) { this.ignoreChange = false; return; }
+				var attributeName = event.detail.attributeName;
+				if (attributeName == 'open') {
+					this.open();
+				}
+			}
+		}
+	};
+
+	zs.dialogElement = zs.customElement(HTMLElement, 'zs-dialog', null, [zs.dialog]);
+
+	return zs;
+})(window.zs || {});</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Mar 05 2019 15:20:23 GMT+0530 (India Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

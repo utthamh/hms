@@ -1,0 +1,30 @@
+
+.position-utils-mixin(@breakpoint: xsw){
+    .zs-position{
+        &-fixed-@{breakpoint}{
+            position: fixed !important;
+        }
+        &-absolute-@{breakpoint}{
+            position: absolute !important;
+        }
+        &-relative-@{breakpoint}{
+            position: relative !important;
+        }
+        &-static-@{breakpoint}{
+            position: static !important;
+        }
+    }
+}
+
+@media (max-width: @screen-sm-min){
+    .position-utils-mixin(xsw);
+}
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max){
+    .position-utils-mixin(sw);
+}
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max){
+    .position-utils-mixin(mw);
+}
+@media (min-width: @screen-lg-min){
+    .position-utils-mixin(lw);
+}

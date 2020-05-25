@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>ZSUI Tables demo</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	
+	<!-- Demo scripts  -->
+	<script src="demo.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+	<style>
+	.hljs {
+    	padding: 0.5em !important; /*Since core.css loads later and resets all spacing, we need to use !important here.*/
+	}
+	</style>
+	<script>
+	zs.demo.setPaths();
+	zs.demo.addUrlFixes({"nodejs":{},"npm":{"../node_modules/":"../../"},"nuget":{"../node_modules/zsui-[\\w]+/dist":"./"}});
+	</script>
+	
+	<script>zs.demo.script("../node_modules/zsui-core/dist/polyfills/polyfills.js");</script>
+	<script>zs.demo.script("../node_modules/zsui-core/dist/utils/customElements.js");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/core.css");</script>
+	<script>zs.demo.link("./themes/{theme}/tables.css");</script>
+	
+</head>
+<body class="zs-style" style="padding:1em" data-page="">	
+
+<h2>Sortable table</h2>
+<script>zs.demo.script("./tables/tableElement.js");</script>
+<script>zs.demo.script("./tables/sort.js");</script>
+
+<div id="container4"></div>
+<script>
+	function getData() {
+		return new Promise(function (resolve, reject) {
+			var arr = [];
+			for (i = 0; i <= 15; i++) {
+				var row = [];
+				for (j = 0; j < 10; j++) {
+
+					if (i == 0 && j == 2) {
+						row.push(10 * i + j + '<br>test'); // multi line
+					} else if (i == 0 && j == 5) {
+						row.push(10 * i + j + 'unbreakableLongText'); // unbreakable
+					} else if (i > 0 && (j == 2 || j == 6)) {
+						//row.push('fieldunbreakablelong');
+						//row.push('<input type="text" value="test"/>');
+						//var el = new zs.fieldElement();
+						//el.setAttribute('type', 'text');
+						//el.setAttribute('value', 'test');
+
+						row.push('<p is="zs-field" type="text" label="test" value="my value"></p>');
+					} else {
+						row.push(10 * i + j);
+					}
+				}
+				arr.push(row);
+			}
+			resolve(arr);
+		});
+	}
+</script>
+
+<script>
+	var container = document.querySelector('#container4');
+	var sortedField, sortedDirection;
+	zs.customElement(zs.tableElement, 'zs-sortable-table', 'div', zs.tableSortable);
+	var table4 = document.createElement('div', {is: 'zs-sortable-table'});
+	table4.getTableData = getData;
+	table4.headData = ["Column 1", "Column 2", "Column 3", "Column 4", "Column 5", "Column 6", "Column 7", "Column 8", "Column 9", "Column 10"];
+
+	table4.renderHead = function (rowIndex, colIndex, data) { // add sortable flag to necessary elems
+		var th = zs.table.renderHead.apply(this, arguments);
+
+
+		// Add sorting
+		th.setAttribute('sortable', true);
+		th.setAttribute('index', colIndex);
+		var sortOrder = null
+		if (sortedField == colIndex) {
+			if (sortedDirection == 'asc') {
+				sortedDirection = 'desc';
+			} else {
+				sortedDirection = 'asc';
+			}
+			sortOrder = sortedDirection;
+		}
+
+		this.addSortableListener(th, sortOrder);
+
+
+		// additionaly u can choose different sorting event and/or element
+		// th.setAttribute('sorting-elm', 'span');
+		// th.setAttribute('sorting-event', 'mouseover');
+		return th;
+	}
+
+
+	table4.addEventListener('sort', function (e) { // listen to sort event and do whatever u wanna
+		var elm = e.detail.elm;
+		sortedField = e.detail.elm.getAttribute('index');
+		table4.getTableData = function() {
+			return new Promise(function (resolve, reject) {
+				var arr = table4.data.sort(function(a, b) {
+					var returnValue = 0;
+
+					if (a[sortedField] < b[sortedField]) {
+						returnValue = 1;
+					}
+					else if (a[sortedField] > b[sortedField]) {
+						returnValue = -1;
+					}
+					else{
+						returnValue = 0;
+					}
+
+					if(sortedDirection == "asc"){
+						return returnValue;
+					}
+					else{
+						return (returnValue * -1);
+					}
+				});
+				resolve(arr);
+			});
+		};
+		table4.refreshTable();
+	});
+
+	table4.refreshTable();
+	container.appendChild(table4);
+</script>
+
+
+</body>
+</html>

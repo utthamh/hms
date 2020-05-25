@@ -1,0 +1,302 @@
+@zs-table-border-color: darken(@zs-border-color, 5%); // #cdd7df
+/*
+Layout
+
+Layout
+
+Styleguide Layout
+*/
+
+html {
+	height:100%
+}
+body {
+	margin:0;
+	padding:0;
+	height:100%;
+}
+
+ 
+/*
+Flexbox layout
+
+Classic layout using flexbox.
+
+Markup:
+<div class="zs-layout-classic">
+	<header>Header</header>
+	<section>
+		<main>
+			<header>Page title</header>
+			<section>Content</section>
+		</main>
+		<aside>
+			Side nav 
+		</aside>	
+	</section>
+	<footer>footer</footer>
+</div>
+
+--Styleguide Layout.Flexbox
+*/
+/*
+.zs-layout-classic, .zs-layout-demo {
+	display: flex;
+	height: 100%;
+	width: 100%;
+	flex-flow: column;
+	>header, .zs-layout-header, .zs-layout-footer, >footer {
+		 flex: none;
+	}	
+	
+	.zs-layout-body, >section {	
+		display: flex;
+  		flex: 1 0 auto;
+  		flex-flow: row;
+	}
+	
+	.zs-layout-aside, >section>aside {
+		order: -1;
+		flex: 0 0 @zs-layout-aside-width;
+		max-width: @zs-layout-aside-width;
+		overflow: hidden;
+	}
+	.zs-layout-main, >section>main, .zs-layout-body>main {
+		flex: 1 1 auto;
+		overflow:hidden;
+		display: block;
+	}
+}
+*/
+
+
+.zs-layout-demo {
+	>header {
+		.padding;
+		background: darken(@zs-background, 20%);
+	}
+
+	>section {
+		.padding;
+		background: darken(@zs-background, 20%);
+		
+	}
+	>section>main, {
+		.padding;
+		background: darken(@zs-background,0%);
+		>aside {
+			.padding;
+			background: darken(@zs-background, 40%);
+		}		
+
+	}
+
+	>footer {
+		.padding;
+		background: darken(@zs-background, 30%);
+	}
+}
+
+/*
+Standard layout
+
+Standard layout
+
+Markup:
+<div class="zs-layout-table">
+	<header>Header</header>
+	<section>
+		<main>
+			<header>Page title</header>
+			<section>Content</section>
+			<aside>
+				Side nav
+			</aside>			
+		</main>
+	</section>
+	<footer>footer</footer>
+</div>
+
+Styleguide Layout.Standard
+*/
+.zs-layout-table {
+	height: 100%;
+	display: table;
+	width: 100%;
+	>header, .zs-layout-header {
+		// display: table-cell; // removed due to ZSUI-556
+	} 
+	.zs-layout-footer, >footer {
+		display: table-row;
+	}	
+	
+	.zs-layout-body, >section {	
+		height: 100%;
+		display: table-row;
+		width: 100%;
+	}
+	
+	.zs-layout-aside, >section >main >aside {
+		width: @zs-layout-aside-width;
+		position:absolute;
+		left: 0;
+		top:0;
+		height: 100%;
+		overflow: hidden;
+		display:table-cell;	
+	}
+	.zs-layout-main, >section>main, .zs-layout-body>main {
+		display: table; /* required */
+		height:100%;
+		width: 100%;
+		position: relative;		
+	}
+	
+	.zs-layout-main, >section>main, .zs-layout-body>main {
+			>header, >section {
+				margin-left: @zs-layout-aside-width;
+			}
+	}
+	
+	&.zs-layout-1col, .zs-layout-1col {
+		.zs-layout-main, >section>main, .zs-layout-body>main {
+			>header, >section {
+				margin-left: 0;
+			}
+		}
+		
+		.zs-layout-aside, >section >main >aside {
+			display: none;
+		}
+		
+		
+		>footer, .zs-layout-footer {
+			div:first-child {
+				display:none;
+			}
+			div:last-child {
+				height: 3em;
+			}
+		}
+	}
+}
+
+
+
+/*
+Callout box
+
+An information box with a stylized header and body to be displayed to the side of a primary container element.
+
+Markup:
+<div class="zs-callout-box">
+	<header>Header</header>
+	<section>
+		<ul class="zs-list">
+			<li>List item</li>
+		</ul>
+	</section>
+</div>
+
+Styleguide Layout.CalloutBox
+*/
+.zs-callout-box {
+	border: 1px solid @zs-table-border-color;
+	border-radius: @zs-border-radius;
+	display: block;
+	width: 100%;
+
+	>header:extend(.zs-data-table thead td all) {
+		.padding;
+		height: 34em/14;
+		border-top-left-radius: @zs-border-radius;
+		border-top-right-radius: @zs-border-radius;
+	}
+
+	>section {
+		.padding;
+	}
+	a {
+		display:inline-block;
+		word-break:break-all;
+	}
+}
+.zs-layout-classic >section aside, .zs-layout-classic .zs-layout-aside, .zs-layout-table >section >main >aside, .zs-layout-table .zs-layout-aside, {
+    border-right:1px solid @zs-border-color;
+	background: @zs-background;
+   
+}
+
+// from global.less
+.zs-style {	
+    &.zs-layout-1col, .zs-layout-1col {		  
+        >section>main>header, main>section, &.zs-layout-table>section>main>section, &.zs-layout-table>section>main>header {
+            margin-left: 0px + @zs-font-size-base*@zs-font-padding-ratio*2;
+        }
+       >section>main>.zs-action-message {
+            margin-left: 0px;
+       }
+    } 
+}
+
+.zs-style .zs-layout-main, .zs-style main, main.zs-style {
+    .padding(0,0,1,0);
+    background: @zs-background-dark;
+}
+
+.zs-style main >header, .zs-style .zs-page-header, .zs-layout-table>section>main>header {
+    font-size: @zs-font-size-large + 2;
+    line-height: @zs-font-size-large;
+	&:before {
+		content: '';
+		display: block;
+		.margin(1,0,0,0);
+	}
+	>h1 { 
+		.margin(1,0,0,0); 
+        font-weight: normal;
+	}
+	>h1:first-child {
+		.margin(1.5,0,0,0);
+	} 
+    .padding(0,0,1.5,0); // Should match left navigation first item bottom border
+}
+
+.zs-style {	
+	 &.zs-layout-table>section>main>header, &.zs-layout-table>section>main>section, .zs-layout-table>section>main>header, .zs-layout-table>section>main>section { 
+		margin-left: @zs-layout-aside-width + @zs-font-size-base*@zs-font-padding-ratio*2;
+		margin-right:0px + @zs-font-size-base*@zs-font-padding-ratio*2;		
+	 }
+	 
+	 &.zs-layout-1col, .zs-layout-1col {		  
+		 >section>main>header, main>section, &.zs-layout-table>section>main>section, &.zs-layout-table>section>main>header {
+		 	margin-left: 0px + @zs-font-size-base*@zs-font-padding-ratio*2;
+	 	}
+		>section>main>.zs-action-message {
+			 margin-left: 0px;
+		}
+	 } 
+}
+
+main >section, .zs-page-block, .zs-page, .zs-style main>section {
+	.clearfix;
+    .padding(2,2,2,2);
+    border-radius: @zs-border-radius;
+    border-color: @zs-border-color;
+    background: @zs-background;
+    box-shadow: 0px 1px 3px 0px @zs-shadow-color;
+	
+	h1, h2, h3, p, table {
+		&:first-child,  {
+			//padding-top:0;
+			margin-top:0;
+		}
+	}
+	
+	>h1, >h2, >h3, >p, >table {
+		&:last-child {
+			//padding-bottom:0;
+			margin-bottom:0;
+		}
+	}
+}

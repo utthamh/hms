@@ -1,0 +1,291 @@
+
+// Reset
+.reset() {
+  margin: 0;
+  padding: 0;
+  border: 0;   
+  box-sizing: border-box;
+}
+.zs-style, .zs-style *, .zs-stye:before, .zs-style:after, .zs-style *:before, .zs-style *:after {
+	.reset();
+}
+
+// Typography
+.zs-style {
+
+    font-family: @zs-font-family-base;
+    font-size: @zs-font-size-base;
+	color: @zs-text-color;
+    //line-height:1; // TODO: line-height: 1 could mess fluid layout
+
+    a {
+        color: @zs-link-normal;
+		text-decoration: none;
+    }
+
+    a:hover {
+        color: @zs-link-hover;
+		text-decoration: none;
+    }
+
+    a:active {
+        color: @zs-link-active;
+    }
+
+    .zs-icon:hover, icon-large:hover { // Reset icon hover styles
+        cursor: inherit;
+        background-position: inherit;
+    }
+
+    button.zs-disabled, button[disabled], a.zs-disabled, a[disabled], *[disabled], .zs-disabled {
+        cursor: pointer;
+        opacity: 0.4;
+        pointer-events: none;
+    }
+	
+	em, b {
+		font-weight: bold;
+	}
+	
+	i {
+		font-style:italic;
+	}
+    
+
+    h2, .zs-h2 {
+        font-size:@zs-large; 
+		font-weight: normal;
+		.margin(2.5,0,1.5,0);
+		border:0;
+    }	
+	
+	h1, .zs-h1 {
+		font-size: @zs-extra-large;
+		font-weight: normal;
+		.margin(2.5,0,1.5,0);
+	}
+	
+	h3, .zs-h3 {
+		font-size: @zs-regular;
+		font-weight: bold;
+		.margin(2,0,1,0);
+	}
+	
+	h4, .zs-h4 {
+		font-size: @zs-small;
+		font-weight: normal;
+		font-style: italic;
+		opacity: 0.6;
+		.margin(2,0,0.25,0);
+
+	}
+	p {	
+		.margin(1.5,0,1,0);
+	}
+	
+	hr {
+		border-bottom:1px solid @zs-border-color;
+		.clearfix;	
+	}
+
+	h1, h2, h3, h4, .zs-h1, .zs-h2, .zs-h3, .zs-h4, p, table {
+		&:first-child  {
+			margin-top:0;
+		}
+	}
+	
+	>h1, >h2, >h3, >h4, >.zs-h1, >.zs-h2, >.zs-h3, >.zs-h4, >p, >table {
+		&:last-child {
+			margin-bottom:0;
+		}
+	}
+}
+
+// Font sizes
+.zs-size-regular, .zs-size-r {
+	font-size: @zs-regular !important;
+}
+.zs-size-extra-small, .zs-size-xs {
+	font-size: @zs-extra-small !important;
+}
+.zs-size-small, .zs-size-s {
+	font-size: @zs-small !important;
+}
+.zs-size-medium, .zs-size-m {
+	font-size: @zs-medium !important;
+}
+.zs-size-large, .zs-size-l {
+	font-size: @zs-large !important;
+}
+.zs-size-extra-large, .zs-size-xl {
+	font-size: @zs-extra-large !important;
+}
+.zs-size-extra-extra-large, .zs-size-xxl {
+	font-size: @zs-extra-extra-large !important;
+}
+
+// Loading
+.zs-loading:extend(.zs-disabled all) {
+	position: relative;
+	min-height: 2em;
+	min-width: 2em;
+
+	&.zs-button {
+		padding-left: 2.5em; // TODO: make spacing the same as from the right;
+		&:after {
+			left:1.71em;
+		}
+	}
+
+	&:after:extend(.zs-icon-spinner:before) {		
+		left:50%;
+		top:50%;
+		margin-left:-0.5em;
+		margin-top:-0.5em;
+		display: inline-block;
+		position: absolute!important;	
+		color: @zs-text-color;
+		.animation(spin,2s,infinite, steps(8));	
+	}
+	
+	&.zs-data-table {
+		&:after {
+			font-size:2em;
+			opacity:0.5;
+			
+		}
+	}
+}
+.keyframes(spin);
+.frames() {
+	from {.transform(rotate(0deg))}
+	to {.transform(rotate(360deg))}
+}
+
+
+// Paragraph
+.zs-paragraph:extend(.zs-style p all) { }
+
+
+// Lists
+.zs-list, ol, .zs-ordered-list {
+	padding:0;
+	.margin(0,0,0,1.5);
+	display:block;
+
+	>li {
+		display:list-item;
+		.margin(0.5,0,0.5,0);
+
+	}
+	list-style-position: outside;
+}
+
+
+// Highlight
+@zs-highlight-color: lighten(@zs-status-warning, 30%);
+.zs-highlight, mark { 
+	background-color:@zs-highlight-color;
+	color:inherit;
+}
+
+
+/* IE11 scroll fix */
+body {-ms-overflow-style: scrollbar;}
+
+// Remove IE clear icon from inputs
+.zs-style input::-ms-clear { 
+	display: none;
+}
+
+/* @deprecated: to be removed in v4.0 by 2020 */
+
+.zs-inline-block {
+	display:inline-block;
+}
+
+.zs-overflow-hidden {
+	overflow: hidden;
+}
+
+.zs-left {
+	float:left;
+	display:inline-block;	
+}
+
+.zs-right {
+	float:right;
+	display:inline-block;
+}
+
+.zs-lib-version:after {
+	content: @zs-lib-version; 
+}
+.zs-theme-name:after {
+	content: @zs-theme-name; 
+}
+.zs-theme-version:after {
+	content: @zs-theme-version; 
+}
+
+.space(margin, 1);
+.space(padding, 1);
+.space(border, 1);
+.space(margin, 2);
+.space(padding, 2);
+.space(border, 2);
+.space(margin, 0.5);
+.space(padding, 0.5);
+.space(border, 0.5);
+
+
+.zs-hidden {
+	display: none;
+}
+
+// TODO: Do we use this at all?
+@zs-data-grid-clickable-bg-color: darken(@zs-background, 5%);
+.zs-data-grid td.clickable:hover {
+    cursor: pointer;
+    background: @zs-data-grid-clickable-bg-color;
+}
+
+.zs-clear { 
+    .clearfix;
+}
+
+
+.zs-box {
+    .padding;
+    display:inline-block;
+    border:1px solid @zs-border-color;
+    border-radius: @zs-border-radius;
+}
+
+.zs-icon-font-version:after {
+	content: @zs-icon-font-version; 
+}
+.zs-font-large {
+    font-size: @zs-font-size-large;
+}
+.zs-font-small {
+    font-size: @zs-font-size-small;
+}
+.zs-font-normal {
+    font-size: @zs-font-size-base;
+}
+.zs-font-size-normal {
+	font-size: @zs-font-size-base;
+}
+.zs-font-size-large {
+	font-size: @zs-font-size-large;
+}
+.zs-font-size-small {
+	font-size: @zs-font-size-small;
+}
+.zs-font-size-extra-small {
+	font-size: @zs-font-size-extra-small!important;
+}
+.zs-font-size-extra-large {
+	font-size: @zs-font-size-extra-large;
+}

@@ -1,0 +1,17 @@
+@zs-theme-name: 'zs';
+@zs-core-path: '../../../node_modules/zsui-core/src';
+@zs-src-path: '../../';
+
+// Definitions
+@import '@{zs-core-path}/less/theme.less';
+@import '@{zs-core-path}/less/mixins.less';
+@import '@{zs-core-path}/less/relative.less';
+@import "@{zs-core-path}/themes/@{zs-theme-name}/custom.less";
+
+
+// Component less files
+@import '@{zs-src-path}/dialog/dialog.less';
+
+// Package level overrides should be at the bottom
+@zs-images: '@{zs-core-path}/images';
+@zs-fonts: '@{zs-core-path}/fonts'; 

@@ -1,0 +1,58 @@
+
+
+
+.border-utils-mixin(@breakpoint: xsw){
+    .zs-border{
+        &-@{breakpoint}         { border: @zs-border-size solid @zs-border-color !important; }
+        &-top-@{breakpoint}     { border-top: @zs-border-size solid @zs-border-color !important; }
+        &-right-@{breakpoint}   { border-right: @zs-border-size solid @zs-border-color !important; }
+        &-bottom-@{breakpoint}  { border-bottom: @zs-border-size solid @zs-border-color !important; }
+        &-left-@{breakpoint}    { border-left: @zs-border-size solid @zs-border-color !important; }
+
+        &-0-@{breakpoint}        { border: 0 !important; }
+        &-top-0-@{breakpoint}    { border-top: 0 !important; }
+        &-right-0-@{breakpoint}  { border-right: 0 !important; }
+        &-bottom-0-@{breakpoint} { border-bottom: 0 !important; }
+        &-left-0-@{breakpoint}   { border-left: 0 !important; }
+
+        &-rounded-@{breakpoint} {
+            border-radius: @zs-border-radius !important;
+        }
+        &-rounded-top-@{breakpoint} {
+            border-top-left-radius: @zs-border-radius !important;
+            border-top-right-radius: @zs-border-radius !important;
+        }
+        &-rounded-right-@{breakpoint} {
+            border-top-right-radius: @zs-border-radius !important;
+            border-bottom-right-radius: @zs-border-radius !important;
+        }
+        &-rounded-bottom-@{breakpoint} {
+            border-bottom-right-radius: @zs-border-radius !important;
+            border-bottom-left-radius: @zs-border-radius !important;
+        }
+        &-rounded-left-@{breakpoint} {
+            border-top-left-radius: @zs-border-radius !important;
+            border-bottom-left-radius: @zs-border-radius !important;
+        }
+        &-circle-@{breakpoint} {
+            border-radius: 50% !important;
+        }
+        &-rounded-0-@{breakpoint} {
+            border-radius: 0 !important;
+        }
+    }
+    
+}
+
+@media (max-width: @screen-sm-min){
+    .border-utils-mixin(xsw);
+}
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max){
+    .border-utils-mixin(sw);
+}
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max){
+    .border-utils-mixin(mw);
+}
+@media (min-width: @screen-lg-min){
+    .border-utils-mixin(lw);
+}

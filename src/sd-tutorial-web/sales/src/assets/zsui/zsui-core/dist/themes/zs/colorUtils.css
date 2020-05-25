@@ -1,0 +1,94 @@
+.zs-bg-chart-7 {
+  background: #a0afc6 !important;
+}
+.zs-bg-chart-6 {
+  background: #a3b2aa !important;
+}
+.zs-bg-chart-5 {
+  background: #01a6dc !important;
+}
+.zs-bg-chart-4 {
+  background: #b8cc7b !important;
+}
+.zs-bg-chart-3 {
+  background: #6e2b62 !important;
+}
+.zs-bg-chart-2 {
+  background: #00629b !important;
+}
+.zs-bg-chart-1 {
+  background: #86c8bc !important;
+}
+.zs-bg-shadow {
+  background: #dee3e3 !important;
+}
+.zs-bg-border-error {
+  background: red !important;
+}
+.zs-bg-border {
+  background: #e1e9ef !important;
+}
+.zs-bg-selected {
+  background: #fdf3e6 !important;
+}
+.zs-bg-tab {
+  background: #e5eaef !important;
+}
+.zs-bg-info {
+  background: #9bdaff !important;
+}
+.zs-bg-warning {
+  background: #fff9e1 !important;
+}
+.zs-bg-error {
+  background: #f8e9e6 !important;
+}
+.zs-bg-success {
+  background: #e8f6eb !important;
+}
+.zs-bg-link-hover {
+  background: #4c94af !important;
+}
+.zs-bg-link {
+  background: #327f97 !important;
+}
+.zs-bg-dark {
+  background: #f2f2f2 !important;
+}
+.zs-bg-standard {
+  background: #fff !important;
+}
+.zs-bg-darkgray {
+  background: #53565a !important;
+}
+.zs-bg-gray {
+  background: #98a4ae !important;
+}
+.zs-bg-brand-dark {
+  background: #48778a !important;
+}
+.zs-bg-primary {
+  background: #ed8b00 !important;
+}
+.zs-text-info {
+  color: #004268 !important;
+}
+.zs-text-warning {
+  color: #ac8902 !important;
+}
+.zs-text-success {
+  color: #317b3f !important;
+}
+.zs-text-error {
+  color: #722f20 !important;
+}
+.zs-text-footer {
+  color: #9fa2a7 !important;
+}
+.zs-text-light {
+  color: #74797d !important;
+}
+.zs-text-default {
+  color: #53565a !important;
+}
+/*# sourceMappingURL=colorUtils.css.map */

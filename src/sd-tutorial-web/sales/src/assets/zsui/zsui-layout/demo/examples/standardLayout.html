@@ -1,0 +1,41 @@
+
+<div class="zs-layout-table">
+	<header>
+		<h2>Header</h2>
+	</header>
+	<section>
+		<main>
+			<header>Page title</header>
+			<section>
+				<form class="zs-form">
+					<fieldset class="zs-fieldset">
+						<p>
+							<span class="zs-radio-group">
+								<input type="radio" name="layoutType" value="2col" checked="">Primary layout
+								<input type="radio" name="layoutType" value="1col">1 Column layout
+							</span>
+						</p>
+					</fieldset>
+				</form>
+			</section>
+			<aside>
+				<span>Side navigation</span>
+			</aside>
+		</main>
+	</section>
+	<footer>
+		<div>&nbsp;</div>
+		<div>Footer</div>
+	</footer>
+</div>
+<script>
+	function switchLayout(e) {
+		if (e.target.value == '1col') {
+			document.querySelector('div.zs-layout-table').classList.add('zs-layout-1col');
+		} else {
+			document.querySelector('div.zs-layout-table').classList.remove('zs-layout-1col');
+		}
+	}
+
+	document.querySelector('.zs-radio-group').addEventListener('click', switchLayout);
+</script>

@@ -1,0 +1,140 @@
+// Version
+@zs-lib-version: '3.6.0'; 
+@zs-theme-version: @zs-lib-version; // could be overriden in a theme 
+
+// Colors
+@zs-brand-primary: #ed8b00;
+@zs-brand-dark: #48778a;
+@zs-brand-gray: #98a4ae;
+@zs-brand-darkgray: #53565a;
+
+@zs-text-color: #53565a;
+@zs-text-light: #74797d;
+
+@zs-nav-color: @zs-brand-primary;
+@zs-link-normal: #327f97;
+@zs-link-hover: #4c94af;
+@zs-link-active: @zs-link-hover;
+@zs-link-visited: @zs-link-normal;
+
+@zs-status-success: #409f52;
+@zs-status-error: #9a402b;
+@zs-status-warning: #dfb102;
+@zs-status-info: #00629b;
+
+@zs-background: #fff;
+@zs-background-dark: darken(@zs-background, 5%);
+@zs-background-tab: #e5eaef;
+@zs-selected-color: mix(@zs-brand-primary,#fff, 10%);
+
+@zs-border-color: #e1e9ef;
+@zs-border-color-error: red;
+@zs-shadow-color:  #dee3e3;
+
+// Fonts
+@zs-font-family-base: Roboto, Helvetica, "Helvetica Neue", Arial, sans-serif;
+@zs-font-size-base: 14px;
+@zs-font-size-small: @zs-font-size-base - 2;
+@zs-font-size-large: @zs-font-size-base*16/14; // TODO: change it 20/14
+@zs-font-size-extra-large: @zs-font-size-base*36/14;
+@zs-font-size-extra-small: @zs-font-size-base*10/14; 
+
+
+@zs-regular : 1em;
+@zs-extra-small: @zs-regular*12/14;
+@zs-small: @zs-regular*13/14;
+@zs-medium: @zs-regular*16/14;
+@zs-large: @zs-regular*18/14;
+@zs-extra-large: @zs-regular*26/14;
+@zs-extra-extra-large: @zs-regular*36/14;
+
+
+// Sizes
+@zs-gutter: @zs-font-size-base * 0.71; 		// Absolute gutter in px
+@zs-font-padding-ratio: 0.71em; 			// Relative gutter. When font size is 14px our padding should be 10px. Can't use 10/14em due to less issue
+@zs-input-padding: (34 - 14*1.25 - 2)/(2*14*@zs-font-padding-ratio); // When we have a font size of 14px the input height should be 34px
+@zs-padding-vertical: 0.5*@zs-gutter; 		// 5px;
+@zs-padding-horizontal: @zs-gutter; 		// 10px;
+@zs-padding-vertical-large: @zs-gutter;
+@zs-padding-horizontal-large: 2*@zs-padding-horizontal;
+@zs-padding-vertical-small: 0.5*@zs-padding-vertical;
+@zs-padding-horizontal-small: 0.5*@zs-padding-horizontal;
+@zs-icon-width: 16/14em; 						// icon width should be 16px when font size is 14px Can't use 1.14em here due to less issue
+@zs-icon-height: @zs-icon-width;
+@zs-icon-large-height: @zs-icon-height*1.5;  	// large icon height should be 24px when icon height is 16px
+@zs-icon-large-width: @zs-icon-width*1.5;
+@zs-border-radius: 0.3em;
+@zs-border-size: 1px;
+
+// Paths
+@zs-images: '../images';
+@zs-fonts: '../fonts';
+@zs-theme-path: '.';
+
+// Layers
+@zs-layer-distance: 1000;
+@zs-layer-1: 1*@zs-layer-distance;
+@zs-layer-2: 2*@zs-layer-distance;
+@zs-layer-3: 3*@zs-layer-distance;
+@zs-layer-4: 4*@zs-layer-distance;
+@zs-layer-5: 5*@zs-layer-distance;
+@zs-shadow-size-1: 3px;
+@zs-shadow-size-2: 2*@zs-shadow-size-1;
+@zs-shadow-size-3: 3*@zs-shadow-size-1;
+@zs-shadow-size-4: 4*@zs-shadow-size-1;
+@zs-shadow-size-5: 5*@zs-shadow-size-1;
+
+
+// Brand variables
+@zs-logo-width: 97px;
+@zs-layout-aside-width: 200px;
+@zs-layout-left-margin: 40px;
+@zs-brand-margin: 40px; // @depricated
+
+// Icons
+@zs-icon-inactive-color: @zs-brand-gray;
+@zs-icon-font-family: 'zsIcons';
+
+// Chart colors
+@zs-chart-color1: #86c8bc;
+@zs-chart-color2: #00629b;
+@zs-chart-color3: #6e2b62;
+@zs-chart-color4: #b8cc7b;
+@zs-chart-color5: #01a6dc;
+@zs-chart-color6: #a3b2aa;
+@zs-chart-color7: #a0afc6;
+
+// Screen size variables
+//## Define the breakpoints at which your layout will change, adapting to different screen sizes.
+// Extra small screen / phone
+//** Deprecated `@screen-xs` as of v3.0.1
+@screen-xs: 480px;
+//** Deprecated `@screen-xs-min` as of v3.0.1
+@screen-xs-min: @screen-xs;
+//** Deprecated `@screen-phone` as of v3.0.1
+@screen-phone: @screen-xs-min;
+
+// Small screen / tablet
+//** Deprecated `@screen-sm` as of v3.0.1
+@screen-sm: 768px;
+@screen-sm-min: @screen-sm;
+//** Deprecated `@screen-tablet` as of v3.0.1
+@screen-tablet: @screen-sm-min;
+
+// Medium screen / desktop
+//** Deprecated `@screen-md` as of v3.0.1
+@screen-md: 992px;
+@screen-md-min: @screen-md;
+//** Deprecated `@screen-desktop` as of v3.0.1
+@screen-desktop: @screen-md-min;
+
+// Large screen / wide desktop
+//** Deprecated `@screen-lg` as of v3.0.1
+@screen-lg: 1200px;
+@screen-lg-min: @screen-lg;
+//** Deprecated `@screen-lg-desktop` as of v3.0.1
+@screen-lg-desktop: @screen-lg-min; 
+
+@screen-xs-max: (@screen-sm-min - 1);
+@screen-sm-max: (@screen-md-min - 1);
+@screen-md-max: (@screen-lg-min - 1);

@@ -1,0 +1,21 @@
+
+<fieldset [ngStyle]="fieldsetStyle">
+    <p>
+        <label>
+            <span *ngIf="!required && enablesearch != 'true' && showOptionalText">
+                (optional)
+            </span>
+        </label>
+        <span [ngClass]="searchspan">            
+            <input [ngClass]="customClass" class="zs-input" [(ngModel)]="modelvalue"
+                (ngModelChange)="touched=true; validate()" (blur)="blurEvent()" placeholder="{{placeholder}}"
+                type="{{inputtype}}" [ngStyle]="customstyle"/>
+            <a *ngIf="enablesearch==='true' && modelvalue && modelvalue.length > 0" (click)="clearModelValue()"
+                href="javascript:void(0)" class="zs-icon zs-icon-remove clear-icon" clear=""></a>
+        </span>
+        <span *ngIf="showLoader" class="zs-loading loader-placing"></span>
+        <span *ngIf="touched && inerrorstate"
+            [ngClass]=" !customstyle ? 'zs-message zs-message-min-width': 'zs-message'"
+            [ngStyle]="errorSpanStyle">{{errorMessage}}</span>
+    </p>
+</fieldset>

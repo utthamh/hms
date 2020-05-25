@@ -1,0 +1,66 @@
+// Toolbar component
+.zs-toolbar {
+	display:flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	>a {
+		flex: 1 1 auto;
+		display:flex;
+		justify-content:center;
+		align-items: center;
+		.padding(0.25, 0, 0.25,0);
+		>.zs-icon {
+			.padding(0,0.25,0,0.25);
+
+			color:inherit;
+			&::before {
+				margin:0;
+				display:block; 
+				vertical-align:initial;
+			}
+		}
+		>.zs-icon + * {
+			.padding(0,0.25,0,0.25);
+			cursor:pointer;
+		}
+	}
+    >a.zs-active {
+		color:@zs-nav-color;
+		>.zs-icon::before {
+			color:inherit;			
+		}
+		&:hover {
+			color: @zs-nav-color;
+		}
+	}
+}
+
+
+.zs-toolbar-labels-below {
+	>a {
+		flex-direction: column;
+	}
+}
+
+.zs-toolbar-vertical {
+	flex-direction: column;
+	height:100%;
+}
+
+.zs-toolbar-align-left {
+	>a {
+		justify-content: flex-start;
+	}
+}
+
+.zs-toolbar-target {
+	>a:target, >a:active {
+		color:@zs-nav-color;
+		>.zs-icon::before {
+			color:inherit;			
+		}
+		&:hover {
+			color: @zs-nav-color;
+		}
+	}
+}

@@ -1,0 +1,92 @@
+@zs-table-highlight-color: mix(@zs-brand-primary,#fff, 10%);
+
+.zs-edit-overlay {
+	background: @zs-background;
+	display:inline-block;
+	position:absolute;
+	// Can't use left, top since it is defined in the script.
+	padding:0;
+	margin:1px 0px 0px 1px;
+	// Adjusting input styles inside overlay
+	.zs-checkbox input {
+		outline:auto;
+		outline-color:lighten(@zs-link-normal, 30%);
+	}
+	.zs-select select {	
+		height:100%;
+	}
+	.zs-input, .zs-field span input, .zs-field input, .zs-select select, .zs-checkbox {
+		outline:auto;
+		outline-color:lighten(@zs-link-normal, 30%);
+		&:focus {
+			border:1px solid lighten(@zs-link-normal, 30%);
+		}		
+		border:0px;
+		.padding(1,0.25,1,0.25);
+		&.zs-checkbox {
+			padding:0;
+		}
+	}
+	>.zs-input, >.zs-checkbox, >.zs-select {
+		display:inline-block;
+		min-width:auto;
+		background-color: transparent;
+	}
+	>.zs-field {
+		display:block;
+		>input, >input[type] {
+			display:block;
+			min-width:auto;
+			width:100%;
+			height:100%;
+		}
+		>span {
+			display:block;
+			width:100%;
+			height:100%;
+			>input {
+				display:block;
+				min-width:auto;
+				width:100%;
+				height:100%;
+			}
+	
+		}
+	}
+}
+
+.zs-edit .zs-data-table, .zs-data-table.zs-edit {
+	.zs-cell {
+		.padding;
+		margin:0px;
+	}
+
+	tbody td[edit] {
+		padding:0px;
+		position:relative;
+		cursor:pointer;
+		margin:0 2px 0 2px;
+		border-bottom: 2px solid lighten(@zs-link-normal, 30%);
+		&::after {
+
+			position:absolute;
+			content:'';
+			display:block;
+			top:0px;
+			left:2px;
+			right:2px;
+			bottom:0px;			
+			//border-bottom: 1px solid lighten(@zs-link-normal, 30%);
+		}
+
+		
+		
+		&:hover {
+			background-color: @zs-table-highlight-color;
+			//box-shadow: inset 0px 0px 3px @zs-link-normal;
+		}
+
+
+	}
+	
+}

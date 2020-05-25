@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>ZSUI Tables demo</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+	<script src="../node_modules/zsui-core/dist/polyfills/polyfills.js"></script>
+	<script src="../node_modules/zsui-core/dist/utils/customElements.js"></script>
+	<link rel="stylesheet" href="../node_modules/zsui-core/dist/themes/zs/core.css">
+	<link rel="stylesheet" href="../dist/themes/zs/tables.css">
+	<script src="tables/tableElement.js"></script>
+	<script src="tables/stickyHeader.js"></script>
+</head>
+
+<body class="zs-style" style="padding:1em" data-page="">
+
+	<p>Table with virtual rows.</p>
+	<p id="time"></p>
+
+	<div id="stickyHeader"></div>
+
+	<script>
+		var t1 = performance.now();
+		function getData() {
+			return new Promise(function (resolve, reject) {
+				var arr = [];
+				for (i = 0; i <= 200; i++) {
+					var row = [];
+					for (j = 0; j < 10; j++) {
+						row.push('Cell ' + i + ', ' + j);
+					}
+					arr.push(row);
+				}
+				resolve(arr);
+			});
+		}
+
+		var stickyTableElement = zs.customElement(zs.tableElement, 'zs-sticky-table', 'div', zs.tableStickyHeader);
+
+		var table = document.createElement('div', {is: 'zs-sticky-table'});
+
+		var tableContainer = document.createElement('div');
+		tableContainer.setAttribute('style', 'width:600px;height:400px;overflow:auto');
+		table.appendChild(tableContainer);
+		table.addEventListener('render', function () {
+			table.stickHeader(table.table, null, table.tableContainer);
+		});
+		table.tableContainer = tableContainer;
+
+		document.querySelector('#stickyHeader').appendChild(table);
+
+		table.visibleRowsCount = 20;
+		table.bufferRowSize = 10;
+		table.firstRowIndex = 0;
+		table.lastRowIndex = table.visibleRowsCount + (2 * table.bufferRowSize);
+		table.chunks = [];
+		table.currentChunk = 0;
+
+		table.renderRow = function (rowIndex, rowData) {
+			this.dataCache = this.dataCache || {};
+
+			// Return from cached data if already present.
+			if (this.dataCache[rowIndex]) {
+				return this.dataCache[rowIndex];
+			}
+
+			// Don't render rows which are not visible
+			if (rowIndex < table.firstRowIndex || rowIndex > table.lastRowIndex) {
+				return;
+			}
+
+			var tr = document.createElement('tr');
+			tr.setAttribute('key', rowIndex);
+			if (Array.isArray(rowData)) {
+				for (var j = 0; j < rowData.length; j++) {
+					tr.appendChild(this.renderCell(rowIndex, j, rowData[j]));
+				}
+			} else {
+				for (var j in rowData) {
+					tr.appendChild(this.renderCell(rowIndex, j, rowData[j]));
+				}
+			}
+			this.dataCache[rowIndex] = tr;
+			return tr;
+		}
+
+		table.addEventListener('render', function () {
+
+			var renderedRowCount = this.querySelectorAll('tr').length - 2;
+			this.avgRowHeight = (this.tableContainer.scrollHeight) / renderedRowCount;
+
+			// Create chunks array
+			var startPos = 0;
+			var endPos = Math.min(this.visibleRowsCount + (2 * this.bufferRowSize), this.data.length);
+			this.rowsCountPerChunk = endPos - startPos;
+			this.chunkHeight = this.avgRowHeight * this.rowsCountPerChunk;
+
+			do {
+				this.chunks.push({
+					startPos: startPos,
+					endPos: endPos
+				});
+				startPos = endPos - this.bufferRowSize;
+				endPos = Math.min(endPos + this.visibleRowsCount + this.bufferRowSize, this.data.length)
+			} while (endPos < this.data.length)
+
+			// Add last chunk
+			this.chunks.push({
+				startPos: startPos,
+				endPos: endPos
+			});
+
+			// Add spacer rows at top and bottom to handle scroll height
+			var tbody = this.table.tBodies[0];
+			var topSpacerRow = tbody.insertBefore(tbody.insertRow(), tbody.firstElementChild);
+			topSpacerRow.classList.add('top-spacer-row');
+			var bottomSpacerRow = tbody.appendChild(tbody.insertRow());
+			bottomSpacerRow.classList.add('bottom-spacer-row');
+			bottomSpacerRow.style.height = (table.chunks.length - 2) * table.chunkHeight + 'px';
+
+			setTimeout(function () {
+				$('#time').html('Table rendered in <b>' + parseInt(performance.now() - t1) + 'ms</b>');
+			}, 0);
+		});
+
+		table.tableContainer.addEventListener('scroll', function () {
+			if (this.request) {
+				cancelAnimationFrame(this.request);
+				this.request = null;
+			}
+			var self = this;
+			this.request = requestAnimationFrame(function () {
+
+				// Reload rows only when chunk is changed.
+				var currentChunk = Math.floor(self.scrollTop / (table.chunkHeight - (table.bufferRowSize * table.avgRowHeight))) || 0;
+				currentChunk = Math.min(currentChunk, table.chunks.length - 1);
+				if (currentChunk !== table.currentChunk) {
+					table.currentChunk = currentChunk;
+					table.firstRowIndex = table.chunks[currentChunk].startPos;
+					table.lastRowIndex = table.chunks[currentChunk].endPos;
+
+					var topSpacerRow = self.querySelector('.top-spacer-row');
+					var bottomSpacerRow = self.querySelector('.bottom-spacer-row');
+
+					// Remove all rows from older chunk
+					var rows = self.querySelectorAll('tbody tr');
+					for (var i = 1; i < rows.length - 1; i++) {
+						table.dataCache[rows[i].getAttribute("key")] = rows[i];
+						rows[i].remove();
+					}
+
+					// Add rows for new chunk
+					for (var i = table.firstRowIndex; i < table.lastRowIndex; i++) {
+						var tr = table.renderRow(i, table.data[i]);
+						if (tr) {
+							self.querySelector('tbody').insertBefore(tr, self.querySelector('.bottom-spacer-row'));
+						}
+					}
+
+					if (currentChunk === 0) {
+						// When first chunk is in view
+						topSpacerRow.style.height = '0px';
+						bottomSpacerRow.style.height = (table.data.length - table.lastRowIndex) * table.avgRowHeight + 'px';
+					} else if (currentChunk === table.chunks.length - 1) {
+						// When last chunk is in view
+						topSpacerRow.style.height = table.firstRowIndex * table.avgRowHeight + 'px';
+						bottomSpacerRow.style.height = '0px';
+					} else {
+						topSpacerRow.style.height = table.firstRowIndex * table.avgRowHeight + 'px';
+						bottomSpacerRow.style.height = (table.data.length - table.lastRowIndex) * table.avgRowHeight + 'px';
+					}
+				}
+			});
+		});
+
+		table.getTableData = getData;
+		table.headData = ["Column 1", "Column 2", "Column 3", "Column 4", "Column 5", "Column 6", "Column 7", "Column 8", "Column 9", "Column 10"];
+		table.refreshTable();
+
+		// Polyfill for IE https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove#Polyfill
+		(function (arr) {
+			arr.forEach(function (item) {
+				if (item.hasOwnProperty('remove')) {
+					return;
+				}
+				Object.defineProperty(item, 'remove', {
+					configurable: true,
+					enumerable: true,
+					writable: true,
+					value: function remove() {
+						if (this.parentNode !== null)
+							this.parentNode.removeChild(this);
+					}
+				});
+			});
+		})([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
+	</script>
+</body>
+
+</html>

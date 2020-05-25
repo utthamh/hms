@@ -1,0 +1,96 @@
+﻿<%- script('https://ui.zsservices.com/demo/zsui/draggable/zsDraggable.js')%>
+<%- script(zsuiPath + '/tables/tableElement.js')%>
+
+<style>
+	.resizable .zs-data-table td {
+		border: 1px solid #d0dde6;
+	}
+
+	.resizable .zs-data-table zs-draggable {
+		top: 0 !important;
+		right: -5px !important;
+		bottom: 0 !important;
+		left: auto !important;
+		width: 10px;
+		cursor: col-resize;
+		z-index: 1000;
+	}
+</style>
+<p>Can resize the columns of the table.</p>
+
+<div id="tableContainer"></div>
+
+<script>
+	function getData() {
+		return new Promise(function (resolve, reject) {
+			var arr = [];
+			for (i = 0; i <= 15; i++) {
+				var row = [];
+				for (j = 0; j < 10; j++) {
+
+					if (i == 0 && j == 2) {
+						row.push(10 * i + j + '<br>test'); // multi line
+					} else if (i == 0 && j == 5) {
+						row.push(10 * i + j + 'unbreakableLongText'); // unbreakable
+					} else if (i > 0 && (j == 2 || j == 6)) {
+						row.push('<p is="zs-field" type="text" label="test" value="my value"></p>');
+					} else {
+						row.push(10 * i + j);
+					}
+				}
+				arr.push(row);
+			}
+			resolve(arr);
+		});
+	}
+</script>
+
+<h2>Table with resizable columns</h2>
+<div is="zs-table" id="table1" class="resizable"></div>
+<script>
+	var table = document.querySelector('#table1');
+
+	table.renderHead = function (rowIndex, colIndex, data) {
+		var th = document.createElement('td');
+		th.setAttribute('key', colIndex);
+		th.innerHTML = data;
+		this.createResizableCell(th);
+		return th;
+	}
+
+	table.renderCell = function (rowIndex, colIndex, data) {
+		var td = document.createElement('td');
+		td.setAttribute('key', colIndex);
+		td.innerHTML = data;
+		this.createResizableCell(td);
+		return td;
+	}
+
+	table.createResizableCell = function (tableCell) {
+		var startPos, originalWidth;
+		var self = this;
+		tableCell.style.position = 'relative';
+
+		var draggableEle = new zs.draggableElement();
+		draggableEle.addEventListener('dragged', function (e) {
+			if (!startPos) {
+				startPos = e.detail.xPos;
+			}
+			if (!originalWidth) {
+				originalWidth = tableCell.offsetWidth;
+			}
+
+			var displacement = parseInt(e.detail.xPos) - parseInt(startPos);
+			var cellIndex = tableCell.getAttribute('key');
+
+			// Apply min-width to a common cell(i.e. first td in each row) in any given column so that we don't have to manage it for every row.
+			var commonCell = self.table.querySelectorAll('tr:first-child > td')[cellIndex];
+			commonCell.style.minWidth = originalWidth + displacement + 'px';
+		});
+		tableCell.appendChild(draggableEle);
+	}
+
+	table.getTableData = getData;
+	table.refreshTable();		
+</script>
+

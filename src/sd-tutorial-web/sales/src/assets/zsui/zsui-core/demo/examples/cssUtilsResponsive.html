@@ -1,0 +1,656 @@
+<%- link(zsuiPath + '/themes/{theme}/borderUtils.css')%>
+<%- link(zsuiPath + '/themes/{theme}/responsiveBorderUtils.css')%>
+<%- link(zsuiPath + '/themes/{theme}/responsiveSizeUtils.css')%>
+<%- link(zsuiPath + '/themes/{theme}/responsiveAlignUtils.css')%>
+<%- link(zsuiPath + '/themes/{theme}/responsiveFloatUtils.css')%>
+<%- link(zsuiPath + '/themes/{theme}/responsiveDisplayUtils.css')%>
+<%- link(zsuiPath + '/themes/{theme}/responsivePositionUtils.css')%>
+<%- link(zsuiPath + '/themes/{theme}/responsiveVisibilityUtils.css')%>
+<%- link(zsuiPath + '/themes/{theme}/colorUtils.css')%>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+<style>
+	[class^=zs-border], .size-eg > span, .size-height-eg > span {
+		height: 80px;
+		width: 80px;
+		display: inline-block;
+		background-color: #f9f9f9;
+		margin-right: 1em;
+	}
+
+	.size-eg > span {
+		display: block;
+		padding: 2em;
+	}
+
+	.samples {
+		padding: 1em;
+	}
+
+	.no-border-eg [class^=zs-border] {
+		border: 1px solid #e1e9ef;
+	}
+
+	.sample2 span {
+		padding: 0.5em;
+		border: 1px dotted;
+		line-height: 30px;
+		margin-right: 1em;
+	}
+
+	.sample2 {
+		padding: 2em;
+	}
+
+	[example] {
+		padding-top: 2em;
+	}
+
+	.container {
+		border: 1px solid #e1e9ef;
+		padding: 1em;
+		margin-top: 1em;
+	}
+
+	.container > div {
+		height: 80px;
+		width: 80px;
+		border: 1px solid #e1e9ef;
+		background-color: #f9f9f9;
+		vertical-align: top;
+		text-align: center;
+	}
+
+	@media (max-width: 768px){
+		.width-view:after{
+			content : "Extra-small Screen: width 100%"
+		}
+		.height-view:after{
+			content: "Extra-small Screen: Height 100%"
+		}
+		.screen-size:after{
+			content: '"Extra-small Screen"';
+		}
+		
+	}
+	@media (min-width: 768px) and (max-width: 991px){
+		.width-view:after{
+			content : "Small Screen: Width 75%"
+		}
+		.height-view:after{
+			content: "Small Screen: Height 75%"
+		}
+		.screen-size:after{
+			content: '"Small Screen"';
+		}
+	}
+	@media (min-width: 992px) and (max-width: 1199px){
+		.width-view:after{
+			content : "Medium Screen: Width: 50%"
+		}
+		.height-view:after{
+			content: "Medium Screen: Height 50%"
+		}
+		.screen-size:after{
+			content: '"Medium Screen"';
+		}
+	}
+	@media (min-width: 1200px){
+		.width-view:after{
+			content : "Large Screen: Width: 25%"
+		}
+		.height-view:after{
+			content: "Large Screen: Height 25%"
+		}
+		.screen-size:after{
+			content: '"Large Screen"';
+		}
+	}
+
+</style>
+<p>ZSUI core modules include several responsive utilies that can we used on different screen size as per the requirement.</p>
+<p>We have many CSS utilities in core module but if we want to use these utilities on a specific screen size, we can put <span class="zs-text-success"><strong>-lw, -mw, -sw and -xsw </strong></span>as a suffix to the required utility class.</p>
+
+<p><span class="zs-text-success"><strong>-lw</strong></span> : large width - (min-width: 1200px)</p>
+<p><span class="zs-text-success"><strong>-mw</strong></span> : medium width - (min-width: 992px) and (max-width: 1199px)</p>
+<p><span class="zs-text-success"><strong>-sw</strong></span> : small width -  (min-width: 768px) and (max-width: 991px)</p>
+<p><span class="zs-text-success"><strong>-xsw</strong></span> : extra-small width - (max-width: 768px)</p>
+
+<h2>To check the impact of different utilities resize the window.</h2>
+<h3 class="screen-size">Screen Size Now: </h3>
+<h2>Border Utils</h2>
+<p>Use the responsive border utilities to change and style the borders of the element on a particular screen size. You can selectively add or remove the borders as well as change radius.</p>
+<p>You can use some basic border utilities by including following file in your HTML</p>
+<code for="border-ref" class="html hljs"></code>
+<div id="border-ref">
+<!---<link rel="stylesheet" href="path/to/zsui/dist/themes/zs/responsiveBorderUtils.css"/>  <!== source zsui-core/src/less/utils/responsiveBorder.less ==>//-->
+</div>
+<h3>Adding borders</h3>
+<div>
+	<div class="samples">
+		<span class="zs-border-lw zs-border-top-mw zs-border-right-sw zs-border-left-sw zs-border-bottom-xsw"></span>
+	</div>
+<code for="add-border-eg" class="html hljs"></code>
+<div id="add-border-eg">
+<!---<span class="zs-border-lw zs-border-top-mw zs-border-right-sw zs-border-left-sw zs-border-bottom-xsw"></span>//-->
+</div>
+</div>
+<h3>Removing borders</h3>
+<div>
+	<div class="samples no-border-eg">
+		<span class="zs-border-0-lw zs-border-top-0-mw zs-border-right-0-sw zs-border-left-0-sw zs-border-bottom-0-xsw"></span>
+	</div>
+<code for="remove-border-eg" class="html hljs"></code>
+<div id="remove-border-eg">
+<!---<span class="zs-border-0-lw zs-border-top-0-mw zs-border-right-0-sw zs-border-left-0-sw zs-border-bottom-0-xsw"></span>//-->
+</div>
+</div>
+<h3>Border Radius</h3>
+<div>
+	<div class="samples">
+		<span class="zs-border zs-border-rounded-lw zs-border-rounded-top-mw zs-border-rounded-right-sw zs-border-rounded-left-sw zs-border-rounded-bottom-xsw"></span>
+		<span class="zs-border zs-border-rounded-0-lw zs-border-circle-mw zs-border-rounded-0-sw zs-border-circle-xsw"></span>
+	</div>
+<code for="border-radius-eg" class="html hljs"></code>
+<div id="border-radius-eg">
+<!---<span class="zs-border zs-border-rounded-lw zs-border-rounded-top-mw zs-border-rounded-right-sw zs-border-rounded-left-sw zs-border-rounded-bottom-xsw"></span>
+<span class="zs-border zs-border-rounded-0-lw zs-border-circle-mw zs-border-rounded-0-sw zs-border-circle-xsw"></span>//-->
+</div>
+</div>
+
+<h2>Size Utils</h2>
+<p>Use the responsive size utilities to set the height and width of the element on a particular screen size.</p>
+<p>You can use some basic size utilities by including following file in your HTML</p>
+<code for="size-ref" class="html hljs"></code>
+<div id="size-ref">
+<!---<link rel="stylesheet" href="path/to/zsui/dist/themes/zs/responsiveSizeUtils.css"/>  <!== source zsui-core/src/less/utils/responsiveSize.less ==>//-->
+</div>
+<h3>Width</h3>
+<div>
+	<div class="samples size-eg">
+		<span class="zs-width-25-lw zs-width-50-mw zs-width-75-sw zs-width-100-xsw width-view"></span>
+	</div>
+<code for="width-eg" class="html hljs"></code>
+<div id="width-eg">
+<!---<span class="zs-width-25-lw zs-width-50-mw zs-width-75-sw zs-width-100-xsw"></span>//-->
+</div>
+</div>
+<h3>Height</h3>
+<div>
+	<div class="samples size-height-eg" style="height: 250px; background-color: #86c8bc;">
+		<span class="zs-height-25-lw zs-height-50-mw zs-height-75-sw zs-height-100-xsw height-view"></span>
+	</div>
+<code for="height-eg" class="html hljs"></code>
+<div id="height-eg">
+<!---<span class="zs-height-25-lw zs-height-50-mw zs-height-75-sw zs-height-100-xsw height-view"></span>//-->
+</div>
+</div>
+
+
+<h2>Align Utils</h2>
+<p>Use the responsive align utilities to set the vertical alignment of the element on the required particular screen sizes.</p>
+<p>You can use the alignment utilities by including following file in your HTML</p>
+<code for="align-ref" class="html hljs"></code>
+<div id="align-ref">
+<!---<link rel="stylesheet" href="path/to/zsui/dist/themes/zs/responsiveAlignUtils.css"/>  <!== source zsui-core/src/less/utils/responsiveAlign.less ==>//-->
+</div>
+<h3>Imapact will be seen in large width screen</h3>
+<div>
+	<div class="sample2">
+		<span class="zs-align-baseline-lw">Baseline</span>
+		<span class="zs-align-top-lw">Top</span>
+		<span class="zs-align-middle-lw">Middle</span>
+		<span class="zs-align-bottom-lw">Bottom</span>
+		<span class="zs-align-text-top-lw">Text top</span>
+		<span class="zs-align-text-bottom-lw">Text bottom</span>
+	</div>
+<code for="align-eg" class="html hljs"></code>
+<div id="align-eg">
+<!---<span class="zs-align-baseline-lw">Baseline</span>
+<span class="zs-align-top-lw">Top</span>
+<span class="zs-align-middle-lw">Middle</span>
+<span class="zs-align-bottom-lw">Bottom</span>
+<span class="zs-align-text-top-lw">Text top</span>
+<span class="zs-align-text-bottom-lw">Text bottom</span>//-->
+</div>
+</div>
+<h3>Imapact will be seen in medium width screen</h3>
+<div>
+	<div class="sample2">
+		<span class="zs-align-baseline-mw">Baseline</span>
+		<span class="zs-align-top-mw">Top</span>
+		<span class="zs-align-middle-mw">Middle</span>
+		<span class="zs-align-bottom-mw">Bottom</span>
+		<span class="zs-align-text-top-mw">Text top</span>
+		<span class="zs-align-text-bottom-mw">Text bottom</span>
+	</div>
+<code for="align-eg" class="html hljs"></code>
+<div id="align-eg">
+<!---<span class="zs-align-baseline-mw">Baseline</span>
+<span class="zs-align-top-mw">Top</span>
+<span class="zs-align-middle-mw">Middle</span>
+<span class="zs-align-bottom-mw">Bottom</span>
+<span class="zs-align-text-top-mw">Text top</span>
+<span class="zs-align-text-bottom-mw">Text bottom</span>//-->
+</div>
+</div>
+<h3>Imapact will be seen in small width screen</h3>
+<div>
+		
+	<div class="sample2">
+		
+		<span class="zs-align-baseline-sw">Baseline</span>
+		<span class="zs-align-top-sw">Top</span>
+		<span class="zs-align-middle-sw">Middle</span>
+		<span class="zs-align-bottom-sw">Bottom</span>
+		<span class="zs-align-text-top-sw">Text top</span>
+		<span class="zs-align-text-bottom-sw">Text bottom</span>
+	</div>
+<code for="align-eg" class="html hljs"></code>
+<div id="align-eg">
+<!---<span class="zs-align-baseline-sw">Baseline</span>
+<span class="zs-align-top-sw">Top</span>
+<span class="zs-align-middle-sw">Middle</span>
+<span class="zs-align-bottom-sw">Bottom</span>
+<span class="zs-align-text-top-sw">Text top</span>
+<span class="zs-align-text-bottom-sw">Text bottom</span>//-->
+</div>
+</div>
+
+<h3>Imapact will be seen in extra-small width screen</h3>
+<div>
+		
+	<div class="sample2">
+		
+		<span class="zs-align-baseline-xsw">Baseline</span>
+		<span class="zs-align-top-xsw">Top</span>
+		<span class="zs-align-middle-xsw">Middle</span>
+		<span class="zs-align-bottom-xsw">Bottom</span>
+		<span class="zs-align-text-top-xsw">Text top</span>
+		<span class="zs-align-text-bottom-xsw">Text bottom</span>
+	</div>
+<code for="align-eg" class="html hljs"></code>
+<div id="align-eg">
+<!---<span class="zs-align-baseline-xsw">Baseline</span>
+<span class="zs-align-top-xsw">Top</span>
+<span class="zs-align-middle-xsw">Middle</span>
+<span class="zs-align-bottom-xsw">Bottom</span>
+<span class="zs-align-text-top-xsw">Text top</span>
+<span class="zs-align-text-bottom-xsw">Text bottom</span>//-->
+</div>
+</div>
+
+
+<h2>Float Utils</h2>
+<p>Use the responsive float utilities to position the element on the required width of the screen using floats.</p>
+<p>You can use the these utilities by including following file in your HTML</p>
+<code for="float-ref" class="html hljs"></code>
+<div id="float-ref">
+<!---<link rel="stylesheet" href="path/to/zsui/dist/themes/zs/responsiveFloatUtils.css"/>  <!== source zsui-core/src/less/utils/responsiveFloat.less ==>//-->
+</div>
+<div example>
+	<h3>Check the impact on large screen size</h3>
+	<label>Set float to:</label>
+	<span class="zs-radio-group">
+		<input type="radio" name="float-lw" value="none-lw" checked="">None
+		<input type="radio" name="float-lw" value="left-lw">Left
+		<input type="radio" name="float-lw" value="right-lw">Right
+	</span>
+	<span class="zs-checkbox">
+		<input clear-float type="checkbox">Clear float</span>
+	<div class="container" style="border: 1px dotted;">
+		<div style="display: inline-block;">Other contents</div>
+		<div target-div style="height: 130px;">Target div</div>
+	</div>
+<code for="float-eg-lw" class="html hljs"></code>
+<div id="float-eg-lw">
+<!---<div class="zs-float-none-lw">Target div</div>//-->
+</div>
+</div>
+
+<div example>
+	<h3>Check the impact on medium screen size</h3>
+	<label>Set float to:</label>
+	<span class="zs-radio-group">
+		<input type="radio" name="float-mw" value="none-mw" checked="">None
+		<input type="radio" name="float-mw" value="left-mw">Left
+		<input type="radio" name="float-mw" value="right-mw">Right
+	</span>
+	<span class="zs-checkbox">
+		<input clear-float type="checkbox">Clear float</span>
+		<div class="container" style="border: 1px dotted;">
+		<div style="display: inline-block;">Other contents</div>
+		<div target-div style="height: 130px;">Target div</div>
+	</div>
+<code for="float-eg-mw" class="html hljs"></code>
+<div id="float-eg-mw">
+<!---<div class="zs-float-none-mw">Target div</div>//-->
+</div>
+</div>
+
+<div example>
+	<h3>Check the impact on small screen size</h3>
+	<label>Set float to:</label>
+	<span class="zs-radio-group">
+		<input type="radio" name="float-sw" value="none-sw" checked="">None
+		<input type="radio" name="float-sw" value="left-sw">Left
+		<input type="radio" name="float-sw" value="right-sw">Right
+	</span>
+	<span class="zs-checkbox">
+		<input clear-float type="checkbox">Clear float</span>
+	<div class="container" style="border: 1px dotted;">
+		<div style="display: inline-block;">Other contents</div>
+		<div target-div style="height: 130px;">Target div</div>
+	</div>
+<code for="float-eg-sw" class="html hljs"></code>
+<div id="float-eg-sw">
+<!---<div class="zs-float-none-sw">Target div</div>//-->
+</div>
+</div>
+
+<div example>
+	<h3>Check the impact on extra-small screen size</h3>
+	<label>Set float to:</label>
+	<span class="zs-radio-group">
+		<input type="radio" name="float-xsw" value="none-xsw" checked="">None
+		<input type="radio" name="float-xsw" value="left-xsw">Left
+		<input type="radio" name="float-xsw" value="right-xsw">Right
+	</span>
+	<span class="zs-checkbox">
+		<input clear-float type="checkbox">Clear float</span>
+	<div class="container" style="border: 1px dotted;">
+		<div style="display: inline-block;">Other contents</div>
+		<div target-div style="height: 130px;">Target div</div>
+	</div>
+<code for="float-eg-xsw" class="html hljs"></code>
+<div id="float-eg-xsw">
+<!---<div class="zs-float-none-xsw">Target div</div>//-->
+</div>
+</div>
+
+<h2>Display Utils</h2>
+<p>Use the responsive display utilities to set the display property of the element on the required screen size.</p>
+<p>You can use these utilities by including following file in your HTML</p>
+<code for="display-ref" class="html hljs"></code>
+<div id="display-ref">
+<!---<link rel="stylesheet" href="path/to/zsui/dist/themes/zs/responsiveDisplayUtils.css"/>  <!== source zsui-core/src/less/utils/responsiveDisplay.less ==>//-->
+</div>
+<div example>
+	<h3>Check the impact on large screen size</h3>
+	<label>Set display to:</label>
+	<span class="zs-radio-group">
+		<input type="radio" name="display-lw" value="block-lw" checked="">Block
+		<input type="radio" name="display-lw" value="inline-block-lw">Inline-block
+		<input type="radio" name="display-lw" value="inline-lw">Inline
+		<input type="radio" name="display-lw" value="table-lw">Table
+		<input type="radio" name="display-lw" value="table-row-lw">Table-row
+		<input type="radio" name="display-lw" value="table-cell-lw">Table-cell
+		<input type="radio" name="display-lw" value="flex-lw">flex
+		<input type="radio" name="display-lw" value="none-lw">None
+	</span>
+	<div class="container">
+		<div style="display: inline-block;">Other contents</div>
+		<div target-div>Target div</div>
+	</div>
+<code for="display-eg-lw" class="html hljs"></code>
+<div id="display-eg-lw">
+<!---<div class="zs-display-block-lw">Target div</div>//-->
+</div>
+</div>
+
+<div example>
+	<h3>Check the impact on medium screen size</h3>
+	<label>Set display to:</label>
+	<span class="zs-radio-group">
+		<input type="radio" name="display-mw" value="block-mw" checked="">Block
+		<input type="radio" name="display-mw" value="inline-block-mw">Inline-block
+		<input type="radio" name="display-mw" value="inline-mw">Inline
+		<input type="radio" name="display-mw" value="table-mw">Table
+		<input type="radio" name="display-mw" value="table-row-mw">Table-row
+		<input type="radio" name="display-mw" value="table-cell-mw">Table-cell
+		<input type="radio" name="display-mw" value="flex-mw">flex
+		<input type="radio" name="display-mw" value="none-mw">None
+	</span>
+	<div class="container">
+		<div style="display: inline-block;">Other contents</div>
+		<div target-div>Target div</div>
+	</div>
+<code for="display-eg-mw" class="html hljs"></code>
+<div id="display-eg-mw">
+<!---<div class="zs-display-block-mw">Target div</div>//-->
+</div>
+</div>
+
+<div example>
+	<h3>Check the impact on small screen size</h3>
+	<label>Set display to:</label>
+	<span class="zs-radio-group">
+		<input type="radio" name="display-sw" value="block-sw" checked="">Block
+		<input type="radio" name="display-sw" value="inline-block-sw">Inline-block
+		<input type="radio" name="display-sw" value="inline-sw">Inline
+		<input type="radio" name="display-sw" value="table-sw">Table
+		<input type="radio" name="display-sw" value="table-row-sw">Table-row
+		<input type="radio" name="display-sw" value="table-cell-sw">Table-cell
+		<input type="radio" name="display-sw" value="flex-sw">flex
+		<input type="radio" name="display-sw" value="none-sw">None
+	</span>
+	<div class="container">
+		<div style="display: inline-block;">Other contents</div>
+		<div target-div>Target div</div>
+	</div>
+<code for="display-eg-sw" class="html hljs"></code>
+<div id="display-eg-sw">
+<!---<div class="zs-display-block-sw">Target div</div>//-->
+</div>
+</div>
+
+<div example>
+	<h3>Check the impact on extra-screen size</h3>
+	<label>Set display to:</label>
+	<span class="zs-radio-group">
+		<input type="radio" name="display-xsw" value="block-xsw" checked="">Block
+		<input type="radio" name="display-xsw" value="inline-block-xsw">Inline-block
+		<input type="radio" name="display-xsw" value="inline-xsw">Inline
+		<input type="radio" name="display-xsw" value="table-xsw">Table
+		<input type="radio" name="display-xsw" value="table-row-xsw">Table-row
+		<input type="radio" name="display-xsw" value="table-cell-xsw">Table-cell
+		<input type="radio" name="display-xsw" value="flex-xsw">flex
+		<input type="radio" name="display-xsw" value="none-xsw">None
+	</span>
+	<div class="container">
+		<div style="display: inline-block;">Other contents</div>
+		<div target-div>Target div</div>
+	</div>
+<code for="display-eg-xsw" class="html hljs"></code>
+<div id="display-eg-xsw">
+<!---<div class="zs-display-block-xsw">Target div</div>//-->
+</div>
+</div>
+
+<h2>Position Utils</h2>
+<p>Use the reposnive position utilities to set the position property of the element.</p>
+<p>You can use these position utilities by including following file in your HTML</p>
+<code for="position-ref" class="html hljs"></code>
+<div id="position-ref">
+<!---<link rel="stylesheet" href="path/to/zsui/dist/themes/zs/responsivePositionUtils.css"/>  <!== source zsui-core/src/less/utils/responsivePosition.less ==>//-->
+</div>
+<div example>
+	<h3>Check the impact on large screen size</h3>
+	<label>Set position to:</label>
+	<span class="zs-radio-group">
+		<input type="radio" name="position-lw" value="static-lw" checked="">Static
+		<input type="radio" name="position-lw" value="absolute-lw">Absolute
+		<input type="radio" name="position-lw" value="relative-lw">Relative
+		<input type="radio" name="position-lw" value="fixed-lw">Fixed
+	</span>
+	<div class="container" style="position: relative;">
+		<div style="display: inline-block;">Other contents</div>
+		<div target-div style="top: 0">Target div</div>
+	</div>
+<code for="position-eg-lw" class="html hljs"></code>
+<div id="position-eg-lw">
+<!---<div class="zs-position-static-lw">Target div</div>//-->
+</div>
+</div>
+
+<div example>
+	<h3>Check the impact on medium screen size</h3>
+	<label>Set position to:</label>
+	<span class="zs-radio-group">
+		<input type="radio" name="position-mw" value="static-mw" checked="">Static
+		<input type="radio" name="position-mw" value="absolute-mw">Absolute
+		<input type="radio" name="position-mw" value="relative-mw">Relative
+		<input type="radio" name="position-mw" value="fixed-mw">Fixed
+	</span>
+	<div class="container" style="position: relative;">
+		<div style="display: inline-block;">Other contents</div>
+		<div target-div style="top: 0">Target div</div>
+	</div>
+<code for="position-eg-mw" class="html hljs"></code>
+<div id="position-eg-mw">
+<!---<div class="zs-position-static-mw">Target div</div>//-->
+</div>
+</div>
+
+<div example>
+	<h3>Check the impact on small screen size</h3>
+	<label>Set position to:</label>
+	<span class="zs-radio-group">
+		<input type="radio" name="position-sw" value="static-sw" checked="">Static
+		<input type="radio" name="position-sw" value="absolute-sw">Absolute
+		<input type="radio" name="position-sw" value="relative-sw">Relative
+		<input type="radio" name="position-sw" value="fixed-sw">Fixed
+	</span>
+	<div class="container" style="position: relative;">
+		<div style="display: inline-block;">Other contents</div>
+		<div target-div style="top: 0">Target div</div>
+	</div>
+<code for="position-eg-sw" class="html hljs"></code>
+<div id="position-eg-sw">
+<!---<div class="zs-position-static-sw">Target div</div>//-->
+</div>
+</div>
+
+<div example>
+	<h3>Check the impact on extra-small screen size</h3>
+	<label>Set position to:</label>
+	<span class="zs-radio-group">
+		<input type="radio" name="position-xsw" value="static-xsw" checked="">Static
+		<input type="radio" name="position-xsw" value="absolute-xsw">Absolute
+		<input type="radio" name="position-xsw" value="relative-xsw">Relative
+		<input type="radio" name="position-xsw" value="fixed-xsw">Fixed
+	</span>
+	<div class="container" style="position: relative;">
+		<div style="display: inline-block;">Other contents</div>
+		<div target-div style="top: 0">Target div</div>
+	</div>
+<code for="position-eg-xsw" class="html hljs"></code>
+<div id="position-eg-xsw">
+<!---<div class="zs-position-static-xsw">Target div</div>//-->
+</div>
+</div>
+
+<h2>Visibility Utils</h2>
+<p>Use the responsive visibility utilities to set the visibility of the element on the screen size you want to.</p>
+<p>You can use these utilities by including following file in your HTML</p>
+<code for="visibility-ref" class="html hljs"></code>
+<div id="visibility-ref">
+<!---<link rel="stylesheet" href="path/to/zsui/dist/themes/zs/responsiveVisibilityUtils.css"/>  <!== source zsui-core/src/less/utils/responsiveVisibility.less ==>//-->
+</div>
+<div example>
+	<h3>Check the impact on large screen size</h3>
+	<label>Set visibility to:</label>
+	<span class="zs-radio-group">
+		<input type="radio" name="visibility-lw" value="visible-lw" checked="">Visible
+		<input type="radio" name="visibility-lw" value="hidden-lw">Hidden
+	</span>
+	<div class="container">
+		<div target-div>Target div</div>
+		<div style="display: inline-block;">Other contents</div>
+	</div>
+<code for="visibility-eg-lw" class="html hljs"></code>
+<div id="visibility-eg-lw">
+<!---<div class="zs-visibility-visible-lw">Target div</div>//-->
+</div>
+</div>
+
+<div example>
+	<h3>Check the impact on medium screen size</h3>
+	<label>Set visibility to:</label>
+	<span class="zs-radio-group">
+		<input type="radio" name="visibility-mw" value="visible-mw" checked="">Visible
+		<input type="radio" name="visibility-mw" value="hidden-mw">Hidden
+	</span>
+	<div class="container">
+		<div target-div>Target div</div>
+		<div style="display: inline-block;">Other contents</div>
+	</div>
+<code for="visibility-eg-mw" class="html hljs"></code>
+<div id="visibility-eg-mw">
+<!---<div class="zs-visibility-visible-mw">Target div</div>//-->
+</div>
+</div>
+
+<div example>
+	<h3>Check the impact on small screen size</h3>
+	<label>Set visibility to:</label>
+	<span class="zs-radio-group">
+		<input type="radio" name="visibility-sw" value="visible-sw" checked="">Visible
+		<input type="radio" name="visibility-sw" value="hidden-sw">Hidden
+	</span>
+	<div class="container">
+		<div target-div>Target div</div>
+		<div style="display: inline-block;">Other contents</div>
+	</div>
+<code for="visibility-eg-sw" class="html hljs"></code>
+<div id="visibility-eg-sw">
+<!---<div class="zs-visibility-visible-sw">Target div</div>//-->
+</div>
+</div>
+
+<div example>
+	<h3>Check the impact on extra-small screen size</h3>
+	<label>Set visibility to:</label>
+	<span class="zs-radio-group">
+		<input type="radio" name="visibility-xsw" value="visible-xsw" checked="">Visible
+		<input type="radio" name="visibility-xsw" value="hidden-xsw">Hidden
+	</span>
+	<div class="container">
+		<div target-div>Target div</div>
+		<div style="display: inline-block;">Other contents</div>
+	</div>
+<code for="visibility-eg-xsw" class="html hljs"></code>
+<div id="visibility-eg-xsw">
+<!---<div class="zs-visibility-visible-xsw">Target div</div>//-->
+</div>
+</div>
+
+<script>
+	$(document).ready(function () {
+		$('[type="radio"]').each(function () {
+			var value = $(this).val();
+			$(this).on('click', function () {
+				var parent = $(this).closest('[example]')
+				var name = this.name.substring(0,this.name.indexOf('-'));
+				var target = parent.find('[target-div]');
+				target.attr('class', 'zs-' + name + '-' + value);
+
+				var expression = "zs-" + name + "-[\\w-]+";
+				var rx = new RegExp(expression, 'i');
+				
+				var code = parent.find('code[for]')[0];
+				code.innerHTML = code.innerHTML.replace(rx, 'zs-' + name + '-' + value);
+			});
+		});
+
+		zs.demo.highlight();
+
+		$('[clear-float]').each(function () {
+			$(this).on('click', function () {
+				var value = $(this)[0].checked;
+				var parent = $(this).closest('[example]');
+				parent.find('.container').toggleClass('zs-clear', value);
+			});
+		});
+	});
+</script>
+

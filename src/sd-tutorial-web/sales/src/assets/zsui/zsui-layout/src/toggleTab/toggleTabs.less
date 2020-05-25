@@ -1,0 +1,45 @@
+@zs-tabs-border-color: darken(@zs-border-color, 5%);
+
+.zs-tabs[toggletabs]{
+    display: block;
+	>ul {
+        text-align: center;
+        >li{
+            margin-right: 0;
+
+            a{
+                border-radius: 0;
+                border-left: none;
+            }
+
+            &[active]{
+                margin-right: 0;
+                padding-right: 0;
+                
+                a, a:visited, a:hover {
+                    border-bottom-color: @zs-tabs-border-color;
+                    border-left: none;
+                }
+            }
+           
+            &:first-child{
+                a{
+                    border-radius: @zs-border-radius 0 0 @zs-border-radius;
+                }
+                a, a:visited, a:hover {
+                    border-left:solid 1px @zs-tabs-border-color;
+                }
+            }
+            
+            &:last-child{
+                a{
+                    border-radius: 0 @zs-border-radius @zs-border-radius 0;
+                }
+            }            
+        }      
+    }
+    >div{
+        border:0;
+        box-shadow: none;
+    }
+}

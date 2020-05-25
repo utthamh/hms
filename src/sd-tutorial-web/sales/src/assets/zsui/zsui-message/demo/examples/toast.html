@@ -1,0 +1,76 @@
+<div class="zs-toast-container"></div>
+<h2 style="margin-top: 0;">Toaster Messages</h2>
+<form class="zs-form">
+	<fieldset>
+		<legend>Toaster Settings</legend>
+		<p>
+			<label>Title</label>
+			<input type="text" id="title" placeholder="Title">
+		</p>
+		<p>
+			<label>Message</label>
+			<input type="text" id="message" placeholder="Message">
+		</p>
+		<p>
+			<label>Type</label>
+			<span class="zs-radio-group">
+				<input type="radio" name="messagetype" value="error" checked>Error
+				<br>
+				<input type="radio" name="messagetype" value="warning">Warning
+				<br>
+				<input type="radio" name="messagetype" value="success">Success
+				<br>
+				<input type="radio" name="messagetype" value="info">Info
+			</span>
+		</p>
+		<p>
+			<label>Timeout</label>
+			<input type="text" id="timeout" placeholder="10000">
+		</p>
+		<p>
+			<label>Show Close Icon</label>
+			<span class="zs-checkbox">
+				<input type="checkbox">Show Close</span>
+		</p>
+		<p>
+			<input type="button" value="Show Toaster" class="zs-button" id="showToast" />
+		</p>
+	</fieldset>
+</form>
+
+<%- script(zsuiPath + '/toast/toast.js')%>	
+
+<script>
+	$(function () {
+		var container = document.getElementsByClassName("zs-toast-container")[0];
+
+		document.getElementById("showToast").addEventListener("click", function () {
+			var toast = document.createElement('div', { is: 'zs-toast' });
+			var config = {};
+
+			if ($('input[name="messagetype"]:checked').length) {
+				config.type = $('input[name="messagetype"]:checked').val();
+			}
+
+			var timeout = $("#timeout").val();
+
+			if (!isNaN(timeout) && timeout != "") {
+				config.timeout = timeout;
+			}
+
+			if ($("#title").val() != "") {
+				config.title = $("#title").val();
+			}
+
+			if ($("#message").val() != "") {
+				config.body = $("#message").val();
+			}
+
+			config.showClose = $("input[type='checkbox']:checked").length ? true : false;
+			toast.create(config);
+			container.appendChild(toast);
+		});
+
+	});
+
+</script>

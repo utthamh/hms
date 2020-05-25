@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" manifest="zsui.appcache">
+<head>
+	<title>ZSUI Layout</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	
+	<!-- Demo scripts  -->
+	<script src="demo.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+	<style>
+	.hljs {
+    	padding: 0.5em !important; /*Since core.css loads later and resets all spacing, we need to use !important here.*/
+	}
+	</style>
+	<script>
+	zs.demo.setPaths();
+	zs.demo.addUrlFixes({"nodejs":{},"npm":{"../node_modules/":"../../"},"nuget":{"../node_modules/zsui-[\\w]+/dist":"./"},"s3":{"../node_modules/zsui-[\\w]+/dist/":"./"}});
+	</script>
+ 
+	<script>zs.demo.script("../node_modules/zsui-core/dist/polyfills/polyfills.js");</script>
+	<script>zs.demo.script("../node_modules/zsui-core/dist/utils/customElements.js");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/core.css");</script>
+	<script>zs.demo.link("./themes/{theme}/accordion.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/tabs.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/wizard.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/card.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/drawer.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/toggleTabs.min.css");</script>
+
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/colorUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/displayUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/positionUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/alignUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/borderUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/spaceUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/sizeUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/shadowUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/floatUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/responsiveDisplayUtils.css");</script>
+
+</head>
+<body class="zs-style zs-layout-table" style="padding:1em">
+
+<h2>Clickable Wizard</h2>
+<zs-wizard class="wizard-container" clickable>
+	<ul>
+		<li is="zs-tab" active tab-id="1" class="chevron">
+			<a href="javascript:void(0)">
+				<span>Data Source</span>
+			</a>
+		</li>
+		<li is="zs-tab" tab-id="2" class="chevron">
+			<a href="javascript:void(0)">
+				<span>Level Selection</span>
+			</a>
+		</li>
+		<li is="zs-tab" tab-id="3" class="chevron">
+			<a href="javascript:void(0)">
+				<span>Attributes</span>
+			</a>
+		</li>
+		<li is="zs-tab" tab-id="4" class="chevron">
+			<a href="javascript:void(0)">
+				<span>Options</span>
+			</a>
+		</li>
+	</ul>
+	<div source-id="1">Step 1 contents</div>
+	<div source-id="2" style="display: none;">Step 2 contents</div>
+	<div source-id="3" style="display: none;">Step 3 contents</div>
+	<div source-id="4" style="display: none;">Step 4 contents</div>
+</zs-wizard>
+
+<h2>Non clickable Wizard</h2>
+<zs-wizard class="wizard-container">
+	<ul>
+		<li is="zs-tab" active tab-id="1" class="chevron">
+			<a href="javascript:void(0)">
+				<span class="step-count">Step 1</span>
+				<span>Data Source</span>
+			</a>
+		</li>
+		<li is="zs-tab" tab-id="2" class="chevron">
+			<a href="javascript:void(0)">
+				<span class="step-count">Step 2</span>
+				<span>Level Selection</span>
+			</a>
+		</li>
+		<li is="zs-tab" tab-id="3" class="chevron">
+			<a href="javascript:void(0)">
+				<span class="step-count">Step 3</span>
+				<span>Attributes</span>
+			</a>
+		</li>
+		<li is="zs-tab" tab-id="4" class="chevron">
+			<a href="javascript:void(0)">
+				<span class="step-count">Step 4</span>
+				<span>Options</span>
+			</a>
+		</li>
+	</ul>
+	<div source-id="1">Step 1 contents</div>
+	<div source-id="2" style="display: none;">Step 2 contents</div>
+	<div source-id="3" style="display: none;">Step 3 contents</div>
+	<div source-id="4" style="display: none;">Step 4 contents</div>
+	<div style="padding-top:2em">
+		<button prevbutton class="zs-button zs-icon zs-icon-prev">Previous</button>
+		<button nextbutton class="zs-button icon-next-arrow">Next</button>
+	</div>
+</zs-wizard>
+<script>zs.demo.script("../node_modules/zsui-core/dist/utils/domHelper.js");</script>
+<script>zs.demo.script("./tab/zsTab.js");</script>
+<script>zs.demo.script("./wizard/zsWizard.js");</script>
+<script defer>
+	(function () {
+
+	})();
+</script>
+
+<script>
+	if (zs && zs.demo) {
+		zs.demo.adjustCss();
+		zs.demo.applyTheme();
+		zs.demo.highlight();
+	}
+</script>
+
+</body>
+</html>

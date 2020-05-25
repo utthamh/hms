@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" manifest="zsui.appcache">
+<head>
+	<title>ZSUI Layout</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	
+	<!-- Demo scripts  -->
+	<script src="demo.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+	<style>
+	.hljs {
+    	padding: 0.5em !important; /*Since core.css loads later and resets all spacing, we need to use !important here.*/
+	}
+	</style>
+	<script>
+	zs.demo.setPaths();
+	zs.demo.addUrlFixes({"nodejs":{},"npm":{"../node_modules/":"../../"},"nuget":{"../node_modules/zsui-[\\w]+/dist":"./"},"s3":{"../node_modules/zsui-[\\w]+/dist/":"./"}});
+	</script>
+ 
+	<script>zs.demo.script("../node_modules/zsui-core/dist/polyfills/polyfills.js");</script>
+	<script>zs.demo.script("../node_modules/zsui-core/dist/utils/customElements.js");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/core.css");</script>
+	<script>zs.demo.link("./themes/{theme}/accordion.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/tabs.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/wizard.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/card.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/drawer.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/toggleTabs.min.css");</script>
+
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/colorUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/displayUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/positionUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/alignUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/borderUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/spaceUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/sizeUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/shadowUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/floatUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/responsiveDisplayUtils.css");</script>
+
+</head>
+<body class="zs-style zs-layout-table" style="padding:1em">
+
+<script>zs.demo.link("./themes/{theme}/layout.css");</script>
+
+<div data-page="grids">
+	<h2>Simple three column grid system</h2>
+	<div class="zs-grid-row">
+		<div class="zs-grid-col-1-3 zs-space" padding="0,2,0,0">
+			<p class="zs-field zs-flex zs-error">
+				<label>Label</label>
+				<input type="text" placeholder="Field" />
+				<span class="zs-message">Error message</span>
+			</p>
+		</div>
+		<div class="zs-grid-col-1-3 zs-space" padding="0,2,0,0">
+			<p class="zs-field zs-flex">
+				<label>Label</label>
+				<input type="text" placeholder="Field" />
+			</p>
+		</div>
+		<div class="zs-grid-col-1-3">
+			<p class="zs-field zs-flex zs-warning">
+				<label>Label</label>
+				<input type="text" placeholder="Field" />
+				<span class="zs-message">Warning message</span>
+			</p>
+		</div>
+	</div>
+	<div class="zs-grid-row">
+		<div class="zs-grid-col-2-3 zs-space" padding="0,2,0,0">
+			<p class="zs-field zs-flex">
+				<label>Label</label>
+				<textarea placeholder="Field"></textarea>
+			</p>
+		</div>
+		<div class="zs-grid-col-1-3">
+			<p class="zs-field zs-flex">
+				<label>Label</label>
+				<input type="text" placeholder="Field" />
+			</p>
+		</div>
+	</div>
+	<div class="zs-grid-row">
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor neque imperdiet
+			dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate magna.
+			Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis.
+			Fusce ultricies vehicula posuere.</p>
+	</div>
+	<div class="zs-grid-row">
+		<div class="zs-grid-col-1-3 zs-space" padding="0,2,0,0">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor neque imperdiet
+				dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate magna.
+				Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis.
+				Fusce ultricies vehicula posuere.</p>
+		</div>
+		<div class="zs-grid-col-1-3 zs-space" padding="0,2,0,0">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor neque imperdiet
+				dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate magna.
+				Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis.
+				Fusce ultricies vehicula posuere.</p>
+		</div>
+		<div class="zs-grid-col-1-3">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor neque imperdiet
+				dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate magna.
+				Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis.
+				Fusce ultricies vehicula posuere.</p>
+		</div>
+	</div>
+	<div class="zs-grid-row">
+		<div class="zs-grid-col-2-3">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor neque imperdiet
+				dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate magna.
+				Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis.
+				Fusce ultricies vehicula posuere.</p>
+		</div>
+	</div>
+
+	<h2>Simple grid with callout box</h2>
+	<div class="zs-grid-row">
+		<div class="zs-grid-col-2-3 zs-space" padding="0,2,0,0">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor neque imperdiet
+				dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate magna.
+				Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis.
+				Fusce ultricies vehicula posuere.</p>
+		</div>
+		<div class="zs-grid-col-1-3">
+			<div class="zs-callout-box">
+				<header>This is the callout box</header>
+				<section>
+					<ul class="zs-list">
+						<li id="list-item">List item</li>
+					</ul>
+				</section>
+			</div>
+		</div>
+	</div>
+
+	<h2>Complex twelve column responsive grid system</h2>
+	<div complexGrids>
+		<h3>Three equal columns</h3>
+		<div class="zs-row">
+			<div class="zs-col-md-4 zs-space" padding="1">.zs-col-md-4</div>
+			<div class="zs-col-md-4 zs-space" padding="1">.zs-col-md-4</div>
+			<div class="zs-col-md-4 zs-space" padding="1">.zs-col-md-4</div>
+		</div>
+
+		<h3>Three unequal columns</h3>
+		<div class="zs-row">
+			<div class="zs-col-md-3 zs-space" padding="1">.zs-col-md-3</div>
+			<div class="zs-col-md-6 zs-space" padding="1">.zs-col-md-6</div>
+			<div class="zs-col-md-3 zs-space" padding="1">.zs-col-md-3</div>
+		</div>
+
+		<h3>Two columns</h3>
+		<div class="zs-row">
+			<div class="zs-col-md-8 zs-space" padding="1">.zs-col-md-8</div>
+			<div class="zs-col-md-4 zs-space" padding="1">.zs-col-md-4</div>
+		</div>
+
+		<h3>Two columns with two nested columns</h3>
+		<div class="zs-row">
+			<div class="zs-col-md-8 zs-space" padding="1">
+				.zs-col-md-8
+				<div class="zs-row">
+					<div class="zs-col-md-6 zs-space" padding="1">.zs-col-md-6</div>
+					<div class="zs-col-md-6 zs-space" padding="1">.zs-col-md-6</div>
+				</div>
+			</div>
+			<div class="zs-col-md-4 zs-space" padding="1">.zs-col-md-4</div>
+		</div>
+		<h3>Mixed: mobile and desktop</h3>
+		<div class="zs-row">
+			<div class="zs-col-xs-12 zs-col-md-8 zs-space" padding="1">.zs-col-xs-12 .zs-col-md-8</div>
+			<div class="zs-col-xs-6 zs-col-md-4 zs-space" padding="1">.zs-col-xs-6 .zs-col-md-4</div>
+		</div>
+		<div class="zs-row">
+			<div class="zs-col-xs-6 zs-col-md-4 zs-space" padding="1">.zs-col-xs-6 .zs-col-md-4</div>
+			<div class="zs-col-xs-6 zs-col-md-4 zs-space" padding="1">.zs-col-xs-6 .zs-col-md-4</div>
+			<div class="zs-col-xs-6 zs-col-md-4 zs-space" padding="1">.zs-col-xs-6 .zs-col-md-4</div>
+		</div>
+		<div class="zs-row">
+			<div class="zs-col-xs-6 zs-space" padding="1">.zs-col-xs-6</div>
+			<div class="zs-col-xs-6 zs-space" padding="1">.zs-col-xs-6</div>
+		</div>
+
+		<h3>Mixed: mobile, tablet, and desktop</h3>
+		<div class="zs-row">
+			<div class="zs-col-xs-12 zs-col-sm-6 zs-col-lg-8 zs-space" padding="1">.zs-col-xs-12 .zs-col-sm-6 .zs-col-lg-8</div>
+			<div class="zs-col-xs-6 zs-col-lg-4 zs-space" padding="1">.zs-col-xs-6 .zs-col-lg-4</div>
+		</div>
+		<div class="zs-row">
+			<div class="zs-col-xs-6 zs-col-sm-4 zs-space" padding="1">.zs-col-xs-6 .zs-col-sm-4</div>
+			<div class="zs-col-xs-6 zs-col-sm-4 zs-space" padding="1">.zs-col-xs-6 .zs-col-sm-4</div>
+			<div class="zs-col-xs-6 zs-col-sm-4 zs-space" padding="1">.zs-col-xs-6 .zs-col-sm-4</div>
+		</div>
+
+
+		<h3>Column clearing</h3>
+		<div class="zs-row">
+			<div class="zs-col-xs-6 zs-col-sm-3 zs-space" padding="1">
+				.zs-col-xs-6 .zs-col-sm-3
+				<br> Resize your viewport or check it out on your phone for an example.
+			</div>
+			<div class="zs-col-xs-6 zs-col-sm-3 zs-space" padding="1">.zs-col-xs-6 .zs-col-sm-3</div>
+
+			<!-- Add the extra clearfix for only the required viewport -->
+			<div class="zs-clear zs-visible-xs zs-space" padding="1"></div>
+
+			<div class="zs-col-xs-6 zs-col-sm-3 zs-space" padding="1">.zs-col-xs-6 .zs-col-sm-3</div>
+			<div class="zs-col-xs-6 zs-col-sm-3 zs-space" padding="1">.zs-col-xs-6 .zs-col-sm-3</div>
+		</div>
+
+
+		<h3>Offset, push, and pull resets</h3>
+		<div class="zs-row">
+			<div class="zs-col-sm-5 zs-col-md-6 zs-space" padding="1">.zs-col-sm-5 .zs-col-md-6</div>
+			<div class="zs-col-sm-5 zs-col-sm-offset-2 zs-col-md-6 zs-col-md-offset-0 zs-space" padding="1">.zs-col-sm-5 .zs-col-sm-offset-2 .zs-col-md-6 .zs-col-md-offset-0</div>
+		</div>
+		<div class="zs-row">
+			<div class="zs-col-sm-6 zs-col-md-5 zs-col-lg-6 zs-space" padding="1">.zs-col-sm-6 .zs-col-md-5 .zs-col-lg-6</div>
+			<div class="zs-col-sm-6 zs-col-md-5 zs-col-md-offset-2 zs-col-lg-6 zs-col-lg-offset-0 zs-space" padding="1">.zs-col-sm-6 .zs-col-md-5 .zs-col-md-offset-2 .zs-col-lg-6 .zs-col-lg-offset-0</div>
+		</div>
+	</div>
+
+<script>
+	if (zs && zs.demo) {
+		zs.demo.adjustCss();
+		zs.demo.applyTheme();
+		zs.demo.highlight();
+	}
+</script>
+
+</body>
+</html>

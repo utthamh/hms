@@ -1,0 +1,257 @@
+<div data-page="searchDropdown">
+	<h2>Searchable dropdown</h2>
+	<div class="zs-paragraph">
+		<div class="zs-select">
+			<select zs></select>
+		</div>
+	</div>
+	<h2>Empty value</h2>
+	<div class="zs-paragraph">
+		<div class="zs-select">
+			<select zs>
+				<option value="">Select one</option>
+				<option value="1">one</option>
+				<option value="2">two</option>
+				<option value="3">three</option>
+			</select>
+		</div>
+	</div>
+	<h2>Multiple dropdown</h2>
+	<div class="zs-paragraph">
+		<div class="zs-select">
+			<select multiple no-checkbox></select>
+		</div>
+	</div>
+	<h2>Dropdown with checkboxes</h2>
+	<div class="zs-paragraph">
+		<div class="zs-select">
+			<select multiple add-checkboxes></select>
+		</div>
+	</div>
+	<h2>Always open dropdown</h2>
+	<div class="zs-paragraph">
+		<div class="zs-select">
+			<select zs-open></select>
+		</div>
+	</div>
+
+	<h2>Multiple w/ preselected options</h2>
+	<div class="zs-select">
+		<select multiple no-checkbox>
+			<option value="1" selected>one</option>
+			<option value="2" >two</option>
+			<option value="3" selected>three</option>
+			<option value="4">four</option>
+			<option value="5" selected>five</option>
+		</select>
+	</div>
+
+	<h2>Multiple w/ 'select all' option</h2>
+	<div class="zs-select">
+		<select multiple select-all>
+			<option value="1" selected>one</option>
+			<option value="2" >two</option>
+			<option value="3" selected>three</option>
+			<option value="4">four</option>
+			<option value="5" selected>five</option>
+			<option value="6" >six</option>
+			<option value="7" >seven</option>
+		</select>
+	</div>
+	<div>
+		<h2>Optgroup and Clear All</h2>
+		<div class="zs-select">
+			<select multiple opt-group>
+				<optgroup label="Swedish Cars">
+					<option value="1-1">one</option>
+					<option value="2-1" >two</option>
+					<!-- <option value="2-2" >two and half</option> -->
+				</optgroup>
+				<optgroup label="German Cars">
+					<option value="3-1">three</option>
+					<option value="4-1">four</option>
+					<option value="5-1">five</option>
+				</optgroup>
+				<optgroup label="German Bikes">
+					<option value="6-1">three</option>
+					<option value="7-1">seven</option>
+					<option value="8-1">eight</option>
+				</optgroup>
+			</select>	
+		</div>
+		<br>
+		<button class="zs-button" clearall>Clear all</button>
+	</div>
+	<h2>Disabled values</h2>
+	<div class="zs-paragraph">
+		<div class="zs-select">
+			<select zs>
+				<option value="1">one</option>
+				<option value="2" disabled>two</option>
+				<option value="3">three</option>
+				<option value="4" disabled>four</option>
+				<option value="5">five</option>
+			</select>
+		</div>
+	</div>
+	<h2>Placeholder</h2>
+	<div class="zs-paragraph">
+		<div class="zs-select">
+			<select eg-placeholder>
+				<option value="" placeholder>Select one</option>
+				<option value="1">one</option>
+				<option value="2">two</option>
+				<option value="3">three</option>
+				<option value="4">four</option>
+				<option value="5">five</option>
+				<option value="6">six</option>
+				<option value="7">seven</option>
+			</select>
+		</div>
+	</div>
+	<h2>Customized Placeholder</h2>
+	<div class="zs-paragraph">
+		<div class="zs-select">
+			<select custom-placeholder>
+				<option value="1">one</option>
+				<option value="2">two</option>
+				<option value="3">three</option>
+				<option value="4">four</option>
+				<option value="5">five</option>
+			</select>
+		</div>
+	</div>
+</div>
+<script src="<%=zsuiPath%>/select/jquery.zsSearchDropdown.js" defer></script>
+<script src="<%=zsuiPath%>/form/jquery.zsClear.js" defer></script>
+<script defer>
+	function createList($select) {
+		var i,
+			n = 100,
+			value,
+			possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+			$option;
+		
+		for (i=0;i<n;i++) {
+			value = possible.charAt(Math.floor(Math.random() * possible.length)) + ' Test ' + possible.charAt(Math.floor(Math.random() * possible.length));
+			
+			if(i==n-1){
+				// Inject <script> tag to test XSS vulnerability
+				value+="<script>alert('If this alert pops up, your component is XSS vulnerable.')<\/script>";
+			}
+
+			$option = $("<option>");
+			$option.text(value);
+			$option.attr("value",value);
+
+			$select.append($option);					
+		}
+		
+	}
+	$(document).ready(function() {
+		var $select =$('[data-page="searchDropdown"] [zs]');
+		var $select2 = $('[data-page="searchDropdown"] [zs-open]');
+		var $select3 = $('[data-page="searchDropdown"] [multiple][no-checkbox]');
+		var $select4 = $('[data-page="searchDropdown"] [add-checkboxes]');
+		createList($select);
+		createList($select2);
+		createList($select3);
+		createList($select4);
+		
+		$select.zsSearchDropdown({
+			events: {
+				beforeOpen: function () {							
+					
+					// Fix the problem when inside a modal
+					var offsetX=0,offsetY=0, offset;							
+					var	$modal = this.$container.parents().each(function () {
+						var $el = $(this);
+						offset = $el.offset();
+						if ($el.css('position') == 'relative') {
+							offsetX += offset.left;
+							offsetY += offset.top;
+						} 
+					});				
+				
+					var offset = this.$overlay.offset();
+					this.$container.css({
+						top: offset.top - offsetY - 2,
+						left: offset.left - offsetX - 2
+					});
+					
+					// This is a fix to make sure the select underneath an overlay not clickable			
+					this.$overlay.css({
+						width: this.$select.outerWidth(),
+						height: this.$select.outerHeight() + 2, 
+					});
+				},
+				close:function(){
+					console.log('close');
+					console.log('current value', this.$select.val());	
+				}
+			}
+		});
+
+		$select2.zsSearchDropdown({
+			alwaysOpen: true
+		});
+
+		$select3.zsSearchDropdown({
+			multiple: true
+		});
+
+		$select4.zsSearchDropdown({
+			multiple: true,
+			addCheckboxes: true
+		});
+
+		$('[data-page="searchDropdown"] [opt-group]').zsSearchDropdown({
+			multiple: true,
+			minOptionsForSearch: 2			
+		});
+
+		$('.zs-input-icon').zsClear();
+
+		$('[select-all]').zsSearchDropdown({
+			addCheckboxes: true,
+			addSelectAll: true,
+			multiple: true
+		});
+
+		$('[clearall]').on('click', function(){
+			$(this).parent().find('select').data('zsSearchDropdown').clearAllSelection();
+		});
+
+		var $placeholder =$('[data-page="searchDropdown"] [eg-placeholder]');
+		$placeholder.zsSearchDropdown({
+			updateOverlayText: function (val) {
+				if (!val) {
+					val = this.options.emptyText;
+					this.$overlay.addClass('placeholder-active');
+				} else {
+					this.$overlay.removeClass('placeholder-active');
+				}
+
+				val = val.replace(new RegExp('&#160;', 'g'), '');
+				this.$overlay.text(val);
+			}
+		});
+
+		var $customPlaceholder =$('[data-page="searchDropdown"] [custom-placeholder]');
+		$customPlaceholder.zsSearchDropdown({
+			multiple: true,
+			addCheckboxes: true,
+			emptyText: "Select Filter(s)",
+			updateOverlayText: function (val) {
+				var overlayArr = val && (val !== "") && val.split(',');
+				if (overlayArr) {
+					val = overlayArr.length + " Filter(s) Applied";
+				} else {
+					val = this.options.emptyText;
+				}
+
+				this.$overlay.text(val);
+			}
+		});
+	});
+</script>

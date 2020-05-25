@@ -1,0 +1,50 @@
+@zs-badge-counter-color: @zs-brand-primary;
+@zs-badge-font-size: @zs-small;
+@zs-badge-size: 1.25em;
+@zs-badge-text-color: @zs-background;
+@zs-badge-shadow: 0px 1px 4px @zs-background;
+
+.zs-badge-counter {
+	font-family: @zs-font-family-base; // Helps with icons
+	font-size:@zs-badge-font-size;
+	font-weight: bold;
+	text-align: center;
+	position: relative;
+	display: inline-block;
+	background: @zs-badge-counter-color;
+	border-radius: @zs-badge-size;
+	color: @zs-badge-text-color;
+	min-width: 1.25em;
+	line-height: 1;
+	.margin(0,0,0,0.5);
+	.padding(0.2, 0.5, 0.2, 0.5);
+	box-shadow: @zs-badge-shadow; // custom glow
+	&.zs-badge {
+		position: absolute;
+		top: -@zs-badge-size/2;
+		left: 100%;
+		margin: 0 0 0 -@zs-badge-size/2; 
+	}
+}
+
+// This aligns our badges size with icon badges
+.zs-icon>.zs-badge {
+	font-size:0.5em;
+}
+
+.zs-badge-dot {
+	&:after {
+		.padding(0.25,0.25,0.25,0.25);
+		margin-left: @zs-badge-size/2;
+		border-radius: 100%;
+		border: solid 1px @zs-badge-counter-color;
+		background: @zs-badge-counter-color;
+		display: inline-block;
+		vertical-align: middle;
+		content: '';
+	}
+}
+
+.zs-counter {
+	color: @zs-badge-counter-color;
+}

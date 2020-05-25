@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>tab/zsTab.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module-drawer-zs.drawerElement.html">drawerElement</a></li></ul><h3>Modules</h3><ul><li><a href="module-drawer.html">drawer</a></li><li><a href="zs.module_drawer.html">drawer</a><ul class='methods'><li data-type='method'><a href="zs.module_drawer.html#.render">render</a></li><li data-type='method'><a href="zs.module_drawer.html#.renderToggle">renderToggle</a></li><li data-type='method'><a href="zs.module_drawer.html#.toggleDrawer">toggleDrawer</a></li></ul></li></ul><h3>Events</h3><ul><li><a href="zs.module_drawer.html#~event:beforetoggle">beforetoggle</a></li><li><a href="zs.module_drawer.html#~event:toggle">toggle</a></li></ul><h3>Namespaces</h3><ul><li><a href="submenu.html">submenu</a><ul class='methods'><li data-type='method'><a href="submenu.html#.clickAnywhere">clickAnywhere</a></li><li data-type='method'><a href="submenu.html#.collapse">collapse</a></li><li data-type='method'><a href="submenu.html#.delayedCollapse">delayedCollapse</a></li><li data-type='method'><a href="submenu.html#.delayedExpand">delayedExpand</a></li><li data-type='method'><a href="submenu.html#.expand">expand</a></li></ul></li><li><a href="zs.card.html">card</a><ul class='methods'><li data-type='method'><a href="zs.card.html#._checkAndUpdateAttrByProp">_checkAndUpdateAttrByProp</a></li><li data-type='method'><a href="zs.card.html#._checkAndUpdatePropByAttr">_checkAndUpdatePropByAttr</a></li><li data-type='method'><a href="zs.card.html#.addClass">addClass</a></li><li data-type='method'><a href="zs.card.html#.flipCard">flipCard</a></li><li data-type='method'><a href="zs.card.html#.render">render</a></li><li data-type='method'><a href="zs.card.html#.renderBackFooter">renderBackFooter</a></li><li data-type='method'><a href="zs.card.html#.renderBackHeader">renderBackHeader</a></li><li data-type='method'><a href="zs.card.html#.renderBackSection">renderBackSection</a></li><li data-type='method'><a href="zs.card.html#.renderFlipCard">renderFlipCard</a></li><li data-type='method'><a href="zs.card.html#.renderFooter">renderFooter</a></li><li data-type='method'><a href="zs.card.html#.renderHeader">renderHeader</a></li><li data-type='method'><a href="zs.card.html#.renderSection">renderSection</a></li><li data-type='method'><a href="zs.card.html#.setHeight">setHeight</a></li></ul></li><li><a href="zs.tab.html">tab</a><ul class='methods'><li data-type='method'><a href="zs.tab.html#.render">render</a></li></ul></li><li><a href="zs.tabsContainer.html">tabsContainer</a><ul class='methods'><li data-type='method'><a href="zs.tabsContainer.html#.navigateTo">navigateTo</a></li><li data-type='method'><a href="zs.tabsContainer.html#.render">render</a></li></ul></li><li><a href="zs.wizard.html">wizard</a><ul class='methods'><li data-type='method'><a href="zs.wizard.html#.addNavigationListeners">addNavigationListeners</a></li><li data-type='method'><a href="zs.wizard.html#.handleNextAction">handleNextAction</a></li><li data-type='method'><a href="zs.wizard.html#.handlePrevAction">handlePrevAction</a></li><li data-type='method'><a href="zs.wizard.html#.render">render</a></li></ul></li><li><a href="zsAccordion.html">zsAccordion</a><ul class='methods'><li data-type='method'><a href="zsAccordion.html#barClick">barClick</a></li><li data-type='method'><a href="zsAccordion.html#closePanel">closePanel</a></li><li data-type='method'><a href="zsAccordion.html#destroy">destroy</a></li><li data-type='method'><a href="zsAccordion.html#openPanel">openPanel</a></li><li data-type='method'><a href="zsAccordion.html#render">render</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">tab/zsTab.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>var zs = (function (zs) {
+	'use strict';
+	/**
+	 * @namespace
+	 */
+	zs.tab = {
+
+		anchorEle: null,
+		/**
+		 * Renders the tab element
+		 */
+		render: function () {
+			if (!this.anchorEle) {
+				this.anchorEle = this.querySelector('a');
+
+				if (!this.anchorEle) {
+					this.anchorEle = document.createElement('a');
+					this.appendChild(this.anchorEle);
+				}
+			}
+			this.dispatchEvent(new CustomEvent('render'));
+		},
+		/** Observes "tab-id" and "active" attribute when changed */
+		observedAttributes: ['tab-id', 'active'],
+		/**Provides callback handles for events such as attach, detach, create ,attributeChange, etc. */
+		events: {
+			attributeChange: function (e) {
+				var attributeName = e.detail.attributeName;
+				if (attributeName == 'tab-id') {
+					this.tabId = this.getAttribute('tab-id');
+				}
+				if (attributeName == 'active') {
+					this.isActive = (this.getAttribute('active') !== null);
+				}
+			},
+			attach: function (e) {
+				var self = this;
+				setTimeout(function () {
+					self.render();
+				}, 0);
+			}
+		},
+		/**
+		 * Contains getter and setter of "tabId" and "isActive" properties
+		 */
+		properties: {
+			tabId: {
+				set: function (newValue) {
+					if (newValue != this.getAttribute('tab-id')) {
+						this.setAttribute('tab-id', newValue);
+					}
+
+					this._tabId = newValue;
+				},
+				get: function () {
+					return this._tabId == null ? '' : this._tabId;
+				}
+			},
+			isActive: {
+				set: function (newValue) {
+					if (newValue != this.isActive) {
+						if (newValue) {
+							this.setAttribute('active', '');
+						} else {
+							this.removeAttribute('active');
+						}
+					}
+				},
+				get: function () {
+					return this.hasAttribute('active');
+				}
+			}
+		}
+
+	}
+
+	zs.tabElement = zs.customElement(HTMLLIElement, 'zs-tab', 'li', [zs.tab]);
+
+
+	/**
+	 * @namespace
+	 */
+	zs.tabsContainer = {
+
+		tabsContainer: null,
+
+		renderTabsContainer: function () {
+			if (!this.tabsContainer) {
+				this.tabsContainer = this.querySelector('ul');
+
+				if (!this.tabsContainer) {
+					this.tabsContainer = document.createElement('ul');
+					this.appendChild(this.tabsContainer);
+				}
+			}
+		},
+		/**
+		 * Renders the tab container. 
+		 */
+		render: function () {
+			this.renderTabsContainer();
+			this.classList.add('zs-tabs');
+			this.dispatchEvent(new CustomEvent('render'));
+		},
+		/**
+		 * Navigates to the tab which is being clicked.
+		 * @param tabElement {HTMLElement} parent of the clicked target element. 
+		 */
+		navigateTo: function (tabElement) {
+
+			if (tabElement instanceof zs.tabElement) {
+				// Show active tab
+				var activeTab = this.tabsContainer.querySelector('[active]');
+				if (activeTab) {
+					activeTab.isActive = false;
+				}
+				tabElement.isActive = true;
+
+				// Show corresponding panel
+				var panels = this.querySelectorAll('[source-id]');
+				for (var i = 0; i &lt; panels.length; i++) {
+					var panel = panels[i];
+
+					// The panel should be immediate child of the component. It could return multiple panels in case of nested tabs.
+					if (panel.parentElement == this) {
+						if (panel.getAttribute('source-id') == tabElement.tabId) {
+							panel.style.display = 'block';
+						} else {
+							panel.style.display = 'none';
+						}
+					}
+				}
+
+			}
+		},
+		/**
+		 * Provides callback handles for attach and click events
+		 */
+		events: {
+			attach: function (e) {
+				var self = this;
+				setTimeout(function () {
+					self.render();
+				}, 0);
+			},
+
+			click: function (e) {
+				this.navigateTo(e.target.parentElement);
+			}
+		}
+
+	}
+
+	zs.tabsContainerElement = zs.customElement(HTMLElement, 'zs-tabs-container', null, [zs.tabsContainer]);
+
+	return zs;
+})(window.zs || {});
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu May 30 2019 15:58:39 GMT+0530 (India Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

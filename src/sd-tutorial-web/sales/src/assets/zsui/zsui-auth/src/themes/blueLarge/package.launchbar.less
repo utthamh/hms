@@ -1,0 +1,26 @@
+// ZSUI library auth module package for blueLarge theme
+
+// Variables
+@zs-lib-src: '../../../node_modules/zsui-core/src';
+@zs-lib-dist: '../..';
+
+// Definitions
+@import '@{zs-lib-src}/less/theme.less';
+@import '@{zs-lib-src}/less/mixins.less';
+
+
+
+// Components
+@import '@{zs-lib-src}/less/relative.less';
+@import '@{zs-lib-src}/less/responsive.less';
+@import '@{zs-lib-dist}/user/user.less';
+
+// Application custom overrides
+@import '@{zs-lib-src}/themes/blueLarge/custom.less'; 
+
+// Package level overrides should be at the bottom
+@zs-images: '@{zs-lib-dist}/images';
+@zs-fonts: '@{zs-lib-dist}/fonts';
+
+// Add to the core
+@zs-brand-margin: 40px;

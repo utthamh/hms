@@ -1,0 +1,144 @@
+
+<p>One tool for all layouts and alignment. We explored CSS grid layout and built a system of classes you can use to solve most of the cases you may face in your applications with layouts. This might easily be an universal solution superior to alternatives.</p>
+<h2>Include CSS</h2>
+<code for="prep" class="html hljs"></code>
+<div id="prep" class="zs-hidden">
+	<!---
+<link rel="stylesheet" href="path/to/zsui/dist/themes/zs/layoutGrid.css"/>
+<!-- or @import 'path/to/zsui-layout/src/layoutGrid.less';  -->
+//--->
+<!-- For demo purposes to make grid cells visible -->
+<style>
+	[class*="zs-grid-"] {
+		background: #f2f2f2;
+		padding: 0.71em 0 0 0.71em;
+	}
+	[class*="zs-grid-"]>[class*="zs-grid-"] {
+		background: white;
+		padding: 0.71em 0 0 0.71em;
+	}
+	[class*="zs-grid-"]>* {
+		padding: 0.71em;
+		margin: 0 0.71em 0.71em 0;
+		border-radius: 5px;
+		border: 1px solid #e1e9ef;
+		box-shadow: 0 1px 1px #dee3e3;
+		background: white;
+	}
+</style>
+
+</div>
+
+<h2>Starting with basic 3 columns</h2>
+<div id="example1">
+<div class="zs-grid-3cols">
+	<div>
+		Column 1
+	</div>
+	<div>
+		Column 2
+		<br>Tall
+	</div>
+	<div>
+		Column 3
+	</div>
+</div>
+</div>
+<code for="example1" class="html hljs"></code>
+
+<h2>We can have up to 6 columns and 6 rows by default. We can span columns and rows. Cells can be explicitly placed in specified
+	row and column.</h2>
+<div id="example2">
+<div class="zs-grid-3cols zs-grid-2rows">
+	<div class="zs-row-span-2">
+		Span 2 rows
+	</div>
+	<div class="zs-col-span-2">
+		Span 2 columns
+	</div>
+	<div class="zs-row-2 zs-col-2">
+		Placed in 2nd row and 2nd column
+	</div>
+	<div class="zs-row-2 zs-col-3">
+		Placed in 2nd row and 3rd column
+	</div>
+</div>
+</div>
+<code for="example2" class="html hljs"></code>
+
+<h2>Overlapping and nested grids</h2>
+<div id="example3">
+<div class="zs-grid-2cols zs-grid-2rows">
+	<div class="zs-grid-2cols zs-grid-2rows">
+		<div>Nested 1</div>
+		<div>Nested 2</div>
+		<div>Nested 3</div>
+		<div>Nested 4</div>
+	</div>
+	<div class="zs-row-span-2 zs-row-1 zs-col-2">
+		Overlap
+	</div>
+	<div class="zs-col-span-2 zs-col-1">
+		Overlap
+	</div>
+</div>
+</div>
+<code for="example3" class="html hljs"></code>
+
+<h2>Fun with alignment</h2>
+<div id="example4">
+<div class="zs-grid-2cols zs-grid-2rows">
+	<div class="zs-align-self-center zs-justify-self-center">
+		I am in the center
+	</div>
+	<div class="zs-grid-2cols zs-grid-2rows zs-align-end zs-justify-end">
+		<div>Bottom Right</div>
+		<div>Bottom Right
+			<br>
+			<br>
+			<br>
+		</div>
+		<div>Bottom Right</div>
+		<div class="zs-justify-self-center zs-align-self-start">
+			Top Center
+		</div>
+	</div>
+	<div class="zs-align-self-center zs-justify-self-end">I am short</div>
+	<div class="zs-align-self-center zs-justify-self-start">I am tall
+		<br><br><br></div>
+</div>
+</div>
+<code for="example4" class="html hljs"></code>
+
+<h2>Sizing modes</h2>
+<div id="example5">
+<div class="zs-grid-2rows zs-grid-2cols">
+	<div class="zs-grid-2rows zs-grid-3cols">
+		<div>Default</div><div>DefaultDefault</div><div>Default<br>Default<br>Default</div>
+		<div>Default</div><div>DefaultDefaultDefault</div><div>Default</div>
+	</div>
+	<div class="zs-grid-4rows-equal zs-grid-4cols-equal">
+		<div>Equal</div><div>Equal</div><div>Equal</div><div>Equal</div>
+		<div>Equal</div><div>Equal</div><div>Equal</div><div>Equal</div>
+		<div>Equal</div><div>Equal<br>Equal</div><div>Equal</div><div>Equal</div>
+		<div>Equal</div><div>Equal</div><div>Equal</div><div>Equal</div>
+	</div>
+	<div class="zs-grid-2rows-auto zs-grid-2cols-auto">
+		<div>Auto</div><div>Auto</div>
+		<div>Auto</div><div>Auto</div>
+		<div class="zs-col-3 zs-row-2">Extra column</div>
+		<div class="zs-col-3 zs-row-1">Extra column</div>
+		<div class="zs-col-2 zs-row-3">Extra Row</div>
+	</div>
+	<div class="zs-grid-4rows-auto zs-grid-2cols-equal">
+		<div>Equal cols auto rows</div><div>Equal cols auto rows</div>
+		<div>Equal cols auto rows</div><div>Equal cols auto rows</div>
+		<div>Equal cols auto rows
+			<br>Equal cols auto rows
+			<br>Equal cols auto rows</div><div>Equal cols auto rows</div>
+		<div>Equal cols auto rows</div><div>Equal cols auto rows</div>
+		<div>Equal cols auto rows</div><div>Equal cols auto rows</div>
+	</div>
+</div>
+</div>
+<code for="example5" class="html hljs"></code>

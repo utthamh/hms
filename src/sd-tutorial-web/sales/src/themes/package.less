@@ -1,0 +1,73 @@
+// ZSUI application styles package
+
+// Variables
+@zsui-node_modules: '../assets/zsui';
+@custom-node_modules: '../../node_modules';
+
+// Definitions
+@import '@{zsui-node_modules}/zsui-core/src/less/theme.less';
+@import '@{zsui-node_modules}/zsui-core/src/less/mixins.less';
+@import '@{zsui-node_modules}/zsui-forms/src/form/formMixins.less';
+@import '@{zsui-node_modules}/zsui-layout/src/layout/gridMixins.less';
+
+// Styles
+@import '@{zsui-node_modules}/zsui-core/src/less/global.less'; // should go first
+@import '@{zsui-node_modules}/zsui-core/src/less/fonts.less'; //Todo: update it when zsui upgrades to work with angular
+@import '@{zsui-node_modules}/zsui-core/src/less/icons.less';
+@import '@{zsui-node_modules}/zsui-layout/src/layout/layout.less';
+@import '@{zsui-node_modules}/zsui-layout/src/layout/layoutTable.less';
+@import '@{zsui-node_modules}/zsui-layout/src/layout/complexGrids.less';
+@import '@{zsui-node_modules}/zsui-nav/src/topNav/topNav.less';
+@import '@{zsui-node_modules}/zsui-tables/src/tables/table.less';
+@import '@{zsui-node_modules}/zsui-layout/src/mobile/header.less';
+@import '@{zsui-node_modules}/zsui-layout/src/layout/footer.less';
+@import '@{zsui-node_modules}/zsui-forms/src/form/form.less';
+@import '@{zsui-node_modules}/zsui-core/src/less/responsive.less';
+@import '@{zsui-node_modules}/zsui-core/src/less/utils/color.less';
+@import '@{zsui-node_modules}/zsui-layout/src/layout/grid.less';
+@import '@{zsui-node_modules}/zsui-core/src/less/relative.less';
+@import '@{zsui-node_modules}/zsui-forms/src/dateTime/datePicker.less';
+@import '@{zsui-node_modules}/zsui-core/src/less/utils/space.less';
+@import '@{zsui-node_modules}/zsui-core/src/less/utils/position.less';
+@import '@{zsui-node_modules}/zsui-core/src/less/utils/align.less';
+@import '@{zsui-node_modules}/zsui-core/src/less/utils/display.less';
+@import '@{zsui-node_modules}/zsui-layout/dist/themes/blue/layoutFlex.css';
+@import '@{zsui-node_modules}/zsui-forms/src/dateTime/timePicker.less';
+@import '@{zsui-node_modules}/zsui-forms/src/dateTime/timePicker.less';
+
+
+// Components
+@import '@{zsui-node_modules}/zsui-dialog/src/dialog/dialog.less';
+@import '@{zsui-node_modules}/zsui-nav/src/breadcrumbs/breadcrumbs.less';
+@import '@{zsui-node_modules}/zsui-core/src/less/popupMenu.less';
+@import '@{zsui-node_modules}/zsui-layout/src/tab/tabs.less';
+@import '@{zsui-node_modules}/zsui-core/src/tooltip/tooltip.less';
+@import '@{zsui-node_modules}/zsui-forms/src/select/searchDropdown.less';
+@import '@{zsui-node_modules}/zsui-auth/src/user/user.less';
+@import '@{zsui-node_modules}/zsui-message/src/toast/toast.less';
+@import '@{zsui-node_modules}/zsui-forms/src/tags/tags.less';
+@import '@{zsui-node_modules}/zsui-layout/src/wizard/wizard.less';
+@import '@{zsui-node_modules}/zsui-forms/src/choice/zsChoice.less';
+@import '@{zsui-node_modules}/zsui-layout/src/drawer/drawer.less';
+@import '@{zsui-node_modules}/zsui-forms/src/toggle/toggle.less';
+@import '@{zsui-node_modules}/zsui-layout/src/card/card.less';
+@import '@{zsui-node_modules}/zsui-layout/src/accordion/accordion.less';
+@import '@{zsui-node_modules}/zsui-core/src/badge/badge.less';
+@import '@{zsui-node_modules}/zsui-forms/src/progressBar/progressBar.less';
+@import '@{zsui-node_modules}/zsui-layout/src/toggleTab/toggleTabs.less';
+@import '@{zsui-node_modules}/zsui-forms/src/select/filter.less';
+@import '@{zsui-node_modules}/zsui-nav/src/pagination/pagination.less';
+
+// Application custom overrides
+@import 'custom.less';
+@import 'app.less';
+
+
+@import '@{zsui-node_modules}/zsui-layout/dist/themes/zs/layoutGrid.css';
+@import '@{zsui-node_modules}/zsui-layout/dist/themes/zs/responsiveGrid.css';
+@import '@{zsui-node_modules}/zsui-core/dist/themes/zs/badge.css';
+
+
+// @import '@{custom-node_modules}/quill-mention/dist/quill.mention.css';
+
+

@@ -1,0 +1,166 @@
+<%- script(zsuiPath + '/animation/animate.js')%>
+<style>
+	[animation] {
+		padding: 0.71em;
+	}
+</style>
+<h2>Transitions</h2>
+<p>Our animations are based on
+	<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition">CSS transitions</a>.</p>
+<p>We have a helper behavior to register and play animations "zs.animate". Alternatively you can use
+	<a href="http://api.jquery.com/animate/">animations from jQuery library</a>.</p>
+
+<script  defer>
+	// Register rotate animation
+	zs.animation.registerTransition('rotate', {
+		before: {
+			transitionProperty: 'transform',
+			transitionTimingFunction: 'linear',
+		},
+		after: {
+			transform: 'rotate(360deg)'
+		},
+		reset: {
+			transform: 'none'
+		}
+	});
+
+	// Register slide animation
+	zs.animation.registerTransition('slide', {
+		before: {
+			transitionProperty: 'transform',
+			transitionTimingFunction: 'ease-in-out',
+		},
+		after: {
+			transform: 'translateX(100%)'
+		}
+	});
+
+	// Demo component to play animations
+	var comp = zs.customElement(HTMLElement, 'my-anim', null, [zs.animate, {
+		events: {
+			beforeanimation: function (event) {
+				console.log('animation start', event.detail)
+			},
+			afteranimation: function (event) {
+				console.log('animation end', event.detail)
+			},
+			attach: function () {
+				var el = this;
+
+				Object.assign(el.style, { position: 'absolute' });
+
+				setTimeout(function () {
+					var btn = el.querySelector('button');
+
+					btn.addEventListener('click', function () {
+						var effect = this.getAttribute("animation");
+
+						var event = new CustomEvent('beforeanimation', { detail: { effect: effect } });
+						el.dispatchEvent(event);
+
+						var options = {};
+
+						// Logic to slide left or right
+						if (effect == 'slide') {
+							if (!el.transformed) {
+								left = el.parentNode.clientWidth - el.clientWidth;
+								el.transformed = true;
+							} else {
+								left = 0;
+								el.transformed = false;
+							}
+							Object.assign(options, { transform: 'translateX(' + (left) + 'px)' });
+						}
+
+
+						el.startAnimation(effect, 500, options).then(function (animation) {
+							var event = new CustomEvent('afteranimation', { detail: { animation: animation } });
+							el.dispatchEvent(event);
+						})
+					});
+
+				}, 0);
+			}
+		}
+	}])
+
+
+
+
+</script>
+<div style="position:relative; overflow: hidden; min-height:150px;height:50vh;min-width:200px;width:50vw; border:1px solid #e1e9ef;">
+	<my-anim style="top:50%;left:50%">
+		<button animation="rotate">Rotate</button>
+	</my-anim>
+	<my-anim style="top:0px;left:0px">
+		<button animation="slide">Slide</button>
+	</my-anim>
+
+</div>
+
+<h2>Animation</h2>
+<p>You can also create more complex animations using
+	<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation">CSS animations</a> and our "zs.animate" behavior</p>
+<style>
+	.animated {
+		animation-duration: .5s;
+		animation-fill-mode: both;
+	}
+
+	.animated.infinite {
+		animation-iteration-count: infinite;
+	}
+
+
+	@keyframes flip {
+		from {
+			transform: perspective(400px) rotate3d(0, 1, 0, -360deg);
+			animation-timing-function: ease-out;
+		}
+
+		40% {
+			transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+			animation-timing-function: ease-out;
+		}
+
+		50% {
+			transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+			animation-timing-function: ease-in;
+		}
+
+		80% {
+			transform: perspective(400px) scale3d(.95, .95, .95);
+			animation-timing-function: ease-in;
+		}
+
+		to {
+			transform: perspective(400px);
+			animation-timing-function: ease-in;
+		}
+	}
+
+	.animated.flip {
+		backface-visibility: visible;
+		animation-name: flip;
+	}
+</style>
+<script>
+	zs.animation.registerTransition('flip', {
+		before: {
+			backfaceVisibility: 'visible'
+		},
+		after: {
+			animationName: 'flip'
+		},
+		reset: {
+			animationName: 'none'
+		}
+	});
+
+</script>
+<p>
+	<my-anim class="animated" stlye="float:right;position:relative;display:inline-block;width:100px; height:100px;" id="flip">
+		<button animation="flip">Flip</button>
+	</my-anim>
+</p>

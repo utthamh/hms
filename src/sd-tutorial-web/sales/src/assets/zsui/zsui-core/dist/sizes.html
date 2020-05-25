@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Size and Space</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Dependencies -->
+	<link rel="stylesheet" href="themes/zs/core.css">
+
+	<!-- For demo purposes only -->
+	<link rel="stylesheet" type="text/css" href="https://ui.zsservices.com/zsui/themes/zs/forms.css">
+	<link rel="stylesheet" type="text/css" href="https://ui.zsservices.com/zsui/themes/zs/layoutGrid.css">
+	<link rel="stylesheet" type="text/css" href="https://ui.zsservices.com/zsui/themes/zs/tables.css">	
+	<link rel="stylesheet" type="text/css" href="https://ui.zsservices.com/zsui/themes/zs/card.css">
+	<script src="./polyfills/polyfills.js"></script>
+	<script src="https://ui.zsservices.com/zsui/demo.js"></script>
+	<style>
+		.zs-example {
+			padding:1em;
+		}
+		
+		.element {
+			display:none;
+		}
+		
+		.ui {
+			grid-template-rows: min-content minmax(min-content, 1fr);
+			-ms-grid-rows: min-content minmax(min-content, 1fr);
+			grid-template-columns:min-content minmax(min-content, 1fr);
+    		-ms-grid-columns: min-content minmax(min-content, 1fr);
+		}
+		
+		#element {
+			margin: 0.71em;
+		}
+		
+		.zs-side-navigation {
+			padding-top:0;
+		}
+
+		.ui .zs-card[name] {
+			display:flex;
+			flex-direction: column;
+			justify-content: center;
+			font-size: 1em;
+			width:4em;
+			min-height:4em;	
+		}
+
+		.size-menu {
+			display:flex;
+			flex-direction: row;
+			justify-content: space-around;
+		}
+		
+		.element-menu {
+			display:flex;
+			flex-direction: column;
+			justify-content: space-around;
+		}
+	</style>
+</head>
+<body class="zs-style zs-example">
+<h2>Sizes</h2>
+
+<p>Our library is using relative box model to allow resizing of the components. We also supply 7 size modes you can use for any component.</p>
+
+<!-- UI to select sizes and element -->
+<div class="ui zs-grid-2cols zs-grid-2rows">
+	<nav class="zs-row-1 zs-col-2 size-menu" >
+		<a class="zs-card" tile href="javascript:updateState({sizeMode: 'xs'})" name="size-xs" title="Extra Small">XS</a>
+		<a class="zs-card" tile href="javascript:updateState({sizeMode: 's'})"  name="size-s" title="Small">S</a>
+		<a class="zs-card" tile href="javascript:updateState({sizeMode: 'r'})"  name="size-r" title="Regular">R</a>
+		<a class="zs-card" tile href="javascript:updateState({sizeMode: 'm'})"  name="size-m" title="Medium">M</a>
+		<a class="zs-card" tile href="javascript:updateState({sizeMode: 'l'})"  name="size-l" title="Large">L</a>
+		<a class="zs-card" tile href="javascript:updateState({sizeMode: 'xl'})"  name="size-xl" title="Large">XL</a>
+		<a class="zs-card" tile href="javascript:updateState({sizeMode: 'xxl'})"  name="size-xxl" title="Extra Extra Large">XXL</a>
+	</nav>
+	<nav class="element-menu zs-row-2 zs-col-1">
+		<a class="zs-card" tile href="javascript:updateState({element: 'text'})" name="element-text">Text</a>
+		<a class="zs-card" tile href="javascript:updateState({element: 'button'})" name="element-button">Button</a>
+		<a class="zs-card" tile href="javascript:updateState({element: 'icon'})" name="element-icon">Icon</a>
+		<a class="zs-card" tile href="javascript:updateState({element: 'input'})" name="element-input">Form input</a>
+		<a class="zs-card" tile href="javascript:updateState({element: 'table'})" name="element-table">Table</a>
+	</nav>
+	<!-- inspect this element to check the code to use -->
+	<div id="element" class="zs-row-2 zs-col-2 zs-align-self-center zs-justify-self-center"></div>
+</div>	
+
+<!-- Example of elements to choose from -->
+
+<div class="element" name="text">
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id
+		gravida mattis, tortor neque imperdiet
+		dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate
+		magna.
+		Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis
+		iaculis.
+		Fusce ultricies vehicula posuere.</p>
+</div>
+
+
+<div class="element" name="icon">
+	<div><!-- we could have compound icons-->
+		<span class="zs-icon zs-icon-trophy"></span> 
+		<span class="zs-icon zs-icon-tasks">
+			<span class="zs-badge zs-success zs-badge-current-item"></span>
+		</span>
+		<span class="zs-icon zs-icon-document">
+			<span class="zs-badge zs-badge-ppt"></span>
+		</span>
+	</div>
+</div>
+
+
+<div class="element" name="button">
+	<button class="zs-button">Button</button>
+</div>
+
+<div class="element" name="input">
+	<input type="text" name="" id="" class="zs-input"/>
+</div>
+	
+
+<div class="element" name="table">
+	<table class="zs-data-table">
+		<thead>
+			<tr>
+				<th>Column 1</th>
+				<th>Column 2</th>
+				<th>Column 3</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Cell 11</td>
+				<td>Cell 12</td>
+				<td>Cell 13</td>
+				
+			</tr>
+			<tr>
+				<td>Cell 21</td>
+				<td>Cell 22</td>
+				<td>Cell 23</td>
+		
+			</tr>
+			<tr>
+				<td>Cell 31</td>
+				<td>Cell 32</td>
+				<td>Cell 33</td>
+			
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<script>
+	
+		'use strict';		
+	
+		// Shortcut to update the state
+		function updateState(obj) {
+			zs.state.updateState(obj);
+		}
+
+		// Display an element and adjust its size
+		function change(element, size) {
+			element = element || 'button';
+			size = size || 'R';			
+			var html = document.querySelector('.element[name="' + element + '"]').innerHTML;
+			
+			var cls = 'zs-size-' + size.toLowerCase();
+
+			var el = document.getElementById('element');
+			el.innerHTML = html;
+			el.children[0].classList.add(cls);
+
+			// Handle menu items
+			document.querySelectorAll('a[filter]').forEach(function (el) {el.removeAttribute('filter')});
+			document.querySelectorAll('a[name="size-' + size.toLowerCase()+'"],a[name="element-' + element+'"]').forEach(function(el) {el.setAttribute('filter', 'on');});
+
+
+			// Highlight menu items
+			console.log('update element', element, size)
+		}
+	
+		// Listen to state changes 
+		window.addEventListener('statechange', function(event) {
+			var state = event.detail.newState; 			
+			change(state.element, state.sizeMode);
+		});
+		
+		// Polyfill foreEach on DOM elements for IE11
+		if (window.NodeList && !NodeList.prototype.forEach) {
+			NodeList.prototype.forEach = Array.prototype.forEach;
+		}
+	
+</script>
+</body>
+</html>

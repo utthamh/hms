@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Tooltip</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Dependencies -->
+	<link rel="stylesheet" href="themes/zs/core.css">
+	<script src="polyfills/polyfills.js"></script>
+	<script src="animation/animate.js"></script>
+	<script src="utils/customElements.js"></script>
+	<script src="utils/domHelper.js"></script>
+	<script src="tooltip/tooltip.js"></script>
+
+	<!-- styles for decoration -->
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/card.css" />
+	<script src="https://ui.zsservices.com/zsui/demo.js"></script>
+	<style>
+		.zs-example {
+			padding: 1em;
+		}
+
+		p>b {
+			white-space: nowrap;
+		}
+	</style>
+</head>
+
+<body class="zs-style zs-example">
+	<article class="zs-card" non-clickable>
+		<header>Create with HTML</header>
+		<section>You can create tag zs-tooltip and place it as near to &lt;/body&gt; as possible</p>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+				vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula <b id="general-tag">lectus massa at purus</b>. Pellentesque dapibus elit molestie hendrerit
+				rhoncus. Aenean at vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+			</p>
+
+			<zs-tooltip for="general-tag" offset-y="10">
+				<zs-tooltip-content>
+					Lorem ipsum dolor
+				</zs-tooltip-content>
+			</zs-tooltip>
+		</section>
+	</article>
+	<article class="zs-card" non-clickable>
+		<header>Create with Javascript</header>
+		<section>
+			<p>You can use document.createElement('zs-tooltip') too. Check the source of the page for details.</p>
+			<div class="example">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis,
+					tortor neque imperdiet dolor,
+					ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+					vulputate magna. Suspendisse eget lorem et magna
+					auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+					ultricies vehicula posuere.
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis,
+					tortor neque imperdiet dolor,
+					ut vehicula <b id="general-element">lectus massa at purus</b>. Pellentesque dapibus elit molestie
+					hendrerit rhoncus. Aenean at vulputate magna. Suspendisse eget lorem et magna
+					auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+					ultricies vehicula posuere.
+				</p>
+
+				<script>
+					const tooltip = document.createElement('zs-tooltip');
+					tooltip.setContent('Fusce ultricies vehicula posuere');
+
+					tooltip.setAttribute('for', 'general-element');
+					tooltip.setAttribute('offset-y', 10);
+					document.body.appendChild(tooltip);
+				</script>
+
+			</div>
+		</section>
+	</article>
+
+	<article class="zs-card" non-clickable>
+		<header>Specify target</header>
+		<section>
+			<p>Tooltip target can be specified in an attribute "for". Place an id of target there.</p>
+			<div class="example">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis,
+					tortor neque imperdiet dolor,
+					ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+					vulputate magna. Suspendisse eget lorem et magna
+					auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+					ultricies vehicula posuere.
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis,
+					tortor neque imperdiet dolor,
+					ut vehicula <b id="my-target">lectus massa at purus</b>. Pellentesque dapibus elit molestie
+					hendrerit rhoncus. Aenean at vulputate magna. Suspendisse eget lorem et magna
+					auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+					ultricies vehicula posuere.
+				</p>
+
+				<!-- Attribute "for" is used to set ID of anchor -->
+				<zs-tooltip for="my-target" offset-y="10">
+					<zs-tooltip-content>
+						Lorem ipsum dolor
+					</zs-tooltip-content>
+				</zs-tooltip>
+			</div>
+		</section>
+	</article>
+	<article class="zs-card" non-clickable>
+		<header>Auto-detected target</header>
+		<section>
+			<p>Tooltip will use the first parent node as a target by default.</p>
+			<div class="example">
+				<p>
+					<!-- If "for" is not specified parent will be set as anchor -->
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis,
+					tortor neque imperdiet dolor,
+					ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+					vulputate magna. Suspendisse eget lorem et magna
+					auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+					ultricies vehicula posuere.
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis,
+					tortor neque imperdiet dolor,
+					ut vehicula <b>lectus massa at purus <zs-tooltip offset-y="10">Lorem ipsum dolor</zs-tooltip></b>.
+					Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate magna. Suspendisse eget
+					lorem et magna
+					auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+					ultricies vehicula posuere.
+				</p>
+			</div>
+		</section>
+	</article>
+
+	<article class="zs-card" non-clickable>
+		<header>Position: Left </header>
+		<section>
+			<p>Attribute "position" is responsible for position, offset-x and offset-y for offset</p>
+			<div class="example">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis,
+					tortor neque imperdiet dolor,
+					ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+					vulputate magna. Suspendisse eget lorem et magna
+					auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+					ultricies vehicula posuere.
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis,
+					tortor neque imperdiet dolor,
+					ut vehicula <b id="positioning-left">lectus massa at purus</b>. Pellentesque dapibus elit molestie
+					hendrerit rhoncus. Aenean at vulputate magna. Suspendisse eget lorem et magna
+					auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+					ultricies vehicula posuere.
+				</p>
+				<!-- Attribute "position" is responsible for position, offset-x and offset-y for offset -->
+				<zs-tooltip for="positioning-left" position="left" offset-x="10">
+					Lorem ipsum dolor
+				</zs-tooltip>
+			</div>
+		</section>
+	</article>
+	<article class="zs-card" non-clickable>
+		<header>Position: Right</header>
+		<section>
+			<p>Attribute "position" is responsible for position, offset-x and offset-y for offset</p>
+			<div class="example">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis,
+					tortor neque imperdiet dolor,
+					ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+					vulputate magna. Suspendisse eget lorem et magna
+					auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+					ultricies vehicula posuere.
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis,
+					tortor neque imperdiet dolor,
+					ut vehicula <b id="positioning-right">lectus massa at purus</b>. Pellentesque dapibus elit molestie
+					hendrerit rhoncus. Aenean at vulputate magna. Suspendisse eget lorem et magna
+					auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+					ultricies vehicula posuere.
+				</p>
+				<!-- Attribute "position" is responsible for position, offset-x and offset-y for offset -->
+				<zs-tooltip for="positioning-right" position="right" offset-x="10">
+					Lorem ipsum dolor
+				</zs-tooltip>
+			</div>
+		</section>
+	</article>
+	<article class="zs-card" non-clickable>
+		<header>Position: Top</header>
+		<p>Attribute "position" is responsible for position, offset-x and offset-y for offset</p>
+		<div class="example">
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+				vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula <b id="positioning-top">lectus massa at purus</b>. Pellentesque dapibus elit molestie
+				hendrerit rhoncus. Aenean at vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+			</p>
+			<!-- Attribute "position" is responsible for position, offset-x and offset-y for offset -->
+			<zs-tooltip for="positioning-top" position="top" offset-y="10">
+				Lorem ipsum dolor
+			</zs-tooltip>
+
+		</div>
+	</article>
+
+	<article class="zs-card" non-clickable>
+		<header>Position: Bottom</header>
+		<section>
+			<p>Attribute "position" is responsible for position, offset-x and offset-y for offset</p>
+			<div class="example">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis,
+					tortor neque imperdiet dolor,
+					ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+					vulputate magna. Suspendisse eget lorem et magna
+					auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+					ultricies vehicula posuere.
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis,
+					tortor neque imperdiet dolor,
+					ut vehicula <b id="positioning-bottom">lectus massa at purus</b>. Pellentesque dapibus elit molestie
+					hendrerit rhoncus. Aenean at vulputate magna. Suspendisse eget lorem et magna
+					auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+					ultricies vehicula posuere.
+				</p>
+				<!-- Attribute "position" is responsible for position, offset-x and offset-y for offset -->
+				<zs-tooltip for="positioning-bottom" position="bottom" offset-y="10">
+					Lorem ipsum dolor
+				</zs-tooltip>
+			</div>
+		</section>
+	</article>
+
+	<article class="zs-card" non-clickable>
+		<header>Hidden Arrow</header>
+		<section>
+			<p>Attribute "arrow-position" is responsible for arrow position. Available values: 'auto', 'none'</p>
+			<div class="example">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis,
+					tortor neque imperdiet dolor,
+					ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+					vulputate magna. Suspendisse eget lorem et magna
+					auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+					ultricies vehicula posuere.
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis,
+					tortor neque imperdiet dolor,
+					ut vehicula <b id="arrow-hidden">lectus massa at purus</b>. Pellentesque dapibus elit molestie
+					hendrerit rhoncus. Aenean at vulputate magna. Suspendisse eget lorem et magna
+					auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+					ultricies vehicula posuere.
+				</p>
+
+				<!-- Attribute "arrow-position" is responsible for arrow position. Available values: 'auto', 'none' -->
+				<zs-tooltip for="arrow-hidden" arrow-position="none" offset-y="1">
+					Lorem ipsum dolor
+				</zs-tooltip>
+			</div>
+		</section>
+	</article>
+
+	<article class="zs-card" non-clickable>
+		<header>Auto Position for Arrow </header>
+		<section>
+			<p>Attribute "arrow-position" is responsible for arrow position. Available values: 'auto', 'none'</p>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+				vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula <b id="arrow-auto">lectus massa at purus</b>. Pellentesque dapibus elit molestie hendrerit
+				rhoncus. Aenean at vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+			</p>
+
+			<!-- Attribute "arrow-position" is responsible for arrow position. Available values: 'auto', 'none' -->
+			<zs-tooltip for="arrow-auto" arrow-position="auto" offset-y="10">
+				Lorem ipsum dolor
+			</zs-tooltip>
+		</section>
+	</article>
+
+	<article class="zs-card" non-clickable>
+		<header>Plain Content </header>
+		<section>
+			<p>zs-tooltip-content is created automically and takes all the content into itself. However, it's preferable
+				to specify it directly</p>
+
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+				vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula <b id="content-plain">lectus massa at purus</b>. Pellentesque dapibus elit molestie
+				hendrerit rhoncus. Aenean at vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+			</p>
+
+			<!-- zs-tooltip-content is created automically and takes all the content into itself. However, you may specify it directly -->
+			<zs-tooltip for="content-plain" offset-y="10">
+				<zs-tooltip-content>
+					Lorem ipsum dolor
+				</zs-tooltip-content>
+			</zs-tooltip>
+		</section>
+	</article>
+	<article class="zs-card" non-clickable>
+		<header>Rich Content </header>
+		<section>
+			<p>Tooltip supports rich HTML content</p>
+
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+				vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula <b id="content-rich">lectus massa at purus</b>. Pellentesque dapibus elit molestie hendrerit
+				rhoncus. Aenean at vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+			</p>
+
+			<!-- Tooltip supports rich HTML content -->
+			<zs-tooltip for="content-rich" offset-y="10">
+				<zs-tooltip-content>
+					<img src="http://boostthyself.com/wp-content/uploads/2017/08/smile.jpg" width="100">
+
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis,
+						tortor neque imperdiet dolor,
+						ut vehicula lectus massa at . Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+						vulputate magna. Suspendisse eget lorem et magna
+						auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis.
+						Fusce ultricies vehicula posuere.</p>
+
+					<ul class="zs-list">
+						<li>1</li>
+						<li>2</li>
+						<li>3</li>
+					</ul>
+				</zs-tooltip-content>
+			</zs-tooltip>
+
+		</section>
+	</article>
+
+	<article class="zs-card" non-clickable>
+		<header>setContent/getContent</header>
+		<section>
+			<p>Content can be set explicitly with setContent('...'). You can read the conent with getContent().</p>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+				vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula <b id="content-set">lectus massa at purus</b>. Pellentesque dapibus elit molestie hendrerit
+				rhoncus. Aenean at vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+			</p>
+
+			<!-- Content can be set explicitly -->
+			<script>
+				const tooltipContentSet = document.createElement('zs-tooltip');
+				tooltipContentSet.setContent('<img src="http://boostthyself.com/wp-content/uploads/2017/08/smile.jpg" width="100"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor neque imperdiet dolor,ut vehicula lectus massa at . Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate magna. Suspendisse eget lorem et magnaauctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce ultricies vehicula posuere.</p><ul class="zs-list"><li>1</li><li>2</li><li>3</li></ul>');
+
+				tooltipContentSet.setAttribute('for', 'content-set');
+				tooltipContentSet.setAttribute('offset-y', 10);
+
+				document.getElementById('content-set').parentNode.parentNode.appendChild(tooltipContentSet);
+
+				// Read the content
+				console.log(tooltipContentSet.getContent());
+			</script>
+		</section>
+	</article>
+
+	<article class="zs-card" non-clickable>
+		<header>Auto Mode </header>
+		<section>
+			<p>Tooltip is shown on mouseover/click, hidden on mouseleave/second click</p>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+				vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula <b id="mode-auto">lectus massa at purus <zs-tooltip mode="auto" offset-y="10">Lorem ipsum
+						dolor</zs-tooltip></b>. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+				vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+			</p>
+
+		</section>
+	</article>
+
+	<article class="zs-card" non-clickable>
+		<header>Manual Mode</header>
+		<section>
+			<p>Tooltip is shown/hidden wnenever you would like to (for example on dblclick, demo works only on desktop)
+			</p>
+
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+				vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula <b id="mode-manual">double clik me<zs-tooltip mode="manual" offset-y="10">Lorem ipsum dolor
+					</zs-tooltip></b>. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate magna.
+				Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+			</p>
+
+			<script>
+				const anchor = document.getElementById('mode-manual');
+				const modeManualTooltip = anchor.querySelector('zs-tooltip');
+
+				anchor.addEventListener('dblclick', function () {
+					if (modeManualTooltip.isHidden) {
+						modeManualTooltip.show();
+					} else {
+						modeManualTooltip.hide();
+					}
+				});
+			</script>
+		</section>
+	</article>
+
+	<article class="zs-card" non-clickable>
+		<header>Show with animation</header>
+		<section>
+			<p>Use an attribute animate-show-with-duration to show tooltip with animation.</p>
+
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+				vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula <b id="animation-show">lectus massa at purus</b>. Pellentesque dapibus elit molestie
+				hendrerit rhoncus. Aenean at vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+			</p>
+
+			<zs-tooltip for="animation-show" offset-y="1" animate-show-with-duration="1000">Lorem ipsum dolor
+			</zs-tooltip>
+		</section>
+	</article>
+
+	<article class="zs-card" non-clickable>
+		<header>Hide with animation</header>
+		<section>
+			<p>Use an attribute animate-hide-with-duration to show tooltip with animation.</p>
+
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+				vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula <b id="animation-hide">lectus massa at purus</b>. Pellentesque dapibus elit molestie
+				hendrerit rhoncus. Aenean at vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+			</p>
+
+			<zs-tooltip for="animation-hide" offset-y="1" animate-hide-with-duration="1000">Lorem ipsum dolor
+			</zs-tooltip>
+		</section>
+	</article>
+
+	<article class="zs-card" non-clickable>
+		<header>Events</header>
+		<section>
+			<p>Tooltip can handle and fires events similar to regualr DOM elements. </p>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+				vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula <b id="events">lectus massa at puru. <zs-tooltip>See console for event log</zs-tooltip></b>.
+				Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate magna. Suspendisse eget lorem
+				et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+			</p>
+
+
+			<script>
+				const tooltipElement = document.querySelector('#events zs-tooltip');
+				tooltipElement.handleEvent = function (event) {
+					console.log(event);
+				}
+				tooltipElement.addEventListener('attach', tooltipElement);
+				tooltipElement.addEventListener('show', tooltipElement);
+				tooltipElement.addEventListener('detach', tooltipElement);
+				tooltipElement.addEventListener('hide', tooltipElement);
+				tooltipElement.addEventListener('beforeshow', tooltipElement);
+				tooltipElement.addEventListener('beforehide', tooltipElement);
+				tooltipElement.addEventListener('destroy', tooltipElement);
+				tooltipElement.addEventListener('render', tooltipElement);
+				tooltipElement.addEventListener('beforedestroy', tooltipElement);
+
+			</script>
+		</section>
+	</article>
+
+
+	<article class="zs-card" non-clickable>
+		<header>Multiple tooltips for a single target.</header>
+		<section>
+			<p>Some crazy cases.</p>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula lectus massa at purus</b>. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+				vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula <b id="misc-mupltiple">lectus massa at purus</b>. Pellentesque dapibus elit molestie
+				hendrerit rhoncus. Aenean at vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+			</p>
+			<zs-tooltip for="misc-mupltiple" position="left" offset-y="10" offset-x="10">
+				<zs-tooltip-content>
+					Lorem ipsum dolor
+				</zs-tooltip-content>
+			</zs-tooltip>
+
+			<zs-tooltip for="misc-mupltiple" position="right" offset-y="10" offset-x="10">
+				<zs-tooltip-content>
+					Lorem ipsum dolor1
+				</zs-tooltip-content>
+			</zs-tooltip>
+
+			<zs-tooltip for="misc-mupltiple" position="top" offset-y="10" offset-x="10">
+				<zs-tooltip-content>
+					Lorem ipsum dolor2
+				</zs-tooltip-content>
+			</zs-tooltip>
+
+			<zs-tooltip for="misc-mupltiple" position="bottom" offset-y="10" offset-x="10">
+				<zs-tooltip-content>
+					Lorem ipsum dolor2
+				</zs-tooltip-content>
+			</zs-tooltip>
+		</section>
+	</article>
+	<article class="zs-card" non-clickable>
+		<header>Customize rendering</header>
+		<section>
+			<p>Sometimes you need to control when to render a tooltip. Use norender attribute to skip default rendering
+				on attach.</p>
+
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+				vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque imperdiet dolor,
+				ut vehicula <b>lectus massa at purus<zs-tooltip id="misc-norender-tooltip" offset-y="10"
+						norender="true">Lorem ipsum dolor</zs-tooltip></b>. Pellentesque dapibus elit molestie hendrerit
+				rhoncus. Aenean at vulputate magna. Suspendisse eget lorem et magna
+				auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce
+				ultricies vehicula posuere.</p>
+
+			<a href="javascript:renderTooltipManually()">Render tooltip</a>
+
+			<script>
+				const miscRorenderTooltip = document.getElementById('misc-norender-tooltip');
+
+				function renderTooltipManually() {
+					miscRorenderTooltip.norender = false;
+					miscRorenderTooltip.render();
+				}
+			</script>
+		</section>
+	</article>
+</body>
+
+</html>

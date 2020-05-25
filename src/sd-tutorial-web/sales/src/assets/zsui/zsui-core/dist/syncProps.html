@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Sync properties and attributes</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Dependencies -->
+	<script src="polyfills/polyfills.js"></script>
+	<script src="smart/mixin.js"></script>
+	<script src="smart/syncProps.js"></script>
+	
+	<!-- For demo purposes -->
+	<link rel="stylesheet" href="themes/zs/core.css">
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/forms.css">
+	<script src="https://ui.zsservices.com/zsui/demo.js"></script>	
+	<style>
+		.zs-example {
+			margin:2em;
+		}
+	</style>
+
+	
+</head>
+<body class="zs-style zs-example">
+	<h2>Sync properties and attributes</h2>
+	<p>This example shows a button with value property and attribute in sync. Clicking the button will change the "value" property with a random number and the button will reflect it.</p>
+	<p>The same way we can drive disabled state by changing the property.</p>
+	
+	<button is="my-button" class="zs-button" value="0"></button>
+	<p class="zs-checkbox"><label><input type="checkbox" onchange="updateState({disabled: this.checked})">Disable</label></p>
+	<script src="syncDemo.js"></script><!-- ES5 --> <!-- check the source in syncDemo.m.js -->
+	<script>	
+		window.addEventListener('statechange', function(event) {
+			var state = event.detail.newState;
+			var btn = document.querySelector('.zs-button');
+			var chk = document.querySelector('input');
+			
+			btn.disabled = state.disabled == 'true' || state.disabled == true;
+			chk.checked = state.disabled == 'true' || state.disabled == true;
+		});
+
+	</script>
+</body>
+</html>

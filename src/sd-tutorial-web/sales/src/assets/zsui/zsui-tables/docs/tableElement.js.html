@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>tableElement.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ZS%252520TablePivot.html">ZS TablePivot</a></li><li><a href="ZS%252520TableSortable.html">ZS TableSortable</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:cellchangeFireswhenwecelldataischanged">cellchange Fires when we cell data is changed</a></li><li><a href="global.html#event:resizeFireswhenweresizetable">resize Fires when we resize table</a></li></ul><h3>Namespaces</h3><ul><li><a href="zs.table.html">table</a><ul class='methods'><li data-type='method'><a href="zs.table.html#.clearTable">clearTable</a></li><li data-type='method'><a href="zs.table.html#.considerPosition">considerPosition</a></li><li data-type='method'><a href="zs.table.html#.getTableData">getTableData</a></li><li data-type='method'><a href="zs.table.html#.refreshTable">refreshTable</a></li><li data-type='method'><a href="zs.table.html#.render">render</a></li><li data-type='method'><a href="zs.table.html#.renderCell">renderCell</a></li><li data-type='method'><a href="zs.table.html#.renderHead">renderHead</a></li><li data-type='method'><a href="zs.table.html#.renderHeadRow">renderHeadRow</a></li><li data-type='method'><a href="zs.table.html#.renderRow">renderRow</a></li><li data-type='method'><a href="zs.table.html#.renderTable">renderTable</a></li><li data-type='method'><a href="zs.table.html#.whenRendered">whenRendered</a></li></ul></li><li><a href="zs.tableDelayedRender.html">tableDelayedRender</a><ul class='methods'><li data-type='method'><a href="zs.tableDelayedRender.html#.renderTable">renderTable</a></li><li data-type='method'><a href="zs.tableDelayedRender.html#.renderTableSection">renderTableSection</a></li></ul></li><li><a href="zs.tableEditable.html">tableEditable</a><ul class='methods'><li data-type='method'><a href="zs.tableEditable.html#.cellClick">cellClick</a></li><li data-type='method'><a href="zs.tableEditable.html#.createField">createField</a></li><li data-type='method'><a href="zs.tableEditable.html#.fieldChange">fieldChange</a></li><li data-type='method'><a href="zs.tableEditable.html#.focusEditField">focusEditField</a></li><li data-type='method'><a href="zs.tableEditable.html#.formatCell">formatCell</a></li><li data-type='method'><a href="zs.tableEditable.html#.isEditable">isEditable</a></li><li data-type='method'><a href="zs.tableEditable.html#.nextField">nextField</a></li><li data-type='method'><a href="zs.tableEditable.html#.onWindowResize">onWindowResize</a></li><li data-type='method'><a href="zs.tableEditable.html#.positionOverlay">positionOverlay</a></li><li data-type='method'><a href="zs.tableEditable.html#.prevField">prevField</a></li><li data-type='method'><a href="zs.tableEditable.html#.renderCell">renderCell</a></li><li data-type='method'><a href="zs.tableEditable.html#.renderField">renderField</a></li><li data-type='method'><a href="zs.tableEditable.html#.renderOverlay">renderOverlay</a></li><li data-type='method'><a href="zs.tableEditable.html#.updateCellData">updateCellData</a></li></ul></li><li><a href="zs.tableFixedColumns.html">tableFixedColumns</a><ul class='methods'><li data-type='method'><a href="zs.tableFixedColumns.html#.decorateFixedHeaders">decorateFixedHeaders</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.matchScroll">matchScroll</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.renderHeadRow">renderHeadRow</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.renderHeadRow">renderHeadRow</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.renderRow">renderRow</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.renderRow">renderRow</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.renderTable">renderTable</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.renderTable">renderTable</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.resizeFixed">resizeFixed</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.whenRendered">whenRendered</a></li></ul></li><li><a href="zs.tableFixedColumnsDelayed.html">tableFixedColumnsDelayed</a><ul class='methods'><li data-type='method'><a href="zs.tableFixedColumnsDelayed.html#.renderTable">renderTable</a></li><li data-type='method'><a href="zs.tableFixedColumnsDelayed.html#.renderTableSection">renderTableSection</a></li></ul></li><li><a href="zs.html#.tableSmartRender">tableSmartRender</a><ul class='methods'><li data-type='method'><a href="zs.html#.tableSmartRender#.detectChanges">detectChanges</a></li><li data-type='method'><a href="zs.html#.tableSmartRender#.detectChanges">detectChanges</a></li><li data-type='method'><a href="zs.html#.tableSmartRender#.detectChangesUpdateHash">detectChangesUpdateHash</a></li><li data-type='method'><a href="zs.html#.tableSmartRender#.detectChangesUpdateHash">detectChangesUpdateHash</a></li><li data-type='method'><a href="zs.html#.tableSmartRender#.getHash">getHash</a></li><li data-type='method'><a href="zs.html#.tableSmartRender#.getRowHash">getRowHash</a></li><li data-type='method'><a href="zs.html#.tableSmartRender#.getRowKey">getRowKey</a></li><li data-type='method'><a href="zs.html#.tableSmartRender#.renderChanges">renderChanges</a></li></ul></li><li><a href="zs.tableStickyHeader.html">tableStickyHeader</a><ul class='methods'><li data-type='method'><a href="zs.tableStickyHeader.html#.clearTable">clearTable</a></li><li data-type='method'><a href="zs.tableStickyHeader.html#.decorateStickyCell">decorateStickyCell</a></li><li data-type='method'><a href="zs.tableStickyHeader.html#.resizeStickyHeader">resizeStickyHeader</a></li><li data-type='method'><a href="zs.tableStickyHeader.html#.scrollStickyHeader">scrollStickyHeader</a></li><li data-type='method'><a href="zs.tableStickyHeader.html#.stickHeader">stickHeader</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">tableElement.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>var zs = (function (zs) {
+	'use strict';
+
+	/**
+	 * Table behavior. Custom data table prototype.
+	 * @namespace
+	 */
+	zs.table = {
+		/**
+		 * Required data to render the table.
+		 * @type {Array}
+		 */
+		data: null,
+
+		/**
+		 * Table container reference element
+		 * @type {HTMLElement}
+		 */
+		tableContainer: null,
+
+		/**
+		 * Event listeners.
+		 */
+		events: {
+			create: function () {
+				this.data = [];
+			}
+		},
+
+		/**
+		 * Renders the table with the assigned data.
+		 */
+		render: function () {
+			this.renderTable(this.data);
+		},
+
+		/**
+		 * Re-renders the table with updated data.
+		 * @param {object} params Parameters to fetch the new data.
+		 */
+		refreshTable: function (params) {
+			var comp = this;
+			this.getTableData(params).then(function (data) {
+				comp.data = data;
+				comp.renderTable(data);
+				if (typeof comp.loadingSet == 'function') { comp.loadingSet(false, comp.querySelector('.zs-table')); }
+			});
+		},
+
+		/**
+		 * Gets the required data to render the table.
+		 * @param {object} params Parameters to fetch the new data.
+		 * @returns {Promise} Promise object representing the data.
+		 */
+		getTableData: function (params) {
+			var prom = new Promise(function (resolve, reject) {
+				resolve([]);
+			});
+			return prom;
+		},
+
+		/**
+		 * Manipulates the position of table element.
+		 */
+		considerPosition: function (position) {
+			if (!this.style.position || !this.style.position == 'auto') { this.style.position = 'relative'; }
+		},
+
+		/**
+		 * Creates and renders a table row.
+		 * @param {number} rowIndex Index of the row.
+		 * @param {(Array|object)} rowData Data required to render the row.
+		 * @returns {HTMLElement} Returns HTML tr element.
+		 */
+		renderRow: function (rowIndex, rowData) {
+			var tr = document.createElement('tr');
+			tr.setAttribute('key', rowIndex);
+			if (Array.isArray(rowData)) {
+				for (var j = 0; j &lt; rowData.length; j++) {
+					tr.appendChild(this.renderCell(rowIndex, j, rowData[j]));
+				}
+			} else {
+				for (var j in rowData) {
+					tr.appendChild(this.renderCell(rowIndex, j, rowData[j]));
+				}
+			}
+			return tr;
+		},
+
+		/**
+		 * Creates and renders the table header row.
+		 * @returns {HTMLElement} Returns HTML tr element.
+		 */
+		renderHeadRow: function () {
+			var tr,
+				rowData = this.headData || this.data[0],
+				rowIndex = -1;
+
+			tr = document.createElement('tr');
+			tr.setAttribute('key', rowIndex);
+			if (Array.isArray(rowData)) {
+				for (var j = 0; j &lt; rowData.length; j++) {
+					tr.appendChild(this.renderHead(rowIndex, j, rowData[j]));
+				}
+			} else {
+				for (var j in rowData) {
+					tr.appendChild(this.renderHead(rowIndex, j, j));
+				}
+			}
+			return tr;
+		},
+
+		/**
+		 * Creates and renders the header cell.
+		 * @param {number} rowIndex Index of the row.
+		 * @param {number} colIndex Index of the column.
+		 * @param {any} data Cell data based on the table data array.
+		 * @returns {HTMLElement} Returns HTML td element.
+		 */
+		renderHead: function (rowIndex, colIndex, data) {
+			var th = document.createElement('td');
+			th.setAttribute('key', colIndex);
+			th.innerHTML = data;
+			return th;
+		},
+
+		/**
+		 * Creates and renders the table body cell.
+		 * @param {number} rowIndex Index of the row.
+		 * @param {number} colIndex Index of the column.
+		 * @param {any} data Cell data based on the table data array.
+		 * @returns {HTMLElement} Returns HTML td element.
+		 */
+		renderCell: function (rowIndex, colIndex, data) {
+			var td = document.createElement('td');
+			td.setAttribute('key', colIndex);
+			td.innerHTML = data;
+			return td;
+		},
+
+		/**
+		 * Clears the table DOM and corresponding stored references.
+		 */
+		clearTable: function () {
+			if (this.thead) {
+				while (this.thead.firstChild) {
+					this.thead.removeChild(this.thead.firstChild);
+				}
+				this.thead = null;
+			}
+			if (this.tbody) {
+				while (this.tbody.firstChild) {
+					this.tbody.removeChild(this.tbody.firstChild);
+				}
+				this.tbody = null;
+			}
+			if (this.table &amp;&amp; this.table.parentNode) {
+				this.table.parentNode.removeChild(this.table);
+				this.table = null;
+			}
+		},
+
+		/**
+		 * Renders the table based on the provided data. Also, it creates all the required references and DOM elements if not already present.
+		 */
+		renderTable: function (data, mode) {
+			var i,
+				comp = this,
+				body = '';
+
+			var tableContainer = this.tableContainer || this;
+
+			// Empty table
+			this.clearTable();
+
+			// Create table
+			if (!this.table) {
+				this.table = this.querySelector('table') || document.createElement('table');
+				this.table.classList.add('zs-data-table');
+				this.table.style.tableLayout = 'fixed';
+			}
+
+			// Create thead and tbody
+			if (!this.thead) {
+				this.thead = this.table.querySelector('thead') || document.createElement('thead');
+				this.table.appendChild(this.thead);
+			}
+			if (!this.tbody) {
+				this.tbody = this.table.querySelector('tbody') || document.createElement('tbody');
+				this.table.appendChild(this.tbody);
+			}
+
+			// Headers
+			this.thead.appendChild(this.renderHeadRow());
+
+			for (i = 0; i &lt; data.length; i++) {
+				var tr = this.renderRow(i, data[i]);
+				if (tr) { // We may render head row and return nothing
+					this.tbody.appendChild(tr);
+				}
+			}
+
+			tableContainer.appendChild(this.table);
+
+			comp.dispatchEvent(new CustomEvent('render'));
+		},
+		/**
+		 * Override whenRendered to account for second table.
+		 *
+		 * @deprecated since v3.1.0
+		 * will be deleted in v4.0.0		 
+		 */
+		whenRendered: function () {
+			// Use this method to detect and trigger browser to finish rendering of our component
+			var comp = this;
+
+			console.warn("WARNING! Deprecated function called. Function 'whenRendered' has been deprecated, please listen to 'render' event instead to perform operations after element render.");
+			
+			return new Promise(function (resolve, reject) {
+				setTimeout(function () { // Set timeout required for IE11
+					if (!comp.table) { resolve(); return; }
+					var tbody = comp.table.querySelector('tbody'); // Need to use querySelector for FF instead of just comp.tbody;
+					if (!tbody) { resolve(); return; }
+					var lastTr = tbody.lastChild;
+					if (!lastTr) { resolve(); return; }
+					var lastTd = lastTr.lastChild;
+					var height1 = lastTd &amp;&amp; lastTd.offsetHeight;
+					var height2 = 0;
+					var tableHeight1 = comp.table.offsetHeight;
+
+					if (comp.fixedTable) {
+						tbody = comp.fixedTable.querySelector('tbody');
+						if (!tbody) { resolve(); return; }
+						lastTr = tbody.lastChild;
+						if (!lastTr) { resolve(); return; }
+						var lastTd = lastTr.lastChild;
+						var height2 = lastTd &amp;&amp; lastTd.offsetHeight;
+						var tableHeight2 = comp.fixedTable.offsetHeight;
+
+					}
+					resolve(height1 + ',' + height2 + ',' + tableHeight1 + ',' + tableHeight2);
+				}, 0);
+			});
+		}
+	};
+
+	zs.tableElement = zs.customElement(HTMLDivElement, 'zs-table', 'div', [zs.loading, zs.table]);
+
+	return zs;
+})(window.zs || {});	
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Mar 05 2019 14:30:14 GMT+0530 (India Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

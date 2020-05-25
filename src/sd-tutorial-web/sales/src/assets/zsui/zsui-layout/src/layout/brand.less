@@ -1,0 +1,47 @@
+
+// deprecated in v3.0.0
+.zs-panel {
+    font-size: @zs-font-size-small;
+    @background: @zs-background;
+    opacity: 0.75;
+    //rgba(255,255,255,0.75);
+    position: absolute;
+    top:0;
+    right: 1em;
+    background: @background;
+    border-radius: 0 0 2*@zs-border-radius 2*@zs-border-radius;
+    .outset;
+
+    >section {
+        //min-width: 200px;
+        .padding;
+        display: none;
+
+        >nav {
+            .padding(2,0,2,0);
+            a {
+                display: block;
+                .padding(1,1,1,0);
+            }
+        }
+
+    }
+    &.zs-active {
+        opacity: 1;
+    }
+
+    &.zs-active >section {
+        display:block;
+    }
+   
+}
+// deprecated in v3.0.0
+.zs-toolbar {	
+	display:inline-block;
+	//border:1px solid red;
+	position: absolute;
+	right:@zs-font-padding-ratio*2;
+	top:50%;
+	margin-top: -0.5em;
+}
+

@@ -1,0 +1,94 @@
+<%- include('../partials/header.html') %>
+<style>
+/*Example specific styles to demonstrate usage of badges on tabs. Not needed in demo package.*/
+.zs-tabs>ul {
+    padding: 0 0;
+    overflow: hidden;
+    margin-bottom: -1px;
+    height: 44px;
+    min-height: 3.14285714em;
+    white-space: nowrap;
+}
+.zs-tabs>ul>li[active] {
+    z-index: 2000;
+    background-clip: padding-box;
+    padding: 0 2px 0 0;
+    height: 45px;
+    min-height: 4.14285714em;
+    margin-right: 1.5px;
+}
+
+.zs-tabs>ul>li {
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+    margin-right: .25em;
+    height: 45px;
+    min-height: 4.14285714em;
+    overflow: hidden;
+    position: relative;
+    z-index: 1999;
+    border-bottom: 1px solid #fff;
+}
+
+.zs-tabs>ul>li a {
+    float: left;
+    height: 44px;
+    line-height: 44px;
+    min-height: 3.14285714em;
+    border-radius: .3em .3em 0 0;
+    background: #e5eaef;
+    border: 1px solid #d0dde6;
+    padding: 0 1.562em;
+    text-align: center;
+    color: #74797d;
+    text-decoration: none;
+}
+
+.zs-tabs>ul>li[active] a, .zs-tabs>ul>li[active] a:visited, .zs-tabs>ul>li[active] a:hover {
+    background: #fff;
+    box-shadow: 0 1px 3px 0 #dee3e3;
+    color: #ed8b00;
+    font-weight: bold;
+    border: 1px solid #d0dde6;
+    border-bottom-color: #fff;
+}
+
+.zs-tabs[toggletabs]>ul {
+    text-align: center;
+}
+
+.zs-tabs[toggletabs]>ul>li {
+    margin-right: 0
+}
+
+.zs-tabs[toggletabs]>ul>li a {
+    border-radius: 0;
+    border-left: none
+}
+
+.zs-tabs[toggletabs]>ul>li[active] {
+    margin-right: 0;
+    padding-right: 0
+}
+
+.zs-tabs[toggletabs]>ul>li[active] a,.zs-tabs[toggletabs]>ul>li[active] a:visited,.zs-tabs[toggletabs]>ul>li[active] a:hover {
+    border-bottom-color: #d0dde6;
+    border-left: none
+}
+
+.zs-tabs[toggletabs]>ul>li:first-child a {
+    border-radius: .3em 0 0 .3em
+}
+
+.zs-tabs[toggletabs]>ul>li:first-child a,.zs-tabs[toggletabs]>ul>li:first-child a:visited,.zs-tabs[toggletabs]>ul>li:first-child a:hover {
+    border-left: solid 1px #d0dde6
+}
+
+.zs-tabs[toggletabs]>ul>li:last-child a {
+    border-radius: 0 .3em .3em 0
+}
+</style>
+<%- include('../examples/badge.html') %>
+
+<%- include('../partials/footer.html') %>

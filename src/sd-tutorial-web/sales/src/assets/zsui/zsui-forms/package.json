@@ -1,0 +1,70 @@
+{
+  "_from": "zsui-forms",
+  "_id": "zsui-forms@3.3.2",
+  "_inBundle": false,
+  "_integrity": "sha1-KIkaFrBlLZSpHvqsklbuTrIcvcc=",
+  "_location": "/zsui-forms",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "zsui-forms",
+    "name": "zsui-forms",
+    "escapedName": "zsui-forms",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://zs-sd.pkgs.visualstudio.com/_packaging/sd/npm/registry/zsui-forms/-/zsui-forms-3.3.2.tgz",
+  "_shasum": "28891a16b0652d94a91efaac9256ee4eb21cbdc7",
+  "_spec": "zsui-forms",
+  "_where": "C:\\ZS\\zsui",
+  "author": {
+    "name": "UI Architecture team"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "zsui-core": "^3.4.1"
+  },
+  "deprecated": false,
+  "description": "ZSUI Library Form elements",
+  "devDependencies": {
+    "docdash": "^0.4.0",
+    "ejs": "^2.5.7",
+    "grunt": "^1.0.3",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-less": "^2.0.0",
+    "grunt-contrib-uglify": "^3.1.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-ejs": "^0.3.0",
+    "grunt-eslint": "^20.1.0",
+    "grunt-jsdoc": "^2.2.0",
+    "jasmine-core": "^2.8.0",
+    "jsdoc": "^3.5.5"
+  },
+  "homepage": "https://bitbucket.org/zssd/zsui-forms#readme",
+  "keywords": [
+    "zsui",
+    "library",
+    "forms"
+  ],
+  "license": "MIT",
+  "name": "zsui-forms",
+  "repository": {
+    "type": "git",
+    "url": "git+https://bitbucket.org/zssd/zsui-forms.git"
+  },
+  "scripts": {
+    "build": "grunt build",
+    "prepublish": "grunt build",
+    "start": "grunt",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "3.3.2"
+}

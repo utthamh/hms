@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>ZSUI Tables demo</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	
+	<!-- Demo scripts  -->
+	<script src="demo.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+	<style>
+	.hljs {
+    	padding: 0.5em !important; /*Since core.css loads later and resets all spacing, we need to use !important here.*/
+	}
+	</style>
+	<script>
+	zs.demo.setPaths();
+	zs.demo.addUrlFixes({"nodejs":{},"npm":{"../node_modules/":"../../"},"nuget":{"../node_modules/zsui-[\\w]+/dist":"./"}});
+	</script>
+	
+	<script>zs.demo.script("../node_modules/zsui-core/dist/polyfills/polyfills.js");</script>
+	<script>zs.demo.script("../node_modules/zsui-core/dist/utils/customElements.js");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/core.css");</script>
+	<script>zs.demo.link("./themes/{theme}/tables.css");</script>
+	
+</head>
+<body class="zs-style" style="padding:1em" data-page="">	
+
+<div data-page="tables">
+	<table class="zs-data-table">
+		<caption>Normal table</caption>
+		<thead>
+			<tr>
+				<th>Column 1</th>
+				<th>Column 2</th>
+				<th>Column 3</th>
+				<th align="right">Number</th>
+				<th>Sorted</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Cell 11</td>
+				<td>Cell 12</td>
+				<td>Cell 13</td>
+				<td align="right">1</td>
+				<td align="right">1</td>
+			</tr>
+			<tr>
+				<td>Cell 21</td>
+				<td>Cell 22</td>
+				<td>Cell 23</td>
+				<td align="right">2</td>
+				<td align="right">2</td>
+			</tr>
+			<tr>
+				<td>Cell 31</td>
+				<td>Cell 32</td>
+				<td>Cell 33</td>
+				<td align="right">3</td>
+				<td align="right">3</td>
+			</tr>
+		</tbody>
+	</table>
+	<table class="zs-data-table app-sortable-table">
+		<caption>Sortable table</caption>
+		<thead>
+			<tr>
+				<th>
+					<a href="" sort="">Column 1</a>
+				</th>
+				<th>
+					<a href="" sort="">Column 2</a>
+				</th>
+				<th>
+					<a href="" sort="">Column 3</a>
+				</th>
+				<th>
+					<a href="" sort="" align="right">Number 1</a>
+				</th>
+				<th>
+					<a href="" sort="" align="right">Number 2</a>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Cell 11</td>
+				<td>Cell 12</td>
+				<td>Cell 13</td>
+				<td align="right">1</td>
+				<td align="right">1</td>
+			</tr>
+			<tr>
+				<td>Cell 21</td>
+				<td>Cell 22</td>
+				<td>Cell 23</td>
+				<td align="right">2</td>
+				<td align="right">2</td>
+			</tr>
+			<tr>
+				<td>Cell 31</td>
+				<td>Cell 32</td>
+				<td>Cell 33</td>
+				<td align="right">3</td>
+				<td align="right">3</td>
+			</tr>
+			<tr class="zs-highlight">
+				<td>Cell 31</td>
+				<td>Cell 32</td>
+				<td>Cell 33</td>
+				<td align="right">3</td>
+				<td align="right">3</td>
+			</tr>
+			<tr>
+				<td>Cell 31</td>
+				<td mark>Cell 32</td>
+				<td>Cell 33</td>
+				<td align="right">3</td>
+				<td align="right">3</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<table class="zs-data-table-compact">
+		<caption>Compact table</caption>
+		<thead>
+			<tr>
+				<th>Column 1</th>
+				<th>Column 2</th>
+				<th>Column 3</th>
+				<th>Number</th>
+				<th>Number</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Cell 11</td>
+				<td>Cell 12</td>
+				<td>Cell 13</td>
+				<td align="right">1</td>
+				<td align="right">1</td>
+			</tr>
+			<tr>
+				<td>Cell 21</td>
+				<td>Cell 22</td>
+				<td>Cell 23</td>
+				<td align="right">2</td>
+				<td align="right">2</td>
+			</tr>
+			<tr>
+				<td>Cell 31</td>
+				<td>Cell 32</td>
+				<td>Cell 33</td>
+				<td align="right">3</td>
+				<td align="right">3</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+
+	<table class="zs-data-table">
+		<caption>Table with icons</caption>
+		<thead>
+			<tr>
+				<th>Column 1</th>
+				<th>Column 2</th>
+				<th>Column 3</th>
+				<th>Number</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr valign="middle">
+				<td>Cell 11</td>
+				<td>Cell 12</td>
+				<td>Cell 13</td>
+				<td align="right" class="zs-action-icons">
+					<a href="javascript:void(0)" class="zs-icon zs-icon-delete zs-icon-large"></a>
+					<a href="javascript:void(0)" class="zs-icon zs-icon-edit zs-icon-large"></a>
+				</td>
+			</tr>
+			<tr>
+				<td>Cell 21</td>
+				<td>Cell 22</td>
+				<td>Cell 23</td>
+				<td align="right" class="zs-action-icons">
+					<a href="javascript:void(0)" class="zs-icon zs-icon-delete zs-icon-large"></a>
+					<a href="javascript:void(0)" class="zs-icon zs-icon-edit zs-icon-large"></a>
+				</td>
+			</tr>
+			<tr>
+				<td>Cell 31</td>
+				<td>Cell 32</td>
+				<td>Cell 33</td>
+				<td align="right" class="zs-action-icons" <a href="javascript:void(0)" class="zs-icon zs-icon-delete zs-icon-large">
+					</a>
+					<a href="javascript:void(0)" class="zs-icon zs-icon-edit zs-icon-large"></a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<table class="zs-data-table">
+		<caption>Table with buttons</caption>
+		<thead>
+			<tr>
+				<th>Column 1</th>
+				<th>Column 2</th>
+				<th>Column 3</th>
+				<th>Number</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr valign="middle">
+				<td>Cell 11</td>
+				<td>Cell 12</td>
+				<td>Cell 13</td>
+				<td align="right">
+					<a href="javascript:void(0)" class="zs-button">Edit</a>
+					<a href="javascript:void(0)" class="zs-button">Delete</a>
+				</td>
+			</tr>
+			<tr>
+				<td>Cell 21</td>
+				<td>Cell 22</td>
+				<td>Cell 23</td>
+				<td align="right">
+					<a href="javascript:void(0)" class="zs-button">Edit</a>
+					<a href="javascript:void(0)" class="zs-button">Delete</a>
+				</td>
+			</tr>
+			<tr>
+				<td>Cell 31</td>
+				<td>Cell 32</td>
+				<td>Cell 33</td>
+				<td align="right">
+					<a href="javascript:void(0)" class="zs-button">Edit</a>
+					<a href="javascript:void(0)" class="zs-button">Delete</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<table class="zs-data-table">
+		<caption>Control the alignment</caption>
+		<thead>
+			<tr>
+				<th width="200">Row vertical alignment</th>
+				<th width="400">Long text and alignment alteration</th>
+				<th width="300" align="center">Icon</th>
+				<th width="300" align="right">Button</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr valign="middle" style="height:5em">
+				<td>Middle</td>
+				<td>No alteration. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+				<td align="center">
+					<a href="javascript:void(0)" class="zs-icon zs-icon-delete zs-icon-large"></a>
+					<a href="javascript:void(0)" class="zs-icon zs-icon-edit zs-icon-large"></a>
+				</td>
+				<td align="right">
+					<a href="javascript:void(0)" class="zs-button">Edit</a>
+					<a href="javascript:void(0)" class="zs-button">Delete</a>
+				</td>
+			</tr>
+			<tr valign="bottom" style="height:5em">
+				<td>Bottom</td>
+				<td valign="top">Top alignment at cell level. Forced Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+				<td align="center">
+					<a href="javascript:void(0)" class="zs-icon zs-icon-delete zs-icon-large"></a>
+					<a href="javascript:void(0)" class="zs-icon zs-icon-edit zs-icon-large"></a>
+				</td>
+				<td align="right">
+					<a href="javascript:void(0)" class="zs-button">Edit</a>
+					<a href="javascript:void(0)" class="zs-button">Delete</a>
+				</td>
+			</tr>
+			<tr valign="baseline" style="height:5em">
+				<td>Baseline</td>
+				<td align="center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+				<td align="center">
+					<a href="javascript:void(0)" class="zs-icon zs-icon-delete zs-icon-large"></a>
+					<a href="javascript:void(0)" class="zs-icon zs-icon-edit zs-icon-large"></a>
+				</td>
+				<td align="right">
+					<a href="javascript:void(0)" class="zs-button">Edit</a>
+					<a href="javascript:void(0)" class="zs-button">Delete</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<table class="zs-data-table" id="expandable-cell-table">
+		<caption>Expandable cell table</caption>
+		<thead>
+			<tr>
+				<th>Column 1</th>
+				<th>Column 2</th>
+				<th>Column 3</th>
+				<th>Column 4</th>
+				<th>Column 5</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Cell 11</td>
+				<td>Cell 12</td>
+				<td>Cell 13</td>
+				<td>Cell 14</td>
+				<td>Cell 15</td>
+			</tr>
+			<tr>
+				<td>Cell 21</td>
+				<td>Cell 22</td>
+				<td class="zs-expandable-cell">
+					<div class="zs-expandable-cell-data" collapse>
+						<a href="javascript:void(0)">
+							<span class="zs-icon zs-icon-expand"></span>
+						</a>
+						<span>Expandable cell</span>
+					</div>
+					<table class="zs-data-table" width="100%">
+						<tbody>
+							<tr>
+								<td>innerCell11</td>
+								<td>innerCell12</td>
+							</tr>
+							<tr>
+								<td>innerCell21</td>
+								<td>innerCell22</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+				<td>Cell 24</td>
+				<td>Cell 25</td>
+			</tr>
+			<tr>
+				<td>Cell 31</td>
+				<td>Cell 32</td>
+				<td>Cell 33</td>
+				<td>Cell 34</td>
+				<td>Cell 35</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<script>zs.demo.script("./tables/jquery.sortableTable.min.js");</script>
+
+
+<script>
+
+	$(function () {
+		$('.app-sortable-table').appSortableTable();
+		
+		/* for expandable cell table */
+		var expandableCell = document.querySelector('#expandable-cell-table tr td.zs-expandable-cell .zs-expandable-cell-data');
+		expandableCell.addEventListener('click', function () {
+			this[this.hasAttribute('collapse') ? 'removeAttribute' : 'setAttribute']('collapse', '');
+			var expandableRowIcon = this.querySelector('a span.zs-icon');
+			expandableRowIcon.classList[expandableRowIcon.classList.contains('zs-icon-expand') ? 'remove' : 'add']('zs-icon-expand');
+			expandableRowIcon.classList[expandableRowIcon.classList.contains('zs-icon-collapse') ? 'remove' : 'add']('zs-icon-collapse');
+
+		});
+	});
+
+</script>
+
+</body>
+</html>

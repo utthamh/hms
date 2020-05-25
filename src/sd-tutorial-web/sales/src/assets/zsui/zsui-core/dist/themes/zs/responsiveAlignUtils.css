@@ -1,0 +1,81 @@
+@media (max-width: 768px) {
+  .zs-align-baseline-xsw {
+    vertical-align: baseline !important;
+  }
+  .zs-align-top-xsw {
+    vertical-align: top !important;
+  }
+  .zs-align-middle-xsw {
+    vertical-align: middle !important;
+  }
+  .zs-align-bottom-xsw {
+    vertical-align: bottom !important;
+  }
+  .zs-align-text-bottom-xsw {
+    vertical-align: text-bottom !important;
+  }
+  .zs-align-text-top-xsw {
+    vertical-align: text-top !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .zs-align-baseline-sw {
+    vertical-align: baseline !important;
+  }
+  .zs-align-top-sw {
+    vertical-align: top !important;
+  }
+  .zs-align-middle-sw {
+    vertical-align: middle !important;
+  }
+  .zs-align-bottom-sw {
+    vertical-align: bottom !important;
+  }
+  .zs-align-text-bottom-sw {
+    vertical-align: text-bottom !important;
+  }
+  .zs-align-text-top-sw {
+    vertical-align: text-top !important;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .zs-align-baseline-mw {
+    vertical-align: baseline !important;
+  }
+  .zs-align-top-mw {
+    vertical-align: top !important;
+  }
+  .zs-align-middle-mw {
+    vertical-align: middle !important;
+  }
+  .zs-align-bottom-mw {
+    vertical-align: bottom !important;
+  }
+  .zs-align-text-bottom-mw {
+    vertical-align: text-bottom !important;
+  }
+  .zs-align-text-top-mw {
+    vertical-align: text-top !important;
+  }
+}
+@media (min-width: 1200px) {
+  .zs-align-baseline-lw {
+    vertical-align: baseline !important;
+  }
+  .zs-align-top-lw {
+    vertical-align: top !important;
+  }
+  .zs-align-middle-lw {
+    vertical-align: middle !important;
+  }
+  .zs-align-bottom-lw {
+    vertical-align: bottom !important;
+  }
+  .zs-align-text-bottom-lw {
+    vertical-align: text-bottom !important;
+  }
+  .zs-align-text-top-lw {
+    vertical-align: text-top !important;
+  }
+}
+/*# sourceMappingURL=responsiveAlignUtils.css.map */

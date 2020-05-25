@@ -1,0 +1,143 @@
+.zs-color-tile {
+	.padding; 
+	display:inline-block;	
+}
+
+a.zs-color-tile {
+	vertical-align: middle;	
+	&:hover {
+		border-color: @zs-link-hover;
+	}
+	&:focus {
+		outline: none;
+	}
+
+	&.zs-active, &:active, &:target {
+		&::after {
+			content:"✓";
+
+			color:fadeout(@zs-background, 50%)!important;
+			line-height:1.5em;
+			padding:0;
+			position: absolute;
+			text-align: center;
+			top:0;
+			bottom:0;
+			left:0;
+			right:0;
+			display:table-cell;
+			text-shadow: 0px 0px 3px @zs-link-normal;
+			
+		}
+
+		&:hover::after, &:active::after {
+			color:fadeout(@zs-background, 50%)!important;
+			cursor:pointer!important;
+		}
+		position: relative;
+	}	
+}
+.zs-color-palette {
+	display:inline-block;
+	.zs-color-tile {
+		position: relative;
+		&::before {
+			content:"";
+			position:absolute;
+			top:0px;
+			left:0px;
+			right:0px;
+			bottom:0px;
+			border:1px solid @zs-border-color;
+		}
+	}
+
+}
+
+
+.zs-color-hue + .zs-slider{
+	margin-top:0;
+	[range] {
+		border-radius: 0;
+		[handle]{
+			&:active {
+				color:@zs-link-active;
+			}
+			&::before {
+				position: absolute;
+				text-shadow: 0px 0px 3px darken(@zs-background, 0%);
+			}
+			&::after{
+				display: none;
+			}
+		}
+		[fill] {
+			display: none;
+		}
+	}
+	&[horizontal] [range]{
+		background: linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+		[handle]{
+			min-width:0;
+			width:0;
+			top:0;
+			margin-top:0;
+			&::before {
+				margin-left: -0.5em;
+			}
+		}
+	}
+	&[vertical] {
+		display: inline-block;
+		[range]{
+			background: linear-gradient(to top, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+			[handle]{
+				min-height:0;
+				height:0;
+				left: auto;
+				margin-left: auto;
+				&::before {
+					margin-top: -0.5em;
+				}
+			}
+		}
+	}
+}
+
+.zs-color-hue + .zs-slider, .zs-color-saturation + .zs-slider, .zs-color-value + .zs-slider {
+	[ruler] {
+		display:none
+	}
+}
+
+zs-area-slider.zs-color-saturation {
+	background-color:rgba(255, 0, 0, 1);
+	position: relative;
+	border:1px solid @zs-border-color;
+	>[handle] {
+		background: fadeout(@zs-link-normal, 75%);
+		&:hover, &:active {
+			background: fadeout(@zs-link-hover, 75%);
+			cursor:pointer!important;
+		}
+	}
+	&::before {
+		content: '';
+		position: absolute;
+		top:0;
+		left:0;
+		bottom:0;
+		right:0;
+		background-image: linear-gradient(to right, #fff, rgba(204, 154, 129, 0));
+	}
+	&::after {
+		content: '';
+		position: absolute;
+		top:0;
+		left:0;
+		bottom:0;
+		right:0;
+		background-image: linear-gradient(to top, #000, rgba(204, 154, 129, 0));
+	
+	}
+}

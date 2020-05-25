@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ZSUI HTTP Service</title>    
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> 		
+	<meta name="viewport" content="width=device-width">	
+	
+	<!-- Decorative Styles -->
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/core.css">
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/forms.css">
+	<style>
+		.zs-style {padding: 2em;}
+	</style>
+
+	<!-- Dependencies -->
+	<script src="https://ui.zsservices.com/zsui/polyfills/polyfills.js"></script> <!-- IE11 polyfills: Custom Event, Promise -->	
+	<script src="state/url-polyfill.min.js"></script><!-- IE11 needs an URL polyfill-->
+	<script src="service/service.js"></script>
+	<script src="service/httpService.js"></script>
+</head>
+
+<body class="zs-style">
+
+<h1>HTTP service</h1>
+<p>Often we call external APIs to get data using XMLHttpRequest a.k.a. AJAX call. In this example we are going to call one of the <a href="https://jsonplaceholder.typicode.com">Fake Online REST APIs</a> to display first random number of users.</p>
+
+<script>
+	'use strict';
+	var HTTPService = window.httpServiceM.default;
+	var userAPI = new HTTPService({
+		url: 'https://jsonplaceholder.typicode.com/users',
+		method: 'GET',
+		query: {
+			_page: 1,
+			_limit: 5
+		}
+		//path: {...},
+		//headers: {...}
+		//body: {...}
+	});
+
+	// Display data
+	function displayData(data, elementId) {
+		var el = document.getElementById(elementId);
+		el.innerHTML = JSON.stringify(data);
+	}
+
+	// Call a user service and display users
+	function getUsers() {
+		
+		// Get N first users [1..10] 
+		userAPI.get({
+			query: {
+				_limit: 1 + ~~(9*Math.random()) // We can change only a single parameter
+			}
+		}).then(function(data) {
+			displayData(data, 'zsDemoUsers');
+		}).catch(function(error) {
+			if (error instanceof Error) {console.error(error);}	
+			displayData(error.toString(), 'zsDemoUsers');
+		});
+	};
+</script>
+<form class="zs-from" onsubmit="getUsers();return false;">
+	<p><button class="zs-button">Get Users</button></p>
+	<p class="zs-field"><label>Data: <code id="zsDemoUsers"></code></label></p> 
+</form>
+</body>
+</html>

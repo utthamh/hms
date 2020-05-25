@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ZSUI State management</title>    
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> 		
+	<meta name="viewport" content="width=device-width">
+
+	
+	<!-- Decorative Styles -->
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/core.css">
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/tabs.css">
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/forms.css">
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/pagination.css">
+		
+	<!-- Custom styles -->
+	<style>	
+		/* Control visibility of tabs */
+		.zs-tabs>div {
+			display:none;
+		}
+		.zs-tabs>div.zs-active {
+			display:block;
+		}
+	</style>
+</head>
+
+<body class="zs-style">
+	<h1>Manage states of components.</h1>
+	<p>States of our components can be driven through URL.</p>
+		
+	<h2>Step 1. Get URL properties</h2> 
+	<form name="zsDemoUrl" class="zs-form">
+		<fieldset>
+			<p><label>Protocol: <input type="text" value="" name="protocol" readonly></label></p>
+			<p><label>Host: <input type="text" value="" name="host" readonly></label></p>
+			<p><label>Pathname: <input type="text" value="" name="pathname" readonly></label></p>
+			<p><label>Search: <input type="text" value="" name="search" readonly></label></p>
+			<p><label>Hash: <input type="text" value="" name="hash" readonly></label></p>
+		</fieldset>
+	</form>
+	
+	<h2>Step 2. Extract State from URL parameters </h2>
+	<code id="zsDemoState"></code>
+	
+	<h2>Step 3. Reflect State in our components </h2>
+	<p>Click on the tabs below to see what is reflected in the state</p>
+	<my-tab-component class="zs-tabs">
+		<ul>
+			<li class="zs-active">
+				<a href="#home" name="#home">Home</a>
+			</li>
+			<li>
+				<a href="#about" name="#about">Some Page</a>
+			</li>
+		</ul>
+		<div for="#home" class="zs-active">
+			<h3>Home</h3>
+			<p>Clicking on tabs will change hash of the window URL</p>
+			<p>Our component reacts on change and reflects it in the state</p>
+			<h3>We can bind our form fields to state</h3>
+			<form class="zs-form" onsubmit="return false;">
+				<fieldset>
+					<p><label>Search:<input type="text" placeholder="keyword" onchange="stateManager.update({keyword: this.value})"></label></p>
+				</fieldset>
+			</form>
+		</div>
+		<div for="#about">
+			<h3>About</h3>
+			<p>Our components can reflect the state and update it.</p>
+			<nav class="zs-pagination"><a page="1" href="javascript:stateManager.update({page: 1})" current="">1</a><a page="2" href="javascript:stateManager.update({page: 2})">2</a><a page="3" href="javascript:stateManager.update({page: 3})">3</a></nav>
+
+		</div>
+	
+	</my-tab-component>
+	</section>
+	
+	<!-- IE11 polyfills -->
+	<script src="https://ui.zsservices.com/zsui/polyfills/polyfills.js"></script> <!-- Custom Event -->
+	<script src="state/url-polyfill.min.js"></script><!-- URL -->
+	
+	<!-- Include state management -->
+	<script src="state/state.js"></script>
+
+	<script>
+		'use strict';
+
+		// Extract APIs from the included module
+		var State = window.stateM.State, StateManager = window.stateM.StateManager;
+
+		// Storage key
+		var storeKey = 'my-app-demo-sate';		
+
+		// Display state
+		function showState(state) {
+			var div = document.getElementById('zsDemoState');
+			div.innerHTML = JSON.stringify(state.toPlainObject());
+		}
+	
+		// Display URL
+		function showUrl(url) {
+			url = url || window.location;
+			var form = document.forms["zsDemoUrl"];
+			form.elements.protocol.value = url.protocol;
+			form.elements.host.value = url.host;
+			form.elements.pathname.value = url.pathname;
+			form.elements.search.value = url.search;
+			form.elements.hash.value = url.hash;
+		}
+		
+		
+		// Show tab
+		function showTab(tabId) {			
+
+			// Default tab
+			tabId = tabId || '#home';
+			if (tabId == '#') {tabId = '#home';}
+
+			// Deactivate tabs 
+			document.querySelectorAll('.zs-tabs .zs-active').forEach(function(el) {
+				el.classList.remove('zs-active');
+			});
+	
+			// Activate 
+			var tabContent = document.querySelector('[for="' + tabId +'"]');
+			if (tabContent) {
+				tabContent.classList.add('zs-active');
+			}
+			var tabAnchor = document.querySelector('a[name="' + tabId + '"]');
+			if (tabAnchor) {
+				tabAnchor.parentNode.classList.add('zs-active');
+			}
+		}
+
+		function updatePage(pageId) {
+			// Unselect 
+			document.querySelectorAll('.zs-pagination>a[current]').forEach(function(el) {
+				el.removeAttribute('current');
+			});
+
+			// Select new
+			var pageAnchor = document.querySelector('a[page="'+ pageId + '"]');
+			if (pageAnchor) {
+				pageAnchor.setAttribute('current',"");
+			}
+		}
+
+		
+		// Initialize state management when DOM is ready
+		document.addEventListener("DOMContentLoaded", function(event) {
+			var stateManager = new StateManager(window.location.href);			
+		});
+	
+		// Listen to state changes 
+		window.addEventListener('statechange', function(event) {
+			var manager = event.detail.stateManager, // event has a reference to the state manager so components can use it
+				state = event.detail.newState,	// we have a new state object
+				diff = event.detail.diff	// and changes
+				; 
+			
+				console.log('state change', event);		
+	
+			window.stateManager = event.detail.stateManager;
+
+			showUrl(manager.url);
+			showState(event.detail.newState);
+			
+			// Show tab if hash changed 
+			if (diff.changedKeys.indexOf('hash') >= 0) {
+				showTab(state.get('hash'));
+			}
+
+			// Update selected page
+			if (diff.changedKeys.indexOf('page')>=0) {
+				updatePage(state.get('page'));
+			}			
+		});
+
+		
+		// Polyfill foreEach on DOM elements for IE11
+		if (window.NodeList && !NodeList.prototype.forEach) {
+			NodeList.prototype.forEach = Array.prototype.forEach;
+		}
+	</script>		
+</body>
