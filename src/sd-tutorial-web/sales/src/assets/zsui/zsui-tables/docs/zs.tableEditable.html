@@ -1,0 +1,2259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>tableEditable - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ZS%252520TablePivot.html">ZS TablePivot</a></li><li><a href="ZS%252520TableSortable.html">ZS TableSortable</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:cellchangeFireswhenwecelldataischanged">cellchange Fires when we cell data is changed</a></li><li><a href="global.html#event:resizeFireswhenweresizetable">resize Fires when we resize table</a></li></ul><h3>Namespaces</h3><ul><li><a href="zs.table.html">table</a><ul class='methods'><li data-type='method'><a href="zs.table.html#.clearTable">clearTable</a></li><li data-type='method'><a href="zs.table.html#.considerPosition">considerPosition</a></li><li data-type='method'><a href="zs.table.html#.getTableData">getTableData</a></li><li data-type='method'><a href="zs.table.html#.refreshTable">refreshTable</a></li><li data-type='method'><a href="zs.table.html#.render">render</a></li><li data-type='method'><a href="zs.table.html#.renderCell">renderCell</a></li><li data-type='method'><a href="zs.table.html#.renderHead">renderHead</a></li><li data-type='method'><a href="zs.table.html#.renderHeadRow">renderHeadRow</a></li><li data-type='method'><a href="zs.table.html#.renderRow">renderRow</a></li><li data-type='method'><a href="zs.table.html#.renderTable">renderTable</a></li><li data-type='method'><a href="zs.table.html#.whenRendered">whenRendered</a></li></ul></li><li><a href="zs.tableDelayedRender.html">tableDelayedRender</a><ul class='methods'><li data-type='method'><a href="zs.tableDelayedRender.html#.renderTable">renderTable</a></li><li data-type='method'><a href="zs.tableDelayedRender.html#.renderTableSection">renderTableSection</a></li></ul></li><li><a href="zs.tableEditable.html">tableEditable</a><ul class='methods'><li data-type='method'><a href="zs.tableEditable.html#.cellClick">cellClick</a></li><li data-type='method'><a href="zs.tableEditable.html#.createField">createField</a></li><li data-type='method'><a href="zs.tableEditable.html#.fieldChange">fieldChange</a></li><li data-type='method'><a href="zs.tableEditable.html#.focusEditField">focusEditField</a></li><li data-type='method'><a href="zs.tableEditable.html#.formatCell">formatCell</a></li><li data-type='method'><a href="zs.tableEditable.html#.isEditable">isEditable</a></li><li data-type='method'><a href="zs.tableEditable.html#.nextField">nextField</a></li><li data-type='method'><a href="zs.tableEditable.html#.onWindowResize">onWindowResize</a></li><li data-type='method'><a href="zs.tableEditable.html#.positionOverlay">positionOverlay</a></li><li data-type='method'><a href="zs.tableEditable.html#.prevField">prevField</a></li><li data-type='method'><a href="zs.tableEditable.html#.renderCell">renderCell</a></li><li data-type='method'><a href="zs.tableEditable.html#.renderField">renderField</a></li><li data-type='method'><a href="zs.tableEditable.html#.renderOverlay">renderOverlay</a></li><li data-type='method'><a href="zs.tableEditable.html#.updateCellData">updateCellData</a></li></ul></li><li><a href="zs.tableFixedColumns.html">tableFixedColumns</a><ul class='methods'><li data-type='method'><a href="zs.tableFixedColumns.html#.decorateFixedHeaders">decorateFixedHeaders</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.matchScroll">matchScroll</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.renderHeadRow">renderHeadRow</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.renderHeadRow">renderHeadRow</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.renderRow">renderRow</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.renderRow">renderRow</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.renderTable">renderTable</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.renderTable">renderTable</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.resizeFixed">resizeFixed</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.whenRendered">whenRendered</a></li></ul></li><li><a href="zs.tableFixedColumnsDelayed.html">tableFixedColumnsDelayed</a><ul class='methods'><li data-type='method'><a href="zs.tableFixedColumnsDelayed.html#.renderTable">renderTable</a></li><li data-type='method'><a href="zs.tableFixedColumnsDelayed.html#.renderTableSection">renderTableSection</a></li></ul></li><li><a href="zs.html#.tableSmartRender">tableSmartRender</a><ul class='methods'><li data-type='method'><a href="zs.html#.tableSmartRender#.detectChanges">detectChanges</a></li><li data-type='method'><a href="zs.html#.tableSmartRender#.detectChanges">detectChanges</a></li><li data-type='method'><a href="zs.html#.tableSmartRender#.detectChangesUpdateHash">detectChangesUpdateHash</a></li><li data-type='method'><a href="zs.html#.tableSmartRender#.detectChangesUpdateHash">detectChangesUpdateHash</a></li><li data-type='method'><a href="zs.html#.tableSmartRender#.getHash">getHash</a></li><li data-type='method'><a href="zs.html#.tableSmartRender#.getRowHash">getRowHash</a></li><li data-type='method'><a href="zs.html#.tableSmartRender#.getRowKey">getRowKey</a></li><li data-type='method'><a href="zs.html#.tableSmartRender#.renderChanges">renderChanges</a></li></ul></li><li><a href="zs.tableStickyHeader.html">tableStickyHeader</a><ul class='methods'><li data-type='method'><a href="zs.tableStickyHeader.html#.clearTable">clearTable</a></li><li data-type='method'><a href="zs.tableStickyHeader.html#.decorateStickyCell">decorateStickyCell</a></li><li data-type='method'><a href="zs.tableStickyHeader.html#.resizeStickyHeader">resizeStickyHeader</a></li><li data-type='method'><a href="zs.tableStickyHeader.html#.scrollStickyHeader">scrollStickyHeader</a></li><li data-type='method'><a href="zs.tableStickyHeader.html#.stickHeader">stickHeader</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">tableEditable</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        tableEditable
+        </h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="editableTable.js.html">editableTable.js</a>, <a href="editableTable.js.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+        
+            <div class="description">Editable table behavior. Helps with a case when we want to edit data in a table that could have many rows and columns.This approach will initially display all data in read mode. But when user clicks on a cell it will see an edit mode for the selected field.</div>
+        
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".events"><span class="type-signature">(static) </span>events<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="editableTable.js.html">editableTable.js</a>, <a href="editableTable.js.html#line271">line 271</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Event listeners
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".overlayElement"><span class="type-signature">(static) </span>overlayElement<span class="type-signature"> :object</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="editableTable.js.html">editableTable.js</a>, <a href="editableTable.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Reference element
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".cellClick"><span class="type-signature">(static) </span>cellClick<span class="signature">(e)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="editableTable.js.html">editableTable.js</a>, <a href="editableTable.js.html#line229">line 229</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Handle cell click inside the table
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>e</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">event</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Click event that propagated from the cell</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+<h5>Listens to Events:</h5>
+<ul>
+    <li>event:click</li>
+</ul>
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".createField"><span class="type-signature">(static) </span>createField<span class="signature">(data, rowIndex, colIndex, tabIndex)</span><span class="type-signature"> &rarr; {HTMLElement}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="editableTable.js.html">editableTable.js</a>, <a href="editableTable.js.html#line136">line 136</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Control how each cell can be displayed in edit mode.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Cell data @see tableData</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rowIndex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Index of the row. Could be a string in this case since we store it in the attribute.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>colIndex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Index of the column. Could be a string in this case since we store it in the attribute.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tabIndex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Used to support tabbing though fields. Usually it should be 2 because we place two fake fields around our primary field. When we switch focus to the next fake field it will switch to the actual next field.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    field A newly created field element
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">HTMLElement</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".fieldChange"><span class="type-signature">(static) </span>fieldChange<span class="signature">(field)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="editableTable.js.html">editableTable.js</a>, <a href="editableTable.js.html#line120">line 120</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    React on field changes usually to update cell data.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>field</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Field element</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".focusEditField"><span class="type-signature">(static) </span>focusEditField<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="editableTable.js.html">editableTable.js</a>, <a href="editableTable.js.html#line62">line 62</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Put an editable field in focus
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".formatCell"><span class="type-signature">(static) </span>formatCell<span class="signature">(data, rowIndex, colIndex)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="editableTable.js.html">editableTable.js</a>, <a href="editableTable.js.html#line23">line 23</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    How the data should be displayed in a cell in the read mode
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Cell data based on the table data array.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rowIndex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Index of the row.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>colIndex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Index of the column</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    HTML code
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".isEditable"><span class="type-signature">(static) </span>isEditable<span class="signature">(data, rowIndex, colIndex)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="editableTable.js.html">editableTable.js</a>, <a href="editableTable.js.html#line34">line 34</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Detects if cell is editable or not. You can override this with some custom logic.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Cell data based on the table data array</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rowIndex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Index of the row.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>colIndex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Index of the column.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Returns true is cell is editable.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".nextField"><span class="type-signature">(static) </span>nextField<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="editableTable.js.html">editableTable.js</a>, <a href="editableTable.js.html#line71">line 71</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Move focus to the next editable field in the table
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".onWindowResize"><span class="type-signature">(static) </span>onWindowResize<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="editableTable.js.html">editableTable.js</a>, <a href="editableTable.js.html#line251">line 251</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Handle window.resize event to fire resize event and adjust overlay position
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Fires:</h5>
+<ul>
+    <li>event:resize</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".positionOverlay"><span class="type-signature">(static) </span>positionOverlay<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="editableTable.js.html">editableTable.js</a>, <a href="editableTable.js.html#line176">line 176</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    We want to place our overlay over a cell we want to edit.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".prevField"><span class="type-signature">(static) </span>prevField<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="editableTable.js.html">editableTable.js</a>, <a href="editableTable.js.html#line88">line 88</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Move focus to the previous editable field in the table
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".renderCell"><span class="type-signature">(static) </span>renderCell<span class="signature">(rowIndex, colIndex, data)</span><span class="type-signature"> &rarr; {HTMLElement}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="editableTable.js.html">editableTable.js</a>, <a href="editableTable.js.html#line47">line 47</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="zs.table.html#.renderCell">zs.table.renderCell</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    A modified method to create a table cell based on the original
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>rowIndex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Index of the row.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>colIndex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Index of the column</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Cell data based on the table data array</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Cell element
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">HTMLElement</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".renderField"><span class="type-signature">(static) </span>renderField<span class="signature">(overlay)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="editableTable.js.html">editableTable.js</a>, <a href="editableTable.js.html#line150">line 150</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Creates an editable control and extra logic to support tabbing and styling.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>overlay</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Overlay element to attach a field element to.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".renderOverlay"><span class="type-signature">(static) </span>renderOverlay<span class="signature">(td)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="editableTable.js.html">editableTable.js</a>, <a href="editableTable.js.html#line190">line 190</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    We need a container to place our control. Controls could be more complex and bigger than our table cell.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>td</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Table cell element with the data we want to start editing.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".updateCellData"><span class="type-signature">(static) </span>updateCellData<span class="signature">(value, rowIndex, colIndex)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="editableTable.js.html">editableTable.js</a>, <a href="editableTable.js.html#line108">line 108</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Update an element in the table data array based on the changed value from the field
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Changed value of the cell. Could be any type but usually a string.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rowIndex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Index of the row. Could be a string in this case since we store it in the attribute.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>colIndex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Index of the column. Could be a string in this case since we store it in the attribute.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Mar 05 2019 14:30:14 GMT+0530 (India Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

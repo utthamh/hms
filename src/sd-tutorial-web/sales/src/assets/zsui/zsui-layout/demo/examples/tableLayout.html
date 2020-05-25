@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Page Layout</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	 crossorigin="anonymous"></script>
+	<style>
+		table.layout {
+			table-layout:auto;
+			width:100%;
+		}
+		.layout td {
+			vertical-align:top;
+			text-align: left;
+			background: rgba(0, 255, 0, 0.5);
+		}
+
+		.layout .header {
+			background: rgba(255, 0, 0, 0.5);
+		}
+
+		.layout .nav {
+			background: rgba(127, 128, 0, 0.5);
+		}
+
+		.layout .aside {
+			background: rgba(127, 0, 128, 0.5);
+		}
+
+
+		.layout .main {
+		}
+
+		.layout .footer {
+			background: rgba(0, 128, 127, 0.5);
+		}
+
+		.padding {
+			padding: 5px;
+
+		}
+
+		.margin {
+			margin: 5px;
+		}
+
+		.border {
+			border-radius: 5px;
+			border: 1px solid #c0c0c0;
+			box-shadow: 1px 1px 2px #c0c0c0;
+		}
+
+		.fluid {
+			width: 100%;
+			height: 100%;
+		}
+
+		.fluid-v-50 {
+			height:50%;
+		}
+
+		.fluid-v-25 {
+			height:25%;
+		}
+
+		.fluid-v {
+			height: 100%;
+		}
+
+		.fluid-h-50 {
+			width:50%;
+		}
+
+		.fluid-h-25 {
+			width: 25%;
+		}
+
+		.fluid-h {
+			width:100%;
+		}
+
+		body,
+		html {
+			padding: 0px;
+			margin: 0px;
+			height: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<table class="layout fluid">
+		<tr><td colspan="3" class="header">header</td></tr>
+		<tr>
+			<td rowspan="2" class="nav fluid-h-25">Nav</td>
+			<td class="main fluid padding margin border">
+				Lorem ipsum dolor sit amet, cu mea quando dicant torquatos, te summo debitis elaboraret usu. Quis sanctus ut has. Eos autem
+			maiorum at, cum at omnes quando. Harum tritani gubergren his no, vim ne primis tamquam dolorem. Liber audire placerat
+			ad ius. Ut graeco praesent nec, vis illum graece commodo te. Sed ea doming erroribus, senserit mediocrem id eos, idque
+			officiis ad vis. Ne vix duis laudem, qui te laudem oporteat conclusionemque. Vis probo deterruisset ad, idque nobis ea
+			qui. At nam magna virtute, at vel vero scripserit interesset. Eam quando dolorum an. Reformidans referrentur per no. No
+			illum graeco appellantur has, in nec nusquam minimum. Solum reque at pri. Nam et solum facilisis patrioque, ei has prompta
+			facilisi. Platonem moderatius ius no, no usu malorum patrioque, nam nibh laoreet suscipiantur eu. Facer errem efficiantur
+			no his. Qui tollit sadipscing ei. Harum maiorum at nam, malis maluisset sententiae mea at. Primis indoctum explicari est
+			cu, cum no elit laudem, paulo inciderint instructior pri ea. At rebum principes honestatis vim. Mucius nostro bonorum
+			vis an. Qui id assum doctus, probo nobis pericula et vel. Sumo nominati vix no, vix ut exerci appellantur. Exerci mollis
+			consetetur ne pri
+			</td>
+			<td class="aside fluid-h-25">
+				aside
+			</td>
+		</tr>
+		<tr>
+			<td class="footer" colspan="2" style="min-height:250px">Footer<br>Footer<br>Footer</nr></td>
+		</tr>
+		
+		
+	</div>
+</body>
+
+</html>

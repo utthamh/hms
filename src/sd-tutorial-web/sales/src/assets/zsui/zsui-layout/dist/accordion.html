@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" manifest="zsui.appcache">
+<head>
+	<title>ZSUI Layout</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	
+	<!-- Demo scripts  -->
+	<script src="demo.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+	<style>
+	.hljs {
+    	padding: 0.5em !important; /*Since core.css loads later and resets all spacing, we need to use !important here.*/
+	}
+	</style>
+	<script>
+	zs.demo.setPaths();
+	zs.demo.addUrlFixes({"nodejs":{},"npm":{"../node_modules/":"../../"},"nuget":{"../node_modules/zsui-[\\w]+/dist":"./"},"s3":{"../node_modules/zsui-[\\w]+/dist/":"./"}});
+	</script>
+ 
+	<script>zs.demo.script("../node_modules/zsui-core/dist/polyfills/polyfills.js");</script>
+	<script>zs.demo.script("../node_modules/zsui-core/dist/utils/customElements.js");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/core.css");</script>
+	<script>zs.demo.link("./themes/{theme}/accordion.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/tabs.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/wizard.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/card.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/drawer.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/toggleTabs.min.css");</script>
+
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/colorUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/displayUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/positionUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/alignUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/borderUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/spaceUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/sizeUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/shadowUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/floatUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/responsiveDisplayUtils.css");</script>
+
+</head>
+<body class="zs-style zs-layout-table" style="padding:1em">
+
+<h2>Accordion</h2>
+<div class="zs-accordion">
+	<div class="zs-accordion-bar zs-position-relative">
+		<div class="zs-display-inline-block zs-align-middle">
+			<a>Market Share < 25% AND Planned vs. Actual</a> 
+		</div> 
+		<div class="icons zs-position-absolute">
+			<a class="zs-icon zs-icon-large zs-icon-duplicate"></a>
+			<a class="zs-icon zs-icon-large zs-icon-delete"></a>
+		</div>
+	</div>
+	<div class="zs-accordion-panel">
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+			irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+			non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		</p>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+			aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duisauteirure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecatcupidatatnon proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		</p>
+	</div>
+</div>
+<div class="zs-accordion">
+	<div class="zs-accordion-bar zs-display-flex">
+		<div class="zs-display-inline-flex product-container">
+			<span>&nbsp;45%</span>
+			<a class="product-name">Product A</a>
+
+		</div>
+		<div class="zs-display-inline-block attainment-container">
+			Attainment <br />
+			<span class="attainment-amount">$26,000</span>
+		</div>
+		<div class="price-amount zs-display-inline-flex">
+			$5,213
+		</div>
+	</div>
+	<div class="zs-accordion-panel">
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+			aliqua.
+			Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+			aute
+			irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+			cupidatat
+			non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		</p>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+			aliqua.
+			Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+			aute
+			irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+			cupidatat
+			non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		</p>
+	</div>
+</div>
+<p style="font-style:italic;">Resize window to see bigger expand/collapse icons for mobile view.</p>
+<script>zs.demo.script("./accordion/jquery.zsAccordion.js");</script>
+<script>
+	$(document).ready(function () {
+		$('.zs-accordion').first().zsAccordion({
+			isOpen: true,
+			beforeOpen: function () {
+				console.log("before open", this);
+			},
+			onOpen: function () {
+				console.log("on open", this);
+			},
+			onClose: function () {
+				console.log("on close", this);
+			}
+		});
+		$('.zs-accordion').last().zsAccordion();
+	});
+</script>
+<style>
+	.zs-accordion-bar {
+		align-items: center;
+	}
+
+	.zs-accordion .zs-accordion-bar .zs-icon::before {
+		vertical-align: baseline;
+	}
+
+	.product-container {
+		align-items: center;
+		width: 50%
+	}
+
+	.product-container .product-name {
+		margin-left: 0.71em;
+		font-weight: bold;
+		font-size: 2em;
+	}
+
+	.attainment-container {
+		text-align: center;
+		width: 30%;
+	}
+
+	.attainment-container .attainment-amount {
+		font-size: 1.5em;
+	}
+
+	.price-amount {
+		font-size: 2em;
+		align-items: center;
+		justify-content: flex-end;
+		width: 20%
+	}
+
+	.icons {
+		top: 50%;
+		right: 1em;
+		transform: translateY(-50%);
+	}
+
+	.zs-display-inline-flex {
+		display: inline-flex;
+	}
+</style>
+
+
+<script>
+	if (zs && zs.demo) {
+		zs.demo.adjustCss();
+		zs.demo.applyTheme();
+		zs.demo.highlight();
+	}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>ZSUI Tables demo</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	
+	<!-- Demo scripts  -->
+	<script src="demo.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+	<style>
+	.hljs {
+    	padding: 0.5em !important; /*Since core.css loads later and resets all spacing, we need to use !important here.*/
+	}
+	</style>
+	<script>
+	zs.demo.setPaths();
+	zs.demo.addUrlFixes({"nodejs":{},"npm":{"../node_modules/":"../../"},"nuget":{"../node_modules/zsui-[\\w]+/dist":"./"}});
+	</script>
+	
+	<script>zs.demo.script("../node_modules/zsui-core/dist/polyfills/polyfills.js");</script>
+	<script>zs.demo.script("../node_modules/zsui-core/dist/utils/customElements.js");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/core.css");</script>
+	<script>zs.demo.link("./themes/{theme}/tables.css");</script>
+	
+</head>
+<body class="zs-style" style="padding:1em" data-page="">	
+
+<h2>ZSUI tables</h2>
+<ul class="zs-list themes">
+	<li>
+		<a href="tables.html">Table styles</a>
+	</li>
+	<li>
+		<a href="tableElements.html">Table components</a>
+	</li>
+	<li>
+		<a href="editableTable.html">Editable table</a>		
+	</li>
+	<li>
+		<a href="delayedRender.html">Delayed render</a>
+	</li>
+	<li>
+		<a href="smartTable.html">Smart render</a>
+	</li>
+	<li>
+		<a href="sortTable.html">Sorting</a>
+	</li>
+	<li>
+		<a href="pivot.html">Pivot table</a>
+	</li>
+	<li>
+		<a href="lockedColumns.html">Locked columns</a>
+	</li>
+	<li>
+		<a href="stickyHeader.html">Sticky header</a>
+	</li>
+	<li>
+		<a href="dragDropTable.html">Drag & drop table styles</a>
+	</li>
+</ul>
+
+<h2>Themes</h2>
+<ul class="zs-list">
+	<li>
+		<a href="?theme=zs">zs</a>
+	</li>
+	<li>
+		<a href="?theme=blue">blue</a>
+	</li>
+	<li>
+		<a href="?theme=blueLarge">blue large</a>
+	</li>
+</ul>
+
+<h2>Tests</h2>
+<ul class="zs-list">
+	<li>
+		<a href="../test/index.html">Test</a>
+	</li>
+</ul>
+
+<h2>Documentation</h2>
+<ul class="zs-list">
+	<li>
+		<a href="../docs/index.html">API documentation</a>
+	</li>
+</ul>
+
+<script>
+	$(function () {
+		zs.demo.applyTheme();
+	});
+</script>
+
+</body>
+</html>

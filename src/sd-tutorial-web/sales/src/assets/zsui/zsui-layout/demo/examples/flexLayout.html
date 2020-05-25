@@ -1,0 +1,134 @@
+
+
+<style>
+	.box {
+		min-width: 75px;
+		min-height: 50px;
+		color: #fff;
+		text-align: center;
+	}
+
+	.box:nth-of-type(1) {
+		background: #86c8bc;
+	}
+
+	.box:nth-of-type(2) {
+		background: #00629b;
+		min-height: 100px;
+	}
+
+	.box:nth-of-type(3) {
+		background: #6e2b62;
+	}
+
+	.box:nth-of-type(4) {
+		background: #b8cc7b;
+		min-height: 150px;
+	}
+
+	.box:nth-of-type(5) {
+		background: #01a6dc;
+	}
+
+	.padding {
+		padding: 5px;
+	}
+
+	.margin {
+		margin: 5px;
+	}
+
+	.border {
+		border-radius: 5px;
+		border: 1px solid #c0c0c0;
+		box-shadow: 1px 1px 2px #c0c0c0;
+	}
+
+	body,
+	html {
+		padding: 10px;
+		margin: 0px;
+		height: 100%;
+	}
+</style>
+
+<div class="">
+	<div example>
+		<h2>Basic Flex layout</h2>
+		<p>
+			<label>Wrap</label>
+			<span class="zs-radio-group">
+				<input type="radio" name="wrap" value="nowrap" checked="">No wrap
+				<input type="radio" name="wrap" value="wrap">Wrap
+				<input type="radio" name="wrap" value="wrap-reverse">Wrap reverse
+			</span>
+		</p>
+		<p>
+			<label>Direction</label>
+			<span class="zs-radio-group">
+				<input type="radio" name="direction" value="row" checked="">Row
+				<input type="radio" name="direction" value="column">Column
+				<input type="radio" name="direction" value="row-reverse">Row reverse
+				<input type="radio" name="direction" value="column-reverse">Column reverse
+			</span>
+		</p>
+		<p>
+			<label>Justify</label>
+			<span class="zs-radio-group">
+				<input type="radio" name="justify" value="start" checked="">Start
+				<input type="radio" name="justify" value="end">End
+				<input type="radio" name="justify" value="center">Center
+				<input type="radio" name="justify" value="space-between">Space between
+				<input type="radio" name="justify" value="space-around">Space around
+				<input type="radio" name="justify" value="space-evenly">Space evenly
+			</span>
+		</p>
+		<p>
+			<label>Align</label>
+			<span class="zs-radio-group">
+				<input type="radio" name="align" value="stretch" checked="">Stretch
+				<input type="radio" name="align" value="start">Start
+				<input type="radio" name="align" value="end">End
+				<input type="radio" name="align" value="center">Center
+				<input type="radio" name="align" value="baseline">Baseline
+			</span>
+		</p>
+		<div class="padding border margin background-white zs-layout-flex" style="min-height: 200px;">
+			<div class="padding box">1</div>
+			<div class="padding box" style="padding-top: 2em;">2</div>
+			<div class="padding box">3</div>
+			<div class="padding box">4</div>
+			<div class="padding box">5</div>
+		</div>
+	</div>
+	<h2>Fixed + fluid containers</h2>
+	<div class="padding border margin zs-layout-flex">
+		<div class="padding box" style="min-width: 200px;">1</div>
+		<div class="padding box" style="width: 100%;">2</div>
+	</div>
+	<h2>Equal height columns</h2>
+	<div class="padding border margin zs-layout-flex">
+		<div class="padding box" style="max-width: 200px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor neque imperdiet
+			dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate magna.
+			Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis.
+			Fusce ultricies vehicula posuere.</div>
+		<div class="padding box">Normal text with normal words.</div>
+		<div class="padding box">Line1
+			<br> Line2
+			<br> Line3</div>
+		<div class="padding box">Normal text with normal words.</div>
+		<div class="padding box">Unbreakable_text_Unbreakable_text_Unbreakable_text_Unbreakable_text</div>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function () {
+		$('[type="radio"]').each(function () {
+			var value = $(this).val();
+			$(this).on('click', function () {
+				var flexContainer = $(this).closest('[example]').find('.zs-layout-flex');
+				flexContainer.attr(this.name, value);
+			});
+		});
+	});
+</script>

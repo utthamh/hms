@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" manifest="zsui.appcache">
+
+<head>
+	<title>ZSUI Form demo</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	
+	<!-- Demo scripts  -->
+	<script src="demo.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+	<style>
+	.hljs {
+    	padding: 0.5em !important; /*Since core.css loads later and resets all spacing, we need to use !important here.*/
+	}
+	</style>
+	<script>
+	zs.demo.setPaths();
+	zs.demo.addUrlFixes({"nodejs":{},"npm":{"../node_modules/":"../../"},"nuget":{"../node_modules/zsui-[\\w]+/dist":"./"}});
+	</script>
+
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/core.css");</script>
+	<script>zs.demo.link("./themes/{theme}/forms.css");</script>
+	<script>zs.demo.link("./themes/{theme}/choice.css");</script>
+	<script>zs.demo.link("./themes/{theme}/datePicker.css");</script>
+	<script>zs.demo.link("./themes/{theme}/select.css");</script>
+	<script>zs.demo.link("./themes/{theme}/timePicker.css");</script>
+	<script>zs.demo.link("./themes/{theme}/slider.css");</script>
+	<script>zs.demo.link("./themes/{theme}/progressBar.css");</script>
+	<script>zs.demo.link("./themes/{theme}/toggle.css");</script>
+	<script>zs.demo.link("./themes/{theme}/tags.css");</script>
+	<script>zs.demo.link("./themes/{theme}/filter.css");</script>
+	<script>zs.demo.link("./themes/{theme}/dateRangePicker.css");</script>
+
+	<script>zs.demo.script("../node_modules/zsui-core/dist/polyfills/polyfills.js");</script>
+	<!-- <script>zs.demo.script("../node_modules/zsui-core/dist/utils/customElements.poly.js");</script> -->
+	<script>zs.demo.script("../node_modules/zsui-core/dist/utils/customElements.js");</script>
+	<style>
+		code.html {
+			max-height:25vh;
+		}
+	</style>
+</head>
+
+<body class="zs-style" style="padding:1em">
+
+<script>zs.demo.link("./themes/{theme}/color.css");</script>
+<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/colorUtils.css");</script>
+<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/sizeUtils.css");</script>
+<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/borderUtils.css");</script>
+<script>zs.demo.script("../node_modules/zsui-core/dist/utils/smartComponent.js");</script>
+<script>zs.demo.script("./slider/jquery.zsSlider.js");</script>
+<script>zs.demo.script("./slider/areaSlider.js");</script>
+
+<div data-page="color">
+	<h2>Color tiles</h2>
+	<p>Use <a href="cssUtils.html">utilities</a> to customize sizes, colors and borders of tiles.</p>
+	<div id="exampleColorTiles"><span class="zs-color-tile zs-bg-chart-1 zs-font-size-extra-large"></span>
+<span class="zs-color-tile zs-bg-chart-2 zs-font-size-large zs-border zs-border-rounded"></span>
+<span class="zs-color-tile zs-bg-chart-3 zs-border"></span>
+<span class="zs-color-tile zs-bg-chart-4 zs-font-size-small"></span>
+<span class="zs-color-tile zs-bg-chart-5 zs-font-size-extra-small"></span></div>
+	<code for="exampleColorTiles" class="html hljs"></code>
+
+	
+	<h2>Palette</h2>
+	<p>You can build palettes from tiles and anchor tags.</p>
+	<div id="exmapleSelectColors"><div class="zs-color-palette zs-font-size-large">
+	<a class="zs-color-tile zs-bg-chart-1" href="#color1" id="color1"></a>
+	<a class="zs-color-tile zs-bg-chart-2" href="#color2" id="color2"></a>
+	<a class="zs-color-tile zs-bg-chart-3" href="#color3" id="color3"></a>
+	<a class="zs-color-tile zs-bg-chart-4" href="#color4" id="color4"></a>
+	<a class="zs-color-tile zs-bg-chart-5" href="#color5" id="color5"></a>
+	<a class="zs-color-tile zs-bg-chart-6" href="#color6" id="color6"></a>
+	<a class="zs-color-tile zs-bg-chart-7" href="#color7" id="color7"></a>
+	<a class="zs-color-tile zs-bg-chart-1" href="#color8" id="color8"></a>
+	<a class="zs-color-tile zs-bg-chart-2" href="#color9" id="color9"></a>
+	<a class="zs-color-tile zs-bg-chart-3" href="#color10" id="color10"></a>
+	<a class="zs-color-tile zs-bg-chart-4" href="#color11" id="color11"></a>
+	<a class="zs-color-tile zs-bg-chart-5" href="#color12" id="color12"></a>
+	<a class="zs-color-tile zs-bg-chart-6" href="#color13" id="color13"></a>
+	<a class="zs-color-tile zs-bg-chart-7" href="#color14" id="color14"></a>
+</div></div>
+	<code for="exmapleSelectColors" class="html hljs"></code>
+
+	
+		
+
+	<h2>Color picker</h2>
+	<p>Use <a href="slider.html">slider component</a> to edit colors</p>
+	<div id="exampleHue">
+<form class="zs-form">
+	<fieldset>
+		<p><span class="zs-color-tile zs-font-size-extra-large zs-border zs-align-middle" id="tile"></span></p>
+		<p><input type="text" value="" id="hex" class="zs-input"></p>
+		<p>Horizontal Slider</p>
+		<p><input class="zs-color-hue" type="range" min="0" max="360" value="50" id="hue" ruler-position="none"></p>
+		<p>Vertical Slider</p>
+		<p style="height:250px"><input class="zs-color-hue" type="range" min="0" max="360" value="50" id="hueVertical" orientation="vertical" ruler-position="none"></p>
+		<p><zs-area-slider id="saturation" class="zs-color-saturation" style="height:200px"></zs-area-slider></p>
+	</fieldset>
+</form>
+<script src="https://cdn.jsdelivr.net/npm/tinycolor2@1.4.1/dist/tinycolor-min.js" integrity="sha256-OXOKEZcXtUBkgMxO8+fJIe1YYkhBXNWrSCMGzs/Fj00=" crossorigin="anonymous"></script>
+<script>
+	$(function() {
+		// Store color and its components
+		var color = tinycolor("rgba(200,200,100,0.5)"); // We will be using tinycolor library https://github.com/bgrins/TinyColor for help with colors
+		var hsv = color.toHsv();
+
+		var hue = hsv.h; 		// 0 - 360
+		var saturation = hsv.s;		// 0 - 1
+		var value = hsv.v;		// 0 - 1
+		var alpha = hsv.a;  		// 0 -1
+
+		// UI elements
+		var $hex = $('#hex');	
+		var $saturation = $('#saturation');
+		var $hue = $('#hue');
+		var $hueVertical = $('#hueVertical');
+		var $satHandle = $saturation.find('[handle]');
+		var $tile = $('#tile');
+
+		// Initialize UI
+		updateColor(color);		
+
+		// Initialize components and add hooks
+		$hex.on('change', function() {
+			var newHex = $(this).val();
+			var newColor = tinycolor(newHex).setAlpha(alpha);
+			if (newColor.isValid && newColor.toHex() != color.toHex()) {
+				var hsv = newColor.toHsv();
+				updateHSV(hsv.h, hsv.s, hsv.v, alpha);
+			} else {
+				$(this).val('#' + color.toHex());
+			}
+		});	
+		$hue.zsSlider({
+			handleHtml: '<a href="javascript:void(0)" class="zs-icon zs-icon-large zs-icon-delta-arrow-up" handle></a>',
+			onSlide: function(newValue, value) {
+				var newHue = hueFromValue(newValue);
+				this.$handle.attr('title', 'h: ' + newHue);
+			},
+			onInit: function() {
+				this.$handle.attr('title', 'h: ' + this.value);
+			},
+
+			onSlideEnd: function(newHueValue) {
+				// Change the color of handle
+				var newHue = hueFromValue(newHueValue);
+				this.$handle.attr('title', 'h: ' + newHue);
+				updateHSV(newHue, saturation, value, alpha);
+			}
+		});
+		$hueVertical.zsSlider({
+			handleHtml: '<a href="javascript:void(0)" class="zs-icon zs-icon-large zs-icon-expand-left" handle></a>',
+			onSlide: function(newValue, value) {
+				var newHue = hueFromValue(newValue);
+				this.$handle.attr('title', 'v: ' + newHue);
+			},
+			onInit: function() {
+				this.$handle.attr('title', 'v: ' + this.value);
+			},
+
+			onSlideEnd: function(newHueValue) {
+				// Change the color of handle
+				var newHue = hueFromValue(newHueValue);
+				this.$handle.attr('title', 'v: ' + newHue);
+				updateHSV(newHue, saturation, value, alpha);
+			}
+		});
+		$saturation.on('change', function(e) {
+			var newSaturation = Math.round((e.detail.xValue/100)*1e12)/1e12;
+			var newValue = 1 - Math.round((e.detail.yValue/100)*1e12)/1e12;
+			updateHSV(hue, newSaturation, newValue, alpha);			
+			$satHandle.attr('title', 's: ' + newSaturation.toFixed(2) + ' v: ' + newValue.toFixed(2));
+		});
+		
+		// Update components of a color
+		function updateHSV(newHue, newSaturation, newValue, newAlpha) {	
+			hue = newHue;
+			saturation = newSaturation;
+			value = newValue;
+			alpha = newAlpha;
+			var newColor = tinycolor({h:hue, s: saturation,v: value, a: alpha});
+			if (color.toRgbString() != newColor.toRgbString()) {
+				updateColor(newColor);
+			}
+		}
+
+		// Update UI with a new color
+		function updateColor(newColor) {			
+			// Update HEX
+			$tile.css('backgroundColor', '#'+ newColor.toHex());
+			$hex.val('#' + newColor.toHex());
+			$hex.attr('title', JSON.stringify(newColor.toHsl()));
+
+			// Update Saturation slider
+			var pureColor = tinycolor({h: hue, s: 1,v: 1, a: 1});
+			$saturation.css('backgroundColor', pureColor.toRgbString());
+			$saturation[0].xValue = zs.areaSlider.fixNumber(saturation*100);
+			$saturation[0].yValue = zs.areaSlider.fixNumber((1-value)*100);
+			
+			// Update color and its components
+			color = newColor;
+			hsv = color.toHsv();
+			
+			// Update hue slider			
+			$hue.val(hue);		
+		}
+		
+		// Convert and normalize value for the HUE component
+		function hueFromValue(value) {
+			return zs.areaSlider.fixNumber(Math.round(value));
+		}
+	});
+</script>
+<!-- ZSUI core dependencies -->
+<!-- include zsui/themes/zs/core.css -->
+<!-- include zsui/utils/customElements.poly.js -->
+<!-- include zsui/utils/customElements.js -->
+
+<!-- Third-party dependencies -->
+<!-- include http://code.jquery.com/jquery-3.3.1.js -->
+<!-- include https://cdn.jsdelivr.net/npm/tinycolor2@1.4.1/dist/tinycolor-min.js -->
+
+<!-- ZSUI color elements dependencies -->
+<!-- include zsui/themes/zs/sldier.css -->
+<!-- include zsui/themes/zs/color.css -->
+<!-- include zsui/utils/smartComponent.js -->
+<!-- include zsui/utils/slider/jquery.zsSlider.js -->
+<!-- include zsui/slider/areaSlider.js -->
+	</div>
+	<code for="exampleHue" class="html hljs"></code>
+</div>
+
+<script>
+	if (zs && zs.demo) {
+		zs.demo.adjustCss();
+		zs.demo.applyTheme();
+		zs.demo.highlight();
+	}
+</script>
+</body>
+</html>

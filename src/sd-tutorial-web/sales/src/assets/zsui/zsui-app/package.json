@@ -1,0 +1,69 @@
+{
+  "_from": "zsui-app",
+  "_id": "zsui-app@3.1.1",
+  "_inBundle": false,
+  "_integrity": "sha1-5TwRIhdm9/ozWiqXAMBftxHg1IM=",
+  "_location": "/zsui-app",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "zsui-app",
+    "name": "zsui-app",
+    "escapedName": "zsui-app",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://zs-sd.pkgs.visualstudio.com/_packaging/sd/npm/registry/zsui-app/-/zsui-app-3.1.1.tgz",
+  "_shasum": "e53c11221766f7fa335a2a9700c05fb711e0d483",
+  "_spec": "zsui-app",
+  "_where": "C:\\ZS\\zsui",
+  "author": {
+    "name": "UI Architecture team"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "url-polyfill": "^1.1.5",
+    "whatwg-fetch": "^3.0.0",
+    "zsui-core": "^3.5.0"
+  },
+  "deprecated": false,
+  "description": "ZSUI library application helpers",
+  "devDependencies": {
+    "@babel/cli": "~7.2.3",
+    "@babel/core": "~7.2.2",
+    "@babel/plugin-transform-modules-umd": "~7.2.0",
+    "@babel/preset-env": "~7.3.1",
+    "docdash": "^0.4.0",
+    "documentation": "^10.1.0",
+    "grunt": "^1.0.4",
+    "grunt-babel": "^8.0.0",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-less": "^2.0.0",
+    "grunt-contrib-uglify": "^3.1.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-ejs": "^0.3.0",
+    "grunt-jsdoc": "^2.2.0",
+    "jasmine": "^2.8.0"
+  },
+  "homepage": "https://ui.zsservices.com/index.html",
+  "license": "MIT",
+  "name": "zsui-app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://bitbucket.org/zssd/zsui-app.git"
+  },
+  "scripts": {
+    "build": "grunt build",
+    "prepublish": "grunt build",
+    "setup": "node node_modules/zsui-core/setup.js",
+    "start": "grunt"
+  },
+  "version": "3.1.1"
+}

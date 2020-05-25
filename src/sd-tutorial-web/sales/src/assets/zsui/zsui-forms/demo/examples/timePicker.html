@@ -1,0 +1,25 @@
+<div data-page="timePicker">
+	<h2>Time picker</h2>
+
+</div>
+<script src="<%=zsuiPath%>/form/zsClear.js" defer></script>
+<script src="<%=zsuiPath%>/form/zsValidation.js" defer></script>
+
+<script src="<%=zsuiPath%>/form/zsField.js" defer></script>
+<script src="<%=zsuiPath%>/dateTime/timePicker.js" defer></script>
+<script defer>
+	window.onload = function () {
+		timePickerEl = document.createElement('div',{is:'zs-time-picker-field'});
+		timePickerEl.format24 = false;
+		timePickerEl.value = "12:30PM";
+		timePickerEl.min = "12:00AM";
+		timePickerEl.max = "11:59PM";
+		timePickerEl.step = 45;	//minutes	
+		timePickerEl.attachToBody = false;
+		timePickerEl.onChange = function () {
+			console.log("Time value changed: ", this.value);
+		}
+
+		document.querySelector('[data-page="timePicker"]').appendChild(timePickerEl);
+	};
+</script>

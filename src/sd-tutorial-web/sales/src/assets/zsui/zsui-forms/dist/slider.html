@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en" manifest="zsui.appcache">
+
+<head>
+	<title>ZSUI Form demo</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	
+	<!-- Demo scripts  -->
+	<script src="demo.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+	<style>
+	.hljs {
+    	padding: 0.5em !important; /*Since core.css loads later and resets all spacing, we need to use !important here.*/
+	}
+	</style>
+	<script>
+	zs.demo.setPaths();
+	zs.demo.addUrlFixes({"nodejs":{},"npm":{"../node_modules/":"../../"},"nuget":{"../node_modules/zsui-[\\w]+/dist":"./"}});
+	</script>
+
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/core.css");</script>
+	<script>zs.demo.link("./themes/{theme}/forms.css");</script>
+	<script>zs.demo.link("./themes/{theme}/choice.css");</script>
+	<script>zs.demo.link("./themes/{theme}/datePicker.css");</script>
+	<script>zs.demo.link("./themes/{theme}/select.css");</script>
+	<script>zs.demo.link("./themes/{theme}/timePicker.css");</script>
+	<script>zs.demo.link("./themes/{theme}/slider.css");</script>
+	<script>zs.demo.link("./themes/{theme}/progressBar.css");</script>
+	<script>zs.demo.link("./themes/{theme}/toggle.css");</script>
+	<script>zs.demo.link("./themes/{theme}/tags.css");</script>
+	<script>zs.demo.link("./themes/{theme}/filter.css");</script>
+	<script>zs.demo.link("./themes/{theme}/dateRangePicker.css");</script>
+
+	<script>zs.demo.script("../node_modules/zsui-core/dist/polyfills/polyfills.js");</script>
+	<!-- <script>zs.demo.script("../node_modules/zsui-core/dist/utils/customElements.poly.js");</script> -->
+	<script>zs.demo.script("../node_modules/zsui-core/dist/utils/customElements.js");</script>
+	<style>
+		code.html {
+			max-height:25vh;
+		}
+	</style>
+</head>
+
+<body class="zs-style" style="padding:1em">
+
+
+<div data-page="slider">
+    <section demo-simple>
+        <form action="" class="zs-form">
+            <h2>ZS Slider simple</h2>
+            <input type="range" min="0" max="500" value="300" prefix="$" metric="B">
+            <br>
+            <button class="zs-button" get>Get value</button>
+            <button class="zs-button" set value="110">Set value to 110</button>
+            <button class="zs-button" toggleDisability>Toggle disability</button>
+        </form>
+    </section>
+    <br>
+    <br>
+    <section demo-simple>
+        <form action="" class="zs-form">
+            <h2>ZS Slider simple with bottom ruler</h2>
+            <input type="range" min="-10" max="10" value="0" mertic="%" ruler-position="bottom">
+            <br>
+            <button class="zs-button" get>Get value</button>
+            <button class="zs-button" set value="0">Set value to 0</button>
+            <button class="zs-button" toggleDisability>Toggle disability</button>
+        </form>
+    </section>
+    <br>
+    <br>
+    <section demo-base>
+        <form action="" class="zs-form">
+            <h2>ZS Slider with base point</h2>
+            <input type="range" min="-10" max="10" value="0" mertic="%" base="0">
+            <br>
+            <button class="zs-button" get>Get value</button>
+            <button class="zs-button" set value="5">Set value to 5</button>
+            <button class="zs-button" toggleDisability>Toggle disability</button>
+        </form>
+    </section>
+    <br>
+    <br>
+    <section demo-simple>
+        <form action="" class="zs-form">
+            <h2>ZS Slider with max range</h2>
+            <input type="range" min="-10" max="10" value="0" range-max="5" mertic="%">
+            <br>
+            <button class="zs-button" get>Get value</button>
+            <button class="zs-button" set value="0">Set value to 0</button>
+            <button class="zs-button" toggleDisability>Toggle disability</button>
+        </form>
+    </section>
+    <br>
+    <br>
+    <section demo-simple>
+        <form action="" class="zs-form">
+            <h2>ZS Slider with min range</h2>
+            <input type="range" min="-10" max="10" value="0" range-min="-5" mertic="%">
+            <br>
+            <button class="zs-button" get>Get value</button>
+            <button class="zs-button" set value="0">Set value to 0</button>
+            <button class="zs-button" toggleDisability>Toggle disability</button>
+        </form>
+    </section>
+    <br>
+    <br>
+    <section demo-vertical>
+        <form action="" class="zs-form">
+            <h2>ZS Slider vertical</h2>
+            <div style="width:100px;height:300px">
+                <input type="range" min="0" max="100" step="10" orientation="vertical">
+            </div>
+
+            <br>
+            <button class="zs-button" get>Get value</button>
+            <button class="zs-button" set value="90">Set value to 90</button>
+        </form>
+    </section>
+    <br>
+    <br>
+    <section demo-vertical>
+        <form action="" class="zs-form">
+            <h2>ZS Slider vertical with min range</h2>
+            <div style="width:100px;height:300px">
+                <input type="range" min="0" max="100" step="10" value="50" range-min="20" orientation="vertical">
+            </div>
+
+            <br>
+            <button class="zs-button" get>Get value</button>
+            <button class="zs-button" set value="50">Set value to 50</button>
+        </form>
+    </section>
+    <br>
+    <br>
+    <section demo-vertical>
+        <form action="" class="zs-form">
+            <h2>ZS Slider vertical with base point</h2>
+            <div style="width:100px;height:300px">
+                <input type="range" min="0" max="100" step="10" value="50" base="50" orientation="vertical">
+            </div>
+
+            <br>
+            <button class="zs-button" get>Get value</button>
+            <button class="zs-button" set value="0">Set value to 0</button>
+        </form>
+    </section>
+    <br>
+    <br>
+    <section demo-steps>
+        <form action="" class="zs-form">
+            <h2>ZS Slider w/ steps</h2>
+            <input type="range" min="0" max="50" step="10" value="10">
+            <br>
+            <button class="zs-button" get>Get value</button>
+            <button class="zs-button" set value="50">Set value to 50</button>
+            <button class="zs-button" toggleDisability>Toggle disability</button>
+        </form>
+    </section>
+    <br>
+    <br>
+    <section demo-simple>
+        <form action="" class="zs-form">
+            <h2>ZS Slider multiple</h2>
+            <input type="range" min="-10" max="10" mertic="%" multiple>
+            <br>
+            <button class="zs-button" get>Get value</button>
+            <button class="zs-button" set value="-5;10">Set value to -5 and 10</button>
+            <button class="zs-button" toggleDisability>Toggle disability</button>
+        </form>
+    </section>
+    <br>
+    <br>
+    <section demo-simple>
+        <form action="" class="zs-form">
+            <h2>ZS Slider multiple bottom ruler</h2>
+            <input type="range" min="-10" max="10" value="0;5" mertic="%" ruler-position="bottom" multiple>
+            <br>
+            <button class="zs-button" get>Get value</button>
+            <button class="zs-button" set value="0;10">Set value to 0 and 10</button>
+            <button class="zs-button" toggleDisability>Toggle disability</button>
+        </form>
+    </section>
+    <br>
+    <br>
+    <section demo-base>
+        <form action="" class="zs-form">
+            <h2>ZS Slider multiple with base point</h2>
+            Not suported
+        </form>
+    </section>
+    <br>
+    <br>
+    <section demo-simple>
+        <form action="" class="zs-form">
+            <h2>ZS Slider multiple with max range</h2>
+            <input type="range" min="-10" max="10" value="0;5" range-max="5" mertic="%" multiple>
+            <br>
+            <button class="zs-button" get>Get value</button>
+            <button class="zs-button" set value="0;5">Set value to 0 and 5</button>
+            <button class="zs-button" toggleDisability>Toggle disability</button>
+        </form>
+    </section>
+    <br>
+    <br>
+    <section demo-simple>
+        <form action="" class="zs-form">
+            <h2>ZS Slider multiple with min range</h2>
+            <input type="range" min="-10" max="10" value="0;5" range-min="-5" mertic="%" multiple>
+            <br>
+            <button class="zs-button" get>Get value</button>
+            <button class="zs-button" set value="0;5">Set value to 0 and 5</button>
+            <button class="zs-button" toggleDisability>Toggle disability</button>
+        </form>
+    </section>
+    <br>
+    <br>
+    <section demo-vertical>
+        <form action="" class="zs-form">
+            <h2>ZS Slider multiple vertical</h2>
+            <div style="width:100px;height:300px">
+                <input type="range" min="0" max="100" step="10" value="10;50" orientation="vertical" multiple>
+            </div>
+
+            <br>
+            <button class="zs-button" get>Get value</button>
+            <button class="zs-button" set value="20;90">Set value to 20 and 90</button>
+        </form>
+    </section>
+    <br>
+    <br>
+    <section demo-vertical>
+        <form action="" class="zs-form">
+            <h2>ZS Slider multiple vertical with min range</h2>
+            <div style="width:100px;height:300px">
+                <input type="range" min="0" max="100" step="10" value="30;50" range-min="20" orientation="vertical" multiple>
+            </div>
+
+            <br>
+            <button class="zs-button" get>Get value</button>
+            <button class="zs-button" set value="40;80">Set value to 40 and 80</button>
+        </form>
+    </section>
+    <br>
+    <br>
+    <section demo-vertical>
+        <form action="" class="zs-form">
+            <h2>ZS Slider multiple vertical with base point</h2>
+            Not supported
+        </form>
+    </section>
+    <br>
+    <br>
+    <section demo-steps>
+        <form action="" class="zs-form">
+            <h2>ZS Slider multiple w/ steps</h2>
+            <input type="range" min="0" max="50" step="10" value="0;5" multiple>
+            <br>
+            <button class="zs-button" get>Get value</button>
+            <button class="zs-button" set value="10;50">Set value to 10 and 50</button>
+            <button class="zs-button" toggleDisability>Toggle disability</button>
+        </form>
+    </section>
+    <br>
+    <br>
+    <section demo-validation>
+        <form action="" class="zs-form">
+            <h2>ZS Slider validation</h2>
+            <input type="range" min="-10" max="10" value="-5">
+            <br>
+            <button class="zs-button" get>Get value</button>
+            <button class="zs-button" set value="0">Set value to 0</button>
+            <button class="zs-button" toggleDisability>Toggle disability</button>
+        </form>
+    </section>
+    <br>
+    <br>
+    <section demo-simple>
+        <form action="" class="zs-form">
+            <h2>ZS Slider custom ruler values</h2>
+            <input type="range" min="10" max="100" value="40"  step="1" ruler-values="20,40,50,80" ruler-position="bottom">
+            <br>
+            <button class="zs-button" get>Get value</button>
+            <button class="zs-button" set value="0">Set value to 0</button>
+            <button class="zs-button" toggleDisability>Toggle disability</button>
+        </form>
+    </section>
+
+    <br>
+    <br>
+    <section demo-custom-ruler-validation>
+        <form action="" class="zs-form">
+            <h2>ZS Slider custom ruler values with validation</h2>
+            <input type="range" min="-15" max="15" value="0"  step="1" ruler-values="-9,-5,0,4,10" ruler-position="bottom">
+            <br>
+            <button class="zs-button" get>Get value</button>
+            <button class="zs-button" set value="0">Set value to 0</button>
+            <button class="zs-button" toggleDisability>Toggle disability</button>
+        </form>
+	</section>
+	<br>
+    <br>
+	<section demo-simple>
+        <form action="" class="zs-form">
+            <h2>ZS Slider with trimmed zeros</h2>
+            <input type="range" min="-10" max="10" value="0" step="0.1" ruler-values="-10, -8.2,-1,0,1,10" trim-zeros prefix="$">
+            <br>
+            <button class="zs-button" get>Get value</button>
+            <button class="zs-button" set value="5.3">Set value to 5.3</button>
+            <button class="zs-button" toggleDisability>Toggle disability</button>
+        </form>
+    </section>
+
+</div>
+<script src="./slider/jquery.zsSlider.js"></script>
+<script>
+    function detectArea(value, $container) {
+        $container.removeClass('zs-warning');
+        $container.removeClass('zs-error');
+
+        if (value >= 5) {
+            $container.addClass('zs-error');
+        } else if (value >= 0) {
+            $container.addClass('zs-warning');
+        }
+    }
+
+    function detectAreaForBase(value, $container) {
+        $container.removeClass('zs-warning');
+        $container.removeClass('zs-error');
+
+        if (value >= 5 || value <= -5) {
+            $container.addClass('zs-error');
+        } else if (value > 2 || value < -2) {
+            $container.addClass('zs-warning');
+        }
+    }
+
+    function detectAreaForCustomRuler(value, $container) {
+        $container.removeClass('zs-warning');
+        $container.removeClass('zs-error');
+
+        if (value >= 10 || value <= -9) {
+            $container.addClass('zs-error');
+        } else if (value >= 4 || value <= -5) {
+            $container.addClass('zs-warning');
+        }
+    }
+
+    $(function () {
+        $('[demo-vertical] input[type="range"]').zsSlider();
+        $('[demo-steps] input[type="range"]').zsSlider();
+
+        $('[demo-simple] input[type="range"]').zsSlider();
+
+        $('[demo-validation] input[type="range"]').zsSlider({
+            onInit: function () {
+                detectArea(this.value, this.$container);
+            },
+            onSlide: function (pos, value) {
+                detectArea(this.value, this.$container);
+            },
+            onSlideEnd: function () {
+                console.log('OnSlide end');
+            }
+        });
+
+        $('[demo-custom-ruler-validation] input[type="range"]').zsSlider({
+            onInit: function () {
+                detectAreaForCustomRuler(this.value, this.$container);
+            },
+            onSlide: function (pos, value) {
+                detectAreaForCustomRuler(this.value, this.$container);
+            },
+            onSlideEnd: function () {
+                console.log('OnSlide end');
+            }
+        });
+
+        $('[demo-base] input[type="range"]').zsSlider({
+            onSlide: function (pos, value) {
+                detectAreaForBase(this.value, this.$container);
+            }
+        });
+
+
+        $('button[set]').on('click', function (e) {
+            e.preventDefault();
+            var elm = $(this).parent().find('input[type="range"]');
+            elm[0].setAttribute('value', $(this).val());
+            elm.zsSlider().change();
+        });
+
+        $('button[get]').on('click', function (e) {
+            e.preventDefault();
+            console.log($(this).parent().find('input[type="range"]').data('zsSlider').getValue());
+        });
+
+        $('button[toggleDisability]').on('click', function (e) {
+            e.preventDefault();
+            var elm = $(this).parent().find('input[type="range"]');
+            elm.prop('disabled', !elm.prop('disabled')).zsSlider('update');
+        });
+    });
+</script>
+
+<h2>2d slider</h2>
+<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/borderUtils.css");</script>
+<script>zs.demo.script("../node_modules/zsui-core/dist/utils/smartComponent.js");</script>
+<div id="2dslider">
+<!-- include borderUtils.css -->
+<!-- include smartComponent.js -->
+<script src="./slider/areaSlider.js"></script>
+<script>
+	// Handle updates 
+	function updateValue(sliderElement) {
+		$(sliderElement).siblings('label').html('x = ' + sliderElement.xValue + ', y = ' + sliderElement.yValue);
+	}
+</script>
+<form class="zs-form">
+	<fieldset>
+		<p>
+			<label></label>
+			<zs-area-slider onchange="updateValue(this)" x-value="100" y-value="50"  x-max="200" y-max="100" style="width:200px;height:100px" class="zs-border"></zs-area-slider>
+		</p>
+	</fieldset>
+</form></div>
+<code for="2dslider" class="html hljs"></code>
+
+
+<script>
+	if (zs && zs.demo) {
+		zs.demo.adjustCss();
+		zs.demo.applyTheme();
+		zs.demo.highlight();
+	}
+</script>
+</body>
+</html>

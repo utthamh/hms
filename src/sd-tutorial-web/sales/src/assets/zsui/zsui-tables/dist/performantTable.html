@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>ZSUI Tables demo</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+	<script src="../node_modules/zsui-core/dist/polyfills/polyfills.js"></script>
+	<script src="../node_modules/zsui-core/dist/utils/customElements.js"></script>
+	<link rel="stylesheet" href="../node_modules/zsui-core/dist/themes/zs/core.css">
+	<link rel="stylesheet" href="themes/zs/tables.css">
+
+</head>
+
+<body class="zs-style" style="padding:1em" data-page="">
+	<script src="tables/tableElement.js"></script>
+
+	<style>
+		.resizable .zs-data-table td {
+			border: 1px solid #d0dde6;
+		}
+
+		/* Make column thinner than the content */
+
+		.resizable .zs-data-table td[key="5"] {
+			/* max-width: 45px; */
+			text-overflow: ellipsis;
+			overflow: hidden;
+		}
+
+		.resizable .zs-data-table zs-draggable {
+			top: 0 !important;
+			right: -5px !important;
+			bottom: 0 !important;
+			left: auto !important;
+			width: 10px;
+			cursor: col-resize;
+			z-index: 1000;
+		}
+
+		.infinite-scroll {
+			height: 500px;
+			width: 700px;
+			overflow: auto;
+		}
+	</style>
+	<p>Table with infinite scroll.</p>
+	<p id="time"></p>
+
+	<div id="tableContainer"></div>
+
+	<script>
+
+		var dummyJSON = { "id1": 1, "name1": "some name", "username1": "some username", "email1": "username@comp.com", "phone1": "1-111-111-1111 x11111", "website1": "comp.com", "id10": 0, "name11": "some name", "username12": "some username", "email13": "username@comp.com", "phone14": "11111111", "website15": "comp.com", "id16": 6, "name17": "some name", "username18": "some username", "email19": "username@comp.com", "phone110": "11111111", "website111": "comp.com", "id112": 12, "name113": "some name", "username114": "some username", "email115": "username@comp.com", "phone116": "11111111", "website117": "comp.com", "id118": 18, "name119": "some name", "username120": "some username", "email121": "username@comp.com", "phone122": "11111111", "website123": "comp.com", "id124": 24, "name125": "some name", "username126": "some username", "email127": "username@comp.com", "phone128": "11111111", "website129": "comp.com", "id130": 30, "name131": "some name", "username132": "some username", "email133": "username@comp.com", "phone134": "11111111", "website135": "comp.com", "id136": 36, "name137": "some name", "username138": "some username", "email139": "username@comp.com", "phone140": "11111111", "website141": "comp.com", "id142": 42, "name143": "some name", "username144": "some username", "email145": "username@comp.com", "phone146": "11111111", "website147": "comp.com", "id148": 48, "name149": "some name", "username150": "some username", "email151": "username@comp.com", "phone152": "11111111", "website153": "comp.com", "id154": 54, "name155": "some name", "username156": "some username", "email157": "username@comp.com", "phone158": "11111111", "website159": "comp.com", "id160": 60, "name161": "some name", "username162": "some username", "email163": "username@comp.com", "phone164": "11111111", "website165": "comp.com", "id166": 66, "name167": "some name", "username168": "some username", "email169": "username@comp.com", "phone170": "11111111", "website171": "comp.com", "id172": 72, "name173": "some name", "username174": "some username", "email175": "username@comp.com", "phone176": "11111111", "website177": "comp.com", "id178": 78, "name179": "some name", "username180": "some username", "email181": "username@comp.com", "phone182": "11111111", "website183": "comp.com", "id184": 84, "name185": "some name", "username186": "some username", "email187": "username@comp.com", "phone188": "11111111", "website189": "comp.com", "id190": 90, "name191": "some name", "username192": "some username", "email193": "username@comp.com", "phone194": "11111111", "website195": "comp.com", "id196": 96, "name197": "some name", "username198": "some username", "email199": "username@comp.com", "phone1100": "11111111", "website1101": "comp.com", "id1102": 102, "name1103": "some name", "username1104": "some username", "email1105": "username@comp.com", "phone1106": "11111111", "website1107": "comp.com", "id1108": 108, "name1109": "some name", "username1110": "some username", "email1111": "username@comp.com", "phone1112": "11111111", "website1113": "comp.com", "id1114": 114, "name1115": "some name", "username1116": "some username", "email1117": "username@comp.com", "phone1118": "11111111", "website1119": "comp.com", "id1120": 120, "name1121": "some name", "username1122": "some username", "email1123": "username@comp.com", "phone1124": "11111111", "website1125": "comp.com", "id1126": 126, "name1127": "some name", "username1128": "some username", "email1129": "username@comp.com", "phone1130": "11111111", "website1131": "comp.com", "id1132": 132, "name1133": "some name", "username1134": "some username", "email1135": "username@comp.com", "phone1136": "11111111", "website1137": "comp.com", "id1138": 138, "name1139": "some name", "username1140": "some username", "email1141": "username@comp.com", "phone1142": "11111111", "website1143": "comp.com", "id1144": 144, "name1145": "some name", "username1146": "some username", "email1147": "username@comp.com", "phone1148": "11111111", "website1149": "comp.com" };
+
+		function getData(params) {
+			var pageSize = params.pageSize;
+			var startOffset = params.startOffset;
+			return (function () {
+				return new Promise(function (resolve, reject) {
+					$.ajax({
+						url: 'https://cdn.rawgit.com/angular-ui/ui-grid.info/gh-pages/data/10000_complex.json',
+						success: function (response) {
+							var data = response.slice(startOffset, startOffset + pageSize);
+
+							for (var i = 0; i < data.length; i++) {
+								Object.assign(data[i], dummyJSON);
+							}
+
+							resolve(data);
+						},
+						error: function (err) {
+							reject(response);
+						}
+					});
+				});
+			})(pageSize, startOffset);
+		}
+	</script>
+
+	<div is="zs-table" id="table1" class="resizable infinite-scroll"></div>
+	<script>
+		var t1 = performance.now();
+		var table = document.querySelector('#table1');
+		table.pageSize = 20;
+		table.startOffset = 0;
+
+		table.renderCell = function (rowIndex, colIndex, data) {
+			var td = document.createElement('td');
+			td.setAttribute('key', colIndex);
+			if (colIndex === 'address') {
+				td.innerHTML = "City: " + data.city + "<br/>" + "State: " + data.state;
+			} else {
+				td.innerHTML = data;
+			}
+			return td;
+		}
+
+		table.getTableData = getData;
+		table.refreshTable({ pageSize: table.pageSize, startOffset: table.startOffset });
+
+		table.loadNextData = function (params) {
+			var comp = this;
+			this.getTableData(params).then(function (data) {
+				comp.data = data;
+				comp.renderNextData(data);
+				if (typeof comp.loadingSet == 'function') { comp.loadingSet(false, comp.querySelector('.zs-table')); }
+			});
+		}
+
+		table.renderNextData = function (data) {
+			for (i = 0; i < data.length; i++) {
+				var tr = this.renderRow(i, data[i]);
+				if (tr) {
+					tr.setAttribute('key', i + this.startOffset);
+					this.tbody.appendChild(tr);
+				}
+			}
+		}
+
+		table.addEventListener('scroll', function () {
+			if (this.request) {
+				clearTimeout(this.request);
+				this.request = null;
+			}
+			var self = this;
+			this.request = setTimeout(function () {
+				if (self.scrollTop > (self.table.offsetHeight - self.offsetHeight)) {
+					self.startOffset = self.startOffset + self.pageSize;
+					table.loadNextData({ pageSize: self.pageSize, startOffset: self.startOffset });
+				}
+			}, 100);
+		});
+
+		table.addEventListener('render', function () {
+			setTimeout(function () {
+				$('#time').html('Table rendered in <b>' + parseInt(performance.now() - t1) + 'ms</b>');
+			}, 0);
+		});
+	</script>
+
+
+</body>
+
+</html>

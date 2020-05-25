@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" manifest="zsui.appcache">
+<head>
+	<title>ZSUI Layout</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	
+	<!-- Demo scripts  -->
+	<script src="demo.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+	<style>
+	.hljs {
+    	padding: 0.5em !important; /*Since core.css loads later and resets all spacing, we need to use !important here.*/
+	}
+	</style>
+	<script>
+	zs.demo.setPaths();
+	zs.demo.addUrlFixes({"nodejs":{},"npm":{"../node_modules/":"../../"},"nuget":{"../node_modules/zsui-[\\w]+/dist":"./"},"s3":{"../node_modules/zsui-[\\w]+/dist/":"./"}});
+	</script>
+ 
+	<script>zs.demo.script("../node_modules/zsui-core/dist/polyfills/polyfills.js");</script>
+	<script>zs.demo.script("../node_modules/zsui-core/dist/utils/customElements.js");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/core.css");</script>
+	<script>zs.demo.link("./themes/{theme}/accordion.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/tabs.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/wizard.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/card.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/drawer.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/toggleTabs.min.css");</script>
+
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/colorUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/displayUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/positionUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/alignUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/borderUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/spaceUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/sizeUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/shadowUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/floatUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/responsiveDisplayUtils.css");</script>
+
+</head>
+<body class="zs-style zs-layout-table" style="padding:1em">
+<script>zs.demo.link("./themes/{theme}/layoutPage.css");</script>
+
+<script>zs.demo.link("./themes/{theme}/header.css");</script>	
+
+<script>zs.demo.link("./themes/{theme}/footer.css");</script>
+	<style>
+		
+		body,
+		html {
+			padding: 0px !important;
+			margin: 0px;
+			height: 100%;
+		}
+
+	</style>
+</head>
+	<div class="zs-layout-page zs-height-100 zs-width-100">
+		<header class="zs-header zs-mobile-header zs-bg-standard">
+			<h2> Header </h2>			
+		</header>
+		<nav class="zs-side-navigation zs-border-right zs-width-200px zs-bg-standard zs-display-none-xsw">
+			<span>Side navigation</span>
+		</nav>
+		<main class="zs-bg-dark zs-padding-0-0-1-0">
+			<header class="zs-padding-0-0-1_5-0">
+				Page Title
+			</header>
+			<section class="zs-bg-standard zs-padding-2 zs-box-shadow zs-border-color-default zs-border-rounded zs-margin-0-2">
+				<form class="zs-form">
+					<fieldset class="zs-fieldset">
+						<p>
+							<span class="zs-radio-group">
+								<input type="radio" name="layoutType" value="3col" checked>3 Column layout
+								<input type="radio" name="layoutType" value="2col">Primary layout
+								<input type="radio" name="layoutType" value="1col">1 Column layout
+							</span>
+
+							<span class="zs-checkbox">
+								<input type="checkbox" value="noFooter">No Footer
+								<input type="checkbox" value="noHeader">No Header
+							</span>
+						</p>
+					</fieldset>
+				</form>
+			</section>
+		</main>
+		<aside class="border zs-bg-primary">Aside</aside>
+		<footer class="border zs-bg-dark zs-text-footer">
+			<div class="zs-bg-standard zs-display-none-xsw zs-float-left zs-border-right zs-width-200px zs-display-inline-block">&nbsp;</div>
+			<div class="zs-padding-0-2">
+				<span>Footer</span>				
+			</div>
+		</footer>
+	</div>
+
+	<script>
+		var body=document.querySelector('body');
+		body.classList.remove("zs-layout-table");
+		
+		function switchLayout(e) {
+			if (e.target.value == '1col') {
+				document.querySelector('div.zs-layout-page>aside').classList.add('zs-display-none');
+				document.querySelector('div.zs-layout-page>nav').classList.add('zs-display-none');
+				document.querySelector('div.zs-layout-page>footer>div').style.opacity=0;
+			} else if(e.target.value == '3col') {
+				document.querySelector('div.zs-layout-page>aside').classList.remove('zs-display-none');
+				document.querySelector('div.zs-layout-page>nav').classList.remove('zs-display-none');
+				document.querySelector('div.zs-layout-page>footer>div').style.opacity=1;
+			} else {
+				document.querySelector('div.zs-layout-page>aside').classList.add('zs-display-none');
+				document.querySelector('div.zs-layout-page>nav').classList.remove('zs-display-none');
+				document.querySelector('div.zs-layout-page>footer>div').style.opacity=1;
+			}
+		}
+
+		function toggleHeaderFooter(e){
+			
+			if (e.target.value == 'noFooter') {
+				if(e.target.checked){
+					document.querySelector('div.zs-layout-page>footer').classList.add('zs-display-none');
+				}else{
+					document.querySelector('div.zs-layout-page>footer').classList.remove('zs-display-none');
+				}
+			} else if(e.target.value == 'noHeader') {
+				if(e.target.checked){
+					document.querySelector('div.zs-layout-page>header').classList.add('zs-display-none');
+				}else{
+					document.querySelector('div.zs-layout-page>header').classList.remove('zs-display-none');
+				}
+			}
+		}
+
+		document.querySelector('.zs-radio-group').addEventListener('click', switchLayout);
+		document.querySelector('.zs-checkbox').addEventListener('click', toggleHeaderFooter);
+			
+	</script> 
+
+<script>
+	if (zs && zs.demo) {
+		zs.demo.adjustCss();
+		zs.demo.applyTheme();
+		zs.demo.highlight();
+	}
+</script>
+
+</body>
+</html>

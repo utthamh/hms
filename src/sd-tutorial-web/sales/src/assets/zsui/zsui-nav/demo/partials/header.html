@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" manifest="zsui.appcache">
+	<head>
+        <title>ZSUI Navigation demo</title>
+        <meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		
+		<%- include('../../node_modules/zsui-core/demo/partials/zsEjs.ejs')%> 
+
+		<!-- Dependencies -->
+		<%- script(nodeModules + '/zsui-core/dist/polyfills/polyfills.js')%>
+		<%- script(nodeModules + '/zsui-core/dist/utils/customElements.js')%>
+
+		<!-- Styles -->
+		<%- link(nodeModules + '/zsui-core/dist/themes/{theme}/core.css')%>
+		<%- link(zsuiPath + '/themes/{theme}/pagination.css')%>
+		<%- link(zsuiPath + '/themes/{theme}/tree.css')%>
+		<%- link(zsuiPath + '/themes/{theme}/topNav.css')%>
+		<%- link(zsuiPath + '/themes/{theme}/sideNav.css')%>
+		<%- link(zsuiPath + '/themes/{theme}/breadcrumbs.css')%>
+</head>
+<body class="zs-style" style="padding:1em">

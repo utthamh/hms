@@ -1,0 +1,194 @@
+/*
+Side Navigation
+
+Application side navigation
+
+Markup:
+<nav class="zs-side-navigation">
+    <a class="zs-active">Sub1</a>
+    <a>Sub2</a>
+    <a>Sub3</a>
+    <a>Sub4</a>
+</nav>
+
+2d level:
+<nav class="zs-side-navigation">
+    <a class="zs-active">Sub1</a>
+    <a>Sub2</a>
+    <a>Sub3</a>
+    <nav>
+        <a class="zs-active">Sub1</a>
+        <a>Sub2</a>
+        <a>Sub3</a>
+        <a>Sub4</a>
+    </nav>
+    <a>Sub4</a>
+</nav>
+
+3d level:
+<nav class="zs-side-navigation">
+    <a class="zs-active">Sub1</a>
+    <a>Sub2</a>
+    <a>Sub3</a>
+    <nav>
+        <a class="zs-active">Sub1</a>
+        <a>Sub2</a>
+        <a>Sub3</a>
+        <nav>
+            <a class="zs-active">Sub1</a>
+            <a>Sub2</a>
+            <a>Sub3</a>
+            <a>Sub4</a>
+        </nav>
+        <a>Sub4</a>
+    </nav>
+    <a>Sub4</a>
+</nav>
+Style guide Brand.SideNavigation
+*/
+.zs-side-navigation {
+    @border-width: 4px;
+    @left-margin: 10px;
+    @item-height: 3em;
+	.padding(1,0,0,0);
+    width: 100%;
+	
+	>a:first-child, >li:first-child >a {
+	  border-top: 1px solid @zs-border-color;
+	}
+	
+    a, a:visited {
+        cursor: pointer;
+        text-decoration: none;
+        display:block;
+        color: @zs-text-light;
+        //border-right: 1px solid @zs-border-color;
+        border-bottom: 1px solid @zs-border-color;
+        position:relative;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        .padding;
+        line-height: 1.25em;
+        padding-left: @zs-layout-left-margin;
+        white-space: normal;
+
+        small {
+            // We need to keep even the height of items of 2 lines or 1 line
+            display:block;
+            left: @left-margin;
+            line-height: 1em;
+
+            margin-top: -0.5*@item-height + 0.25em;
+            margin-bottom: 1.75em;
+            top: @zs-font-size-base;
+            font-size: @zs-font-size-small;
+        }
+
+        &:before {
+            content: " "; // ZSUI-564: because iOS 10.*.* required two clicks otherwise: first for hovering, second for action. This fix prevents it
+        }
+    } 
+    a.zs-active, li.zs-active >a {
+		
+        color: @zs-nav-color;
+		&:hover {
+			color: darken(@zs-nav-color, 5);
+		}
+
+        font-weight: bold;//550;
+    }
+	
+    a.zs-active:before, li.zs-active >a:before {
+        content: " ";
+        position: absolute;
+        height: @item-height+2;
+        top: -1px;
+        left: 0px;
+        border-left: @border-width solid @zs-nav-color;
+    }
+	a:hover:before {
+        position: absolute;
+        height: @item-height+2;
+        top: -1px;
+        left: 0px;
+		border-left: @border-width solid lighten(@zs-brand-primary, 30);
+	}
+	
+    a.zs-active:hover:before, li.zs-active >a:hover:before {
+		border-left: @border-width solid @zs-brand-primary;
+	}
+    
+    a:hover  {
+        color: @zs-brand-primary;
+    }
+
+    .child-nav(@background-darkness, @font-size, @left-margin){
+        background: darken(@zs-background, @background-darkness);
+        box-shadow: inset 0 3px 3px -3px @zs-shadow-color;
+        padding: 1px 0px;
+
+        >a, 
+        >a:visited {
+            .padding;
+            line-height: 1.25em;
+            padding-left: @zs-layout-left-margin + @left-margin;
+            font-size: @font-size;
+            white-space: normal;
+        } 
+        
+        >a:before, 
+        >a:visited:before {
+            content: " ";
+            position: absolute;
+            height: @item-height+2;
+            top: -1px;
+            left: 0px;
+            border-left: @border-width solid @zs-border-color;
+        }
+
+        >a:hover:before, 
+        >a:visited:hover:before{
+            border-left: @border-width solid lighten(@zs-nav-color, 30);
+        }
+
+        >a.zs-active:before, 
+        >a:visited.zs-active:before{
+            border-left: @border-width solid @zs-nav-color;
+        }
+
+        > a:last-child{
+            border-bottom: 0;
+        }
+
+        & + a {
+            box-shadow: 2px -3px 3px -3px @zs-shadow-color;
+        }
+
+        > & + a:before, 
+        > & + a:visited:before{
+            box-shadow: 2px -3px 3px -3px @zs-shadow-color;
+        }
+    }
+    
+    > nav {
+        .child-nav(2.5, @zs-font-size-base, @left-margin);
+        > nav {
+            .child-nav(5, @zs-font-size-small, @left-margin * 2);
+        }
+    }
+
+    >nav + a {
+        /* TODO: Pull from LESS variable? */
+        // box-shadow: 3px -3px 0px -1px #dee3e3; // Shadow
+        
+    }
+}
+
+// Custom margin to line-up elements on the page. Should be consistent across elements
+@zs-brand-margin: 40px;
+.zs-side-navigation {
+    a, a:visited {
+        padding-left: @zs-brand-margin;
+    }
+
+}

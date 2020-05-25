@@ -1,0 +1,117 @@
+<%- script(nodeModules + '/zsui-core/dist/animation/animate.js')%>
+<%- script(zsuiPath + '/drawer/drawer.js')%>
+<h2>Fixed drawers</h2>
+<p>
+	By defaut drawers have a fixed position.
+</p>
+
+<zs-drawer align="top">Top drawer</zs-drawer>
+<zs-drawer align="left">Left drawer</zs-drawer>
+<zs-drawer align="right">Right drawer</zs-drawer>
+<zs-drawer align="bottom">Bottom drawer with tag position</zs-drawer>
+
+<h2>Embeded drawer</h2>
+<p>Container needs to have a relative position with hidden overflow in order to have drawers inside.</p>
+<p>Use "embeded" attribute to enforce these extra necessary styles for the container and the drawer</p>
+<p>You can also use custom class "zs-gray" to set alternative background color for panels with no content</p>
+<div style="width:100%;height:200px;display:inline-block;border:1px solid #e1e9ef;max-width:600px">
+	<zs-drawer align="top" embeded class="zs-drawer">Embeded top</zs-drawer>
+	<zs-drawer align="right" class="zs-drawer zs-gray" embeded>Embeded gray</zs-drawer>
+	<zs-drawer align="left" class="zs-drawer" embeded>
+		<section>
+			<p>
+				Embeded left with scroll
+			</p>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit Drag. Donec bibendum. Drag, dui id gravida mattis, tortor neque imperdiet
+				dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate magna.
+				Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis.
+				Fusce ultricies vehicula posuere.
+			</p>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit Drag. Donec bibendum. Drag, dui id gravida mattis, tortor neque imperdiet
+				dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate magna.
+				Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis.
+				Fusce ultricies vehicula posuere.
+			</p>
+		</section>
+	</zs-drawer>
+	<div style="overflow:auto;position:absolute;top:0;right:0;left:0;bottom:0;padding:0.71em">
+		Add another container with absolute position
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit Drag. Donec bibendum. Drag, dui id gravida mattis, tortor neque imperdiet
+			dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate magna.
+			Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis.
+			Fusce ultricies vehicula posuere.
+		</p>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit Drag. Donec bibendum. Drag, dui id gravida mattis, tortor neque imperdiet
+			dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate magna.
+			Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis.
+			Fusce ultricies vehicula posuere.
+		</p>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit Drag. Donec bibendum. Drag, dui id gravida mattis, tortor neque imperdiet
+			dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate magna.
+			Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis.
+			Fusce ultricies vehicula posuere.
+		</p>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit Drag. Donec bibendum. Drag, dui id gravida mattis, tortor neque imperdiet
+			dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate magna.
+			Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis.
+			Fusce ultricies vehicula posuere.
+		</p>
+	</div>
+
+</div>
+
+<h2>Custom tag</h2>
+<p>You can customize drawer tag.</p>
+<div style="width:100%;height:200px;display:inline-block;border:1px solid #e1e9ef;max-width:600px">
+	<zs-drawer align="top" class="zs-drawer" embeded>
+		<toggle align="right">
+			<span class="zs-font-small">Small right</span>
+		</toggle>
+		Drawer with custom tag align to the left
+	</zs-drawer>
+	<zs-drawer align="right" class="zs-drawer" embeded open>
+		<toggle valign="bottom">
+			<span class="zs-font-small">Small bottom</span>
+		</toggle>
+		Drawer with custom tag aligned to the bottom
+	</zs-drawer>
+	<zs-drawer align="left" class="zs-drawer" embeded>
+		<toggle valign="top">
+			<span class="zs-font-large">Large top</span>
+		</toggle>
+		Drawer with custom large tag aligned to the top
+	</zs-drawer>
+
+
+	<zs-drawer align="bottom" class="zs-drawer" embeded>
+		<div role="toggle" align="left">
+			<a href="javascript:;" class="zs-icon zs-icon-globe"></a>
+		</div>
+		Drawer with custom icon tag
+	</zs-drawer>
+</div>
+
+
+<h2>Manual</h2>
+<script>
+	function toggle() {
+		console.log(this, arguments);
+		var drawer = document.getElementById('manualDrawer');
+		drawer.open = !drawer.open;
+	}
+</script>
+<p>
+	<a href="javascript:;" onclick="toggle()">Open</a>
+</p>
+
+<div style="width:100%;height:200px;display:inline-block;border:1px solid #e1e9ef;max-width:600px">
+	<zs-drawer align="top" class="zs-drawer zs-notag" id="manualDrawer" embeded>
+		Drawer with hidden tag
+	</zs-drawer>
+</div>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" manifest="zsui.appcache">
+
+<head>
+	<title>ZSUI Form demo</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<%- include('../../node_modules/zsui-core/demo/partials/zsEjs')%>
+	<%- link(nodeModules + '/zsui-core/dist/themes/{theme}/core.css')%>
+	<%- link(zsuiPath + '/themes/{theme}/forms.css')%>
+	<%- link(zsuiPath + '/themes/{theme}/choice.css')%>
+	<%- link(zsuiPath + '/themes/{theme}/datePicker.css')%>
+	<%- link(zsuiPath + '/themes/{theme}/select.css')%>
+	<%- link(zsuiPath + '/themes/{theme}/timePicker.css')%>
+	<%- link(zsuiPath + '/themes/{theme}/slider.css')%>
+	<%- link(zsuiPath + '/themes/{theme}/progressBar.css')%>
+	<%- link(zsuiPath + '/themes/{theme}/toggle.css')%>
+	<%- link(zsuiPath + '/themes/{theme}/tags.css')%>
+	<%- link(zsuiPath + '/themes/{theme}/filter.css')%>
+	<%- link(zsuiPath + '/themes/{theme}/dateRangePicker.css')%>
+
+	<%- script(nodeModules + '/zsui-core/dist/polyfills/polyfills.js')%>
+	<!-- <%- script(nodeModules + '/zsui-core/dist/utils/customElements.poly.js')%> -->
+	<%- script(nodeModules + '/zsui-core/dist/utils/customElements.js')%>
+	<style>
+		code.html {
+			max-height:25vh;
+		}
+	</style>
+</head>
+
+<body class="zs-style" style="padding:1em">

@@ -1,0 +1,23 @@
+.zs-layout-table >footer, .zs-layout-footer, .zs-layout-classic >footer {
+	div:first-child {
+		display:inline-block;
+		border-right:1px solid @zs-border-color;
+		width: @zs-layout-aside-width;
+		float:left;
+		height: 3em;
+		background: @zs-background;
+	}
+	div:first-child+div {
+		.padding(0,2,0,0);
+		span {
+			white-space: no-wrap;
+			margin-left:1em;
+		}
+	}
+
+	text-align:right;
+	font-size: @zs-font-size-small;
+	color: lighten(@zs-text-color, 30);
+	background: @zs-background-dark;
+	
+}

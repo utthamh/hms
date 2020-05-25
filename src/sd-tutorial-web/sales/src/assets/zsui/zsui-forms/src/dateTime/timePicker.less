@@ -1,0 +1,29 @@
+[is='zs-time-picker-field']{
+    span>input[type='text']{
+        min-width: 150px;
+        margin-bottom: -1px;
+    }    
+}
+//Adding styles for zs-menu from mixins
+.zs-menu {
+	.zs-menu();
+}
+.zs-timepicker{
+    border: 1px solid @zs-brand-gray;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    display: none;    
+    width:100%;
+    >nav{
+        @line-height: 1em + 2*@zs-font-padding-ratio; // 2 padding + line-height
+        max-height: @line-height*5; 
+        overflow-y: scroll;
+        
+		>a:extend(.zs-menu >nav >a all) {
+		}
+
+		>a[active]:extend(.zs-menu >nav >a.zs-active all) {
+		}
+		>a[hover]:extend(.zs-menu >nav >a:hover all){}
+    }
+}

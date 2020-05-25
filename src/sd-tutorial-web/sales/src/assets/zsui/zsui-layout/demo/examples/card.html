@@ -1,0 +1,212 @@
+<style>
+	.card-section1 {
+		display: inline-block;
+	}
+
+	.card-section2 {
+		display: inline-block;
+		float: right;
+	}
+</style>
+<h2>Cards</h2>
+
+<!--filter card-->
+<zs-card class="zs-card" filter>
+	<header>
+		<span>Title</span>
+		<span class="zs-icon zs-icon-duplicate zs-card-icon"></span>
+	</header>
+	<section>
+		Filter card.
+	</section>
+	<footer>
+		<span>Footer Content</span>
+	</footer>
+</zs-card>
+<!--Already on filter-->
+<zs-card class="zs-card" filter="on">
+	<header>
+		<span>Title</span>
+		<span class="zs-icon zs-icon-duplicate zs-card-icon"></span>
+	</header>
+	<section>
+		Already on filter
+	</section>
+	<footer>
+		<span>Footer Content</span>
+	</footer>
+</zs-card>
+<!--flippable card-->
+
+<zs-card class="zs-card" flippable>
+	<div class="zs-flip-card">
+		<div class="front">
+			<header>
+				<span>Title Front</span>
+			</header>
+			<section>
+				<div class="card-section1">
+					Front Section 1
+					<br>
+					<br>
+					<button class="zs-button">Button 1</button>
+				</div>
+				<div class="card-section2">
+					Front Section2
+					<br>
+					<br>
+					<button class="zs-button">Button 2</button>
+				</div>
+			</section>
+			<footer>
+				<a>View More</a>
+			</footer>
+		</div>
+		<div class="back">
+			<header>
+				<span>Title Back</span>
+			</header>
+			<section>
+				Flippable Back Section
+			</section>
+			<footer>
+				<a>View More Back</a>
+			</footer>
+		</div>
+	</div>
+</zs-card>
+
+<!--non-clickable card-->
+<zs-card class="zs-card" non-clickable>
+	<header>
+		<span>Non-clickable Card Title</span>
+	</header>
+	<section>
+		<div class="card-section1">
+			Non-clickable Section 1
+			<br>
+			<br>
+			<button class="zs-button">Button 1</button>
+		</div>
+		<div class="card-section2">
+			Non-clickable Section2
+			<br>
+			<br>
+			<button class="zs-button">Button 2</button>
+		</div>
+	</section>
+	<footer>
+		<button class="zs-button">View More</button>
+	</footer>
+</zs-card>
+
+<!--disabled card-->
+<zs-card class="zs-card zs-disabled">
+	<header>
+		<span>Title</span>
+	</header>
+	<section>
+		Disabled Card
+	</section>
+	<footer>
+		<a>View More</a>
+	</footer>
+</zs-card>
+<div id="card-container" style="display: inline-block"></div>
+<!--tiles-->
+
+<h2>Tiles</h2>
+<!--filter tile-->
+<zs-card class="zs-card" filter tile>
+	<header>
+		<span>Title</span>
+	</header>
+	<section>
+		144
+	</section>
+	<footer>
+		<span>Filter Tile</span>
+	</footer>
+</zs-card>
+<!--already on tile filter-->
+<zs-card class="zs-card" filter="on" tile>
+	<header>
+		<span>Title</span>
+	</header>
+	<section>
+		144
+	</section>
+	<footer>
+		<span>Already on filter</span>
+	</footer>
+</zs-card>
+<!--flippable tile-->
+<zs-card class="zs-card" tile flippable>
+	<div class="zs-flip-card">
+		<div class="front">
+			<header>
+				<span>Title Front</span>
+			</header>
+			<section>
+				F
+			</section>
+			<footer>
+				<span>Flippable tile</span>
+			</footer>
+		</div>
+		<div class="back">
+			<header>
+				<span>Title Back</span>
+			</header>
+			<section>
+				B
+			</section>
+			<footer>
+				<span>Flippable back side</span>
+			</footer>
+		</div>
+	</div>
+</zs-card>
+<!--non-clickable tile-->
+<zs-card class="zs-card" non-clickable tile>
+	<header>
+		<span>Title</span>
+	</header>
+	<section>
+		144
+	</section>
+	<footer>
+		<span>Non-clickable tile</span>
+	</footer>
+</zs-card>
+<!--disabled tile-->
+<zs-card class="zs-card zs-disabled" tile>
+	<header>
+		<span>Title</span>
+	</header>
+	<section>
+		15
+	</section>
+	<footer>
+		<a>Disabled tile</a>
+	</footer>
+</zs-card>
+<%- script(zsuiPath + '/card/card.js')%>
+<script>
+	var card = document.createElement('zs-card');
+	var container = document.querySelector('#card-container');
+	card.setAttribute("flippable", "");
+	card.render();
+	var titleSpan = card.headerEle.querySelector('span');
+	titleSpan.innerHTML = "Title Front";
+	card.sectionEle.innerHTML = "Card created using the zs.cardElement instance(Front Face)";
+	card.footerEle.innerHTML = "<a>View More</a>";
+	var backTitleSpan = card.backHeaderEle.querySelector('span');
+	backTitleSpan.innerHTML = "Title Back";
+	card.backSectionEle.innerHTML = "Card created using the zs.cardElement instance(Back Face)";
+	card.backFooterEle.innerHTML = "<a>View More</a>";
+	card.onFlip = function () {
+		console.log("Card Flipped");
+	}
+	container.appendChild(card);
+</script>

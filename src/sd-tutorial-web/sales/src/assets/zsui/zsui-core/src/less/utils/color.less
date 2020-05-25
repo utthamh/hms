@@ -1,0 +1,75 @@
+//Defining background colors
+@primary:@zs-brand-primary;
+@brand-dark:@zs-brand-dark;
+@gray:@zs-brand-gray;
+@darkgray:@zs-brand-darkgray;
+
+@standard:@zs-background;
+@dark:@zs-background-dark;
+
+@link:@zs-link-normal;
+@link-hover:@zs-link-hover;
+
+@success:lighten(@zs-status-success,50%);
+@error:lighten(@zs-status-error,55%);
+@warning:lighten(@zs-status-warning,50%);
+@info:lighten(@zs-status-info,50%);
+
+@tab:@zs-background-tab;
+@selected:@zs-selected-color;
+
+@border:@zs-border-color;
+@border-error:@zs-border-color-error;
+@shadow:@zs-shadow-color;
+
+//Defining text colors
+@default:@zs-text-color;
+@light:@zs-text-light;
+@footer:lighten(@zs-text-color, 30);
+@text-error:darken(@zs-status-error,10%);
+@text-success:darken(@zs-status-success,10%);
+@text-warning:darken(@zs-status-warning,10%);
+@text-info:darken(@zs-status-info,10%);
+
+//Defining chart colors
+@chart-1:@zs-chart-color1;
+@chart-2:@zs-chart-color2;
+@chart-3:@zs-chart-color3;
+@chart-4:@zs-chart-color4;
+@chart-5:@zs-chart-color5;
+@chart-6:@zs-chart-color6;
+@chart-7:@zs-chart-color7;
+
+//Adding background colors to list
+@bg-color-list: primary,brand-dark,gray,darkgray,standard,dark,link,link-hover,success,error,warning,info,tab,selected,border,border-error,shadow,chart-1,chart-2,chart-3,chart-4,chart-5,chart-6,chart-7;
+
+//Generating background classes
+
+.bg-color-generator(@color-list, @i: length(@color-list)) when (@i > 0) {
+    @color-name: extract(@color-list, @i);
+
+    .zs-bg-@{color-name} {
+        background: @@color-name !important;
+    }
+    .bg-color-generator(@color-list, @i - 1);
+}    
+
+.bg-color-generator(@bg-color-list);
+
+
+//Adding text colors to list
+@text-color-list: default, light, footer, text-error, text-success, text-warning, text-info;
+
+//Generating text color classes
+.text-color-generator(@color-list, @i: length(@color-list)) when (@i > 0) {
+    @color-name: extract(@text-color-list, @i);
+    @selector: e(replace("@{color-name}", "text-", ""));
+    
+    .zs-text-@{selector} {
+        color: @@color-name !important;
+    }        
+    
+    .text-color-generator(@color-list, @i - 1);
+}
+
+.text-color-generator(@text-color-list);

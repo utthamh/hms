@@ -1,0 +1,34 @@
+.zs-filter{
+	position: relative;
+	div[overlay]{
+		color: @zs-link-normal;
+		position: relative;
+		padding-right: 0.5em;
+		border: 1px solid transparent;	
+	}
+	.zs-select{
+		min-width: 0px;
+	}
+	.zs-menu{
+		min-width: 200px;
+	}
+	.zs-search-dropdown{
+		border-radius:0;
+		z-index: @zs-layer-3; 
+	}
+	.zs-select.zs-filter-open{
+		box-shadow: 0 3px 6px @zs-shadow-color;
+		div[overlay]{
+		border: 1px solid @zs-border-color;
+		border-bottom-color: @zs-background;
+		background: @zs-background;
+		z-index: @zs-layer-3+ 1 ;
+		}
+	}
+	.zs-select:after{
+		display: none;
+	}
+	.zs-filter-icon{
+		.margin(0,0,0,1);
+	}
+}

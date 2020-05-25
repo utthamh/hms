@@ -1,0 +1,114 @@
+@zs-carousel-controller-width: 2*@zs-extra-extra-large;
+@zs-carousel-side-overlay-color: @zs-background;
+@zs-carousel-indicator-dimension: @zs-font-size-extra-small;
+.zs-carousel{
+    position: relative;
+    overflow: hidden;
+    &[slider] .zs-carousel-container{
+        white-space: nowrap;
+        overflow: auto;
+       -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: none;  // IE 10+
+        scrollbar-width: none;  // Firefox
+        &::-webkit-scrollbar { 
+            display: none;  // Safari and Chrome
+        }
+        .zs-card[tile]{
+            .margin(1,1,1,1);
+        }
+        ~span.carousel-controller-back, ~span.carousel-controller-forward{
+            height: 100%;
+        } 
+    }
+    &:not([slider]) .zs-carousel-container{
+        display: grid;
+        grid-template-columns: ~"calc(100% - @{zs-carousel-controller-width}) calc(100% - @{zs-carousel-controller-width}*2) calc(100% - @{zs-carousel-controller-width})";
+        display: -ms-grid;
+        -ms-grid-columns: ~"calc(100% - @{zs-carousel-controller-width}) calc(100% - @{zs-carousel-controller-width}*2) calc(100% - @{zs-carousel-controller-width})";
+        transition: -webkit-transform 0.5s ease 0s;
+        transition: transform 0.5s ease 0s;
+        transition: transform 0.5s ease 0s, -webkit-transform 0.5s ease 0s;
+        >section{
+            >div{
+                .padding(1,1,1,1);
+            }
+            .zs-card{
+                width: 100%;
+                .margin(0,0,0,0);
+            }
+            &:nth-of-type(1){
+                grid-column: 1;
+                -ms-grid-column: 1;
+                -ms-grid-column-span: 1;
+            }
+            &:nth-of-type(2){
+                grid-column: 2;
+                -ms-grid-column: 2;
+                -ms-grid-column-span: 1;
+    
+            }
+            &:nth-of-type(3){
+                grid-column: 3;
+                -ms-grid-column: 3;
+                -ms-grid-column-span: 1;
+    
+            }
+        }
+        
+    }
+    .carousel-indicator-container {
+        width: 100%;
+        text-align: center;
+      }
+      .carousel-indicator {
+        height: @zs-carousel-indicator-dimension;
+        width: @zs-carousel-indicator-dimension;
+        border-radius: 100%;
+        display: inline-block;
+        z-index: 2;
+        cursor: pointer;
+        opacity: 0.2;
+        .margin(0,0.5,0,0.5);
+        &[active]{
+            opacity: 1;
+            transition: opacity 0.5s;
+            -webkit-transition: opacity 0.5s;
+        }
+      }
+     
+
+    span.carousel-controller-back, span.carousel-controller-forward {
+        position: absolute;
+        text-decoration: none;
+        width: @zs-carousel-controller-width;
+        .padding(2,2,2,2);
+        text-align: center;
+        z-index: 1;
+        height: ~'calc(100% - @{zs-carousel-indicator-dimension})';
+        &:nth-of-type(1){
+            left: 0;
+            top: 0;
+            bottom: 0
+
+        }
+        &:nth-of-type(2){
+            right: 0;
+            top:0;
+            bottom: 0;
+        }
+        a{
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+        .side-overlay{
+            position: absolute;
+            top: 0;
+            left:0;
+            bottom:0;
+            right: 0;
+            opacity: 0.5;
+            background: @zs-carousel-side-overlay-color;
+        }
+    }
+}

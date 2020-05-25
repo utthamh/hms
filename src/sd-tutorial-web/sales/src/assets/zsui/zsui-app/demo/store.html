@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ZSUI Store</title>    
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> 		
+	<meta name="viewport" content="width=device-width">	
+	
+	<!-- Decorative Styles -->
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/core.css">
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/forms.css">
+	<style>
+		.zs-style {padding: 2em;}
+	</style>
+
+	<!-- Dependencies -->
+	<script src="./service/store.js"></script>
+	<script src="./service/localStore.js"></script>
+</head>
+
+<body class="zs-style">
+
+<h1>Store</h1>
+<p>We often want to store data between sessions or just cache it.</p><p>This examples shows how we can store a value for some time in memory or in LocalStorge.</p>
+<form class="zs-from" onsubmit="return false;" name="store">
+	<p class="zs-field">
+		<label>Value to store: <input type="number" name="value" min="1" max="10" value="5"></label>
+	</p>
+	<p class="zs-field">
+		<label>Expire in: <input type="number" name="expire" min="0" max="10"> seconds</label>
+	</p>	
+	<p class="zs-field">
+		<button class="zs-button" name="location" value="memory" onclick="storeMyValue();">Save in memory</button>
+		<button class="zs-button" name="location" value="storage" onclick="storeMyValueInStorage();">Save in Storage</button>
+		<button class="zs-button" name="clear"  onclick="clearStore();">Clear</button>
+	</p>
+	<p class="zs-field">
+		<label>Memory Content: <input type="number" min="0" max="10" name="memory" readonly></label>
+	</p> 
+	<p class="zs-field">
+		<label>Storage Content: <input type="number" min="0" max="10" name="storage" readonly></label>
+	</p>
+</form>
+<script>
+	var Store = window.storeM.default;
+	var LocalStore = window.localStoreM.default;
+	var store = new Store();
+	var localStore = new LocalStore();
+	var key = 'myKey'; // storage item key	
+	var form = document.forms.store;
+
+	// Check localStorage
+	form.elements.storage.value = localStore.getItem(key);
+	
+	function clearStore() {		
+		store.removeItem(key);
+		localStore.removeItem(key)
+		form.elements.memory.value = store.getItem(key) || '';
+		form.elements.storage.value = localStore.getItem(key) || '';
+	}
+
+	function storeMyValueInStorage() {
+		var value = Number(form.elements.value.value);
+		var expire = Number(form.elements.expire.value);
+		
+		localStore.setItem(key, value, expire||0);
+		if (expire) {
+			setTimeout(function() {
+				form.elements.storage.value =localStore.getItem(key, true);
+			},1000*(expire + 1));
+		}
+		var storageValue = localStore.getItem(key);		
+		form.elements.storage.value = localStore.getItem(key);
+	}
+
+	function storeMyValue() {
+		var value = Number(form.elements.value.value);
+		var expire = Number(form.elements.expire.value);
+		
+		store.setItem(key, value, expire||0);
+		if (expire) {
+			setTimeout(function() {
+				form.elements.memory.value = store.getItem(key, true);
+			},1000*(expire + 1));
+		}
+		form.elements.memory.value = store.getItem(key);
+	}
+</script>
+</body>
+</html>

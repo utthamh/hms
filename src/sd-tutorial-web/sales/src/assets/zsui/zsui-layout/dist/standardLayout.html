@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" manifest="zsui.appcache">
+<head>
+	<title>ZSUI Layout</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	
+	<!-- Demo scripts  -->
+	<script src="demo.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+	<style>
+	.hljs {
+    	padding: 0.5em !important; /*Since core.css loads later and resets all spacing, we need to use !important here.*/
+	}
+	</style>
+	<script>
+	zs.demo.setPaths();
+	zs.demo.addUrlFixes({"nodejs":{},"npm":{"../node_modules/":"../../"},"nuget":{"../node_modules/zsui-[\\w]+/dist":"./"},"s3":{"../node_modules/zsui-[\\w]+/dist/":"./"}});
+	</script>
+ 
+	<script>zs.demo.script("../node_modules/zsui-core/dist/polyfills/polyfills.js");</script>
+	<script>zs.demo.script("../node_modules/zsui-core/dist/utils/customElements.js");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/core.css");</script>
+	<script>zs.demo.link("./themes/{theme}/accordion.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/tabs.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/wizard.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/card.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/drawer.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/toggleTabs.min.css");</script>
+
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/colorUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/displayUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/positionUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/alignUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/borderUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/spaceUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/sizeUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/shadowUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/floatUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/responsiveDisplayUtils.css");</script>
+
+</head>
+<body class="zs-style zs-layout-table" style="padding:1em">
+
+<script>zs.demo.link("./themes/{theme}/layout.min.css");</script>
+
+<script>zs.demo.link("./themes/{theme}/header.min.css");</script>
+
+<script>zs.demo.link("./themes/{theme}/footer.min.css");</script>
+
+
+<div class="zs-layout-table">
+	<header>
+		<h2>Header</h2>
+	</header>
+	<section>
+		<main>
+			<header>Page title</header>
+			<section>
+				<form class="zs-form">
+					<fieldset class="zs-fieldset">
+						<p>
+							<span class="zs-radio-group">
+								<input type="radio" name="layoutType" value="2col" checked="">Primary layout
+								<input type="radio" name="layoutType" value="1col">1 Column layout
+							</span>
+						</p>
+					</fieldset>
+				</form>
+			</section>
+			<aside>
+				<span>Side navigation</span>
+			</aside>
+		</main>
+	</section>
+	<footer>
+		<div>&nbsp;</div>
+		<div>Footer</div>
+	</footer>
+</div>
+<script>
+	function switchLayout(e) {
+		if (e.target.value == '1col') {
+			document.querySelector('div.zs-layout-table').classList.add('zs-layout-1col');
+		} else {
+			document.querySelector('div.zs-layout-table').classList.remove('zs-layout-1col');
+		}
+	}
+
+	document.querySelector('.zs-radio-group').addEventListener('click', switchLayout);
+</script>
+
+<script>
+	if (zs && zs.demo) {
+		zs.demo.adjustCss();
+		zs.demo.applyTheme();
+		zs.demo.highlight();
+	}
+</script>
+
+</body>
+</html>

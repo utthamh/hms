@@ -1,0 +1,310 @@
+﻿<%- script(zsuiPath + '/tables/tableElement.js')%>
+<%- script(zsuiPath + '/tables/editableTable.js')%>
+<%- link(zsuiPath + '/themes/{theme}/editable.css')%>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+<h2>Editable table</h2>
+<p>Tables can be used to display data. Sometimes we need to edit the data. While we can use form fields for
+	that it may bring many performance problems.</p>
+
+<p>We provide a dedicated behavior "zs.tableEditable" to help you edit data in tables. You can use it with "zs.tableElement" custom element to edit tables.</p>
+
+<h2>For example</h2>
+<div is="zs-table-editable" class="zs-edit" style="max-height:400px;overflow: auto;display:inline-block;"></div>
+	<script>
+		// Define a custom field element 
+		zs.customElement(HTMLElement, 'zs-custom-field', null, [{
+
+			// Render field element
+			renderField: function () {
+				this.fieldElement = document.createElement('input');
+				this.fieldElement.setAttribute('type', 'text');
+				if (this._tabIndex != null) {
+					this.fieldElement.tabIndex = this._tabIndex;
+				}
+
+				// Events
+				zs.pipeEvent('blur', this.fieldElement, this); // Blur doesn't bubble
+				zs.pipeEvent('focus', this.fieldElement, this); // Focus doesn't bubble
+				// But change event bubbles.
+
+				this.fieldElement.setAttribute('value', this.value);
+				this.appendChild(this.fieldElement);
+			},
+
+			// Add focus method
+			focus: function () {
+				var self = this;	
+				setTimeout(function() { // IE11
+					self.fieldElement.focus();
+				})
+			},
+
+			events: {
+				attach: function() {
+					this.classList.add('zs-field');
+					this.renderField();
+				},
+				change: function() {
+					this.value = this.fieldElement.value;
+				}
+			}
+
+		}]);
+
+
+		// Define an editable table element
+		zs.editableTableElement = zs.customElement(HTMLDivElement, 'zs-table-editable', 'div', [zs.loading, zs.table, zs.tableEditable, {
+			createField: function (data, rowIndex, colIndex) {
+				var field;
+				// Create different fields
+				switch (colIndex) {
+					case '1': // Custom field						
+						field = document.createElement('zs-custom-field');
+						field.value = data;
+						field.setAttribute('type', 'text');
+						field._tabIndex = 2;
+						return field;
+					case '2': // Checkbox
+						var value; // boolean
+						if (typeof data == 'string') {
+							value = (data === 'true');
+						}
+						else {
+							value = !!data;
+						}
+						console.log('checkbox', data, typeof data);
+						field = $('<span class="zs-checkbox"><input type="checkbox" ' + (value ? 'checked' : '') + ' tabindex="2"></span>')[0];
+						field._originalValue = value;
+
+						// Since checkbox has a wrapper we need to listen change event and propagate changes further
+						$(field).find('input').on('change', function () {
+							this.parentElement.value = this.checked;
+							this.parentElement.dispatchEvent(new CustomEvent('change'));
+						}).on('click', function (e) {
+							e.stopPropagation();
+						});
+						field.focus = function () {
+							this.firstChild.focus();
+						}
+						return field;
+					case '4': // Textbox
+						field = document.createElement('textarea');
+						field.innerHTML = data;
+						field.classList.add('zs-input');
+						field.tabIndex = 2;
+						return field;
+					case '6': // Array
+						var value = data;
+						var html = '<span class="zs-select"><select tabindex="2">';
+						var values = [1, 2, 3, 4, 5];
+						values.forEach(function (v) {
+							html += '<option value="' + v + '"' + (v == value ? ' selected' : '') + '>' + v + '</option>';
+						})
+						html += '</select></span>';
+
+						field = $(html)[0];
+						$(field).find('select').on('change', function() {
+							this.parentElement.value = this.options[this.selectedIndex].value;
+							this.parentElement.dispatchEvent(new CustomEvent('change'));
+						});
+
+						field.focus = function () {
+							this.firstChild.focus();
+						}
+						return field;
+					default: // Just a custom input element					
+						field = document.createElement('input');
+						field.value = data;
+						field.classList.add('zs-input');
+						field.setAttribute('type', 'text');
+						field.tabIndex = 2;
+						return field;
+
+				}
+
+			},
+			formatCell: function (data, rowIndex, colIndex, editMode) {
+				return data;
+			},
+			isEditable: function (data, rowIndex, colIndex) {
+				if (colIndex == 3) { return false; }
+				return true;
+			},
+		}]);
+		(function () {
+			var itemsCount = 10;
+			function getData() {
+				return new Promise(function (resolve, reject) {
+					var arr = [];
+					for (let i = 0; i < itemsCount; i++) {
+						let row = [];
+						for (let j = 0; j < 10; j++) {
+							if (j == 2) { // Checkbox
+								row.push(true);
+							} else if (j == 6) {
+								row.push(4); // Select one of items from array;
+							} else {
+								row.push('Cell ' + (i + 1) + ',' + (j + 1));
+							}
+						}
+						arr.push(row);
+					}
+					resolve(arr);
+				});
+
+			}
+
+			var table = $('[is="zs-table-editable"]')[0];
+			table.getTableData = getData;
+			table.headData = ['Input', 'Field', 'Checkbox', 'Readonly', 'Text', 'Column 5', 'Select', 'Column 8', 'Column 9', 'Column 10'];
+			table.refreshTable();
+		})();
+	</script>
+</div>
+
+<p>Click on cells to edit them. You can customize how edit mode and read mode will be displayed for each type of cell.</p>
+<h2>Follow these steps to create an editable table</h2>
+<p>1. Include necessary files</p>
+<code for="step1" class="html hljs"></code>
+<div id="step1" class="zs-hidden">
+	<!---...
+	<link rel="stylesheet" href="zsui/themes/zs/tables.css">
+	<link rel="stylesheet" href="zsui/themes/zs/editable.css">
+	...
+	<script src="zsui/utils/customElements.poly.js"></script>
+	<script src="zsui/utils/customElements.js"></script>
+	<script src="zsui//tables/tableElement.js"></script>
+	<script src="zsui/tables/editableTable.js"></script>//-->
+</div>
+<p>2. Define a new custom element for our tables.</p>
+<code for="step2" class="html hljs"></code>
+<div id="step2">
+	<script>
+		
+		// Define our custom editable table element
+		zs.customElement(HTMLElement, 'zs-my-editable', null, [zs.table, zs.tableEditable, {
+			// Customize how to display each cell in edit mode 
+			createField: function (data, rowIndex, colIndex) {
+				if (colIndex == '0') { // Strip html since we use custom formatting
+					arguments[0] = jQuery(arguments[0]).text(); 
+					return zs.tableEditable.createField.apply(this,arguments);
+				} else if (colIndex == '3') { // Make 4th column as textbox
+					field = document.createElement('textarea');
+					field.innerHTML = data;
+					field.classList.add('zs-input');
+					field.tabIndex = 2;
+					return field;
+				} else { // Call original function for the rest of the cells
+					return zs.tableEditable.createField.apply(this,arguments);
+				}
+			},
+			// Customize how to display our cells in read mode
+			formatCell: function (data, rowIndex, colIndex) {
+				if (colIndex == 0) {
+					return '<span style="border:1px solid green">' + data +'</span>';
+				}
+				return data;
+			},
+			// Make 3rd column read only
+			isEditable: function (data, rowIndex, colIndex) {
+				if (colIndex == 2) { return false; }
+				return true;
+			},
+			events: {
+				// Detect a change 
+				cellchange: function(e) {
+					console.log('Detected cell change event', e , '  New value ', this.data[Number(e.detail.rowIndex)][Number(e.detail.colIndex)]);
+				}
+			}
+		}]);
+	</script>	
+</div>
+<p>3. Add an instance of our new custom editable table element to the DOM and fill it with data.</p>
+<code for="step3" class="html hljs"></code>
+<div id="step3">
+	<h3>Custom editable table</h3>
+	<zs-my-editable class="zs-edit" style="display:block"></zs-my-editable>
+	<script>
+		// Create a custom table data source
+		function myDataSource() {
+			var itemsCount = 5, columnCount = 5;
+			return new Promise(function (resolve, reject) {
+				var arr = [];
+				for (let i = 0; i < itemsCount; i++) {
+					let row = [];
+					for (let j = 0; j < columnCount; j++) {
+						if (j == 3) { // Textfield
+							row.push('My text');
+						} else {
+							row.push('Cell ' + (i + 1) + ',' + (j + 1));
+						}
+					}
+					arr.push(row);
+				}
+				resolve(arr);
+			});
+		};		
+
+		// When document ready
+		$(function() {
+			// Yield to code highlighting. Not needed in actual application
+			setTimeout(function() {
+				// Select our table from the DOM
+				var myTable =  document.querySelector("zs-my-editable");
+
+				// Set a custom data source
+				myTable.getTableData = myDataSource;
+
+				// Optionally set the table header
+				myTable.headData = ['Column 1', 'Column 2', 'Readonly', 'Text', 'Column 5'];
+
+				// Display data
+				myTable.refreshTable();			
+			});
+		});
+	</script>
+</div>
+
+<p>
+	See <a href="docs/zs.tableEditable.html">documentation</a> for more information.
+</p>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+	function escapeRegExp(str) {
+  		return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+	}
+	function replaceAll(string, search, replacement){
+		var newString = string;
+		if (!$.isArray(search)) {
+			search = [search];
+		}
+		if (!$.isArray(replacement)) {
+			replacement = [replacement];
+		}
+
+		for(var i=0;i<search.length;i++) {
+			newString = newString.replace(search[i], replacement[i]);
+		}
+
+		return newString;
+	}
+    $(function() {
+		$('code[for]').each(function() {
+			// Get source code
+			var sourceId = $(this).attr('for');
+			var $source = $('#' + sourceId);
+			if (!$source.length) {return;}
+			var html = $source[0].innerHTML;
+			// Fix links
+			html = html.replace('<!---', '');
+			html = html.replace('//-->', '');
+			var results = hljs.highlight('html', html);
+			if (results.value) {			
+				var code = results.value;
+				this.innerHTML = '<pre>' + code + '</pre>';
+			}
+		});
+	});
+</script>

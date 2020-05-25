@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" manifest="zsui.appcache">
+
+<head>
+	<title>ZSUI Form demo</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	
+	<!-- Demo scripts  -->
+	<script src="demo.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+	<style>
+	.hljs {
+    	padding: 0.5em !important; /*Since core.css loads later and resets all spacing, we need to use !important here.*/
+	}
+	</style>
+	<script>
+	zs.demo.setPaths();
+	zs.demo.addUrlFixes({"nodejs":{},"npm":{"../node_modules/":"../../"},"nuget":{"../node_modules/zsui-[\\w]+/dist":"./"}});
+	</script>
+
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/core.css");</script>
+	<script>zs.demo.link("./themes/{theme}/forms.css");</script>
+	<script>zs.demo.link("./themes/{theme}/choice.css");</script>
+	<script>zs.demo.link("./themes/{theme}/datePicker.css");</script>
+	<script>zs.demo.link("./themes/{theme}/select.css");</script>
+	<script>zs.demo.link("./themes/{theme}/timePicker.css");</script>
+	<script>zs.demo.link("./themes/{theme}/slider.css");</script>
+	<script>zs.demo.link("./themes/{theme}/progressBar.css");</script>
+	<script>zs.demo.link("./themes/{theme}/toggle.css");</script>
+	<script>zs.demo.link("./themes/{theme}/tags.css");</script>
+	<script>zs.demo.link("./themes/{theme}/filter.css");</script>
+	<script>zs.demo.link("./themes/{theme}/dateRangePicker.css");</script>
+
+	<script>zs.demo.script("../node_modules/zsui-core/dist/polyfills/polyfills.js");</script>
+	<!-- <script>zs.demo.script("../node_modules/zsui-core/dist/utils/customElements.poly.js");</script> -->
+	<script>zs.demo.script("../node_modules/zsui-core/dist/utils/customElements.js");</script>
+	<style>
+		code.html {
+			max-height:25vh;
+		}
+	</style>
+</head>
+
+<body class="zs-style" style="padding:1em">
+
+<!--Styles added for demo purpose. Not part of forms package-->
+<style>
+
+.zs-grid-col-1-3 {
+  float: left;
+  width: 33.33333333%;
+  margin-right: 0;
+  box-sizing: border-box;
+}
+.zs-grid-col-1-3:last-child {
+  margin-right: 0;
+}
+.zs-grid-col-3-3 {
+  float: left;
+  width: 8.33333333%;
+  margin-right: 0;
+  box-sizing: border-box;
+}
+.zs-grid-col-2-3 {
+  float: left;
+  width: 66.66666667%;
+  margin-right: 0;
+  box-sizing: border-box;
+}
+.zs-grid-col-2-3:last-child {
+  margin-right: 0;
+}
+.zs-callout-box {
+  border: 1px solid #d0dde6;
+  border-radius: 0.3em;
+  display: block;
+  width: 100%;
+}
+.zs-callout-box > header {
+  background: #e5eaef;
+  font-size: 0.92857143em;
+  font-weight: bold;
+  min-height: 34px;
+  height: 34px;
+  padding: 0.639em 0.71em 0.639em 0.71em;
+  vertical-align: bottom;
+}
+.zs-callout-box > section {
+  padding: 0.71em 0.71em 0.71em 0.71em;
+}
+.zs-callout-box a {
+  display: inline-block;
+  word-break: break-all;
+}
+</style>
+<div data-page="forms">
+	<form id="myForm" class="zs-form zs-grid-row">
+		<div class="zs-grid-col-2-3 zs-space" padding="0,1,0,0">
+			<p class="zs-message" style="display:none">Validation message for the form</p>
+			<fieldset>
+				<legend>Field group label</legend>
+				<p validate>
+					<label>Text</label>
+					<input type="text" placeholder="Text" />
+					<span class="zs-message" style="display:none">Validation message for the field</span>
+				</p>
+
+				<p validate>
+					<label>Password</label>
+					<input type="password" placeholder="Password" />
+					<span class="zs-message" style="display:none">Validation message for the field</span>
+				</p>
+
+				<p validate>
+					<label>Textarea</label>
+					<textarea placeholder="Textarea"></textarea>
+					<span class="zs-message" style="display:none">Validation message for the field</span>
+				</p>
+				<p validate>
+					<label>Select</label>
+					<span class="zs-select">
+						<select>
+							<option>Select...</option>
+						</select>
+					</span>
+					<span class="zs-message" style="display:none">Validation message for the field</span>
+				</p>
+				<p validate>
+					<label>Checkboxes</label>
+					<span class="zs-checkbox-group">
+						<span class="zs-checkbox">
+							<input type="checkbox" />Check</span>
+						<br/>
+						<span class="zs-checkbox">
+							<input type="checkbox" />Check</span>
+					</span>
+					<span class="zs-message" style="display:none">Validation message for the field</span>
+				</p>
+				<p validate>
+					<label>Inline checkboxes</label>
+					<span class="zs-checkbox">
+						<input type="checkbox" />Check</span>
+					<span class="zs-checkbox">
+						<input type="checkbox" />Check</span>
+					<span class="zs-message" style="display:none">Validation message for the field</span>
+				</p>
+				<p validate>
+					<label>Single checkbox</label>
+					<span class="zs-checkbox">
+						<input type="checkbox" />Check</span>
+					<span class="zs-message" style="display:none">Validation message for the field</span>
+				</p>
+				<p validate>
+					<label>Radiobuttons</label>
+					<span class="zs-radio-group">
+						<input type="radio" name="radiobutton" />Option 1
+						<br/>
+						<input type="radio" name="radiobutton" />Option 2</span>
+					<span class="zs-message" style="display:none">Validation message for the field</span>
+				</p>
+				<p validate>
+					<label>Search icon field</label>
+
+					<span class="zs-input-icon zs-icon-search  zs-field" validate>
+
+						<input type="text" class="zs-input" placeholder="Search...">
+					</span>
+					<span class="zs-message" style="display:none">Validation message for the field</span>
+				</p>
+
+			</fieldset>
+
+			<table class="zs-data-table">
+				<caption>Compact validation</caption>
+				<tbody>
+					<tr>
+						<td>Compact validation</td>
+						<td class="zs-field zs-compact" validate>
+							<input type="text" class="zs-input" />
+							<span class="zs-message" style="display:none">Validation message for the field</span>
+						</td>
+					</tr>
+					<tr>
+						<td>Normal validation</td>
+						<td class="zs-field" validate>
+							<input type="text" class="zs-input" />
+							<span class="zs-message" style="display:none">Validation message for the field</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+
+			<p class="zs-search-button zs-field">
+				<span class="zs-input-icon zs-icon-search" validate>
+					<input type="text" class="zs-input" placeholder="Search...">
+				</span>
+				<button class="zs-button zs-button-action">Search</button>
+			</p>
+
+			<p>
+				<button type="reset" class="zs-button">Button</button>
+				<button class="zs-button zs-button-action">Action</button>
+				<input type="submit" value="Submit">
+				<input type="button" value="Input button" />
+				<a class="zs-button" href="">Link button</a>
+			</p>
+			<p>
+				<a href="javascript:void(0)">Cancel</a>
+				<button type="submit" class="zs-button zs-button-action">Submit</button>
+			</p>
+
+			<h2>Input boxes with an attached button</h2>
+			<div class="zs-button-attached">
+				<input type="text" class="zs-input" placeholder="Search...">
+				<button class="zs-button zs-button-action zs-icon-search"></button>
+			</div>
+
+			<h2>Button with an icon</h2>
+			<button class="zs-button zs-icon zs-icon-delete">
+				Delete
+			</button>
+
+			<button class="zs-button zs-button-action zs-icon zs-icon-add">
+				Add
+			</button>
+
+			<button class="zs-button zs-button-action zs-icon zs-icon-add" disabled="disabled">
+				Disabled
+			</button>
+
+			<h2>Input box with an icon</h2>
+			<div class="zs-input-icon zs-icon-search">
+				<input type="text" class="zs-input" value="Search..." />
+			</div>
+			<div class="zs-input-icon zs-disabled zs-icon-search">
+				<input type="text" class="zs-input" value="Search..." />
+			</div>
+
+			<h2>Dropdown</h2>
+			<div class="zs-select">
+				<select>
+					<option>Select...</option>
+				</select>
+			</div>
+			<div class="zs-select zs-disabled">
+				<select>
+					<option>Select...</option>
+				</select>
+			</div>
+		</div>
+		<div class="zs-grid-col-1-3">
+			<div id="settings" class="zs-radio-group zs-callout-box zs-right">
+				<header>Settings</header>
+				<section>
+					<h3>Validation messages</h3>
+					<input type="radio" name="validationChoice" value="zs-error">Show errors
+					<br/>
+					<input type="radio" name="validationChoice" value="zs-warning">Show warnings
+					<br/>
+					<input type="radio" name="validationChoice" value="zs-info">Show notes
+					<br/>
+					<input type="radio" name="validationChoice" value="zs-success">Show success
+
+					<!--<h3>Page level message</h3>
+			<button class="zs-button" showMessage>Show message</button>-->
+
+				</section>
+
+
+			</div>
+		</div>
+
+	</form>
+</div>
+<script>zs.demo.script("../node_modules/zsui-core/dist/tooltip/jquery.zsTooltip.js");</script>
+<script defer>
+
+	function showMessages(type) {
+		$('#myForm').find('.zs-error,.zs-warning,.zs-info,.zs-success')
+			.removeClass('zs-error')
+			.removeClass('zs-warning')
+			.removeClass('zs-info')
+			.removeClass('zs-success');
+
+		// Add validation state for the field
+		$('#myForm').find('[validate]').addClass(type);
+
+		// Inline messages
+		$('#myForm').find('p>.zs-message,.zs-field>.zs-message').show();
+
+		// Form message
+		$('#myForm').find('>div>.zs-message').addClass(type).show();
+
+	}
+
+	$(document).ready(function () {
+
+		$('#settings input[type="radio"]').click(function () {
+			var value = $(this).val();
+			showMessages(value);
+
+		});
+		$('[data-page="forms"] [showMessage]').click(function () {
+			app.params.message = 'Save changes';
+			app.applyParams();
+			return false;
+		});
+
+
+		$('.zs-field.zs-compact .zs-message').each(function (i, e) {
+			var msg = $(e).text();
+			$(e).zsTooltip({
+				alignment: 'center',
+				arrowAlignment: 'center',
+				text: msg,
+				triggers: 'click hover'
+			});
+		});
+
+	});
+</script>
+
+<script>
+	if (zs && zs.demo) {
+		zs.demo.adjustCss();
+		zs.demo.applyTheme();
+		zs.demo.highlight();
+	}
+</script>
+</body>
+</html>

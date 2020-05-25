@@ -1,0 +1,801 @@
+	<%- script(zsuiPath + '/mobile/zsMobile.js')%>
+	<!-- <script src="../../node_modules/stickybits/dist/stickybits.js"></script> -->
+
+	<%- link(nodeModules + '/zsui-core/dist/themes/{theme}/core.css')%>
+	<%- link(nodeModules + '/zsui-nav/dist/themes/{theme}/topNav.css')%>
+	<%- link(nodeModules + '/zsui-nav/dist/themes/{theme}/sideNav.css')%>
+	<%- link(nodeModules + '/zsui-nav/dist/themes/{theme}/breadcrumbs.css')%>
+	<%- link(nodeModules + '/zsui-forms/dist/themes/{theme}/forms.css')%>
+	<%- link(nodeModules + '/zsui-message/dist/themes/{theme}/messages.css')%>
+
+	<%- link(zsuiPath + '/themes/{theme}/layoutPage.css') %>
+	<%- link(zsuiPath + '/themes/{theme}/header.css') %>
+	<%- link(zsuiPath + '/themes/headerFixes.css') %>
+	<%- link(zsuiPath + '/themes/{theme}/footer.css') %>		
+		
+	<%- link(nodeModules + '/zsui-core/dist/themes/{theme}/colorUtils.css')%>
+	<%- link(nodeModules + '/zsui-core/dist/themes/{theme}/displayUtils.css')%>
+	<%- link(nodeModules + '/zsui-core/dist/themes/{theme}/borderUtils.css')%>
+	<%- link(nodeModules + '/zsui-core/dist/themes/{theme}/spaceUtils.css')%>
+	<%- link(nodeModules + '/zsui-core/dist/themes/{theme}/sizeUtils.css')%>
+	<%- link(nodeModules + '/zsui-core/dist/themes/{theme}/shadowUtils.css')%>
+	<%- link(nodeModules + '/zsui-core/dist/themes/{theme}/floatUtils.css')%>
+	<%- link(nodeModules + '/zsui-core/dist/themes/{theme}/responsiveDisplayUtils.css')%>
+
+	<style>
+		
+		body,
+		html {
+			padding: 0px !important;
+			margin: 0px;
+			height: 100%;
+		}
+
+		.border {
+			/*border: solid 1px #9400ff;*/
+		}
+
+		.sticky {
+			position: fixed;
+			position: -webkit-sticky;
+			position: -ms-sticky;
+			position: sticky;
+			top: 0;
+			width: 100%;
+		}
+	</style>
+</head>
+
+
+	<div class="zs-layout-page zs-height-100 zs-width-100">
+		<header class="zs-header zs-mobile-header border zs-bg-standard">
+
+			<div class="zs-brand-stripe"></div>
+
+			<div class="zs-brand-bar">
+				<div class="zs-row">
+					<div class="zs-logo zsui-logo">
+						<img alt="" src="<%- nodeModules + '/zsui-core/dist/images/zsuiLogoSmall.png'%>" class="zs-small">
+						<img alt="" src="<%- nodeModules + '/zsui-core/dist/images/zsuiLogo.png'%>" class="zs-normal">
+
+					</div>
+					<div class="zs-brand-name">
+						<h1>Demo</h1>
+					</div>
+					<div class="zs-nav">
+						<nav class="zs-top-navigation">
+							<ul>
+								<li class="zs-submenu zs-active">
+									<a href="index.html?theme=zs">Home</a>
+									<a href="javascript:void(0)">
+										<span class="zs-icon zs-icon-collapse"></span>
+									</a>
+									<nav class="zs-menu" style="position: absolute; display: none;">
+										<ul>
+											<li class="zs-active">
+												<a href="index.html?theme=zs">Overview</a>
+											</li>
+											<li>
+												<a href="typography.html?theme=zs">Typography</a>
+											</li>
+											<li>
+												<a href="box.html?theme=zs">Relative Box Model</a>
+											</li>
+											<li>
+												<a href="icons.html?theme=zs">Icons</a>
+											</li>
+											<li>
+												<a href="menu.html?theme=zs">Menu</a>
+											</li>
+											<li>
+												<a href="loading.html?theme=zs">Spinner</a>
+											</li>
+											<li>
+												<a href="disabled.html?theme=zs">Disabled state</a>
+											</li>
+											<li>
+												<a href="highlight.html?theme=zs">Highlight</a>
+											</li>
+											<li>
+												<a href="tooltip.html?theme=zs">Tooltip</a>
+											</li>
+											<li>
+												<a href="animation.html?theme=zs">Animation</a>
+											</li>
+											<li>
+												<a href="customElements.html?theme=zs">Custom elements</a>
+											</li>
+										</ul>
+									</nav>
+								</li>
+								<li class="zs-submenu">
+									<a href="layout.html?theme=zs">Layout</a>
+									<a href="javascript:void(0)">
+										<span class="zs-icon zs-icon-collapse"></span>
+									</a>
+									<nav class="zs-menu" style="position: absolute; display: none;">
+										<ul>
+											<li>
+												<a href="layout.html?theme=zs">Overview</a>
+											</li>
+											<li>
+												<a href="standardLayout.html?theme=zs">Standard</a>
+											</li>
+											<li>
+												<a href="mobileHeader.html?theme=zs">Header</a>
+											</li>
+											<li>
+												<a href="grids.html?theme=zs">Grids</a>
+											</li>
+											<li>
+												<a href="tabs.html?theme=zs">Tabs</a>
+											</li>
+											<li>
+												<a href="wizard.html?theme=zs">Wizard</a>
+											</li>
+											<li>
+												<a href="toggleTabs.html?theme=zs">Toggle tabs</a>
+											</li>
+											<li>
+												<a href="card.html?theme=zs">Cards</a>
+											</li>
+											<li>
+												<a href="accordion.html?theme=zs">Accordion</a>
+											</li>
+											<li>
+												<a href="drawer.html?theme=zs">Drawer</a>
+											</li>
+										</ul>
+									</nav>
+								</li>
+								<li class="zs-submenu">
+									<a href="navigation.html?theme=zs">Navigation</a>
+									<a href="javascript:void(0)">
+										<span class="zs-icon zs-icon-collapse"></span>
+									</a>
+									<nav class="zs-menu" style="position: absolute; display: none;">
+										<ul>
+											<li>
+												<a href="navigation.html?theme=zs">Overview</a>
+											</li>
+											<li>
+												<a href="pagination.html?theme=zs">Pagination</a>
+											</li>
+											<li>
+												<a href="topNav.html?theme=zs">Top Navigation</a>
+											</li>
+											<li>
+												<a href="sideNav.html?theme=zs">Side Navigation</a>
+											</li>
+											<li>
+												<a href="breadcrumbs.html?theme=zs">Breadcrumbs</a>
+											</li>
+											<li>
+												<a href="tree.html?theme=zs">Tree</a>
+											</li>
+										</ul>
+									</nav>
+								</li>
+								<li class="zs-submenu">
+									<a href="form.html?theme=zs">Forms</a>
+									<a href="javascript:void(0)">
+										<span class="zs-icon zs-icon-collapse"></span>
+									</a>
+									<nav class="zs-menu" style="position: absolute; display: none;">
+										<ul>
+											<li>
+												<a href="form.html?theme=zs">Overview</a>
+											</li>
+											<li>
+												<a href="formControls.html?theme=zs">Form Controls</a>
+											</li>
+											<li>
+												<a href="formElements.html?theme=zs">Form Elements</a>
+											</li>
+											<li>
+												<a href="clear.html?theme=zs">Clear</a>
+											</li>
+											<li>
+												<a href="datePicker.html?theme=zs">Datepicker</a>
+											</li>
+											<li>
+												<a href="timePicker.html?theme=zs">Timepicker</a>
+											</li>
+											<li>
+												<a href="searchDropdown.html?theme=zs">Searchable Dropdown</a>
+											</li>
+											<li>
+												<a href="filter.html?theme=zs">Filter</a>
+											</li>
+											<li>
+												<a href="choice.html?theme=zs">Choice</a>
+											</li>
+											<li>
+												<a href="progressBar.html?theme=zs">Progress Bar</a>
+											</li>
+											<li>
+												<a href="slider.html?theme=zs">Slider</a>
+											</li>
+											<li>
+												<a href="toggle.html?theme=zs">Toggle</a>
+											</li>
+											<li>
+												<a href="tags.html?theme=zs">Tags</a>
+											</li>
+										</ul>
+									</nav>
+								</li>
+								<li class="zs-submenu">
+									<a href="table.html?theme=zs">Tables</a>
+									<a href="javascript:void(0)">
+										<span class="zs-icon zs-icon-collapse"></span>
+									</a>
+									<nav class="zs-menu" style="position: absolute; display: none;">
+										<ul>
+											<li>
+												<a href="table.html?theme=zs">Overview</a>
+											</li>
+											<li>
+												<a href="tables.html?theme=zs">Table Styles</a>
+											</li>
+											<li>
+												<a href="tableElements.html?theme=zs">Table Elements</a>
+											</li>
+											<li>
+												<a href="editableTable.html?theme=zs">Editable table</a>
+											</li>
+											<li>
+												<a href="delayedRender.html?theme=zs">Delayed render</a>
+											</li>
+											<li>
+												<a href="smartTable.html?theme=zs">Smart Table</a>
+											</li>
+											<li>
+												<a href="sortTable.html?theme=zs">Sortable Table</a>
+											</li>
+											<li>
+												<a href="pivot.html?theme=zs">Pivot</a>
+											</li>
+											<li>
+												<a href="lockedColumns.html?theme=zs">Locked Columns</a>
+											</li>
+											<li>
+												<a href="stickyHeader.html?theme=zs">Sticky Header</a>
+											</li>
+											<li>
+												<a href="dragDropTable.html?theme=zs">Drag And Drop Table</a>
+											</li>
+										</ul>
+									</nav>
+								</li>
+								<li class="zs-submenu">
+									<a href="more.html?theme=zs">Misc</a>
+									<a href="javascript:void(0)">
+										<span class="zs-icon zs-icon-collapse"></span>
+									</a>
+									<nav class="zs-menu" style="position: absolute; display: none;">
+										<ul>
+											<li>
+												<a href="more.html?theme=zs">Overview</a>
+											</li>
+											<li>
+												<a href="dialog.html?theme=zs">Dialog</a>
+											</li>
+											<li class="zs-submenu">
+												<a href="messaging.html?theme=zs">Messaging
+													<span class="zs-icon zs-icon-expand"></span>
+												</a>
+												<nav class="zs-menu" style="position: absolute; display: none;">
+													<ul>
+														<li>
+															<a href="toast.html?theme=zs">Toaster</a>
+														</li>
+														<li>
+															<a href="messages.html?theme=zs">Messages</a>
+														</li>
+													</ul>
+												</nav>
+											</li>
+											<li class="zs-submenu">
+												<a href="appHelpers.html?theme=zs">Application
+													<span class="zs-icon zs-icon-expand"></span>
+												</a>
+												<nav class="zs-menu" style="position: absolute; display: none;">
+													<ul>
+														<li>
+															<a href="config.html?theme=zs">Config</a>
+														</li>
+														<li>
+															<a href="service.html?theme=zs">Service</a>
+														</li>
+														<li>
+															<a href="state.html?theme=zs">State</a>
+														</li>
+													</ul>
+												</nav>
+											</li>
+											<li>
+												<a href="flow.html?theme=zs">Flow</a>
+											</li>
+											<li>
+												<a href="charts.html?theme=zs">Charts</a>
+											</li>
+											<li>
+												<a href="launchbar.html?theme=zs">IDM Launchbar</a>
+											</li>
+										</ul>
+									</nav>
+								</li>
+							</ul>
+						</nav>
+						<div class="zs-select">
+							<select>
+								<option selected="selected" value="index.html?theme=zs">Home</option>
+								<option selected="selected" value="index.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Overview</option>
+								<option value="typography.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Typography</option>
+								<option value="box.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Relative Box Model</option>
+								<option value="icons.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Icons</option>
+								<option value="menu.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Menu</option>
+								<option value="loading.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Spinner</option>
+								<option value="disabled.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Disabled state</option>
+								<option value="highlight.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Highlight</option>
+								<option value="tooltip.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Tooltip</option>
+								<option value="animation.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Animation</option>
+								<option value="customElements.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Custom elements</option>
+								<option value="layout.html?theme=zs">Layout</option>
+								<option value="layout.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Overview</option>
+								<option value="standardLayout.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Standard</option>
+								<option value="mobileHeader.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Header</option>
+								<option value="grids.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Grids</option>
+								<option value="tabs.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Tabs</option>
+								<option value="wizard.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Wizard</option>
+								<option value="toggleTabs.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Toggle tabs</option>
+								<option value="card.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Cards</option>
+								<option value="accordion.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Accordion</option>
+								<option value="drawer.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Drawer</option>
+								<option value="navigation.html?theme=zs">Navigation</option>
+								<option value="navigation.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Overview</option>
+								<option value="pagination.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Pagination</option>
+								<option value="topNav.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Top Navigation</option>
+								<option value="sideNav.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Side Navigation</option>
+								<option value="breadcrumbs.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Breadcrumbs</option>
+								<option value="tree.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Tree</option>
+								<option value="form.html?theme=zs">Forms</option>
+								<option value="form.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Overview</option>
+								<option value="formControls.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Form Controls</option>
+								<option value="formElements.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Form Elements</option>
+								<option value="clear.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Clear</option>
+								<option value="datePicker.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Datepicker</option>
+								<option value="timePicker.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Timepicker</option>
+								<option value="searchDropdown.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Searchable Dropdown</option>
+								<option value="filter.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Filter</option>
+								<option value="choice.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Choice</option>
+								<option value="progressBar.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Progress Bar</option>
+								<option value="slider.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Slider</option>
+								<option value="toggle.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Toggle</option>
+								<option value="tags.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Tags</option>
+								<option value="table.html?theme=zs">Tables</option>
+								<option value="table.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Overview</option>
+								<option value="tables.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Table Styles</option>
+								<option value="tableElements.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Table Elements</option>
+								<option value="editableTable.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Editable table</option>
+								<option value="delayedRender.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Delayed render</option>
+								<option value="smartTable.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Smart Table</option>
+								<option value="sortTable.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Sortable Table</option>
+								<option value="pivot.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Pivot</option>
+								<option value="lockedColumns.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Locked Columns</option>
+								<option value="stickyHeader.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Sticky Header</option>
+								<option value="dragDropTable.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Drag And Drop Table</option>
+								<option value="more.html?theme=zs">Misc</option>
+								<option value="more.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Overview</option>
+								<option value="dialog.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Dialog</option>
+								<option value="messaging.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Messaging</option>
+								<option value="toast.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toaster</option>
+								<option value="messages.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Messages</option>
+								<option value="appHelpers.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Application</option>
+								<option value="config.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Config</option>
+								<option value="service.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Service</option>
+								<option value="state.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;State</option>
+								<option value="flow.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Flow</option>
+								<option value="charts.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;Charts</option>
+								<option value="launchbar.html?theme=zs">&nbsp;&nbsp;&nbsp;&nbsp;IDM Launchbar</option>
+							</select>
+						</div>
+					</div>
+					<div class="zs-user-bar">
+					</div>
+				</div>
+			</div>
+
+			<nav class="zs-top-navigation">
+				<ul>
+					<li class="zs-submenu zs-active zs-to-left">
+						<a href="index.html?theme=zs">Home</a>
+						<a href="javascript:void(0)">
+							<span class="zs-icon zs-icon-collapse"></span>
+						</a>
+						<nav class="zs-menu" style="position: absolute; display: none;">
+							<ul>
+								<li class="zs-active">
+									<a href="index.html?theme=zs">Overview</a>
+								</li>
+								<li>
+									<a href="typography.html?theme=zs">Typography</a>
+								</li>
+								<li>
+									<a href="box.html?theme=zs">Relative Box Model</a>
+								</li>
+								<li>
+									<a href="icons.html?theme=zs">Icons</a>
+								</li>
+								<li>
+									<a href="menu.html?theme=zs">Menu</a>
+								</li>
+								<li>
+									<a href="loading.html?theme=zs">Spinner</a>
+								</li>
+								<li>
+									<a href="disabled.html?theme=zs">Disabled state</a>
+								</li>
+								<li>
+									<a href="highlight.html?theme=zs">Highlight</a>
+								</li>
+								<li>
+									<a href="tooltip.html?theme=zs">Tooltip</a>
+								</li>
+								<li>
+									<a href="animation.html?theme=zs">Animation</a>
+								</li>
+								<li>
+									<a href="customElements.html?theme=zs">Custom elements</a>
+								</li>
+							</ul>
+						</nav>
+					</li>
+					<li class="zs-submenu">
+						<a href="layout.html?theme=zs">Layout</a>
+						<a href="javascript:void(0)">
+							<span class="zs-icon zs-icon-collapse"></span>
+						</a>
+						<nav class="zs-menu" style="position: absolute; display: none;">
+							<ul>
+								<li>
+									<a href="layout.html?theme=zs">Overview</a>
+								</li>
+								<li>
+									<a href="standardLayout.html?theme=zs">Standard</a>
+								</li>
+								<li>
+									<a href="mobileHeader.html?theme=zs">Header</a>
+								</li>
+								<li>
+									<a href="grids.html?theme=zs">Grids</a>
+								</li>
+								<li>
+									<a href="tabs.html?theme=zs">Tabs</a>
+								</li>
+								<li>
+									<a href="wizard.html?theme=zs">Wizard</a>
+								</li>
+								<li>
+									<a href="toggleTabs.html?theme=zs">Toggle tabs</a>
+								</li>
+								<li>
+									<a href="card.html?theme=zs">Cards</a>
+								</li>
+								<li>
+									<a href="accordion.html?theme=zs">Accordion</a>
+								</li>
+								<li>
+									<a href="drawer.html?theme=zs">Drawer</a>
+								</li>
+							</ul>
+						</nav>
+					</li>
+					<li class="zs-submenu zs-to-left">
+						<a href="navigation.html?theme=zs">Navigation</a>
+						<a href="javascript:void(0)">
+							<span class="zs-icon zs-icon-collapse"></span>
+						</a>
+						<nav class="zs-menu" style="position: absolute; display: none;">
+							<ul>
+								<li>
+									<a href="navigation.html?theme=zs">Overview</a>
+								</li>
+								<li>
+									<a href="pagination.html?theme=zs">Pagination</a>
+								</li>
+								<li>
+									<a href="topNav.html?theme=zs">Top Navigation</a>
+								</li>
+								<li>
+									<a href="sideNav.html?theme=zs">Side Navigation</a>
+								</li>
+								<li>
+									<a href="breadcrumbs.html?theme=zs">Breadcrumbs</a>
+								</li>
+								<li>
+									<a href="tree.html?theme=zs">Tree</a>
+								</li>
+							</ul>
+						</nav>
+					</li>
+					<li class="zs-submenu">
+						<a href="form.html?theme=zs">Forms</a>
+						<a href="javascript:void(0)">
+							<span class="zs-icon zs-icon-collapse"></span>
+						</a>
+						<nav class="zs-menu" style="position: absolute; display: none;">
+							<ul>
+								<li>
+									<a href="form.html?theme=zs">Overview</a>
+								</li>
+								<li>
+									<a href="formControls.html?theme=zs">Form Controls</a>
+								</li>
+								<li>
+									<a href="formElements.html?theme=zs">Form Elements</a>
+								</li>
+								<li>
+									<a href="clear.html?theme=zs">Clear</a>
+								</li>
+								<li>
+									<a href="datePicker.html?theme=zs">Datepicker</a>
+								</li>
+								<li>
+									<a href="timePicker.html?theme=zs">Timepicker</a>
+								</li>
+								<li>
+									<a href="searchDropdown.html?theme=zs">Searchable Dropdown</a>
+								</li>
+								<li>
+									<a href="filter.html?theme=zs">Filter</a>
+								</li>
+								<li>
+									<a href="choice.html?theme=zs">Choice</a>
+								</li>
+								<li>
+									<a href="progressBar.html?theme=zs">Progress Bar</a>
+								</li>
+								<li>
+									<a href="slider.html?theme=zs">Slider</a>
+								</li>
+								<li>
+									<a href="toggle.html?theme=zs">Toggle</a>
+								</li>
+								<li>
+									<a href="tags.html?theme=zs">Tags</a>
+								</li>
+							</ul>
+						</nav>
+					</li>
+					<li class="zs-submenu">
+						<a href="table.html?theme=zs">Tables</a>
+						<a href="javascript:void(0)">
+							<span class="zs-icon zs-icon-collapse"></span>
+						</a>
+						<nav class="zs-menu" style="position: absolute; display: none;">
+							<ul>
+								<li>
+									<a href="table.html?theme=zs">Overview</a>
+								</li>
+								<li>
+									<a href="tables.html?theme=zs">Table Styles</a>
+								</li>
+								<li>
+									<a href="tableElements.html?theme=zs">Table Elements</a>
+								</li>
+								<li>
+									<a href="editableTable.html?theme=zs">Editable table</a>
+								</li>
+								<li>
+									<a href="delayedRender.html?theme=zs">Delayed render</a>
+								</li>
+								<li>
+									<a href="smartTable.html?theme=zs">Smart Table</a>
+								</li>
+								<li>
+									<a href="sortTable.html?theme=zs">Sortable Table</a>
+								</li>
+								<li>
+									<a href="pivot.html?theme=zs">Pivot</a>
+								</li>
+								<li>
+									<a href="lockedColumns.html?theme=zs">Locked Columns</a>
+								</li>
+								<li>
+									<a href="stickyHeader.html?theme=zs">Sticky Header</a>
+								</li>
+								<li>
+									<a href="dragDropTable.html?theme=zs">Drag And Drop Table</a>
+								</li>
+							</ul>
+						</nav>
+					</li>
+					<li class="zs-submenu">
+						<a href="more.html?theme=zs">Misc</a>
+						<a href="javascript:void(0)">
+							<span class="zs-icon zs-icon-collapse"></span>
+						</a>
+						<nav class="zs-menu" style="position: absolute; display: none;">
+							<ul>
+								<li>
+									<a href="more.html?theme=zs">Overview</a>
+								</li>
+								<li>
+									<a href="dialog.html?theme=zs">Dialog</a>
+								</li>
+								<li class="zs-submenu">
+									<a href="messaging.html?theme=zs">Messaging
+										<span class="zs-icon zs-icon-expand"></span>
+									</a>
+									<nav class="zs-menu" style="position: absolute; display: none;">
+										<ul>
+											<li>
+												<a href="toast.html?theme=zs">Toaster</a>
+											</li>
+											<li>
+												<a href="messages.html?theme=zs">Messages</a>
+											</li>
+										</ul>
+									</nav>
+								</li>
+								<li class="zs-submenu">
+									<a href="appHelpers.html?theme=zs">Application
+										<span class="zs-icon zs-icon-expand"></span>
+									</a>
+									<nav class="zs-menu" style="position: absolute; display: none;">
+										<ul>
+											<li>
+												<a href="config.html?theme=zs">Config</a>
+											</li>
+											<li>
+												<a href="service.html?theme=zs">Service</a>
+											</li>
+											<li>
+												<a href="state.html?theme=zs">State</a>
+											</li>
+										</ul>
+									</nav>
+								</li>
+								<li>
+									<a href="flow.html?theme=zs">Flow</a>
+								</li>
+								<li>
+									<a href="charts.html?theme=zs">Charts</a>
+								</li>
+								<li>
+									<a href="launchbar.html?theme=zs">IDM Launchbar</a>
+								</li>
+							</ul>
+						</nav>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<nav class="zs-side-navigation zs-border-right zs-width-200px zs-bg-standard zs-display-none-xsw">
+			<a href="typography.html?theme=zs">Typography</a>
+			<a href="box.html?theme=zs">Relative Box Model</a>
+			<a href="icons.html?theme=zs">Icons</a>
+			<a href="menu.html?theme=zs">Menu</a>
+			<a href="loading.html?theme=zs">Spinner</a>
+			<a href="disabled.html?theme=zs">Disabled state</a>
+			<a href="highlight.html?theme=zs">Highlight</a>
+			<a href="tooltip.html?theme=zs">Tooltip</a>
+			<a href="animation.html?theme=zs">Animation</a>
+			<a href="customElements.html?theme=zs">Custom elements</a>
+		</nav>
+		<main class="border zs-bg-dark zs-padding-0-0-1-0">
+			<div class="zs-action-message" style="margin:0">Save changes
+				<span class="zs-right">
+					<a href="javascript:void(0);">Cancel</a>
+					<button class="zs-button zs-button-action">Save</button>
+				</span>
+			</div>
+			<header class="zs-padding-0-0-1.5-0">
+				<nav class="zs-breadcrumbs">
+					<a href="index.html?theme=zs">Home</a>
+					<a class="zs-active" href="typography.html?theme=zs">Typography</a>
+				</nav>
+				<h1>Typography</h1>
+			</header>
+			<section class="zs-bg-standard zs-padding-2 zs-box-shadow zs-border-color-default zs-border-rounded zs-margin-0-2">
+
+				<h2>Heading 2</h2>
+
+				<p>Lorem ipsum dolor sit amet,
+					<b>consectetur</b>
+					<i>adipiscing elit Drag</i>.
+					<b>
+						<i>Donec bibendum. Drag</i>
+					</b>, dui id gravida mattis, tortor neque imperdiet dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit
+					molestie hendrerit rhoncus. Aenean at vulputate magna. Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan
+					dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce ultricies vehicula posuere.</p>
+				<h3>Heading 3</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor neque imperdiet
+					dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate
+					magna. Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien
+					quis iaculis. Fusce ultricies vehicula posuere.</p>
+				<h2>Heading 2 followed by 3</h2>
+				<h3>Heading 3</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor neque imperdiet
+					dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate
+					magna. Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien
+					quis iaculis. Fusce ultricies vehicula posuere.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor neque imperdiet
+					dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate
+					magna. Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien
+					quis iaculis. Fusce ultricies vehicula posuere.</p>
+
+				<h2>List</h2>
+				<ul class="zs-list">
+					<li>Item 1</li>
+					<li>Item 2</li>
+					<li>Item 3</li>
+				</ul>
+
+
+				<h2>Separators
+					<hr>
+				</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor neque imperdiet
+					dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate
+					magna. Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien
+					quis iaculis. Fusce ultricies vehicula posuere.</p>
+				<hr>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor neque imperdiet
+					dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate
+					magna. Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien
+					quis iaculis. Fusce ultricies vehicula posuere.</p>
+
+
+			</section>
+		</main>
+		<aside class="border zs-bg-primary">Aside</aside>
+		<footer class="border zs-bg-dark zs-text-footer">
+			<div class="zs-bg-standard zs-display-none-xsw zs-float-left zs-border-right zs-width-200px zs-display-inline-block">&nbsp;</div>
+			<div class="zs-padding-0-2">
+				<span>ZSUI demo v3.4.0</span>
+				<span>Copyright © 2018 ZS Associates Inc.</span>
+			</div>
+		</footer>
+	</div>
+
+	<script>
+
+		//Remove and add relevant classes to body
+		var body=document.querySelector('body');
+		//body.classList.add("hide-sidenav-for-mobile");
+		body.classList.remove("zs-layout-table");
+
+		// Experimenting with sticky header	
+
+		zs = (function (zs) {
+			zs.stickElement = function (elm) {
+				var positionStickySupport = function () {
+					var el = document.createElement('a');
+					el.style.cssText = "position:sticky;position:-webkit-sticky;position:-ms-sticky;";
+					return el.style.position.indexOf('sticky') !== -1;
+				}
+
+				//Check if position sticky is supported
+				if (!positionStickySupport()) {
+					window.addEventListener("scroll", function () {
+						if (Math.ceil(window.pageYOffset) > Math.ceil(elm.offsetTop)) {
+							elm.classList.add("sticky");
+						} else {
+							elm.classList.remove("sticky");
+						}
+					});
+				} else {
+					elm.classList.add("sticky");
+				}
+			}
+			return zs;
+		}(window.zs || {}))
+
+		var header = document.querySelector(".zs-layout-page>header");
+
+		//Comment this line if sticky header is not needed.
+		//zs.stickElement(header);
+	</script>

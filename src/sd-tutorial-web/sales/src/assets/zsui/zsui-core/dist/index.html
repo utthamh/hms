@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<head>
+	<title>ZSUI Core demo</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	 crossorigin="anonymous"></script>
+	
+	<!-- Demo scripts  -->
+	<script src="demo.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+	<style>
+	.hljs {
+    	padding: 0.5em !important; /*Since core.css loads later and resets all spacing, we need to use !important here.*/
+	}
+	</style>
+	<script>
+	zs.demo.setPaths();
+	zs.demo.addUrlFixes({"nodejs":{},"npm":{"../node_modules/":"../../"},"nuget":{"../node_modules/zsui-[\\w]+/dist":"./"},"s3":{"../node_modules/zsui-[\\w]+/dist/":"./"}});
+	</script>
+
+	<script>zs.demo.script("./polyfills/polyfills.js");</script>
+	<script>zs.demo.script("./utils/customElements.js");</script>
+	<script>zs.demo.link("./themes/{theme}/core.css");</script>
+</head>
+<body class="zs-style" style="padding:1em" data-page="">
+
+<p>ZSUI Core Module</p>
+<h2>Features</h2>
+<ul class="zs-list themes">
+	<li>
+		<a href="typography.html">Typography</a>
+	</li>
+	<li>
+		<a href="box.html">Relative box module</a>
+	</li>
+	<li>
+		<a href="icons.html">Icons</a>
+	</li>
+	<li>
+		<a href="menu.html">Menu</a>
+	</li>
+	<li>
+		<a href="loading.html">Loading spinner</a>
+	</li>
+	<li>
+		<a href="disabled.html">Disabling elements</a>
+	</li>
+	<li>
+		<a href="highlight.html">Highlight</a>
+	</li>
+	<li>
+		<a href="tooltip.html">Tooltip</a>
+	</li>
+	<li>
+		<a href="tooltipElement.html">New tooltip</a>
+	</li>
+	<li>
+		<a href="customElements.html">Custom Elements</a>
+	</li>
+</ul>
+
+<h2>Themes</h2>
+<ul class="zs-list">
+	<li>
+		<a href="index.html?theme=zs">zs</a>
+	</li>
+	<li>
+		<a href="index.html?theme=blue">blue</a>
+	</li>
+	<li>
+		<a href="index.html?theme=blueLarge">blue large</a>
+	</li>
+</ul>
+
+<h2>Tests</h2>
+<ul class="zs-list">
+	<li>
+		<a href="../test/test.html">Test</a>
+	</li>
+</ul>
+
+<h2>Documentation</h2>
+<ul class="zs-list">
+	<li>
+		<a href="../docs/index.html">API documentation</a>
+	</li>
+</ul>
+
+<script>
+	$(function () {
+		zs.demo.applyTheme();
+	});
+</script>
+
+	
+	<!-- Demo scripts -->
+	<script>
+		
+		if (zs && zs.demo) {
+			zs.demo.adjustCss();
+			zs.demo.applyTheme();
+		}
+	</script>
+
+</body>
+</html>

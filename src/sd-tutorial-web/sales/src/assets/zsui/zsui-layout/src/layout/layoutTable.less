@@ -1,0 +1,167 @@
+/**
+ * Modified version of zs-layout-table with backward compatibility.	
+ * @deprecated: Since v3.2. Will be removed in v4.0. Use class zs-layout-page from layoutPage.less and new markup instead.
+ */
+
+@import 'gridMixins.less';
+
+@zs-table-border-color: darken(@zs-border-color, 5%); // #cdd7df
+
+/*
+Layout
+
+Styleguide Layout
+*/
+
+html {
+	height:100%
+}
+body {
+	margin:0;
+	padding:0;
+	height:100%;
+}
+
+.zs-layout-table {
+	height: 100%;
+	width: 100%;
+	
+	.gridLayout(minmax(min-content,1fr), auto minmax(min-content,1fr) auto);	
+
+	>header, .zs-layout-header {
+		.gridCell(1,0,1,0);
+	} 
+	
+	.zs-layout-footer, >footer {
+		.gridCell(1,0,3,0);	
+	}	
+	
+	.zs-layout-body, >section {	
+		.gridCell(1,0,2,0);
+
+		.gridLayout(@zs-layout-aside-width minmax(min-content,1fr), minmax(min-content,1fr));
+		
+		position: relative;	
+		//background: @zs-background-dark;
+	}
+	
+	.zs-layout-aside, >section >main >aside {
+		width: @zs-layout-aside-width;
+		position:absolute;		
+		left: 0;
+		top:0;
+		height: 100%;
+		overflow: hidden;	
+	}	
+	
+	.zs-layout-main, >section>main, .zs-layout-body>main {
+		display: block;
+		
+		.gridCell(2,0,1,0);
+		
+		>.zs-action-message {
+			margin-left:0;
+		}		
+	}
+		
+	&.zs-layout-1col, .zs-layout-1col {
+		.zs-layout-main, >section>main, .zs-layout-body>main {
+			.gridCell(1,2,1,0);			
+		}
+
+		.zs-layout-aside, >section >main >aside {
+			display: none;
+		}
+				
+		>footer, .zs-layout-footer {
+			div:first-child {
+				display:none;
+			}
+			div:last-child {
+				height: 3em;
+			}
+		}
+	}
+}
+
+.zs-callout-box {
+	border: 1px solid @zs-table-border-color;
+	border-radius: @zs-border-radius;
+	display: block;
+	width: 100%;
+
+	>header:extend(.zs-data-table thead td all) {
+		.padding;
+		height: 34em/14;
+		border-top-left-radius: @zs-border-radius;
+		border-top-right-radius: @zs-border-radius;
+	}
+
+	>section {
+		.padding;
+	}
+	a {
+		display:inline-block;
+		word-break:break-all;
+	}
+}
+
+.zs-layout-classic >section aside, .zs-layout-classic .zs-layout-aside, .zs-layout-table >section >main >aside, .zs-layout-table .zs-layout-aside, {
+    border-right:1px solid @zs-border-color;
+	background: @zs-background;   
+}
+
+// from global.less
+.zs-style {		
+	
+	&.zs-layout-table>section>main>header, &.zs-layout-table>section>main>section, .zs-layout-table>section>main>header, .zs-layout-table>section>main>section { 
+		margin: 0 0px+@zs-font-size-base*@zs-font-padding-ratio*2;		
+	}	 	 
+}
+
+.zs-style .zs-layout-main, .zs-style main, main.zs-style {
+    .padding(0,0,1,0);
+    background: @zs-background-dark;
+}
+
+
+.zs-style main >header, .zs-style .zs-page-header, .zs-layout-table>section>main>header {
+    font-size: @zs-font-size-large + 2;
+    line-height: @zs-font-size-large;
+	&:before {
+		content: '';
+		display: block;
+		.margin(1,0,0,0);
+	}
+	>h1 { 
+		.margin(1,0,0,0); 
+        font-weight: normal;
+	}
+	>h1:first-child {
+		.margin(1.5,0,0,0);
+	} 
+    .padding(0,0,1.5,0); // Should match left navigation first item bottom border
+}
+
+main >section, .zs-page-block, .zs-page, .zs-style main>section {
+	.clearfix;
+    .padding(2,2,2,2);
+    border-radius: @zs-border-radius;
+    border-color: @zs-border-color;
+    background: @zs-background;
+    box-shadow: 0px 1px 3px 0px @zs-shadow-color;
+	
+	h1, h2, h3, p, table {
+		&:first-child,  {
+			//padding-top:0;
+			margin-top:0;
+		}
+	}
+	
+	>h1, >h2, >h3, >p, >table {
+		&:last-child {
+			//padding-bottom:0;
+			margin-bottom:0;
+		}
+	}
+}

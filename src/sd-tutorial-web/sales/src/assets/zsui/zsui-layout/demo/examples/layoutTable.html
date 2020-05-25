@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>ZSUI Layout</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	 crossorigin="anonymous"></script>
+	<script src="../../src/mobile/zsMobile.js"></script>
+	<!-- <script src="../../node_modules/stickybits/dist/stickybits.js"></script> -->
+	<link href="http://d3jqdr6gdzj8xj.cloudfront.net/demo/zsui/themes/zs/core.css" rel="stylesheet">
+	<link href="http://d3jqdr6gdzj8xj.cloudfront.net/demo/zsui/themes/zs/topNav.css" rel="stylesheet">
+	<link href="http://d3jqdr6gdzj8xj.cloudfront.net/demo/zsui/themes/zs/sideNav.css" rel="stylesheet">
+	<link href="http://d3jqdr6gdzj8xj.cloudfront.net/demo/zsui/themes/zs/breadcrumbs.css" rel="stylesheet">
+	<link href="http://d3jqdr6gdzj8xj.cloudfront.net/demo/zsui/themes/zs/forms.css" rel="stylesheet">
+	<link href="http://d3jqdr6gdzj8xj.cloudfront.net/demo/zsui/themes/zs/messages.css" rel="stylesheet">
+	<link href="../../dist/themes/zs/layoutTable.css" rel="stylesheet">
+	<link href="../../dist/themes/zs/footer.css" rel="stylesheet">
+	<link href="../../dist/themes/zs/header.css" rel="stylesheet">
+	<link href="../../dist/themes/headerFixes.css" rel="stylesheet">	
+	
+	<style>
+		.fluid {
+			width: 100%;
+			height: 100%;
+			/* can't use min-height here because of IE11*/
+		}
+
+		body,
+		html {
+			padding: 0px;
+			margin: 0px;
+			height: 100%;
+		}
+
+		.border {
+			/*border: solid 1px #9400ff !important;*/
+		}
+
+		.border-2 {
+			/*border: solid 1px #df00a9 !important;*/
+		}
+
+		.sticky {
+			position: fixed;
+			position: -webkit-sticky;
+			position: -ms-sticky;
+			position: sticky;
+			top: 0;
+			width: 100%;
+		}
+	</style>
+</head>
+
+<body class="zs-style zs-reset zs-layout-table hide-sidenav-for-mobile">
+
+	<header class="zs-header zs-mobile-header border">
+		Simplified header
+	</header>
+	<section class="border">
+
+		<main>
+			<aside class="border-2">
+				<nav class="zs-side-navigation">
+					<a href="typography.html?theme=zs">Typography</a>
+					<a href="box.html?theme=zs">Relative Box Model</a>
+					<a href="icons.html?theme=zs">Icons</a>
+					<a href="menu.html?theme=zs">Menu</a>
+					<a href="loading.html?theme=zs">Spinner</a>
+					<a href="disabled.html?theme=zs">Disabled state</a>
+					<a href="highlight.html?theme=zs">Highlight</a>
+					<a href="tooltip.html?theme=zs">Tooltip</a>
+					<a href="animation.html?theme=zs">Animation</a>
+					<a href="customElements.html?theme=zs">Custom elements</a>
+				</nav>
+			</aside>
+			<div class="zs-action-message border-2">Save changes
+				<span class="zs-right">
+					<a href="javascript:void(0);">Cancel</a>
+					<button class="zs-button zs-button-action">Save</button>
+				</span>
+			</div>
+			<div class="zs-app-message" style="display: block;">Non-Production Environment
+				<a href="javascript:void(0);" class="zs-icon zs-icon-rejected-approval"></a>
+			</div>
+			<header class="border-2">
+				<nav class="zs-breadcrumbs">
+					<a href="index.html?theme=zs">Home</a>
+					<a class="zs-active" href="typography.html?theme=zs">Typography</a>
+				</nav>
+				<h1>Typography</h1>
+			</header>
+			<section class="border-2">
+
+				<h2>Heading 2</h2>
+
+				<p>Lorem ipsum dolor sit amet,
+					<b>consectetur</b>
+					<i>adipiscing elit Drag</i>.
+					<b>
+						<i>Donec bibendum. Drag</i>
+					</b>, dui id gravida mattis, tortor neque imperdiet dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit
+					molestie hendrerit rhoncus. Aenean at vulputate magna. Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan
+					dictum dui. Maecenas pretium consequat sapien quis iaculis. Fusce ultricies vehicula posuere.</p>
+				<h3>Heading 3</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor neque imperdiet
+					dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate
+					magna. Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien
+					quis iaculis. Fusce ultricies vehicula posuere.</p>
+				<h2>Heading 2 followed by 3</h2>
+				<h3>Heading 3</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor neque imperdiet
+					dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate
+					magna. Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien
+					quis iaculis. Fusce ultricies vehicula posuere.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor neque imperdiet
+					dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate
+					magna. Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien
+					quis iaculis. Fusce ultricies vehicula posuere.</p>
+
+				<h2>List</h2>
+				<ul class="zs-list">
+					<li>Item 1</li>
+					<li>Item 2</li>
+					<li>Item 3</li>
+				</ul>
+
+
+				<h2>Separators
+					<hr>
+				</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor neque imperdiet
+					dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate
+					magna. Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien
+					quis iaculis. Fusce ultricies vehicula posuere.</p>
+				<hr>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor neque imperdiet
+					dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate
+					magna. Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien
+					quis iaculis. Fusce ultricies vehicula posuere.</p>
+
+
+			</section>
+		</main>
+	</section>
+
+	<footer class="border">
+		<div>&nbsp;</div>
+		<div>
+			<span>ZSUI demo v3.4.0</span>
+			<span>Copyright © 2018 ZS Associates Inc.</span>
+		</div>
+	</footer>
+
+
+	<script>
+
+		// Experimenting with sticky header	
+
+		zs = (function (zs) {
+			zs.stickElement = function (elm) {
+				var positionStickySupport = function () {
+					var el = document.createElement('a');
+					el.style.cssText = "position:sticky;position:-webkit-sticky;position:-ms-sticky;";
+					return el.style.position.indexOf('sticky') !== -1;
+				}
+
+				//Check if position sticky is supported
+				if (!positionStickySupport()) {
+					window.addEventListener("scroll", function () {
+						if (Math.ceil(window.pageYOffset) > Math.ceil(elm.offsetTop)) {
+							elm.classList.add("sticky");
+						} else {
+							elm.classList.remove("sticky");
+						}
+					});
+				} else {
+					elm.classList.add("sticky");
+				}
+			}
+			return zs;
+		}(window.zs || {}))
+
+		var header = document.querySelector(".zs-layout-table>header");
+
+		//Comment this line if sticky header is not needed.
+		//zs.stickElement(header);
+	</script>
+</body>
+
+</html>

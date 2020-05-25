@@ -1,0 +1,13 @@
+@display-options: block, inline, inline-block, none, table, table-row, table-cell, flex, inline-flex, grid, inline-grid;
+
+.zs-display {
+    .loop(@i: length(@display-options)) when (@i > 0) {
+        @display-prop: extract(@display-options, @i);
+
+        &-@{display-prop} {
+            display: @display-prop !important;
+        }
+        .loop((@i - 1));
+    }    
+    .loop();
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ZSUI Services</title>    
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> 		
+	<meta name="viewport" content="width=device-width">	
+	
+	<!-- Decorative Styles -->
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/core.css">
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/forms.css">
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/tables.css">
+	
+
+	<style>
+		.zs-style {padding: 2em;}
+	</style>
+
+	<!-- Dependencies -->
+	<script src="https://ui.zsservices.com/zsui/polyfills/polyfills.js"></script> <!-- IE11 polyfills: Custom Event, Promise, Object.assign -->	
+	<script src="https://ui.zsservices.com/zsui/utils/customElements.js"></script>
+	<script src="https://ui.zsservices.com/zsui/tables/tableElement.js"></script>
+	<script src="service/service.js"></script>
+	<script src="service/fetch.min.js"></script><!-- IE11 needs a Fetch polyfill -->
+	<script src="service/fetchService.js"></script>
+	<script src="state/url-polyfill.min.js"></script><!-- IE11 needs an URL polyfill-->
+	<script src="service/store.js"></script>
+	<script src="service/localStore.js"></script>
+</head>
+
+<body class="zs-style">
+<h1>Ultimate Data Table</h1>
+<p>What if our table component could get Data from external APIs or use cache?</p>
+<form class="zs-from" name="pagination" onsubmit="return false;" onchange="utlimateTable.refreshTable({page: this.elements.page.value, limit: this.elements.limit.value})">	
+	<p class="zs-field"><label>Page: <input type="number" name="page" value="1" min="1" max="10"></label></p> 
+	<p class="zs-field"><label>Limit: <input type="number" name="limit" value="5" min="1" max="10"></label></p> 
+</form>
+
+<ultimate-data-table></ultimate-data-table>
+
+<script>
+	'use strict';
+	var Service = window.serviceM.default;
+	var FetchService = window.fetchServiceM.default;
+	var LocalStore = window.localStoreM.default;
+	
+	// Register an external API to call and get data
+	var myUserAPI = new FetchService({
+		url: 'https://jsonplaceholder.typicode.com/users',
+		method: 'GET',
+		query: {
+			_page: 1,
+			_limit: 5
+		}
+	});
+
+	// Our storage
+	var store = new LocalStore();
+
+	// Our custom data service that can emit events and store data locally.
+	var dataService = new Service(function (params, resolve, reject) {
+		console.log('data service call', params);
+		var key = "myTableData-" + params.page + '-' + params.limit;
+		var expireIn = 10; // seconds
+		var data;		
+
+		// Check the storage
+		data = store.getItem(key, true);
+		if (data) {
+			console.log('Serving data from cache', data);
+			resolve(data);
+		} else {
+			myUserAPI.get({query: {_page: params.page, _limit: params.limit}}).then(myUserAPI.response).then(function(data) {
+				store.setItem(key, data, expireIn);
+				console.log('Serving data from network', data);
+				resolve(data);
+			}).catch(function(error) {
+				reject(error);
+			});			
+		}
+	});	
+
+	zs.customElement(HTMLElement, 'ultimate-data-table', null, [zs.table, {
+		getTableData: dataService.get.bind(dataService), //It is convenient when one of the components expects a promise.
+
+		// We often need to change how a specific column should be displayed.
+		renderCell: function (rowIndex, colIndex, data) {
+			var td = document.createElement('td');
+			td.setAttribute('key', colIndex);
+			if (typeof data == 'object') {
+				td.innerHTML = JSON.stringify(data);
+			} else {
+				td.innerHTML = data;
+			}			
+			return td;
+		},
+		events: {
+			create: function () {
+				this.refreshTable({page: 1, limit: 5});
+			}
+		}
+	}]);
+
+	var utlimateTable = document.querySelector('ultimate-data-table');
+</script>
+
+</body>
+</html>

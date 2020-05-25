@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" manifest="zsui.appcache">
+<head>
+	<title>ZSUI Layout</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	
+	<!-- Demo scripts  -->
+	<script src="demo.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+	<style>
+	.hljs {
+    	padding: 0.5em !important; /*Since core.css loads later and resets all spacing, we need to use !important here.*/
+	}
+	</style>
+	<script>
+	zs.demo.setPaths();
+	zs.demo.addUrlFixes({"nodejs":{},"npm":{"../node_modules/":"../../"},"nuget":{"../node_modules/zsui-[\\w]+/dist":"./"},"s3":{"../node_modules/zsui-[\\w]+/dist/":"./"}});
+	</script>
+ 
+	<script>zs.demo.script("../node_modules/zsui-core/dist/polyfills/polyfills.js");</script>
+	<script>zs.demo.script("../node_modules/zsui-core/dist/utils/customElements.js");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/core.css");</script>
+	<script>zs.demo.link("./themes/{theme}/accordion.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/tabs.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/wizard.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/card.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/drawer.min.css");</script>
+	<script>zs.demo.link("./themes/{theme}/toggleTabs.min.css");</script>
+
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/colorUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/displayUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/positionUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/alignUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/borderUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/spaceUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/sizeUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/shadowUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/floatUtils.css");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/responsiveDisplayUtils.css");</script>
+
+</head>
+<body class="zs-style zs-layout-table" style="padding:1em">
+
+<div data-page="toggleTabs">
+	<h2>Toggle Tabs</h2>
+	<zs-tabs-container toggletabs>
+		<ul>
+
+		</ul>
+		<div source-id="toggle1">
+			<h3>Toggle Tab 1</h3> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+			neque imperdiet dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean
+			at vulputate magna. Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat
+			sapien quis iaculis. Fusce ultricies vehicula posuere.
+		</div>
+		<div source-id="toggle2" style="display:none">
+			<h3>Toggle Tab 2</h3> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+			neque imperdiet dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean
+			at vulputate magna. Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat
+			sapien quis iaculis. Fusce ultricies vehicula posuere.
+		</div>
+		<div source-id="toggle3" style="display:none">
+			<h3>Toggle Tab 3</h3> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+			neque imperdiet dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean
+			at vulputate magna. Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat
+			sapien quis iaculis. Fusce ultricies vehicula posuere.
+		</div>
+	</zs-tabs-container>
+</div>
+<script>zs.demo.script("./tab/zsTab.js");</script>
+<script>
+	(function () {
+		var toggleTabsContainer = document.querySelector('[toggletabs]');
+		toggleTabsContainer.render();
+		var toggleItem = document.createElement('li',{is:'zs-tab'});
+		toggleItem.innerHTML = "<a href='javascript:void(0)'>Toggle Tab1</a>";
+		toggleItem.isActive = true;
+		toggleItem.tabId = "toggle1";
+		toggleTabsContainer.tabsContainer.appendChild(toggleItem);
+
+		toggleItem = document.createElement('li',{is:'zs-tab'});
+		toggleItem.innerHTML = "<a href='javascript:void(0)'>Toggle Tab2</a>";
+		toggleItem.tabId = "toggle2";
+		toggleTabsContainer.tabsContainer.appendChild(toggleItem);
+
+		toggleItem = document.createElement('li',{is:'zs-tab'});
+		toggleItem.innerHTML = "<a href='javascript:void(0)'>Toggle Tab3</a>";
+		toggleItem.tabId = "toggle3";
+		toggleTabsContainer.tabsContainer.appendChild(toggleItem);
+
+	})();
+</script>
+
+<script>
+	if (zs && zs.demo) {
+		zs.demo.adjustCss();
+		zs.demo.applyTheme();
+		zs.demo.highlight();
+	}
+</script>
+
+</body>
+</html>

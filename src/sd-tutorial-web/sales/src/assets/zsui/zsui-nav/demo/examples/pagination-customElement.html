@@ -1,0 +1,15 @@
+<h2>Pagination custom element</h2>
+<p>You can use custom element zs-pagination too. Set attributes and listen to "pagechange" event to implement your business
+	logic
+</p>
+
+<%- script(zsuiPath + '/pagination/pagination.js')%>	
+
+<zs-pagination total="30" size="10" page="2"></zs-pagination>
+<script>
+	var el = document.querySelector('zs-pagination');
+	el.addEventListener('pagechange', function(event) {
+		alert('Page ' + event.detail.currentPage + ' selected');
+	});
+
+</script>

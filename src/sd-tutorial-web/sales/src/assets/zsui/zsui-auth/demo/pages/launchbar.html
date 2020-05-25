@@ -1,0 +1,21 @@
+
+<%- include('../partials/header.html') %>
+<br><br><br><!-- need this to fully see user bar -->
+<header class="zs-header zs-mobile-header" style="min-height:50px; border:1px solid #c0c0c0">
+	<div id="lbr-container">
+		<div id="zs-lbr"></div>
+	</div>
+	<div id="launch-bar" style="display: none;">
+		<div id="1_HeaderLaunchbar">
+			<div id="lbr"></div>
+		</div>
+	</div>
+</header>
+<%- include('../examples/launchbar.html') %>
+<%- include('../partials/footer.html') %>
+<style>
+    .zs-mobile-header .zs-brand-bar{
+        position: relative;
+        width: 100%;
+    }
+</style>

@@ -1,0 +1,14 @@
+<h2>Clear icon</h2>
+<span class="zs-input-icon" clear>
+	<input type="text" class="zs-input" placeholder="Enter something" />
+</span>
+<p></p>
+<span class="zs-input-icon zs-icon-search" clear placeholder="Enter something">
+	<input type="text" class="zs-input" />
+</span>
+<script src="<%=zsuiPath%>/form/jquery.zsClear.js" defer></script>
+<script defer>
+	$(document).ready(function () {
+		$('[clear]').zsClear({});
+	});
+</script>
