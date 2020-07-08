@@ -1,4 +1,46 @@
-<h2>
-    Sales representative list
-</h2>
+<h2>Sales Representative Table</h2>
 <app-zs-textbox></app-zs-textbox>
+<span > upload file</span>
+<span style="float: right;padding-left: 25px;" (click)="setOperation(true)">Create new</span>
+<table>
+    <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Country</th>
+        <th>City</th>
+        <th>ZipCode</th>
+        <th>Gender</th>
+        <th></th>
+        <th></th>
+    </thead>
+    <tbody>
+<tr *ngFor="let sr of data ;let i=index">
+    <td>{{sr.id}}</td>
+    <td>{{sr.name}}</td>
+    <td>{{sr.country}}</td>
+    <td>{{sr.city}}</td>
+    <td>{{sr.zipcode}}</td>
+    <td>{{sr.gender}}</td>
+    <td (click)="setOperation(false,sr,i)">edit</td>
+    <td (click)="deleteSalesRep(i,sr.id)">delete</td>
+</tr>
+
+    </tbody>
+</table>
+<!-- <div *ngIf="operation!=null" class="form-popup">
+    <div class="form-container">
+    <label>Name</label>
+    <input type="text" [(ngModel)]="current.name" >
+    <label>City</label>
+    <input type="text" [(ngModel)]="current.city" >
+    <label>Country</label>
+    <input type="text" [(ngModel)]="current.country"  >
+    <label>ZipCode</label>
+    <input type="text"[(ngModel)]="current.zipcode"  >
+    <label>Gender</label>
+    <input type="text" [(ngModel)]="current.gender"  >
+    <button type="submit" class="btn" (click)="submitForm()">{{operation}}</button>
+    <button type="submit" class="btn cancel" (click)="cancelForm()">Close</button>
+    </div>
+</div> -->
+
