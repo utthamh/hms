@@ -32,6 +32,7 @@
               "src/themes/package.less"
             ],
             "scripts": [
+			  "src/scripts/jquery-3.3.1.min.js",
               "src/assets/zsui//zsui-core/dist/utils/customElements.js",
               "src/assets/zsui/zsui-core/dist/utils/smartComponent.js",
               "src/assets/zsui/zsui-core/dist/utils/domHelper.js",
@@ -80,11 +81,6 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
                 }
               ]
             }
