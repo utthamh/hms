@@ -14,6 +14,7 @@ export class SalesRepresentativeListComponent implements OnInit {
 
   ngOnInit() {
     this.salesRepService.getSalesRep().subscribe(res=>{
+     
       this.data=res;});
   }
 }
