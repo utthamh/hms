@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         dbchangelog-3.5.xsd" context="default">
+    <changeSet id="create_tables" author="sd_tutorial" runOnChange="true">
+        <sqlFile path="tables/create_salesrep.sql"/>
+    </changeSet>
+</databaseChangeLog>

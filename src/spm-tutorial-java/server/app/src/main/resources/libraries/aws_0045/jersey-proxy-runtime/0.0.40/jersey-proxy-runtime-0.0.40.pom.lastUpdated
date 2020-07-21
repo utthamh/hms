@@ -1,0 +1,6 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Mar 17 18:14:50 IST 2020
+@default-central-https\://repo.maven.apache.org/maven2/.lastUpdated=1584449090694
+file\:///c\:/localdev-AppManagementS3Bucket/releases/.lastUpdated=1584449090644
+https\://repo.maven.apache.org/maven2/.error=Could not transfer artifact com.zsassociates.aws\:jersey-proxy-runtime\:pom\:0.0.40 from/to central (https\://repo.maven.apache.org/maven2)\: repo.maven.apache.org
+file\:///c\:/localdev-AppManagementS3Bucket/releases/.error=

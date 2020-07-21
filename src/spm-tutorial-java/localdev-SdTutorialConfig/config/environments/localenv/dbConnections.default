@@ -1,0 +1,11 @@
+{
+    "dbConnections" : {
+        "default" : {
+            "dbHostName" : "localhost",
+            "dbPort" : "5432",
+            "dbReadHostName" : "postgres",
+            "password" : "spm",
+            "userName" : "postgres"
+        }
+    }
+}

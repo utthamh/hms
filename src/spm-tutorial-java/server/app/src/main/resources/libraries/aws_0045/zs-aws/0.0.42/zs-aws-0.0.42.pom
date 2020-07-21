@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.zsassociates.aws</groupId>
+    <artifactId>zs-aws</artifactId>
+    <version>0.0.42</version>
+    <packaging>pom</packaging>
+
+    <name>${project.groupId}:${project.artifactId}</name>
+    <url>http://www.zs.com</url>
+    <description>A wrapper around AWS SDK to use various functionality in the SDK in ZS's build and deployment tool
+        chain.
+    </description>
+    <scm>
+
+    </scm>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <aws-sdk.version>1.11.741</aws-sdk.version>
+        <junit.version>4.12</junit.version>
+        <logback.version>1.1.7</logback.version>
+        <mockito.version>1.10.19</mockito.version>
+        <slf4j.version>1.7.21</slf4j.version>
+        <wagon.version>2.10</wagon.version>
+        <ini4j.version>0.5.4</ini4j.version>
+        <log4j2.version>2.8.2</log4j2.version>
+        <jackson.version>2.7.5</jackson.version>
+        <typesafe.config.version>1.3.2</typesafe.config.version>
+        <revision>1</revision>
+        <LOCAL_DEV_PREFIX>localdev-</LOCAL_DEV_PREFIX>
+        <config.bucket>${LOCAL_DEV_PREFIX}AppManagementS3Bucket</config.bucket>
+        <deployment.bucket>${LOCAL_DEV_PREFIX}AppManagementS3Bucket</deployment.bucket>
+        <repository.protocol>file:///c:/</repository.protocol>
+        <zsaws.version>0.0.45</zsaws.version>
+        <appmanagement.version>0.0.11</appmanagement.version>
+        <commons-io.version>2.4</commons-io.version>
+        <commons-lang3.version>3.4</commons-lang3.version>
+        <guice.version>4.1.0</guice.version>
+        <jersey.version>2.26</jersey.version>
+        <jetty.version>9.2.3.v20140905</jetty.version>
+        <!--Added the below properties to mock the maven extension in local build-->
+        <awsMavenExtension.groupId>junit</awsMavenExtension.groupId>
+        <awsMavenExtension.artifactId>junit</awsMavenExtension.artifactId>
+        <awsMavenExtension.version>4.11</awsMavenExtension.version>
+        <appmanagement.version>0.0.1</appmanagement.version>
+    </properties>
+
+    <modules>
+        <module>aws-tools</module>
+        <module>wagon</module>
+        <module>jersey-proxy-runtime</module>
+        <module>s3-url-stream-handler</module>
+        <module>s3-upload-maven-plugin</module>
+        <module>jetty-local-runtime</module>
+        <module>configuration-manager</module>
+        <module>core-model</module>
+        <module>aws-logger</module>
+        <module>s3-event-handler</module>
+        <module>websocket-proxy-runtime</module>
+        <module>jersey-web-client</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.easymock</groupId>
+            <artifactId>easymock</artifactId>
+            <version>3.4</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-easymock</artifactId>
+            <version>1.6.5</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-junit4</artifactId>
+            <version>1.6.5</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.amazonaws</groupId>
+                <artifactId>aws-java-sdk-bom</artifactId>
+                <version>${aws-sdk.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-junit47</artifactId>
+                        <version>2.19.1</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--<plugin>-->
+            <!--<groupId>org.apache.maven.plugins</groupId>-->
+            <!--<artifactId>maven-javadoc-plugin</artifactId>-->
+            <!--<version>3.0.0</version>-->
+            <!--<executions>-->
+            <!--<execution>-->
+            <!--<id>attach-javadocs</id>-->
+            <!--<phase>deploy</phase>-->
+            <!--<goals><goal>jar</goal></goals>-->
+            <!--</execution>-->
+            <!--</executions>-->
+            <!--</plugin>-->
+            <plugin>
+                <!-- explicitly define maven-deploy-plugin after other to force exec order -->
+                <artifactId>maven-deploy-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>deploy</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+        <extensions>
+            <extension>
+                <groupId>${awsMavenExtension.groupId}</groupId>
+                <artifactId>${awsMavenExtension.artifactId}</artifactId>
+                <version>${awsMavenExtension.version}</version>
+            </extension>
+        </extensions>
+    </build>
+    <profiles>
+        <profile>
+            <id>aws</id>
+            <properties>
+                <deployment.bucket>RemoteAppManagementS3Bucket</deployment.bucket>
+                <repository.protocol>s3://</repository.protocol>
+                <awsMavenExtension.groupId>com.zsassociates.aws</awsMavenExtension.groupId>
+                <awsMavenExtension.artifactId>wagon</awsMavenExtension.artifactId>
+                <awsMavenExtension.version>${zsaws.version}</awsMavenExtension.version>
+            </properties>
+
+
+        </profile>
+
+        <profile>
+            <id>aws-test</id>
+            <properties>
+                <deployment.bucket>RemoteAppManagementS3Bucket</deployment.bucket>
+                <repository.protocol>s3://</repository.protocol>
+                <awsMavenExtension.groupId>com.zsassociates.aws</awsMavenExtension.groupId>
+                <awsMavenExtension.artifactId>wagon</awsMavenExtension.artifactId>
+                <awsMavenExtension.version>${zsaws.version}</awsMavenExtension.version>
+            </properties>
+
+
+        </profile>
+
+    </profiles>
+
+    <repositories>
+        <repository>
+            <id>aws-releases</id>
+            <name>AWS Release Repository</name>
+            <url>${repository.protocol}${deployment.bucket}/releases</url>
+        </repository>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>binTray</id>
+            <name>Bin tray spark packages</name>
+            <url>https://dl.bintray.com/spark-packages/maven/</url>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>aws-releases</id>
+            <name>AWS Release Repository</name>
+            <!--<url>s3://${deployment.bucket}/releases</url>-->
+            <url>${repository.protocol}${deployment.bucket}/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>aws-snapshots</id>
+            <name>AWS Snapshot Repository</name>
+            <url>${repository.protocol}${deployment.bucket}/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>

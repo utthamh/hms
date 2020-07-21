@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue May 05 01:22:14 IST 2020
+core-model-0.0.42.jar>=
+core-model-0.0.42.pom>=

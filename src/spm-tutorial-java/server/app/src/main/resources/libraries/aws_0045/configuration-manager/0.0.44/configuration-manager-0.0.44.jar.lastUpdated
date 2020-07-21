@@ -1,0 +1,22 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon May 04 14:42:23 IST 2020
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\data-access/src/main/resources/local-libraries/.error=
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\controllers/src/main/resources/local-libraries/.error=Could not transfer artifact com.zsassociates.aws\:configuration-manager\:jar\:0.0.44 from/to local-libraries (file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\controllers/src/main/resources/local-libraries)\: Repository path C\:\\bulkImportAlignment\\spm-alignment\\server\\controllers\\src\\main\\resources\\local-libraries does not exist, and cannot be created.
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\coloring-helper/src/main/resources/local-libraries/.error=
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\services/src/main/resources/local-libraries/.lastUpdated=1588583532529
+file\:///c\:/localdev-AppManagementS3Bucket/releases/.lastUpdated=1588583532574
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\services/src/main/resources/local-libraries/.error=
+@default-local-libraries-file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\controllers/src/main/resources/local-libraries/.lastUpdated=1588583539226
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\web/src/main/resources/local-libraries/.lastUpdated=1588583543739
+https\://repo.maven.apache.org/maven2/.lastUpdated=1588583534755
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\data-access/src/main/resources/local-libraries/.lastUpdated=1588583539323
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\models/src/main/resources/local-libraries/.lastUpdated=1588583539396
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\alignment-generator/src/main/resources/local-libraries/.error=
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\aggregate-reports/src/main/resources/local-libraries/.error=
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\models/src/main/resources/local-libraries/.error=
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\alignment-generator/src/main/resources/local-libraries/.lastUpdated=1588583534833
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\web/src/main/resources/local-libraries/.error=
+https\://repo.maven.apache.org/maven2/.error=
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\aggregate-reports/src/main/resources/local-libraries/.lastUpdated=1588583537053
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\coloring-helper/src/main/resources/local-libraries/.lastUpdated=1588583534929
+file\:///c\:/localdev-AppManagementS3Bucket/releases/.error=

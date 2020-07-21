@@ -1,0 +1,178 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.zsassociates.sd</groupId>
+    <artifactId>tutorial</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0</version>
+    <modules>
+        <module>web-controllers</module>
+        <module>services</module>
+        <module>models</module>
+        <module>data-access</module>
+    </modules>
+    <name>sd-tutorial</name>
+
+    <build>
+        <finalName>sd-tutorial</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+            </plugin>
+        </plugins>
+    </build>
+
+<!--    <profiles>-->
+<!--        <profile>-->
+<!--            <id>aws</id>-->
+<!--            <properties>-->
+<!--                <repository.protocol>s3://</repository.protocol>-->
+<!--                <awsMavenExtension.groupId>com.zsassociates.aws</awsMavenExtension.groupId>-->
+<!--                <awsMavenExtension.artifactId>wagon</awsMavenExtension.artifactId>-->
+<!--                <awsMavenExtension.version>${zsaws.version}</awsMavenExtension.version>-->
+<!--            </properties>-->
+<!--        </profile>-->
+<!--    </profiles>-->
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.glassfish.jersey</groupId>
+                <artifactId>jersey-bom</artifactId>
+                <version>${jersey.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>models</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>data-access</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>services</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet-core</artifactId>
+            <!-- use the following artifactId if you don't need servlet 2.x compatibility -->
+            <!-- artifactId>jersey-container-servlet</artifactId -->
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.inject</groupId>
+            <artifactId>jersey-hk2</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.typesafe/config -->
+        <dependency>
+            <groupId>com.typesafe</groupId>
+            <artifactId>config</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.10.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.zsassociates.aws</groupId>
+            <artifactId>jetty-local-runtime</artifactId>
+
+            <version>${zsaws.version}</version>
+<!--            <scope>system</scope>-->
+<!--            <systemPath>c:/spm-sdtutorial/server/app/src/main/resources/libraries/aws/jetty-local-runtime/0.0.42/jetty-local-runtime-0.0.42.jar</systemPath>-->
+        </dependency>
+        <dependency>
+            <groupId>com.zsassociates.aws</groupId>
+            <artifactId>configuration-manager</artifactId>
+
+            <version>${zsaws.version}</version>
+
+<!--            <scope>system</scope>-->
+<!--            <systemPath>c:/spm-sdtutorial/server/app/src/main/resources/libraries/aws/configuration-manager/0.0.42/configuration-manager-0.0.42.jar</systemPath>-->
+
+        </dependency>
+        <dependency>
+            <groupId>com.zsassociates.aws</groupId>
+            <artifactId>jersey-proxy-runtime</artifactId>
+
+            <version>${zsaws.version}</version>
+<!--            <scope>system</scope>-->
+<!--            <systemPath>c:/spm-sdtutorial/server/app/src/main/resources/libraries/aws/jersey-proxy-runtime/0.0.42/jersey-proxy-runtime-0.0.42.jar</systemPath>-->
+
+        </dependency>
+        <dependency>
+            <groupId>com.zsassociates.aws</groupId>
+            <artifactId>jersey-web-client</artifactId>
+            <version>${zsaws.version}</version>
+
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jfarcand</groupId>
+                    <artifactId>wcs</artifactId>
+                </exclusion>
+            </exclusions>
+<!--            <scope>system</scope>-->
+<!--            <systemPath>c:/spm-sdtutorial/server/app/src/main/resources/libraries/aws/jersey-web-client/0.0.42/jersey-web-client-0.0.42.jar</systemPath>-->
+
+
+        </dependency>
+
+    </dependencies>
+    <properties>
+        <zsaws.version>0.0.50</zsaws.version>
+        <appmanagement.version>0.0.32</appmanagement.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <jersey.version>2.30.1</jersey.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <LOCAL_DEV_PREFIX>localdev-</LOCAL_DEV_PREFIX>
+        <repository.protocol>file:///c:/</repository.protocol>
+        <deployment.bucket>${LOCAL_DEV_PREFIX}SdTutorialConfig</deployment.bucket>
+        <config.bucket>${LOCAL_DEV_PREFIX}SdTutorialConfig</config.bucket>
+    </properties>
+    <distributionManagement>
+        <repository>
+            <id>aws-releases</id>
+            <name>AWS Release Repository</name>
+            <!--<url>s3://${deployment.bucket}/releases</url>-->
+            <url>${repository.protocol}${deployment.bucket}/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>aws-snapshots</id>
+            <name>AWS Snapshot Repository</name>
+            <url>${repository.protocol}${deployment.bucket}/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>

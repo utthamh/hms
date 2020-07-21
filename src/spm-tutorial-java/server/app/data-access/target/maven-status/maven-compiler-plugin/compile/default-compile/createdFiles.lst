@@ -1,0 +1,16 @@
+com\zsassociates\dataaccess\util\Specs$BaseSpec.class
+com\zsassociates\dataaccess\util\Queries$InsertQuery.class
+com\zsassociates\dataaccess\Dao\BaseDAO$2.class
+com\zsassociates\dataaccess\Dao\BaseDAO.class
+com\zsassociates\dataaccess\Specs\SalesRepSpec$GetAllSalesRep.class
+com\zsassociates\dataaccess\Specs\SalesRepSpec$SalesRepDelete.class
+com\zsassociates\dataaccess\Specs\SalesRepSpec$SalesRepUpdate.class
+com\zsassociates\dataaccess\util\Queries$Query.class
+com\zsassociates\dataaccess\util\Queries.class
+com\zsassociates\dataaccess\Dao\BaseDAO$1.class
+com\zsassociates\dataaccess\Specs\SalesRepSpec$SalesRep.class
+com\zsassociates\dataaccess\util\Specs.class
+com\zsassociates\dataaccess\Dao\SalesRepDao$SalesRepRowMapper.class
+com\zsassociates\dataaccess\Dao\SalesRepDao.class
+com\zsassociates\dataaccess\Dao\DAO.class
+com\zsassociates\dataaccess\Specs\SalesRepSpec.class

@@ -1,0 +1,6 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Apr 03 11:15:34 IST 2020
+https\://repo.maven.apache.org/maven2/.lastUpdated=1582899656108
+https\://repo.maven.apache.org/maven2/.error=
+s3\://localdev-AppManagementS3Bucket/releases/.error=Could not transfer artifact com.zsassociates.aws\:s3-upload-maven-plugin\:pom\:0.0.38 from/to aws-releases (s3\://localdev-AppManagementS3Bucket/releases)\: Cannot access s3\://localdev-AppManagementS3Bucket/releases with type default using the available connector factories\: BasicRepositoryConnectorFactory
+@default-aws-releases-s3\://localdev-AppManagementS3Bucket/releases/.lastUpdated=1585892734468

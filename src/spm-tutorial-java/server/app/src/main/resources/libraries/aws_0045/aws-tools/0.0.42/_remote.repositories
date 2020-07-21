@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue May 05 01:21:56 IST 2020
+aws-tools-0.0.42.pom>=
+aws-tools-0.0.42.jar>=

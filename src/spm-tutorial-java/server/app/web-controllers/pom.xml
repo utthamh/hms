@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>tutorial</artifactId>
+        <groupId>com.zsassociates.sd</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.4.3</version>
+                <configuration>
+                    <!-- It is important to NOT to activate minimizeJar option -->
+                    <minimizeJar>false</minimizeJar>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer
+                                        implementation="com.github.edwgiz.mavenShadePlugin.log4j2CacheTransformer.PluginsCacheFileTransformer">
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.github.edwgiz</groupId>
+                        <artifactId>maven-shade-plugin.log4j2-cachefile-transformer</artifactId>
+                        <version>2.8.1</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <!--s3-upload plugin uploads local files to the deployment directory-->
+            <plugin>
+                <groupId>com.zsassociates.aws</groupId>
+                <artifactId>s3-upload-maven-plugin</artifactId>
+                <version>${zsaws.version}</version>
+                <configuration>
+                    <!--
+                    Copies the sql source folder to the deployment directory
+                    By convention the folder is copied to "/sql" folder in the location where the final jar is placed
+                    -->
+                    <sqlBucketName>${deployment.bucket}</sqlBucketName>
+                    <sqlSourceFolder>../data-access/src/main/resources/sql</sqlSourceFolder>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <plugin>
+                <groupId>com.zsassociates.appmanagement</groupId>
+                <artifactId>app-maven-plugin</artifactId>
+                <version>${appmanagement.version}</version>
+                <configuration>
+                    <appCode>sd-tutorial</appCode>
+                    <artifactBucket>${deployment.bucket}</artifactBucket>
+                    <configBucket>${config.bucket}</configBucket>
+                    <jarBuildResources>
+                        <JarBuildResource>
+                            <handler>com.zsassociates.aws.runtime.proxy.StreamLambdaHandler</handler>
+                            <packageNameContainingJAXRSResources>com.zsassociates.controllers</packageNameContainingJAXRSResources>
+                            <additionalApplicationComponents></additionalApplicationComponents>
+                            <guiceModuleClassCanonicalName>com.zsassociates.utils.InjectorModule</guiceModuleClassCanonicalName>
+                        </JarBuildResource>
+                    </jarBuildResources>
+                    <dbResources>
+                        <DbLiquiBaseChangeLog>
+                            <logicalDbName>default</logicalDbName>
+                            <changeLogFile>datafabricChangeLog.xml</changeLogFile>
+                        </DbLiquiBaseChangeLog>
+                    </dbResources>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>publishApp</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+<!--        <extensions>-->
+<!--            <extension>-->
+<!--                <groupId>${awsMavenExtension.groupId}</groupId>-->
+<!--                <artifactId>${awsMavenExtension.artifactId}</artifactId>-->
+<!--                <version>${awsMavenExtension.version}</version>-->
+<!--            </extension>-->
+<!--        </extensions>-->
+    </build>
+
+    <artifactId>web</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>services</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>models</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>data-access</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

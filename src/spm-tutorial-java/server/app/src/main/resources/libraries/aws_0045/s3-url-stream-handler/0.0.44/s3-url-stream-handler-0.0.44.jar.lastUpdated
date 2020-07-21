@@ -1,0 +1,18 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon May 04 14:42:23 IST 2020
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\utility/src/main/resources/local-libraries/.error=
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\controllers/src/main/resources/local-libraries/.error=Could not transfer artifact com.zsassociates.aws\:s3-url-stream-handler\:jar\:0.0.44 from/to local-libraries (file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\controllers/src/main/resources/local-libraries)\: Repository path C\:\\bulkImportAlignment\\spm-alignment\\server\\controllers\\src\\main\\resources\\local-libraries does not exist, and cannot be created.
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\services/src/main/resources/local-libraries/.lastUpdated=1588583532546
+file\:///c\:/localdev-AppManagementS3Bucket/releases/.lastUpdated=1588583528316
+https\://dl.bintray.com/spark-packages/maven/.error=
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\services/src/main/resources/local-libraries/.error=
+@default-local-libraries-file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\controllers/src/main/resources/local-libraries/.lastUpdated=1588583539234
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\web/src/main/resources/local-libraries/.lastUpdated=1588583543766
+https\://repo.maven.apache.org/maven2/.lastUpdated=1588583530419
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\aggregate-reports/src/main/resources/local-libraries/.error=
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\web/src/main/resources/local-libraries/.error=
+https\://repo.maven.apache.org/maven2/.error=
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\utility/src/main/resources/local-libraries/.lastUpdated=1588583528291
+file\:///C\:\\bulkImportAlignment\\spm-alignment\\server\\aggregate-reports/src/main/resources/local-libraries/.lastUpdated=1588583537070
+file\:///c\:/localdev-AppManagementS3Bucket/releases/.error=
+https\://dl.bintray.com/spark-packages/maven/.lastUpdated=1588085598967
