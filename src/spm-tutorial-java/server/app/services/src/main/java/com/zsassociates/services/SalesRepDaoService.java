@@ -5,7 +5,4 @@ import java.util.List;
 
 public interface SalesRepDaoService {
   List<SalesRep> getAllSalesRep();
-  Long addSalesRep(SalesRep salesRep);
-  void updateSalesRep(SalesRep salesRep);
-  void deleteSalesRep(Long id);
 }

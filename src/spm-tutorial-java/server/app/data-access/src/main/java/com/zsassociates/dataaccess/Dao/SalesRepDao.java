@@ -22,19 +22,6 @@ public class SalesRepDao extends BaseDAO<SalesRep> {
         Specs.BaseSpec spec = new SalesRepSpec.GetAllSalesRep();
         return this.getMany(spec);
     }
-    public Long addSalesRep(SalesRep salesRep){
-        Specs.BaseSpec addSpec=new SalesRepSpec.SalesRep(salesRep.getName(),salesRep.getCountry(),salesRep.getCity(),salesRep.getGender(),salesRep.getZipcode());
-
-        return this.create(addSpec,"id");
-    }
-    public void updateSalesRep(SalesRep salesRep){
-        Specs.BaseSpec updateSpec=new SalesRepSpec.SalesRepUpdate(salesRep.getName(),salesRep.getCountry(),salesRep.getCity(),salesRep.getGender(),salesRep.getZipcode(),salesRep.getId());
-        this.update(updateSpec);
-    }
-    public void deleteSalesRep(Long id){
-        Specs.BaseSpec deleteSpec=new SalesRepSpec.SalesRepDelete(id);
-        this.update(deleteSpec);
-    }
 
     @Override
     public SalesRep getById(long id) {

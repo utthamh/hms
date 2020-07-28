@@ -19,16 +19,4 @@ public class SalesRepService implements SalesRepDaoService {
     public List<SalesRep> getAllSalesRep() {
       return this.salesRepDao.getAll();
     }
-    @Override
-    public Long addSalesRep(SalesRep salesRep) {
-        return this.salesRepDao.addSalesRep(salesRep);
-    }
-    @Override
-    public void updateSalesRep(SalesRep salesRep) {
-        this.salesRepDao.updateSalesRep(salesRep);
-    }
-    @Override
-    public void deleteSalesRep(Long id) {
-        this.salesRepDao.deleteSalesRep(id);
-    }
 }
