@@ -1,6 +1,0 @@
-com\zsassociates\controllers\SalesRepController.class
-com\zsassociates\controllers\HistoricalSalesController.class
-com\zsassociates\server\LocalServer.class
-com\zsassociates\utils\InjectorModule.class
-com\zsassociates\utils\TutorialExclusionListRetriever.class
-com\zsassociates\utils\InjectorModule$1.class

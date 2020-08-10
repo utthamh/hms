@@ -2,3 +2,13 @@ Sales/venv/Lib/site-packages/easy-install.pth
 Sales/venv/Lib/site-packages/_pytest/stepwise.py
 Sales/venv/Scripts/
 Sales/venv/
+src/spm-tutorial-java/server/.idea
+src/spm-tutorial-java/server/*.jar
+src/spm-tutorial-java/server/*.iml
+src/spm-tutorial-java/server/*.lst
+src/spm-tutorial-java/server/*.class
+src/spm-tutorial-java/server/**/target/*
+src/spm-tutorial-java/server/**/dependency-reduced-pom.xml
+src/spm-tutorial-java/server/**/report/*
+src/spm-tutorial-java/server/**/target/*
+src/spm-tutorial-java/server/**/pom.xml.versionsBackup
