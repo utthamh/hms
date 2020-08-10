@@ -148,10 +148,21 @@
 
 
         </dependency>
-
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>3.2.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>3.2.4</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <properties>
-        <zsaws.version>0.0.50</zsaws.version>
+        <zsaws.version>0.0.52</zsaws.version>
         <appmanagement.version>0.0.32</appmanagement.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -161,6 +172,8 @@
         <repository.protocol>file:///c:/</repository.protocol>
         <deployment.bucket>${LOCAL_DEV_PREFIX}SdTutorialConfig</deployment.bucket>
         <config.bucket>${LOCAL_DEV_PREFIX}SdTutorialConfig</config.bucket>
+        <code.coverage.line>0.85</code.coverage.line>
+        <code.coverage.branch>0.85</code.coverage.branch>
     </properties>
     <distributionManagement>
         <repository>
