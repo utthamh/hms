@@ -5,4 +5,8 @@ import java.util.List;
 
 public interface SalesRepDaoService {
   List<SalesRep> getAllSalesRep();
+
+  List<SalesRep> getSalesRepPaginated(Long start,Long limit);
+
+  void addSalesRep(SalesRep salesRep);
 }

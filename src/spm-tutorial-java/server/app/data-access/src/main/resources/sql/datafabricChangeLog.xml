@@ -7,4 +7,18 @@
     <changeSet id="create_tables" author="sd_tutorial" runOnChange="true">
         <sqlFile path="tables/create_salesrep.sql"/>
     </changeSet>
+
+    <changeSet id="create_historical_sales" author="sd_tutorial" runOnChange="false">
+        <sqlFile path="tables/create_historicalsales.sql"/>
+    </changeSet>
+
+    <changeSet id="create_insights1" author="sd_tutorial" runOnChange="false">
+        <sqlFile path="tables/create_insights1.sql"/>
+    </changeSet>
+
+    <changeSet id="create_insights2" author="sd_tutorial" runOnChange="false">
+        <sqlFile path="tables/create_insights2.sql"/>
+    </changeSet>
+
+
 </databaseChangeLog>

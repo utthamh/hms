@@ -4,7 +4,7 @@
             "dbHostName" : "localhost",
             "dbPort" : "5432",
             "dbReadHostName" : "postgres",
-            "password" : "spm",
+            "password" : "postgres",
             "userName" : "postgres"
         }
     }

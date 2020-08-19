@@ -1,4 +1,4 @@
-set search_path to tutorial;
+
 
 CREATE TABLE if not exists salesrep
 (
