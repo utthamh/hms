@@ -3,9 +3,6 @@ package com.zsassociates.dataaccess.Dao;
 import com.zsassociates.dataaccess.util.Specs;
 import com.zsassociates.models.BaseEntity;
 
-import com.zsassociates.models.SalesRep;
-
-
 import java.util.List;
 import java.util.Map;
 
@@ -24,12 +21,6 @@ public interface DAO<T extends BaseEntity> {
     List<T> getAll();
 
     List<T> getMany(Specs.BaseSpec spec);
-
-    List<T> getSalesRepPaginated(Long start,Long limit);
-
-    List<T> getRepOfTheMonth(String product , String city);
-
-    void addSalesRep(SalesRep salesRep);
 
     T get(Specs.BaseSpec spec);
 

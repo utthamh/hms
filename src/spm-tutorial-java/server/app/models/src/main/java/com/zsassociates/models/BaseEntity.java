@@ -11,6 +11,4 @@ import lombok.Setter;
 @NoArgsConstructor
 public abstract class BaseEntity {
     public long Id;
-
-
 }

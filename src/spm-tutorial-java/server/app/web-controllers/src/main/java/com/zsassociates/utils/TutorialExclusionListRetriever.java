@@ -11,7 +11,6 @@ public class TutorialExclusionListRetriever implements JWTRequestFilter.IExclusi
         excludedPaths.add("hello");
         excludedPaths.add("salesrep");
         excludedPaths.add("historicalsales");
-        excludedPaths.add("rep");
         return excludedPaths;
     }
 }

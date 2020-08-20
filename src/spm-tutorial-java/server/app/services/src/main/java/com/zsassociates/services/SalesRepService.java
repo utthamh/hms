@@ -19,15 +19,4 @@ public class SalesRepService implements SalesRepDaoService {
     public List<SalesRep> getAllSalesRep() {
       return this.salesRepDao.getAll();
     }
-
-    @Override
-    public List<SalesRep> getSalesRepPaginated(Long start, Long limit) {
-        return this.salesRepDao.getSalesRepPaginated(start,limit);
-    }
-
-    @Override
-    public void addSalesRep(SalesRep salesRep){
-        this.salesRepDao.addSalesRep(salesRep);
-    }
-
 }

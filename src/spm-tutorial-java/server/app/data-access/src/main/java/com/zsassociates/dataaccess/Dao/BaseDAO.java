@@ -104,9 +104,6 @@ public abstract class BaseDAO<T extends BaseEntity> implements DAO<T> {
         return null;
     }
 
-    @Override
-    public List<T> getSalesRepPaginated(Long start,Long limit) { return null; }
-
     public boolean executeBooleanFunc(Specs.BaseSpec spec) {
         SqlParameterSource params = new BeanPropertySqlParameterSource(spec);
         return namedTemplate.queryForObject(spec.getSql(), params, boolean.class);
@@ -121,7 +118,6 @@ public abstract class BaseDAO<T extends BaseEntity> implements DAO<T> {
         SqlParameterSource params = new BeanPropertySqlParameterSource(spec);
         return namedTemplate.query(spec.getSql(), params, rowMapper);
     }
-
 
     public List<Map<String, Object>> executeSql(String sqlQuery, Map<String, Object> params) {
         // return namedTemplate.query(sqlQuery, params,new MetricDao.MetricRowMapperV2());

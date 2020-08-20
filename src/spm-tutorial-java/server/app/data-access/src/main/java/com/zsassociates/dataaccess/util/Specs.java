@@ -4,7 +4,6 @@ public class Specs {
 
     public static abstract class BaseSpec {
 
-
         public String getSql() {
             return Queries.getQuery(this.getClass().getSimpleName()).getSql();
         }

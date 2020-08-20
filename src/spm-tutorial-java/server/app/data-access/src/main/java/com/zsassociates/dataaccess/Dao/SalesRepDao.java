@@ -24,23 +24,6 @@ public class SalesRepDao extends BaseDAO<SalesRep> {
     }
 
     @Override
-    public List<SalesRep> getSalesRepPaginated(Long start,Long limit){
-        Specs.BaseSpec spec = new SalesRepSpec.GetSalesRepPaginated(start,limit);
-        return this.getMany(spec);
-    }
-
-    @Override
-    public List<SalesRep> getRepOfTheMonth(String product, String month) {
-        return null;
-    }
-
-    @Override
-    public void addSalesRep(SalesRep salesRep){
-
-    }
-
-
-    @Override
     public SalesRep getById(long id) {
         return null;
     }
