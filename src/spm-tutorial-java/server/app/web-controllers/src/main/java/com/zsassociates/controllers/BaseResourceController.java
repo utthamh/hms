@@ -1,6 +1,5 @@
 package com.zsassociates.controllers;
 
-import com.zsassociates.spm.alignment.web.utils.StaticResourceHelper;
 import com.zsassociates.utils.StaticResourceHelper;
 
 import javax.ws.rs.NotFoundException;
