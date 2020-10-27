@@ -1,0 +1,18 @@
+@zs-theme-name: 'zs';
+
+// Variables
+@zs-lib-path: '../../../node_modules/zsui-core/src';
+@zs-less-src-path: '../../';
+
+// Definitions
+@import '@{zs-lib-path}/less/theme.less';
+@import '@{zs-lib-path}/less/mixins.less';
+@import '@{zs-lib-path}/less/relative.less';
+
+// Package level overrides should be at the bottom
+@zs-images: '@{zs-lib-path}/images';
+@zs-fonts: '@{zs-lib-path}/fonts'; 
+
+@import "@{zs-lib-path}/themes/@{zs-theme-name}/custom.less";
+
+@import "@{zs-less-src-path}messages/messages.less";

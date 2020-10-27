@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" manifest="zsui.appcache">
+<head>
+	<title>ZSUI Dialog</title>    
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> 		
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<%- include('../../node_modules/zsui-core/demo/partials/zsEjs.ejs')%> 
+	<%- script(nodeModules + '/zsui-core/dist/polyfills/polyfills.js')%>
+	<%- script(nodeModules + '/zsui-core/dist/utils/customElements.js')%>
+	<%- link(nodeModules + '/zsui-core/dist/themes/{theme}/core.css')%>
+	<%- link(zsuiPath + '/themes/{theme}/dialog.css')%>
+</head>
+<body class="zs-style" style="padding:1em">

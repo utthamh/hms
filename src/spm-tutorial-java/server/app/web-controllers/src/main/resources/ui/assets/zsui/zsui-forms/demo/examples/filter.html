@@ -1,0 +1,202 @@
+<h2>Filter Example</h2>
+<zs-filter class="zs-filter" label="Filter 1">
+	<div class="zs-select">
+		<select multiple>
+			<option value="1">one</option>
+			<option value="2">two</option>
+			<option value="3">three</option>
+			<option value="4">four</option>
+			<option value="5">five</option>
+			<option value="6">Six</option>
+		</select>
+	</div>
+</zs-filter>
+
+<div id="filter-container" style="display:inline-block"></div>
+
+<h2>Filter with tags</h2>
+<div id="tag-filter-container"></div>
+<div id='tag-container'></div>
+<h2>Filter with preselected options</h2>
+
+<zs-filter class="zs-filter" label="Filter 3">
+	<div class="zs-select">
+		<select mutiple>
+			<option value="1" selected>one</option>
+			<option value="2">two</option>
+			<option value="3" selected>three</option>
+			<option value="4">four</option>
+			<option value="5" selected>five</option>
+			<option value="6" selected>Six</option>
+		</select>
+	</div>
+</zs-filter>
+
+<div id="filter-container1" style="display:inline-block"></div>
+
+<h2>Filter with select all option</h2>
+<zs-filter class="zs-filter" label="Filter 5" selectall>
+	<div class="zs-select">
+		<select multiple>
+			<option value="1">one</option>
+			<option value="2">two</option>
+			<option value="3">three</option>
+			<option value="4">four</option>
+			<option value="5">five</option>
+			<option value="6">Six</option>
+		</select>
+	</div>
+</zs-filter>
+<h2>Single Select Filter</h2>
+<zs-filter class="zs-filter" single>
+	<div class="zs-select">
+		<select>
+			<option value="1">one</option>
+			<option value="2">two</option>
+			<option value="3">three</option>
+			<option value="4">four</option>
+		</select>
+	</div>
+</zs-filter>
+<h2>Filter with disabled options</h2>
+<zs-filter class="zs-filter" label="Filter 6">
+	<div class="zs-select">
+		<select multiple>
+			<option value="1" disabled>one</option>
+			<option value="2">two</option>
+			<option value="3" disabled>three</option>
+			<option value="4">four</option>
+		</select>
+	</div>
+</zs-filter>
+<div id="filter-container2" style="display:inline-block"></div>
+
+<h2>Filter with custom label</h2>
+<zs-filter id="custom-filter" class="zs-filter" label="Select Colors" selectall>
+	<div class="zs-select">
+		<select multiple>
+			<option value="red">Red</option>
+			<option value="yellow">Yellow</option>
+			<option value="green">Green</option>
+			<option value="blue">Blue</option>
+			<option value="orange">Orange</option>
+			<option value="purple">Purple</option>
+		</select>
+	</div>
+</zs-filter>
+
+<script src="<%=zsuiPath%>/select/jquery.zsSearchDropdown.js"></script>
+<script src="<%=zsuiPath%>/form/jquery.zsClear.js"></script>
+<%- script(zsuiPath + '/select/filter.js')%>
+	<script src="<%=zsuiPath%>/tags/zsTag.js"></script>
+	<script>
+		var filter = document.createElement('zs-filter');
+		filter.classList.add('zs-filter');
+		var optionList = [{ "name": "Filter1", "value": "1", "selected": false }, { "name": "Filter2", "value": "2", "selected": false }];
+		filter.optionData = optionList;
+		filter.label = "Filter2";
+		var container = document.querySelector('#filter-container');
+		container.appendChild(filter);
+
+
+		var filter1 = document.createElement('zs-filter');
+		filter1.classList.add('zs-filter');
+		var optionList1 = [{ "name": "Filter1", "value": "1", "selected": true }, { "name": "Filter2", "value": "2", "selected": false }];
+		filter1.optionData = optionList1;
+		filter1.label = "Filter 4";
+		var container = document.querySelector('#filter-container1');
+		container.appendChild(filter1);
+
+		var filter2 = document.createElement('zs-filter');
+		filter2.classList.add('zs-filter');
+		var optionList2 = [{ "name": "Filter1", "value": "1", "disabled": true }, { "name": "Filter2", "value": "2", "disabled": false }, { "name": "Filter3", "value": "3", "disabled": false }];
+		filter2.optionData = optionList2;
+		filter2.label = "Filter 7";
+		var container = document.querySelector('#filter-container2');
+		container.appendChild(filter2);
+
+		$('.zs-input-icon').zsClear();
+		var customFilter = document.querySelector('#custom-filter');
+		customFilter.changeLabel = function (arr, name) {
+			if (arr.length == 0) {
+				this.setLabel();
+				return;
+			}
+			var nameContainer = this.querySelector('[overlay]');
+			nameContainer.innerHTML = '<span> Colors (' + arr.length + ')</span><span class="zs-icon zs-icon-collapse zs-filter-icon"></span>';
+		}
+		customFilter.update();
+
+
+		// Filter with tag example
+
+		//creating a filter
+		var tagFilter = document.createElement('zs-filter');
+		
+		tagFilter.classList.add('zs-filter');
+		var optionList = [{ "name": "Filter1", "value": "Filter1", "selected": true }, { "name": "Filter2", "value": "Filter2", "selected": false }, { "name": "Filter3", "value": "Filter3", "selected": true }, { "name": "Filter4", "value": "Filter4", "selected": false }];
+		tagFilter.optionData = optionList;
+		tagFilter.setAttribute('selectall', '');
+		tagFilter.label = "Tag-Filter";
+		tagFilter.render();
+		var tagFilterContainer = document.querySelector('#tag-filter-container');
+		tagFilterContainer.appendChild(tagFilter);
+
+		var selectedArr = [];
+		var tagArr = [];
+		var tagContainer = document.querySelector('#tag-container');
+
+		// creates tags
+		function createTag(val) {
+			var tag = document.createElement('span',{is:'zs-tag'});
+			tag.textContent = val;
+			tag.value = val;
+			tag.dismissable = true;
+			tag.handleDismiss = removeTag;
+			tag.render();
+			tagContainer.appendChild(tag);
+		}
+
+		function createTagArr() {
+			selectedArr = tagFilter.getSelectedValue();
+			for (var i = 0; i < selectedArr.length; i++) {
+				if (tagArr.indexOf(selectedArr[i]) == -1) {
+					createTag(selectedArr[i]);
+					tagArr.push(selectedArr[i]);
+				}
+			}
+		}
+		
+		createTagArr();
+		
+		function removeTag() {
+			var index = tagArr.indexOf(this.value);
+			tagArr.splice(index, 1);
+			for (var i = 0; i < optionList.length; i++) {
+				optionList[i].selected = tagArr.indexOf(optionList[i].value) > -1 ? true : false;
+			}
+			tagFilter.optionData = optionList;
+			tagFilter.update();
+		}
+		
+		function handleChange() {
+			createTagArr();
+			if (selectedArr.length == 0) {
+				tagContainer.innerHTML = "";
+				tagArr = [];
+				return;
+			}
+			if (tagArr.length > selectedArr.length) {
+				for (var j = 0; j < tagArr.length; j++) {
+					if (selectedArr.indexOf(tagArr[j]) == -1) {
+						var tagToRemove = tagContainer.querySelector('[value="' + tagArr[j] + '"]');
+						tagToRemove.parentElement.removeChild(tagToRemove);
+						var index = tagArr.indexOf(tagArr[j]);
+						tagArr.splice(index, 1);
+						return;
+					}
+				}
+			}
+		}
+		tagFilter.addEventListener('change', handleChange);
+	</script>

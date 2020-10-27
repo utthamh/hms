@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Composition</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- For demo purposes -->
+	<link rel="stylesheet" href="themes/zs/core.css">
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/forms.css">
+	<script src="polyfills/polyfills.js"></script>
+	<script src="https://ui.zsservices.com/zsui/demo.js"></script>	
+	<style>
+		.zs-example {
+			margin:2em;
+		}
+	</style>
+
+	
+</head>
+<body class="zs-style zs-example">
+	<h2>Mixing objects</h2>
+	<p>In this examples we mix two objects. An instance of HTMLButtonElement and a Counter.</p>
+	<script src="smart/mixin.js"></script>
+	<script>
+		// Import our mixin helper
+		var mix = window.mixinM.mix;
+
+		// Count clicks 
+		var counter = {
+			get clicksCount() { // getter
+				return this._clicksCount || 0;
+			},
+			set clicksCount(newValue) { // setter
+				if (newValue >0 && newValue != this._clicksCount) {
+					this.innerHTML = 'Clicked ('+ newValue +')';
+				}
+				this._clicksCount = newValue;
+			}
+		}
+
+		// Create a button
+		var btn = document.createElement('button');
+
+		// Extend a button to add counter 
+		mix(btn, counter);
+
+		// Add the button to the DOM
+		btn.addEventListener('click', function() {
+			this.clicksCount++;
+		});
+		btn.innerHTML = 'Click me!';
+		btn.classList.add('zs-button');
+		document.body.appendChild(btn);				
+	</script>
+
+	<h2>Functional composition</h2>
+	<p>We can using functional programming approach.</p>
+	<script>
+		var pipe = window.mixinM.pipe;
+
+		function withCounting(obj) { 
+			mix(obj, counter); // use counter object from previous example
+			return obj;
+		}
+
+		function withClicking(obj) {
+			obj.addEventListener('click', function() {
+				this.clicksCount++;
+			});
+			return obj;
+		}
+
+		var btn = pipe(withClicking, withCounting)(document.createElement('button'));
+		btn.innerHTML = 'Click me!';
+		btn.classList.add('zs-button');
+		document.body.appendChild(btn);
+	</script>
+
+	
+	<h2>Create components with composition</h2>
+	<p>We use inheritance when creating components. 
+		But can we apply composition along with inheritance? 
+		This example shows how we can create buttons inheriting from HTMLButtonElement but adding more features from other classes.</p>
+	<script src="demoComposition.js"></script><!-- ES5 --> <!-- check the source in demoComposition.m.js -->
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<head>
+	<title>ZSUI Core demo</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	 crossorigin="anonymous"></script>
+	<%- include('zsEjs')%>
+	<%- script(zsuiPath + '/polyfills/polyfills.js')%>
+	<%- script(zsuiPath + '/utils/customElements.js')%>
+	<%- link(zsuiPath + '/themes/{theme}/core.css')%>
+</head>
+<body class="zs-style" style="padding:1em" data-page="<%= (this.page || '') %>">

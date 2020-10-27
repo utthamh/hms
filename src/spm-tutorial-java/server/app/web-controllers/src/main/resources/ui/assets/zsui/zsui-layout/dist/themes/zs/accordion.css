@@ -1,0 +1,33 @@
+/* Flexbox mixins */
+/* 
+Accordion
+
+An accordion is a bar, that when clicked, slides open a panel below with detailed content related to the bar content. 
+
+*/
+.zs-accordion {
+  margin-bottom: 2px;
+}
+.zs-accordion .zs-accordion-bar {
+  border: solid 1px #e1e9ef;
+  box-shadow: 2px 2px 0px #dee3e3;
+  background: #fff;
+  padding: 0.852em 0.994em 0.852em 0.994em;
+  cursor: pointer;
+}
+.zs-accordion .zs-accordion-bar > a.expandCollapseIcon {
+  vertical-align: middle;
+}
+.zs-accordion .zs-accordion-panel {
+  padding: 0.994em 0.994em 0.994em 0.994em;
+  margin: 0em 0.994em 0em 0.994em;
+  background: #f7f7f7;
+  border: solid 1px #e1e9ef;
+  margin-bottom: -3px;
+}
+@media (max-width: 480px) {
+  .zs-accordion-bar > a.expandCollapseIcon.zs-icon {
+    font-size: 1.71428571em;
+  }
+}
+/*# sourceMappingURL=accordion.css.map */

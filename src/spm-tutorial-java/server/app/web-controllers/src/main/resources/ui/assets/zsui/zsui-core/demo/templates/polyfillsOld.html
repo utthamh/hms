@@ -1,0 +1,52 @@
+<!<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Polyfills</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<script src="utils/customElements.poly.js"></script>
+	<script src="polyfills/esHelpers.umd.min.js"></script>
+	<script>
+		var event = new CustomEvent('test');
+		Object.assign({},{test: 1});
+		var es = window.exports.es
+		var MyComponent = function (_HTMLButtonElement) {
+			es.inherits(MyComponent, _HTMLButtonElement);
+
+			function MyComponent() {
+				es.classCallCheck(this, MyComponent);
+
+				return es.possibleConstructorReturn(this, es.getPrototypeOf(MyComponent).call(this));
+			}
+
+			es.createClass(MyComponent, [{
+				key: "connectedCallback",
+				value: function connectedCallback() {
+					var self = this;
+					var prom = new Promise(function(resolve) {
+						setTimeout(function() {
+							resolve({test:1})
+						}, 500);
+					});
+					prom.then(function(data) {						
+						self.innerHTML = "MyButton" + data.test;
+					})					
+					
+				}
+			}]);
+
+			return MyComponent;
+			
+		}(es.wrapNativeSuper(HTMLButtonElement));
+
+	</script>
+
+	<button is="my-button">Default</button>
+	<script>
+		customElements.define('my-button', MyComponent, {extends: 'button'})
+	</script>
+</body>
+</html>

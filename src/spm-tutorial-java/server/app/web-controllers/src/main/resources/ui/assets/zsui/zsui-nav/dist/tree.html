@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" manifest="zsui.appcache">
+	<head>
+        <title>ZSUI Navigation demo</title>
+        <meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		
+		
+	<!-- Demo scripts  -->
+	<script src="demo.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+	<style>
+	.hljs {
+    	padding: 0.5em !important; /*Since core.css loads later and resets all spacing, we need to use !important here.*/
+	}
+	</style>
+	<script>
+	zs.demo.setPaths();
+	zs.demo.addUrlFixes({"nodejs":{},"npm":{"../node_modules/":"../../"},"nuget":{"../node_modules/zsui-[\\w]+/dist":"./"}});
+	</script>
+ 
+
+		<!-- Dependencies -->
+		<script>zs.demo.script("../node_modules/zsui-core/dist/polyfills/polyfills.js");</script>
+		<script>zs.demo.script("../node_modules/zsui-core/dist/utils/customElements.js");</script>
+
+		<!-- Styles -->
+		<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/core.css");</script>
+		<script>zs.demo.link("./themes/{theme}/pagination.css");</script>
+		<script>zs.demo.link("./themes/{theme}/tree.css");</script>
+		<script>zs.demo.link("./themes/{theme}/topNav.css");</script>
+		<script>zs.demo.link("./themes/{theme}/sideNav.css");</script>
+		<script>zs.demo.link("./themes/{theme}/breadcrumbs.css");</script>
+</head>
+<body class="zs-style" style="padding:1em">
+
+<div data-page="tree">
+	<table class="zs-tree-table" width="800">
+		<caption>Tree table</caption>
+		<thead>
+			<tr>
+				<th width="50%">
+					Name
+				</th>
+				<th>
+					Date Published
+				</th>
+				<th align="right">
+					Size
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="zs-row-group">
+				<td colspan="3">Rep Reports</td>
+			</tr>
+			<tr data-tree="01">
+				<td>
+					<a href="javascript:void(0)"><span class="zs-icon zs-icon-expand"></span><span class="zs-icon zs-icon-folder-closed"></span>January</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>
+			<tr data-tree="01-01" style="display: none;">
+				<td class="zs-level-2">
+					<a href="javascript:void(0)"><span class="zs-icon zs-icon-expand"></span><span class="zs-icon zs-icon-folder-closed"></span>January Rep Reports</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>
+			<tr data-tree="01-01-01" style="display: none;">
+				<td class="zs-level-3">
+					<a href="javascript:void(0)"><span class="zs-icon zs-icon-report-template"></span>Your score card</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>			
+			<tr data-tree="02"  data-tree-open="true">
+				<td>
+					<a href="javascript:void(0)"><span class="zs-icon zs-icon-collapse"></span><span class="zs-icon zs-icon-folder-open"></span>February</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>
+			<tr data-tree="02-01" data-tree-open="true">
+				<td class="zs-level-2">
+					<a href="javascript:void(0)"><span class="zs-icon zs-icon-collapse"></span><span class="zs-icon zs-icon-folder-open"></span>February Rep Reports</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>
+			<tr data-tree="02-01-01">
+				<td class="zs-level-3">
+                    <a href="javascript:void(0)"><span class="zs-icon zs-icon-report-template"></span>Your score card</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>
+			<tr class="zs-row-group">
+				<td colspan="3">Manager Reports</td>
+			</tr>
+			<tr data-tree="03">
+				<td>
+					<a href="javascript:void(0)"><span class="zs-icon zs-icon-expand"></span><span class="zs-icon zs-icon-folder-closed"></span>January</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>
+			<tr data-tree="03-01" style="display: none;">
+				<td class="zs-level-2">
+					<a href="javascript:void(0)"><span class="zs-icon zs-icon-collapse"></span><span class="zs-icon zs-icon-folder-open"></span>January Manager Reports</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>
+			<tr data-tree="03-01-01" style="display: none;">
+				<td class="zs-level-3">
+					<a href="javascript:void(0)"><span class="zs-icon zs-icon-report-template"></span>Your score card</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>
+			<tr data-tree="04" data-tree-open="true">
+				<td>
+					<a href="javascript:void(0)"><span class="zs-icon zs-icon-collapse"></span><span class="zs-icon zs-icon-folder-open"></span>February</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>
+			<tr  data-tree="04-01" data-tree-open="true">
+				<td class="zs-level-2">
+					<a href="javascript:void(0)"><span class="zs-icon zs-icon-collapse"></span><span class="zs-icon zs-icon-folder-open"></span>February Manager Reports</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>
+			<tr data-tree="04-01-01">
+				<td  class="zs-level-3">
+                    <a href="javascript:void(0)"><span class="zs-icon zs-icon-report-template"></span>Your score card</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<table class="zs-tree-table" width="800">
+		<caption>Tree table with documents</caption>
+		<thead>
+			<tr>
+				<th width="50%">
+					Name
+				</th>
+				<th>
+					Date Published
+				</th>
+				<th align="right">
+					Size
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="zs-row-group">
+				<td colspan="3">Rep Reports</td>
+			</tr>
+			<tr data-tree="x01" valign="baseline">
+				<td>
+					<a href="javascript:void(0)"><span class="zs-icon zs-icon-expand"></span><span class="zs-icon zs-icon-large zs-icon-folder-closed"></span>January</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>
+			<tr data-tree="x01-01" valign="baseline" style="display: none;">
+				<td class="zs-level-2">
+					<a href="javascript:void(0)"><span class="zs-icon zs-icon-expand"></span><span class="zs-icon zs-icon-large zs-icon-folder-closed"></span>January Rep Reports</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>
+			<tr data-tree="x01-01-01" valign="baseline" style="display: none;">
+				<td class="zs-level-3">
+					<a href="javascript:void(0)"><span class="zs-icon zs-icon-large zs-icon-document"><span class="zs-badge zs-badge-ppt"></span></span>Your report</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>			
+			<tr data-tree="x02" valign="baseline" data-tree-open="true">
+				<td>
+					<a href="javascript:void(0)"><span class="zs-icon zs-icon-collapse"></span><span class="zs-icon zs-icon-large zs-icon-folder-open"></span>February</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>
+			<tr data-tree="x02-01" valign="baseline" data-tree-open="true">
+				<td class="zs-level-2">
+					<a href="javascript:void(0)"><span class="zs-icon zs-icon-collapse"></span><span class="zs-icon zs-icon-large zs-icon-folder-open"></span>February Rep Reports</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>
+			<tr data-tree="x02-01-01" valign="baseline">
+				<td class="zs-level-3">
+                    <a href="javascript:void(0)"><span class="zs-icon zs-icon-large zs-icon-document"><span class="zs-badge zs-badge-word"></span></span>Your score card</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>
+			<tr class="zs-row-group" valign="baseline">
+				<td colspan="3">Manager Reports</td>
+			</tr>
+			<tr data-tree="x03" valign="baseline"> 
+				<td>
+					<a href="javascript:void(0)"><span class="zs-icon zs-icon-expand"></span><span class="zs-icon zs-icon-large zs-icon-folder-closed"></span>January</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>
+			<tr data-tree="x03-01" style="display: none;" valign="baseline">
+				<td class="zs-level-2">
+					<a href="javascript:void(0)"><span class="zs-icon zs-icon-collapse"></span><span class="zs-icon  zs-icon-large zs-icon-folder-open"></span>January Manager Reports</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>
+			<tr data-tree="x03-01-01" style="display: none;" valign="baseline">
+				<td class="zs-level-3">
+					<a href="javascript:void(0)"><span class="zs-icon zs-icon-large zs-icon-document"><span class="zs-badge zs-badge-excel"></span></span>Your score card</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>
+			<tr data-tree="x04" data-tree-open="true" valign="baseline">
+				<td>
+					<a href="javascript:void(0)"><span class="zs-icon zs-icon-collapse"></span><span class="zs-icon zs-icon-large zs-icon-folder-open"></span>February</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>
+			<tr  data-tree="x04-01" data-tree-open="true" valign="baseline">
+				<td class="zs-level-2">
+					<a href="javascript:void(0)"><span class="zs-icon zs-icon-collapse"></span><span class="zs-icon zs-icon-large zs-icon-folder-open"></span>February Manager Reports</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>
+			<tr data-tree="x04-01-01" valign="baseline">
+				<td  class="zs-level-3">
+                    <a href="javascript:void(0)"><span class="zs-icon zs-icon-large zs-icon-document"><span class="zs-badge zs-badge-ppt"></span></span>Your score card</a>
+				</td>
+				<td>3/31/15 5:42PM</td>
+				<td align="right">4K</td>
+			</tr>
+		</tbody>
+	</table>
+	
+</div>
+
+<script defer> 
+	$(document).ready(function() {
+		var tree = $('[data-page="tree"] .zs-tree-table');
+		
+		function expandCollapse(nodeCode, nodeExpand, node, nodeLevel, nodeVisible) {
+			$('[data-tree^="' + nodeCode + '-"]').each(function() {
+				var tr = $(this);								
+				var code = tr.attr('data-tree');
+				var arr = code.split('-');			
+				var level = arr.length || 1;
+				var open = tr.is('[data-tree-open]');
+				var visible = nodeVisible;
+ 	
+				if (level == nodeLevel + 1 ) {
+					if (nodeExpand && visible) {
+						visible = true;
+						tr.show();
+					} else {
+						visible = false;
+						tr.hide();
+					}				
+					expandCollapse(code, !open, tr, level, visible);
+				}										
+			});			
+			
+			var icon = node.find('>td a>.zs-icon-expand, >td a>.zs-icon-collapse');
+            var folderIcon = node.find('>td a>.zs-icon-folder-open, >td a>.zs-icon-folder-closed');
+			if (nodeExpand) {
+				icon.removeClass('zs-icon-expand');
+				icon.addClass('zs-icon-collapse');
+                folderIcon.removeClass('zs-icon-folder-closed');
+                folderIcon.addClass('zs-icon-folder-open');
+				node.attr('data-tree-open', 'true');
+			} else {
+				icon.addClass('zs-icon-expand');
+				icon.removeClass('zs-icon-collapse');
+                folderIcon.removeClass('zs-icon-folder-open');
+                folderIcon.addClass('zs-icon-folder-closed');
+				node.removeAttr('data-tree-open');				
+			}			
+		}
+		
+		
+		tree.find('td>a').click(function() {
+			var a = $(this);			
+			
+			var tr = a.parent().parent();
+			var open = tr.is('[data-tree-open]');			
+			var code = tr.attr('data-tree');
+			var arr = code.split('-');			
+			var level = arr.length || 1;		
+			
+			expandCollapse(code, !open, tr, level, true);
+			
+			return false;
+		});	
+	});
+</script>
+
+	<!-- Demo scripts -->
+	<script>		
+	
+		if (zs && zs.demo) {
+			zs.demo.adjustCss();
+			zs.demo.applyTheme();
+			zs.demo.highlight();
+		}
+	</script>
+</body>
+</html>

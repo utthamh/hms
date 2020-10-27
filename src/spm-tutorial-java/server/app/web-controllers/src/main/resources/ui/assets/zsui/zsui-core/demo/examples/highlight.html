@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<head>
+	<title>ZSUI Highlight</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link href="https://ui.zsservices.com/zsui/themes/zs/core.css" rel="stylesheet">
+	<link href="https://ui.zsservices.com/zsui/themes/zs/forms.css" rel="stylesheet">
+
+</head>
+
+<body class="zs-style" style="padding:1em" data-page="">
+	<section data-page="highlight">
+		<h2>Highlight</h2>
+		<p>
+			<input type="text" class="zs-input" value="lectus" />
+			<button class="zs-button zs-button-action" high onclick="highlight()">Highlight</button>
+			<span class="zs-checkbox">
+				<input type="checkbox" id="sensitivity" onchange="highlight()"/>Case sensitive
+			</span>
+		</p>
+		<p highlight>
+			<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque
+				imperdiet dolor,
+				ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+				vulputate
+				magna. Suspendisse
+				eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis
+				iaculis. Fusce ultricies
+				vehicula posuere.
+			</span>
+		</p>
+		<p highlight>
+			<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque
+				imperdiet dolor,
+				ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+				vulputate
+				magna. Suspendisse
+				eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis
+				iaculis. Fusce ultricies
+				vehicula posuere.
+			</span>
+		</p>
+		<p highlight>
+			<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+				neque
+				imperdiet dolor,
+				ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at
+				vulputate
+				magna. Suspendisse
+				eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis
+				iaculis. Fusce ultricies
+				vehicula posuere.
+			</span>
+		</p>
+		<button class="zs-button" low onclick="lowlight()">Remove</button>
+	</section>
+
+	<script src="<%=zsuiPath%>/highlight/zsHighlight.js"></script>
+	<script>
+		function highlight() {
+			var keyword = document.querySelector('.zs-input').value;
+			zs.highlight.highlight(keyword, document.getElementById('sensitivity').checked, document.querySelectorAll('[highlight]'));
+		}
+
+		highlight();
+
+		function lowlight() {
+			zs.highlight.lowlight(document.querySelectorAll('[highlight]'));
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" manifest="zsui.appcache">
+	<head>
+        <title>ZSUI Navigation demo</title>
+        <meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		
+		
+	<!-- Demo scripts  -->
+	<script src="demo.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+	<style>
+	.hljs {
+    	padding: 0.5em !important; /*Since core.css loads later and resets all spacing, we need to use !important here.*/
+	}
+	</style>
+	<script>
+	zs.demo.setPaths();
+	zs.demo.addUrlFixes({"nodejs":{},"npm":{"../node_modules/":"../../"},"nuget":{"../node_modules/zsui-[\\w]+/dist":"./"}});
+	</script>
+ 
+
+		<!-- Dependencies -->
+		<script>zs.demo.script("../node_modules/zsui-core/dist/polyfills/polyfills.js");</script>
+		<script>zs.demo.script("../node_modules/zsui-core/dist/utils/customElements.js");</script>
+
+		<!-- Styles -->
+		<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/core.css");</script>
+		<script>zs.demo.link("./themes/{theme}/pagination.css");</script>
+		<script>zs.demo.link("./themes/{theme}/tree.css");</script>
+		<script>zs.demo.link("./themes/{theme}/topNav.css");</script>
+		<script>zs.demo.link("./themes/{theme}/sideNav.css");</script>
+		<script>zs.demo.link("./themes/{theme}/breadcrumbs.css");</script>
+</head>
+<body class="zs-style" style="padding:1em">
+<script>zs.demo.link("./themes/{theme}/toolbar.css");</script>
+<style>
+	html,body {
+		height: 100%;
+	}
+	.container {
+		background: #fff;
+		border-radius: 0.3em;
+		border: 1px solid #e1e9ef;
+		box-shadow: 0 3px 6px #dee3e3;
+		width:50vw;
+		display:inline-block;
+		padding:0.71em;
+	}
+	.container.vertical {
+		width:120px;
+		height:50vh;
+	}
+</style>
+<p>Toolbar can be used for navigation between pages or actions on the page and has icons and labels.</p>
+<code for="prep" class="html hljs"></code>
+<div id="prep" class="zs-hidden">
+	<!---
+<link rel="stylesheet" href="path/to/zsui/dist/themes/zs/toolbar.css"/> 
+<!-- or @import 'path/to/zsui-nav/src/toolbar/toolbar.less';  -->
+//-->
+</div>
+
+<h2>Normal toolbar</h2>
+<p>By default it will take the whole space in the container and will be aligned horizontally</p>
+<div class="container" id="example1">
+	<nav class="zs-toolbar">
+		<a href="#home1" id="home1"><span class="zs-icon zs-icon-large zs-icon-home"></span><span>Home</span></a>
+		<a href="#today1" id="today1"><span class="zs-icon zs-icon-large zs-icon-calendar"></span><span>Today</span></a>
+		<a href="#chat1" id="chat1"><span class="zs-icon zs-icon-large zs-icon-speech-bubble"></span><span>Chat</span></a>
+		<a href="#search1" id="search1"><span class="zs-icon zs-icon-large zs-icon-search"></span><span>Search</span></a>
+	</nav>
+</div>
+<code for="example1" class="hljs html"></code>
+
+<h2>Labels below and active state</h2>
+<p>You can use "zs-toolbar-labels-below" class and "zs-active" class to put labels below icons and highlight an active item.</p>
+<div class="container" id="example2">
+	<nav class="zs-toolbar zs-toolbar-labels-below">
+		<a href="#home2" id="home2"><span class="zs-icon zs-icon-large zs-icon-home"></span><span>Home</span></a>
+		<a href="#today2" id="today2" class="zs-active"><span class="zs-icon zs-icon-large zs-icon-calendar"></span><span>Today</span></a>
+		<a href="#chat2" id="chat2"><span class="zs-icon zs-icon-large zs-icon-speech-bubble"></span><span>Chat</span></a>
+		<a href="#search2" id="search2"><span class="zs-icon zs-icon-large zs-icon-search"></span><span>Search</span></a>
+	</nav>
+</div>
+<code for="example2" class="hljs html"></code>
+
+<h2>Icons only</h2>
+<p>You can use just icons by removing elements with label from the toolbar items.</p>
+<div class="container" id="example3">
+	<nav class="zs-toolbar">
+		<a href="#home3" id="home3"><span class="zs-icon zs-icon-large zs-icon-home"></span></a>
+		<a href="#today3" id="today3"><span class="zs-icon zs-icon-large zs-icon-calendar"></span></a>
+		<a href="#chat3" id="chat3"><span class="zs-icon zs-icon-large zs-icon-speech-bubble"></span></a>
+		<a href="#search3" id="search3"><span class="zs-icon zs-icon-large zs-icon-search"></span></a>
+	</nav>
+</div>
+<code for="example3" class="hljs html"></code>
+
+<h2>Small icons</h2>
+<p>You case alternative icon sizes.</p>
+<div class="container" id="example4">
+	<nav class="zs-toolbar">
+		<a href="#home4" id="home4"><span class="zs-icon zs-icon-home"></span><span>Home</span></a>
+		<a href="#today4" id="today4"><span class="zs-icon zs-icon-calendar"></span><span>Today</span></a>
+		<a href="#chat4" id="chat4"><span class="zs-icon zs-icon-speech-bubble"></span><span>Chat</span></a>
+		<a href="#search4" id="search4"><span class="zs-icon zs-icon-search"></span><span>Search</span></a>
+	</nav>
+</div>
+<code for="example4" class="hljs html"></code>
+
+<h2>Vertical</h2>
+<p>"zs-toolbar-vertical" class will help you to align toolbar vertically. But keep in mind you need to use a proper container for that too.</p>
+<div class="container vertical"  id="example5">
+	<nav class="zs-toolbar zs-toolbar-vertical zs-toolbar-labels-below">
+		<a href="#home5" id="home5"><span class="zs-icon zs-icon-large zs-icon-home"></span><span>Home</span></a>
+		<a href="#today5" id="today5"><span class="zs-icon zs-icon-large zs-icon-calendar"></span><span>Today</span></a>
+		<a href="#chat5" id="chat5"><span class="zs-icon zs-icon-large zs-icon-speech-bubble"></span><span>Chat</span></a>
+		<a href="#search5" id="search5"><span class="zs-icon zs-icon-large zs-icon-search"></span><span>Search</span></a>
+	</nav>
+</div>
+<code for="example5" class="hljs html"></code>
+
+<h2>Vertical with items aligned</h2>
+<p>Sometimes you want to align all items to the left. Use "zs-toolbar-align-left" for that.</p>
+<div class="container vertical"  id="example6">
+	<nav class="zs-toolbar zs-toolbar-vertical zs-toolbar-align-left">
+		<a href="#home6" id="home6"><span class="zs-icon zs-icon-home"></span><span>Home</span></a>
+		<a href="#today6" id="today6"><span class="zs-icon zs-icon-calendar"></span><span>Today</span></a>
+		<a href="#chat6" id="chat6"><span class="zs-icon zs-icon-speech-bubble"></span><span>Chat</span></a>
+		<a href="#search6" id="search6"><span class="zs-icon zs-icon-search"></span><span>Search</span></a>
+	</nav>
+</div>
+<code for="example6" class="hljs html"></code>
+
+
+	<!-- Demo scripts -->
+	<script>		
+	
+		if (zs && zs.demo) {
+			zs.demo.adjustCss();
+			zs.demo.applyTheme();
+			zs.demo.highlight();
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!-- <div class="zs-app-message">Non-Production Environment
+	<a href="javascript:void(0);" class="zs-icon zs-icon-rejected-approval"></a>
+</div> -->
+
+<h2 style="margin-top: 0;">App and Page Level Messages</h2>
+<form class="zs-form">
+	<fieldset>
+		<p>
+			<input type="button" value="Show App Level Message" class="zs-button" id="showAppMessage" />
+			<input type="button" value="Show/Hide Page Level Message" class="zs-button" id="showMessage" />
+		</p>
+	</fieldset>
+</form>
+
+<script>
+	$(function () {
+
+		var appMessageContainer = document.createElement("div");
+		appMessageContainer.classList.add("zs-app-message");
+		appMessageContainer.innerHTML = 'Non-Production Environment<a href="javascript:void(0);" class="zs-icon zs-icon-rejected-approval"></a>';
+
+		var asideContainer = document.querySelector("main>aside");
+
+		if (asideContainer) {
+			document.querySelector("main").insertBefore(appMessageContainer, asideContainer.nextElementSibling);
+		} else {
+			document.body.insertBefore(appMessageContainer, document.body.firstElementChild);
+		}
+
+		if (appMessageContainer) {
+			document.getElementById("showAppMessage").addEventListener("click", function () {
+				appMessageContainer.style.display = "block";
+			});
+
+			appMessageContainer.querySelector("a.zs-icon-rejected-approval").addEventListener("click", function () {
+				appMessageContainer.style.display = "none";
+			});
+		}
+
+		var showHideMessage = function () {
+			var $element = $('.zs-action-message');
+			if (!$element.length) {
+				// append to the dom
+				$element = $('<div class="zs-action-message" style="">Save changes<span class="zs-right"><a href="javascript:void(0);">Cancel</a><button class="zs-button zs-button-action">Save</button></span></div>');
+
+				if ($('main>aside').length) {
+					$('main>aside').after($element);
+				} else {
+					$('body').prepend($element);
+				}
+
+				$element.find('a').click(function () {
+					$element.hide();
+				});
+
+				$element.hide();
+			}
+			if (!$element.is(':visible')) {
+				$element.show();
+			} else {
+				$element.hide();
+			}
+		}
+		document.getElementById("showMessage").addEventListener("click", showHideMessage);
+	});
+
+</script>

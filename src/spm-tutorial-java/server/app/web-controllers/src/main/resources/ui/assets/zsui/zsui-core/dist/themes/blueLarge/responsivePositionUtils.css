@@ -1,0 +1,57 @@
+@media (max-width: 768px) {
+  .zs-position-fixed-xsw {
+    position: fixed !important;
+  }
+  .zs-position-absolute-xsw {
+    position: absolute !important;
+  }
+  .zs-position-relative-xsw {
+    position: relative !important;
+  }
+  .zs-position-static-xsw {
+    position: static !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .zs-position-fixed-sw {
+    position: fixed !important;
+  }
+  .zs-position-absolute-sw {
+    position: absolute !important;
+  }
+  .zs-position-relative-sw {
+    position: relative !important;
+  }
+  .zs-position-static-sw {
+    position: static !important;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .zs-position-fixed-mw {
+    position: fixed !important;
+  }
+  .zs-position-absolute-mw {
+    position: absolute !important;
+  }
+  .zs-position-relative-mw {
+    position: relative !important;
+  }
+  .zs-position-static-mw {
+    position: static !important;
+  }
+}
+@media (min-width: 1200px) {
+  .zs-position-fixed-lw {
+    position: fixed !important;
+  }
+  .zs-position-absolute-lw {
+    position: absolute !important;
+  }
+  .zs-position-relative-lw {
+    position: relative !important;
+  }
+  .zs-position-static-lw {
+    position: static !important;
+  }
+}
+/*# sourceMappingURL=responsivePositionUtils.css.map */

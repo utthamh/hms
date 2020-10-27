@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>ZSUI Tables demo</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	
+	<!-- Demo scripts  -->
+	<script src="demo.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+	<style>
+	.hljs {
+    	padding: 0.5em !important; /*Since core.css loads later and resets all spacing, we need to use !important here.*/
+	}
+	</style>
+	<script>
+	zs.demo.setPaths();
+	zs.demo.addUrlFixes({"nodejs":{},"npm":{"../node_modules/":"../../"},"nuget":{"../node_modules/zsui-[\\w]+/dist":"./"}});
+	</script>
+	
+	<script>zs.demo.script("../node_modules/zsui-core/dist/polyfills/polyfills.js");</script>
+	<script>zs.demo.script("../node_modules/zsui-core/dist/utils/customElements.js");</script>
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/core.css");</script>
+	<script>zs.demo.link("./themes/{theme}/tables.css");</script>
+	
+</head>
+<body class="zs-style" style="padding:1em" data-page="">	
+
+<script>zs.demo.script("../node_modules/zsui-core/dist/loading/loading.js");</script>
+<script>zs.demo.script("./tables/tableElement.js");</script>
+<script>zs.demo.script("./tables/fixedColumns.js");</script>
+<script>zs.demo.script("./tables/delayedRender.js");</script>
+<style>
+	
+	/* Adjust input width when inside a cell */
+	.zs-data-table td>input, .zs-field input, [is="zs-field"] input {
+		width:100%;
+		min-width:5em!important;
+	}
+
+</style>
+<h2>Delayed render</h2>
+<p>Helps to improve user experience by rendering table rows in portions. User could see and start interact with table sooner especially for complex or big data sets.</p>
+<form class="zs-form" id="editable-form">
+	<fieldset class="zs-fieldset-vertical">
+		<p>
+			<span class="zs-checkbox"><input type="checkbox" name="editmode" checked/>Edit mode</span>		
+		</p>		
+		<p>
+			<label>Rows to display</label>
+			<input class="zs-input" name="itemsCount" type="number" min="1" max="5000" value="100" placeholder="Items to display" />
+
+			<button class="zs-button zs-button-action" onclick="zs.app.refresh();return false;">Render</button>
+			<button class="zs-button" onclick="zs.app.clear();return false;">Clear</button>
+			
+		</p>
+		<p>
+			<span class="zs-checkbox"><input type="radio" name="strategy" value="default" checked/>Default</span>
+			<span class="zs-checkbox"><input type="radio" name="strategy" value="delayed"/>Delayed</span>
+		</p>
+	</fieldset>
+</form>
+<div class="timer" for="editable-table"></div>
+<div class="here"></div>
+
+<script>
+	zs.tableElementDelayed = zs.customElement(HTMLDivElement, 'zs-table-delayed', 'div', [zs.loading, zs.table, zs.tableDelayedRender]);
+
+	$(function() {
+		var itemsCount = 100, edit = true, fields = false, strategy = 'default'; zs.app = zs.app || {};
+		function getData() {
+			return new Promise(function (resolve, reject) {
+				var arr = [];
+				for (i = 0; i < itemsCount; i++) {
+					var row = [];
+					for (j = 0; j < 10; j++) {
+						if (edit && strategy != 'editable' && !fields) {
+							row.push('<input class="zs-text" type="text" value="Cell ' + (i+1) + ',' + (j+1) + '"/>');
+						} else if (strategy == 'editable') {
+							row.push('Cell ' + (i+1) + ',' + (j+1));					
+						} else {
+							row.push('Cell ' + (i+1) + ',' + (j+1));
+						}
+					}
+					arr.push(row);
+				}
+				resolve(arr);
+			});
+		}
+		function onRender() {
+			this.isLoading = false;
+			if (!this.startTime) { return; }
+
+			renderTime = performance.now() - (this.startTime || 0);
+			if (!this.timerElement) {
+				this.timerElement = this.parentNode.parentNode.querySelector('.timer');
+				if (!this.timerElement) { return; }
+			}
+			this.timerElement.innerHTML = 'Rendered in ' + Math.round(renderTime) + ' ms';
+		}
+		function clear() {
+			console.log('clear');
+			if ($('#edit-table').length) {$('#edit-table')[0].timerElement.innerHTML = '';}
+			$('#edit-table').remove();
+			
+		}
+		function refresh() {
+			var form = $('#editable-form')[0];			
+			var table1 = $('#edit-table')[0];
+			console.log('refresh', itemsCount, strategy, edit);			
+			clear();
+			table1 = document.createElement('div', {is: 'zs-table' + (strategy != 'default' ? '-' + strategy : '')});
+			$(table1).attr({class:"zs-form",style:'max-height:400px;overflow-y:auto;display:inline-block', id: 'edit-table'});
+			table1.getTableData = getData;
+			table1.headData = ['Column 1', 'Column 2', 'Column 3', 'Column 4', 'Column 5', 'Column 6', 'Column 7', 'Column 8', 'Column 9', 'Column 10'];
+			table1.addEventListener('render', onRender);
+			if (strategy == 'editable') {
+				table1.classList.add('zs-edit');
+			}
+			$(table1).appendTo($('.here'));
+			table1.isLoading = true;
+			table1.startTime = performance.now();
+			table1.refreshTable();
+		}
+		var $itemsCount = $('#editable-form [name="itemsCount"]');
+		var $mode = $('#editable-form [name="editmode"]');
+		var $fields = $('#editable-form [name="fields"]');
+
+		$mode.on('change', function() {
+			edit = $(this).is(':checked');
+			console.log('mode clicked');
+			refresh();
+		});
+		$fields.on('change', function() {
+			fields = $(this).is(':checked');
+			console.log('fields clicked');
+			refresh();
+		});
+		$itemsCount.val(itemsCount);
+		$itemsCount.on('change', function() {
+			itemsCount = $(this).val();			
+			refresh();
+		});
+		var $strategy = $('#editable-form [name="strategy"]').on('change', function() {
+			strategy = $(this).val();
+		
+			refresh();
+		});
+
+		zs.app = {
+			clear: clear,
+			refresh: refresh
+		}
+
+		refresh();		
+	});
+</script>
+
+<h2>Delayed locked columns</h2>
+<div is="zs-table-fixed"><div id="fixed-container" style="width:400px;height:400px;overflow:auto"></div> </div>
+<script>
+	var itemsCount = 300;
+	zs.tableElementDelayedLocked = zs.customElement(HTMLDivElement, 'zs-table-fixed', 'div', [zs.loading, zs.table, zs.tableFixedColumns, zs.tableFixedColumnsDelayed, {
+		headData:['Column 1', 'Column 2', 'Column 3', 'Column 4', 'Column 5', 'Column 6', 'Column 7', 'Column 8', 'Column 9', 'Column 10'],
+		fixedColumnCount: 3,
+		tableContainer: $('#fixed-container')[0],
+		getTableData: function() {
+			return new Promise(function (resolve, reject) {
+				var arr = [];
+				for (let i = 0; i < itemsCount; i++) {
+					let row = [];
+					for (let j = 0; j < 10; j++) {
+						row.push('Cell ' + (i+1) + ',' + (j+1));
+					}
+					arr.push(row);
+				}
+				resolve(arr);
+			});
+		}
+	}]);
+
+	$(function() {
+		var table = document.querySelector('[is="zs-table-fixed"]');
+		table.refreshTable();
+	});
+</script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+	<style>
+		
+		body,
+		html {
+			padding: 0px !important;
+			margin: 0px;
+			height: 100%;
+		}
+
+	</style>
+</head>
+	<div class="zs-layout-page zs-height-100 zs-width-100">
+		<header class="zs-header zs-mobile-header zs-bg-standard">
+			<h2> Header </h2>			
+		</header>
+		<nav class="zs-side-navigation zs-border-right zs-width-200px zs-bg-standard zs-display-none-xsw">
+			<span>Side navigation</span>
+		</nav>
+		<main class="zs-bg-dark zs-padding-0-0-1-0">
+			<header class="zs-padding-0-0-1_5-0">
+				Page Title
+			</header>
+			<section class="zs-bg-standard zs-padding-2 zs-box-shadow zs-border-color-default zs-border-rounded zs-margin-0-2">
+				<form class="zs-form">
+					<fieldset class="zs-fieldset">
+						<p>
+							<span class="zs-radio-group">
+								<input type="radio" name="layoutType" value="3col" checked>3 Column layout
+								<input type="radio" name="layoutType" value="2col">Primary layout
+								<input type="radio" name="layoutType" value="1col">1 Column layout
+							</span>
+
+							<span class="zs-checkbox">
+								<input type="checkbox" value="noFooter">No Footer
+								<input type="checkbox" value="noHeader">No Header
+							</span>
+						</p>
+					</fieldset>
+				</form>
+			</section>
+		</main>
+		<aside class="border zs-bg-primary">Aside</aside>
+		<footer class="border zs-bg-dark zs-text-footer">
+			<div class="zs-bg-standard zs-display-none-xsw zs-float-left zs-border-right zs-width-200px zs-display-inline-block">&nbsp;</div>
+			<div class="zs-padding-0-2">
+				<span>Footer</span>				
+			</div>
+		</footer>
+	</div>
+
+	<script>
+		var body=document.querySelector('body');
+		body.classList.remove("zs-layout-table");
+		
+		function switchLayout(e) {
+			if (e.target.value == '1col') {
+				document.querySelector('div.zs-layout-page>aside').classList.add('zs-display-none');
+				document.querySelector('div.zs-layout-page>nav').classList.add('zs-display-none');
+				document.querySelector('div.zs-layout-page>footer>div').style.opacity=0;
+			} else if(e.target.value == '3col') {
+				document.querySelector('div.zs-layout-page>aside').classList.remove('zs-display-none');
+				document.querySelector('div.zs-layout-page>nav').classList.remove('zs-display-none');
+				document.querySelector('div.zs-layout-page>footer>div').style.opacity=1;
+			} else {
+				document.querySelector('div.zs-layout-page>aside').classList.add('zs-display-none');
+				document.querySelector('div.zs-layout-page>nav').classList.remove('zs-display-none');
+				document.querySelector('div.zs-layout-page>footer>div').style.opacity=1;
+			}
+		}
+
+		function toggleHeaderFooter(e){
+			
+			if (e.target.value == 'noFooter') {
+				if(e.target.checked){
+					document.querySelector('div.zs-layout-page>footer').classList.add('zs-display-none');
+				}else{
+					document.querySelector('div.zs-layout-page>footer').classList.remove('zs-display-none');
+				}
+			} else if(e.target.value == 'noHeader') {
+				if(e.target.checked){
+					document.querySelector('div.zs-layout-page>header').classList.add('zs-display-none');
+				}else{
+					document.querySelector('div.zs-layout-page>header').classList.remove('zs-display-none');
+				}
+			}
+		}
+
+		document.querySelector('.zs-radio-group').addEventListener('click', switchLayout);
+		document.querySelector('.zs-checkbox').addEventListener('click', toggleHeaderFooter);
+			
+	</script>

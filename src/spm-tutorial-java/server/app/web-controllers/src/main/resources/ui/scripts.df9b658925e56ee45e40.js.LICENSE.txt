@@ -1,0 +1,5 @@
+/*! jQuery v3.3.1 | (c) JS Foundation and other contributors | jquery.org/license */
+
+//! Debounce logic taken from http://underscorejs.org/#debounce, but modified to support canceling
+
+//! Element.closest() Polyfill taken from https://developer.mozilla.org/en-US/docs/Web/API/Element/closest

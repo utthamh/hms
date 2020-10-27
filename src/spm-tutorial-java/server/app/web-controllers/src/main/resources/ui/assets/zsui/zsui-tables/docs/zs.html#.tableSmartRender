@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>tableSmartRender - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ZS%252520TablePivot.html">ZS TablePivot</a></li><li><a href="ZS%252520TableSortable.html">ZS TableSortable</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:cellchangeFireswhenwecelldataischanged">cellchange Fires when we cell data is changed</a></li><li><a href="global.html#event:resizeFireswhenweresizetable">resize Fires when we resize table</a></li></ul><h3>Namespaces</h3><ul><li><a href="zs.table.html">table</a><ul class='methods'><li data-type='method'><a href="zs.table.html#.clearTable">clearTable</a></li><li data-type='method'><a href="zs.table.html#.considerPosition">considerPosition</a></li><li data-type='method'><a href="zs.table.html#.getTableData">getTableData</a></li><li data-type='method'><a href="zs.table.html#.refreshTable">refreshTable</a></li><li data-type='method'><a href="zs.table.html#.render">render</a></li><li data-type='method'><a href="zs.table.html#.renderCell">renderCell</a></li><li data-type='method'><a href="zs.table.html#.renderHead">renderHead</a></li><li data-type='method'><a href="zs.table.html#.renderHeadRow">renderHeadRow</a></li><li data-type='method'><a href="zs.table.html#.renderRow">renderRow</a></li><li data-type='method'><a href="zs.table.html#.renderTable">renderTable</a></li><li data-type='method'><a href="zs.table.html#.whenRendered">whenRendered</a></li></ul></li><li><a href="zs.tableDelayedRender.html">tableDelayedRender</a><ul class='methods'><li data-type='method'><a href="zs.tableDelayedRender.html#.renderTable">renderTable</a></li><li data-type='method'><a href="zs.tableDelayedRender.html#.renderTableSection">renderTableSection</a></li></ul></li><li><a href="zs.tableEditable.html">tableEditable</a><ul class='methods'><li data-type='method'><a href="zs.tableEditable.html#.cellClick">cellClick</a></li><li data-type='method'><a href="zs.tableEditable.html#.createField">createField</a></li><li data-type='method'><a href="zs.tableEditable.html#.fieldChange">fieldChange</a></li><li data-type='method'><a href="zs.tableEditable.html#.focusEditField">focusEditField</a></li><li data-type='method'><a href="zs.tableEditable.html#.formatCell">formatCell</a></li><li data-type='method'><a href="zs.tableEditable.html#.isEditable">isEditable</a></li><li data-type='method'><a href="zs.tableEditable.html#.nextField">nextField</a></li><li data-type='method'><a href="zs.tableEditable.html#.onWindowResize">onWindowResize</a></li><li data-type='method'><a href="zs.tableEditable.html#.positionOverlay">positionOverlay</a></li><li data-type='method'><a href="zs.tableEditable.html#.prevField">prevField</a></li><li data-type='method'><a href="zs.tableEditable.html#.renderCell">renderCell</a></li><li data-type='method'><a href="zs.tableEditable.html#.renderField">renderField</a></li><li data-type='method'><a href="zs.tableEditable.html#.renderOverlay">renderOverlay</a></li><li data-type='method'><a href="zs.tableEditable.html#.updateCellData">updateCellData</a></li></ul></li><li><a href="zs.tableFixedColumns.html">tableFixedColumns</a><ul class='methods'><li data-type='method'><a href="zs.tableFixedColumns.html#.decorateFixedHeaders">decorateFixedHeaders</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.matchScroll">matchScroll</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.renderHeadRow">renderHeadRow</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.renderHeadRow">renderHeadRow</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.renderRow">renderRow</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.renderRow">renderRow</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.renderTable">renderTable</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.renderTable">renderTable</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.resizeFixed">resizeFixed</a></li><li data-type='method'><a href="zs.tableFixedColumns.html#.whenRendered">whenRendered</a></li></ul></li><li><a href="zs.tableFixedColumnsDelayed.html">tableFixedColumnsDelayed</a><ul class='methods'><li data-type='method'><a href="zs.tableFixedColumnsDelayed.html#.renderTable">renderTable</a></li><li data-type='method'><a href="zs.tableFixedColumnsDelayed.html#.renderTableSection">renderTableSection</a></li></ul></li><li><a href="zs.html#.tableSmartRender">tableSmartRender</a><ul class='methods'><li data-type='method'><a href="zs.html#.tableSmartRender#.detectChanges">detectChanges</a></li><li data-type='method'><a href="zs.html#.tableSmartRender#.detectChanges">detectChanges</a></li><li data-type='method'><a href="zs.html#.tableSmartRender#.detectChangesUpdateHash">detectChangesUpdateHash</a></li><li data-type='method'><a href="zs.html#.tableSmartRender#.detectChangesUpdateHash">detectChangesUpdateHash</a></li><li data-type='method'><a href="zs.html#.tableSmartRender#.getHash">getHash</a></li><li data-type='method'><a href="zs.html#.tableSmartRender#.getRowHash">getRowHash</a></li><li data-type='method'><a href="zs.html#.tableSmartRender#.getRowKey">getRowKey</a></li><li data-type='method'><a href="zs.html#.tableSmartRender#.renderChanges">renderChanges</a></li></ul></li><li><a href="zs.tableStickyHeader.html">tableStickyHeader</a><ul class='methods'><li data-type='method'><a href="zs.tableStickyHeader.html#.clearTable">clearTable</a></li><li data-type='method'><a href="zs.tableStickyHeader.html#.decorateStickyCell">decorateStickyCell</a></li><li data-type='method'><a href="zs.tableStickyHeader.html#.resizeStickyHeader">resizeStickyHeader</a></li><li data-type='method'><a href="zs.tableStickyHeader.html#.scrollStickyHeader">scrollStickyHeader</a></li><li data-type='method'><a href="zs.tableStickyHeader.html#.stickHeader">stickHeader</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">tableSmartRender</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        tableSmartRender
+        </h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="smart.js.html">smart.js</a>, <a href="smart.js.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+        
+            <div class="description">Smart render table behavior. Useful to improve the table rendering performance by rendering only changed records.</div>
+        
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".properties"><span class="type-signature">(static) </span>properties<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="smart.js.html">smart.js</a>, <a href="smart.js.html#line46">line 46</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Object containing the properties of the element.
+</div>
+
+
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".detectChanges"><span class="type-signature">(static) </span>detectChanges<span class="signature">()</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="table.js.html">table.js</a>, <a href="table.js.html#line827">line 827</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Check for changes
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - Object indicating changes in data like {add: [1, 2, 3], remove: [4], modify: [5]}
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".detectChanges"><span class="type-signature">(static) </span>detectChanges<span class="signature">(newArray)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="smart.js.html">smart.js</a>, <a href="smart.js.html#line87">line 87</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Check for changes
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>newArray</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Array containing new values.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - Object indicating changes in data like {add: [1, 2, 3], remove: [4], modify: [5]}
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".detectChangesUpdateHash"><span class="type-signature">(static) </span>detectChangesUpdateHash<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="table.js.html">table.js</a>, <a href="table.js.html#line802">line 802</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Detect data changes and update hash
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".detectChangesUpdateHash"><span class="type-signature">(static) </span>detectChangesUpdateHash<span class="signature">(newValue)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="smart.js.html">smart.js</a>, <a href="smart.js.html#line61">line 61</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Detects data changes and updates hash.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>newValue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Array containing new values.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getHash"><span class="type-signature">(static) </span>getHash<span class="signature">(data)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="smart.js.html">smart.js</a>, <a href="smart.js.html#line29">line 29</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Returns the hash data of the table.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">data associated with the table.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Hash data of the table data.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getRowHash"><span class="type-signature">(static) </span>getRowHash<span class="signature">(rowIndex, rowData)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="smart.js.html">smart.js</a>, <a href="smart.js.html#line39">line 39</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Returns the hash data of the given row.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>rowIndex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Index of the row for which we need to get the hash data.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rowData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+|
+
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Data associated with the row.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Hash data of the given table row.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getRowKey"><span class="type-signature">(static) </span>getRowKey<span class="signature">(rowIndex, rowData)</span><span class="type-signature"> &rarr; {number}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="smart.js.html">smart.js</a>, <a href="smart.js.html#line20">line 20</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Returns the row key based on the row index.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>rowIndex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Index of the row.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rowData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+|
+
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Data associated with the row.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Index of the row.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".renderChanges"><span class="type-signature">(static) </span>renderChanges<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="smart.js.html">smart.js</a>, <a href="smart.js.html#line147">line 147</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Renders the changed records.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Mar 05 2019 14:30:14 GMT+0530 (India Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

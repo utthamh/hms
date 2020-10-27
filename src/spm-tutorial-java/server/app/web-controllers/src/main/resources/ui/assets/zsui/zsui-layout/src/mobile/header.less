@@ -1,0 +1,546 @@
+// Mobile components
+//		require: responsive.less
+
+// Custom margin to line-up elements on the page. Should be consistent across elements
+@zs-brand-margin: 40px;
+
+
+// Header
+.zs-brand-stripe {
+	min-height: 4px;
+	background: #faa44e url('@{zs-images}/header.png') top center no-repeat;
+}
+
+.zs-mobile-header {
+	box-shadow: 0px 1px 3px 0px @zs-shadow-color;
+	z-index: @zs-layer-3;
+	position: relative; // Required for shadow and z-index to work
+	display: table;
+	//table-layout: fixed; //Commenting in favour of JIRA Id: ZSUI-856, as it is not letting the header to expand with its content.
+	width: 100%;
+	background: @zs-background;
+
+
+	a, a:visited {
+		text-decoration: none;
+	}
+
+	.zs-brand-bar {
+		//.clearfix;
+		position: relative;
+		border-bottom: 1px solid @zs-border-color;
+		display: table;
+		width: 100%;
+
+		>.zs-row {
+			display: table-row;
+
+			>* {
+				display: table-cell !important;
+				vertical-align: middle;
+			}
+
+			.zs-logo {
+				width: 0;
+				margin: 0;
+				position: relative;
+				margin-left: @zs-brand-margin; // TODO: Logo has 2 extra pixels of margin at the bottom
+			}
+
+			>* {
+				display: table-cell;
+				vertical-align: middle;
+			}
+
+			.zs-logo-javelin {
+				width: 136px;
+				min-width: 136px; // because of flexbox
+				height: 32px;
+				background: url('@{zs-images}/logo.png') left center no-repeat;
+			}
+
+			.zs-brand-name {
+				.padding(0,1,0,1);
+				border-left: 1px solid @zs-border-color;
+				border-right: 1px solid @zs-border-color;
+				position: relative;
+
+				.zs-select {
+					min-width: inherit;
+
+					>select {
+						border: 0;
+						width: auto;
+					}
+				}
+
+				h1 {
+					font-size: @zs-font-size-large;
+					padding: 0;
+					margin: 0;
+				}
+			}
+
+			.zs-nav {
+				.padding(0,1,0,1);
+				width: 100%;
+
+				>.zs-top-navigation {
+					margin-left: 0;
+					padding-left: 0;
+					height: 100%;
+					border-bottom: 0px!important;
+				}
+
+				>.zs-select {
+					min-width: inherit;
+				}
+			}
+
+			>.zs-user-bar {
+				position: relative;
+				white-space: nowrap;
+				margin-top: inherit;
+				text-align: right;
+
+				>div {
+					text-align: left;
+					margin-top: inherit;
+					padding-top: inherit;
+					padding-bottom: inherit;
+					min-height: inherit;
+				}
+			}
+		}
+	}
+}
+
+
+// Responsive tweaks
+
+@screen-tablet: 768px;
+@screen-desktop:992px;   //to be removed once we will put into core package
+
+@screen-tablet-landscape: 1024px;
+@zs-header-logo-min: 50px;
+@zs-brand-margin-min: 10px;
+@zs-header-select-min: 150px;
+@zs-header-stripe-width: 4px;
+@zs-user-bar-min: 4*@zs-icon-height*24/16;
+@zs-header-nav-min: @screen-tablet - @zs-header-logo-min - @zs-header-select-min - 2*@zs-brand-margin-min - @zs-user-bar-min;
+@zs-header-nav-medium: @screen-desktop - @zs-header-logo-min - @zs-header-select-min - 2*@zs-brand-margin-min - @zs-user-bar-min;
+@zs-header-icon-width: 57px;
+
+@media (min-width: 0) {
+	.zs-mobile-header {
+		>.zs-top-navigation {
+			display: none;
+		}
+
+		>.zs-brand-bar {
+			>.zs-row {
+				
+				>.zs-logo {
+					.padding(0,1,0,0);
+					.zs-small {
+						display: block;
+						margin-left: @zs-brand-margin-min;
+					}
+
+					.zs-normal {
+						display: none;
+					}
+
+					overflow: hidden;
+
+					&.zs-logo {
+					}
+				}
+
+
+				>.zs-nav {
+					>.zs-top-navigation {
+						display: none;
+					}
+
+					>.zs-select {
+						.margin(1,0,1,0);
+					}
+				}
+
+				>.zs-user-bar {
+					margin-right: @zs-brand-margin-min;
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: (@screen-tablet+1)) {
+	.zs-mobile-header {
+		>.zs-brand-bar {
+			>.zs-row {
+				>.zs-nav {
+					>.zs-top-navigation {
+						display: table;
+						min-height: 3em; // navigation should drive the height of the whole bar.
+					}
+
+					>.zs-select {
+						display: none;
+					}
+
+					&.limit { // Enforce dropdown navigation
+						>.zs-top-navigation {
+							display: none;
+						}
+
+						>.zs-select {
+							display: inline-block;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: (@screen-tablet-landscape+1)) {
+	.zs-mobile-header {
+		>.zs-brand-bar {
+			>.zs-row {
+				>.zs-logo {
+					.padding(0.5,1,1.5,1);
+					max-width: inherit;
+					width: inherit;
+
+					.zs-small {
+						display: none;
+					}
+
+					.zs-normal {
+						margin-left: @zs-brand-margin;
+						display: block;
+					}
+					
+					&.zsui-logo {
+						.padding(0.5,1,0.5,0.25);
+					}
+				}
+
+				>.zs-brand-name {
+					min-width: inherit;
+					>.zs-select {
+						width:inherit;
+					}
+				}
+
+				>.zs-nav, .zs-nav.limit {
+
+
+					>.zs-top-navigation {
+						display: none;
+					}
+
+					>.zs-select {
+						display: none;
+					}
+				}
+
+				>.zs-user-bar {
+					padding-right: @zs-brand-margin;
+				}
+			}
+		}
+
+		>.zs-top-navigation {
+			display: table;
+			margin-left:0;
+		}
+	}
+}
+
+@media (max-width: (@screen-tablet)) {
+	.hide-sidenav-for-mobile {
+		>section>main>header, main>section, &.zs-layout-table>section>main>section, &.zs-layout-table>section>main>header {
+			margin-left: 0px + @zs-font-size-base*@zs-font-padding-ratio*2;
+		}
+		
+		>section>main>.zs-action-message {
+			 margin-left: 0px;
+		}
+
+		.zs-layout-aside, >section >main >aside {
+			display: none;
+		}
+		
+		>footer, .zs-layout-footer {
+			div:first-child {
+				display:none;
+			}
+			div:last-child {
+				height: 3em;
+			}
+		}	
+		.zs-layout-body, >section {	
+			.gridLayout(minmax(min-content,1fr), minmax(min-content,1fr));
+		}	
+		.zs-layout-main, >section>main, .zs-layout-body>main {
+			.gridCell(1,1,1,0);			
+		}
+	}
+}
+
+@screen-tablet-landscape: 1024px;
+.zs-user-bar {
+	.zs-icon-large {
+		display:none;
+	}
+}
+@media (min-width: 0) {
+	.zs-user-bar {
+		label {display:none}
+		.zs-icon {display:none}
+		.zs-icon.zs-icon-large {display:inline}
+	}
+
+}
+
+@media (min-width: (@screen-tablet+1)) {
+	.zs-user-bar {
+		[role="profile"] label {
+			display: inline-block;
+			max-width: 7em;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+	}
+}
+
+@media (min-width: (@screen-tablet-landscape+1)) {
+	.zs-user-bar {
+		.zs-icon {display:inline}
+		.zs-icon.zs-icon-large {display:none}
+		label, [role="profile"] label {display:inline}
+		
+	}
+}
+
+//Override from user.less
+
+.zs-user-bar {
+	@tabHeight: @zs-icon-large-height + 2*@zs-font-padding-ratio;
+    display:inline-block;
+    position:absolute;
+    right:0px;
+    margin-right: @zs-brand-margin;
+    top: 50%;
+    margin-top: -@tabHeight / 2;	
+
+	>div[role="profile"] {
+		>a {
+		
+		}
+		>nav {
+			min-width: 120%; // compensate for long user names.
+		}
+	}
+	>div {
+		position:relative;
+		display:inline-block;
+		.padding(0,0.75,0,0.75);
+		.margin(0,0,0,0.5);
+		min-height:@tabHeight;
+		max-height: @tabHeight;
+		height: @tabHeight;
+		&:first-child {
+			margin-left:0;
+		}
+		>a {	
+			
+			cursor: pointer;
+			position:relative;		
+			margin:0;
+			display:inline;
+			line-height: @tabHeight;
+			>.zs-icon {
+				margin-right:0;
+				margin-left:0;
+				&:before {
+					margin-bottom:0;
+					margin-right:0;
+				}
+				&.zs-icon-large {
+				}			
+				&.zs-icon-large:before {
+					margin-right:0;
+				}
+
+                .zs-badge {
+                    font-size: 0.75em;
+                    top: 0.75em;
+                    left: 0.75em;
+                }
+			}
+
+			>label {
+				line-height: @zs-icon-height;				
+				cursor: pointer;
+				.padding(0,0,0,1);
+			}
+		}
+		>nav {
+			min-width:10em; // make sure that popup menu is wider than a trigger link.
+			position:absolute;
+			right:-1px;
+			top: 100%;
+			border-top-right-radius:0;
+			>a {
+				z-index:@zs-layer-3;
+			}
+			//top:0;
+		}
+	}
+
+    .zs-message-container {
+        position: relative;
+
+        .zs-message.zs-error {
+            min-height: 0;
+            z-index: @zs-layer-1;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            margin-left: -47em;
+            margin-top: -1.35em;
+        }
+    }
+}
+
+// zs-header classes from brand.less
+.zs-header {
+    box-shadow: 0px 1px 3px 0px @zs-shadow-color;
+    z-index: @zs-layer-3;
+	position: relative; // Required for shadow and z-index to work 
+	
+   .zs-brand-stripe {
+        min-height:4px;
+        background: #faa44e url('@{zs-images}/header.png') top center no-repeat;  // TODO;
+    }
+
+    a, a:visited {
+        text-decoration:none;
+    }
+
+    .zs-brand-bar {
+		.clearfix;
+		position: relative;
+        border-bottom: 1px solid @zs-border-color;
+
+        .zs-logo {
+			margin: 15px 40px (14px - 2px) 0px; // TODO: Logo has 2 extra pixels of margin at the bottom
+			float: left;
+			display: inline;
+			vertical-align:middle;
+        }
+
+		.zs-logo-javelin {
+			width: 97px;
+            min-width:97px; // because of flexbox
+			height: 16px;
+			background: url('@{zs-images}/logo.png') left center no-repeat;
+		}
+
+        .zs-brand-name {
+			float: left;
+			display: inline-block;
+			position: absolute;
+			top: 50%;
+			margin-top: -0.5em;
+            font-size:@zs-font-size-large;          
+            padding: 0px 30px; // 30px
+			h1 {
+				font-size: @zs-font-size-large;
+				padding:0;
+				margin:0;
+			}
+        }
+
+        .zs-brand-select-app{
+
+            @zs-select-arrow-size: @zs-font-size-base;
+            .zs-select {
+                margin:auto;
+                select, select:focus {
+					font-size:@zs-font-size-large;
+                    border:1px solid lighten(@zs-border-color, 5%);
+					color:@zs-text-light;
+                }
+            }
+        }
+
+        .zs-identity-bar {
+            font-size: @zs-font-size-small;
+            padding: 4px 30px 0; // 40px from the right
+            .flex(1);
+            a {
+                padding:0 @zs-padding-horizontal;
+                white-space:nowrap;
+            }
+
+            a:nth-of-type(1) {
+                padding-left: 30px;
+                margin-right: 150px - @zs-padding-horizontal;//*@zs-padding-horizontal-large;
+            }
+
+            text-align:right;
+        }
+    }
+}
+.zs-header .zs-brand-bar .zs-logo {
+    margin-left: @zs-brand-margin;
+}
+
+@media (max-width: (@screen-tablet-landscape)) {
+	.hide-sidenav-for-mobile .zs-mobile-header.zs-side-nav-drawer {
+		.zs-hamburger-menu {
+			display: block;
+			.padding(0,1,0,1);
+		}
+
+		.zs-brand-bar {
+			.zs-brand-name, .zs-nav {
+				display: none !important; // To override the style mentioned at line #39 above
+			}
+		}
+
+		.zs-logo {
+			width: 100%;
+
+			.zs-small {
+				margin: 0 auto;
+			}
+		}
+	}
+}
+
+@media (min-width: (@screen-tablet-landscape+1)) {
+	.hide-sidenav-for-mobile .zs-mobile-header.zs-side-nav-drawer {
+		.zs-hamburger-menu {
+			display: none !important; // To override the style mentioned at line #39 above
+		}
+	}
+
+	.zs-style .zs-drawer.zs-nav-drawer {
+		display: none;
+	}
+}
+
+.zs-style .zs-drawer.zs-nav-drawer {
+	padding: 0;
+	width: auto;
+	max-width: 80%;
+	overflow-y: auto;
+	border-top: 0;
+}

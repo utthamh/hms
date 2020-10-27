@@ -1,0 +1,31 @@
+/* Flexbox mixins */
+.zs-layout-table > footer,
+.zs-layout-footer,
+.zs-layout-classic > footer {
+  text-align: right;
+  font-size: 16px;
+  color: #9fa2a7;
+  background: #f2f2f2;
+}
+.zs-layout-table > footer div:first-child,
+.zs-layout-footer div:first-child,
+.zs-layout-classic > footer div:first-child {
+  display: inline-block;
+  border-right: 1px solid #e1e9ef;
+  width: 200px;
+  float: left;
+  height: 3em;
+  background: #fff;
+}
+.zs-layout-table > footer div:first-child + div,
+.zs-layout-footer div:first-child + div,
+.zs-layout-classic > footer div:first-child + div {
+  padding: 0em 1.42em 0em 0em;
+}
+.zs-layout-table > footer div:first-child + div span,
+.zs-layout-footer div:first-child + div span,
+.zs-layout-classic > footer div:first-child + div span {
+  white-space: no-wrap;
+  margin-left: 1em;
+}
+/*# sourceMappingURL=footer.css.map */

@@ -1,0 +1,45 @@
+﻿<%- script(zsuiPath + '/tables/tableElement.js')%>
+
+<p>We created several custom elements and behaviors to help you handle tables in your applications.</p>
+
+<div id="tableContainer"></div>
+
+<script>
+	function getData() {
+		return new Promise(function (resolve, reject) {
+			var arr = [];
+			for (i = 0; i <= 15; i++) {
+				var row = [];
+				for (j = 0; j < 10; j++) {
+
+					if (i == 0 && j == 2) {
+						row.push(10 * i + j + '<br>test'); // multi line
+					} else if (i == 0 && j == 5) {
+						row.push(10 * i + j + 'unbreakableLongText'); // unbreakable
+					} else if (i > 0 && (j == 2 || j == 6)) {
+						//row.push('fieldunbreakablelong');
+						//row.push('<input type="text" value="test"/>');
+						//var el = new zs.fieldElement();
+						//el.setAttribute('type', 'text');
+						//el.setAttribute('value', 'test');
+
+						row.push('<p is="zs-field" type="text" label="test" value="my value"></p>');
+					} else {
+						row.push(10 * i + j);
+					}
+				}
+				arr.push(row);
+			}
+			resolve(arr);
+		});
+	}
+</script>
+
+<h2>Simple table</h2>
+<div is="zs-table" id="table1"></div>
+<script>
+	var table = document.querySelector('#table1');
+	table.getTableData = getData;
+	table.refreshTable();		
+</script>
+

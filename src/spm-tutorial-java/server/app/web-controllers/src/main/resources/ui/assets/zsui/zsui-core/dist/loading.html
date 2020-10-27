@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Loading</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Dependencies -->
+	<link rel="stylesheet" href="themes/zs/core.css">
+
+	<!-- For demo purposes -->
+	<link rel="stylesheet" type="text/css" href="https://ui.zsservices.com/zsui/themes/zs/forms.css">
+	<link rel="stylesheet" type="text/css" href="https://ui.zsservices.com/zsui/themes/zs/tables.css">
+	<style>
+		.zs-example {
+			padding: 1.42em;
+		}
+	</style>
+	<script src="polyfills/polyfills.js"></script>
+	<script src="https://ui.zsservices.com/zsui/demo.js"></script>
+</head>
+
+<body class="zs-style zs-example">
+	<p class="zs-field"><label><input type="checkbox" onchange="toggleLoading(this)" />Start loading</label></p>
+
+	<h2>Button</h2>
+	<button class="zs-button">Button</button>
+	<h2>Table</h2>
+	<table class="zs-data-table">
+		<thead>
+			<tr>
+				<th>Column 1</th>
+				<th>Column 2</th>
+				<th>Column 3</th>
+				<th align="right">Number</th>
+				<th>Sorted</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Cell 11</td>
+				<td>Cell 12</td>
+				<td>Cell 13</td>
+				<td align="right">1</td>
+				<td align="right">1</td>
+			</tr>
+			<tr>
+				<td>Cell 21</td>
+				<td>Cell 22</td>
+				<td>Cell 23</td>
+				<td align="right">2</td>
+				<td align="right">2</td>
+			</tr>
+			<tr>
+				<td>Cell 31</td>
+				<td>Cell 32</td>
+				<td>Cell 33</td>
+				<td align="right">3</td>
+				<td align="right">3</td>
+			</tr>
+		</tbody>
+	</table>
+	<h2>Block of text</h2>
+	<p>
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor neque
+		imperdiet dolor,
+		ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean at vulputate
+		magna. Suspendisse
+		eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat sapien quis iaculis.
+		Fusce ultricies
+		vehicula posuere.
+	</p>
+
+	</div>
+	<script>
+
+		function toggleLoading(el) {
+			document.querySelectorAll('.zs-button, .zs-data-table, h2 + p').forEach(function (el) {
+				el.classList.toggle('zs-loading');
+			});
+		};
+
+
+		// Polyfill foreEach on DOM elements for IE11
+		if (window.NodeList && !NodeList.prototype.forEach) {
+			NodeList.prototype.forEach = Array.prototype.forEach;
+		}	
+	</script>
+</body>
+</html>

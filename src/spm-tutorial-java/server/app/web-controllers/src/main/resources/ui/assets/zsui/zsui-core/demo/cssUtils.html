@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<head>
+	<title>ZSUI CSS Utilities</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Dependencies -->
+	<link rel="stylesheet" href="themes/zs/core.css">
+	<link rel="stylesheet" href="themes/zs/borderUtils.css">
+	<link rel="stylesheet" href="themes/zs/sizeUtils.css">
+	<link rel="stylesheet" href="themes/zs/alignUtils.css">
+	<link rel="stylesheet" href="themes/zs/floatUtils.css">
+	<link rel="stylesheet" href="themes/zs/spaceUtils.css">
+	<link rel="stylesheet" href="themes/zs/displayUtils.css">
+	<link rel="stylesheet" href="themes/zs/positionUtils.css">
+	<link rel="stylesheet" href="themes/zs/shadowUtils.css">
+	<link rel="stylesheet" href="themes/zs/visibilityUtils.css">
+	<link rel="stylesheet" href="themes/zs/sizeUtils.css">
+	<link rel="stylesheet" href="themes/zs/sizeUtils.css">
+	<link rel="stylesheet" href="themes/zs/colorUtils.css">
+
+	<!-- For demo purposes -->
+	<style>
+		.zs-example {
+			padding: 1em;
+		}
+
+		[class^=zs-border],
+		.size-eg>span,
+		.size-height-eg>span {
+			height: 80px;
+			width: 80px;
+			display: inline-block;
+			background-color: #f9f9f9;
+			margin-right: 1em;
+		}
+
+		.size-eg>span {
+			display: block;
+			padding: 2em;
+		}
+
+		.samples {
+			padding: 1em;
+		}
+
+		.no-border-eg [class^=zs-border] {
+			border: 1px solid #e1e9ef;
+		}
+
+		.sample2 span {
+			padding: 0.5em;
+			border: 1px dotted;
+			line-height: 30px;
+			margin-right: 1em;
+		}
+
+		.shadow-eg div {
+			display: inline-block;
+			height: 80px;
+			width: 100px;
+			padding: 1em;
+			margin-right: 2em;
+			border: 1px solid #e1e9ef;
+		}
+
+		.space-eg span {
+			border: 1px dotted;
+		}
+
+		.space-eg,
+		.sample2 {
+			padding: 2em;
+		}
+
+		[example] {
+			padding-top: 2em;
+		}
+
+		.container {
+			border: 1px solid #e1e9ef;
+			padding: 1em;
+			margin-top: 1em;
+		}
+
+		.container>div {
+			height: 80px;
+			width: 80px;
+			border: 1px solid #e1e9ef;
+			background-color: #f9f9f9;
+			vertical-align: top;
+			text-align: center;
+		}
+
+		.color-container>div {
+			display: inline-block;
+			margin: 0.5em;
+		}
+	</style>
+	<script src="polyfills/polyfills.js"></script>
+	<script src="https://ui.zsservices.com/zsui/demo.js"></script>
+</head>
+
+<body class="zs-style zs-example">
+	<h2>Border Utils</h2>
+	<p>Use the border utilities to change and style the borders of the element. You can selectively add or remove the
+		borders as well as change the color and radius.</p>
+	<p>You can use some basic border utilities by including following file in your HTML</p>
+	<h3>Adding borders</h3>
+	<div>
+		<div class="samples">
+			<span class="zs-border"></span>
+			<span class="zs-border-top"></span>
+			<span class="zs-border-right"></span>
+			<span class="zs-border-bottom"></span>
+			<span class="zs-border-left"></span>
+		</div>
+	</div>
+	<h3>Removing borders</h3>
+	<div>
+		<div class="samples no-border-eg">
+			<span class="zs-border-0"></span>
+			<span class="zs-border-top-0"></span>
+			<span class="zs-border-right-0"></span>
+			<span class="zs-border-bottom-0"></span>
+			<span class="zs-border-left-0"></span>
+		</div>
+	</div>
+	<h3>Border Radius</h3>
+	<div>
+		<div class="samples">
+			<span class="zs-border zs-border-rounded"></span>
+			<span class="zs-border zs-border-rounded-top"></span>
+			<span class="zs-border zs-border-rounded-right"></span>
+			<span class="zs-border zs-border-rounded-bottom"></span>
+			<span class="zs-border zs-border-rounded-left"></span>
+			<span class="zs-border zs-border-rounded-0"></span>
+			<span class="zs-border zs-border-circle"></span>
+		</div>
+	</div>
+	<h3>Border colors</h3>
+	<div>
+		<div class="samples no-border-eg">
+			<span class="zs-border zs-border-color-default"></span>
+			<span class="zs-border zs-border-color-error"></span>
+			<span class="zs-border zs-border-color-warning"></span>
+			<span class="zs-border zs-border-color-success"></span>
+			<span class="zs-border zs-border-color-info"></span>
+		</div>
+	</div>
+
+	<h2>Size Utils</h2>
+	<p>Use the size utilities to set the height and width of the element.</p>
+	<p>You can use some basic size utilities by including following file in your HTML</p>
+	<h3>Width</h3>
+	<div>
+		<div class="samples size-eg">
+			<span class="zs-width-25">Width 25%</span>
+			<span class="zs-width-50">Width 50%</span>
+			<span class="zs-width-75">Width 75%</span>
+			<span class="zs-width-100">Width 100%</span>
+		</div>
+	</div>
+	<h3>Height</h3>
+	<div>
+		<div class="samples size-height-eg" style="height: 100px; background-color: #86c8bc;">
+			<span class="zs-height-25">Height 25%</span>
+			<span class="zs-height-50">Height 50%</span>
+			<span class="zs-height-75">Height 75%</span>
+			<span class="zs-height-100">Height 100%</span>
+		</div>
+	</div>
+
+	<h2>Space Utils</h2>
+	<p>Use the space utilities to add margin or padding to the element.</p>
+	<p>You can use the space utilities by including following file in your HTML</p>
+	<div>
+		<div class="space-eg">
+			<span class="zs-padding-1">Padding: 1</span>
+			<span class="zs-margin-1">Margin: 1</span>
+			<span class="zs-padding-1-2">Padding: 1,2,1,2</span>
+			<span class="zs-margin-0-1">Margin: 0,1,0,1</span>
+			<span class="zs-margin-1-2-2-1">Margin: 1,2,2,1</span>
+		</div>
+	</div>
+
+	<h2>Align Utils</h2>
+	<p>Use the align utilities to set the vertical alignment of the element.</p>
+	<p>You can use the alignment utilities by including following file in your HTML</p>
+	<div>
+		<div class="sample2">
+			<span class="zs-align-baseline">Baseline</span>
+			<span class="zs-align-top">Top</span>
+			<span class="zs-align-middle">Middle</span>
+			<span class="zs-align-bottom">Bottom</span>
+			<span class="zs-align-text-top">Text top</span>
+			<span class="zs-align-text-bottom">Text bottom</span>
+		</div>
+	</div>
+
+	<h2>Float Utils</h2>
+	<p>Use the float utilities to position the element using floats.</p>
+	<p>You can use the float utilities by including following file in your HTML</p>
+	<div example>
+		<label>Set float to:</label>
+		<span class="zs-radio-group">
+			<input type="radio" name="float" value="none" checked="">None
+			<input type="radio" name="float" value="left">Left
+			<input type="radio" name="float" value="right">Right
+		</span>
+		<span class="zs-checkbox">
+			<input clear-float type="checkbox">Clear float</span>
+		<div class="container" style="border: 1px dotted;">
+			<div style="display: inline-block;">Other contents</div>
+			<div target-div style="height: 130px;">Target div</div>
+		</div>
+		<code for="float-eg" class="html hljs"></code>
+		<div id="float-eg">
+			<!---<div class="zs-float-none">Target div</div>//-->
+		</div>
+	</div>
+
+	<h2>Shadow Utils</h2>
+	<p>Use the shadow utility to add a shadow to the element.</p>
+	<p>You can use the shadow utility by including following file in your HTML</p>
+	<div>
+		<div class="shadow-eg" style="padding: 1em;">
+			<div class="zs-box-shadow">Normal shadow</div>
+			<div class="zs-shadow-inset">Inner shadow</div>
+			<div class="zs-shadow-none">No shadow</div>
+		</div>
+	</div>
+
+	<h2>Display Utils</h2>
+	<p>Use the display utilities to set the display property of the element.</p>
+	<p>You can use the display utilities by including following file in your HTML</p>
+	<div example>
+		<label>Set display to:</label>
+		<span class="zs-radio-group">
+			<input type="radio" name="display" value="block" checked="">Block
+			<input type="radio" name="display" value="inline-block">Inline-block
+			<input type="radio" name="display" value="inline">Inline
+			<input type="radio" name="display" value="table">Table
+			<input type="radio" name="display" value="table-row">Table-row
+			<input type="radio" name="display" value="table-cell">Table-cell
+			<input type="radio" name="display" value="flex">flex
+			<input type="radio" name="display" value="none">None
+		</span>
+		<div class="container">
+			<div style="display: inline-block;">Other contents</div>
+			<div target-div>Target div</div>
+		</div>
+	</div>
+
+	<h2>Position Utils</h2>
+	<p>Use the position utilities to set the position property of the element.</p>
+	<p>You can use the position utilities by including following file in your HTML</p>
+	<div example>
+		<label>Set position to:</label>
+		<span class="zs-radio-group">
+			<input type="radio" name="position" value="static" checked="">Static
+			<input type="radio" name="position" value="absolute">Absolute
+			<input type="radio" name="position" value="relative">Relative
+			<input type="radio" name="position" value="fixed">Fixed
+		</span>
+		<div class="container" style="position: relative;">
+			<div style="display: inline-block;">Other contents</div>
+			<div target-div style="top: 0">Target div</div>
+		</div>
+	</div>
+
+	<h2>Visibility Utils</h2>
+	<p>Use the visibility utilities to set the visibility of the element.</p>
+	<p>You can use the visibility utilities by including following file in your HTML</p>
+	<div example>
+		<label>Set visibility to:</label>
+		<span class="zs-radio-group">
+			<input type="radio" name="visibility" value="visible" checked="">Visible
+			<input type="radio" name="visibility" value="hidden">Hidden
+		</span>
+		<div class="container">
+			<div target-div>Target div</div>
+			<div style="display: inline-block;">Other contents</div>
+		</div>
+	</div>
+
+	<h2>Color Utils</h2>
+	<p>Use the color utilities to set background and text colors for an element.</p>
+	<p>You can use the color utilities by including following file in your HTML</p>
+	<h3>Background colors</h3>
+	<div class="container color-container">
+		<div class="zs-bg-primary"></div>
+		<div class="zs-bg-brand-dark"></div>
+		<div class="zs-bg-gray"></div>
+		<div class="zs-bg-darkgray"></div>
+		<div class="zs-bg-standard"></div>
+		<div class="zs-bg-dark"></div>
+		<div class="zs-bg-border"></div>
+		<div class="zs-bg-link"></div>
+		<div class="zs-bg-link-hover"></div>
+		<div class="zs-bg-error"></div>
+		<div class="zs-bg-warning"></div>
+		<div class="zs-bg-success"></div>
+		<div class="zs-bg-info"></div>
+		<div class="zs-bg-border-error"></div>
+		<div class="zs-bg-selected"></div>
+		<div class="zs-bg-tab"></div>
+		<div class="zs-bg-shadow"></div>
+
+	</div>
+
+	<h3>Text colors</h3>
+	<div class="container color-container">
+		<div class="zs-text-default">Default text</div>
+		<div class="zs-text-light">Light text </div>
+		<div class="zs-text-footer">Footer text </div>
+		<div class="zs-text-success">Success text </div>
+		<div class="zs-text-error">Error text </div>
+		<div class="zs-text-warning">Warning text </div>
+		<div class="zs-text-info">Info text </div>
+	</div>
+	<h3>Chart colors</h3>
+	<div class="container color-container">
+		<div class="zs-bg-chart-1"></div>
+		<div class="zs-bg-chart-2"></div>
+		<div class="zs-bg-chart-3"></div>
+		<div class="zs-bg-chart-4"></div>
+		<div class="zs-bg-chart-5"></div>
+		<div class="zs-bg-chart-6"></div>
+		<div class="zs-bg-chart-7"></div>
+	</div>
+
+	<script>
+		
+		// Initialize controls to highlight different cases of the components
+		window.addEventListener('DOMContentLoaded', function()  {
+			
+			document.querySelectorAll('[type="radio"]').forEach(function (element) {
+				var value = element.value;
+				element.addEventListener('click', function () {
+					var parent =closestParent(this, '[example]');
+					if (!parent) {throw 'Bad example structure';}
+					var target = parent.querySelector('[target-div]');
+					if (!target) {throw 'Bad example structure';}
+					target.setAttribute('class', 'zs-' + this.name + '-' + value);
+				});
+			});
+
+			document.querySelectorAll('[clear-float]').forEach(function (element) {
+				element.addEventListener('click', function () {
+					var value = this.checked;
+					var parent =closestParent(this, '[example]');
+					if (!parent) {throw 'Bad example structure';}
+					parent.querySelector('.container').classList.toggle('zs-clear');
+				});
+			});
+		});	
+
+		// Helper to find the closest parent to a node matching a selector
+		function closestParent(node, selector) {
+			while (node.parentNode && node.parentNode.tagName != 'BODY' ) {
+				node = node.parentNode;
+				if (node.matches(selector)) {
+					return node;
+				}
+			}
+			return;
+		}
+	</script>
+</body>
+</html>

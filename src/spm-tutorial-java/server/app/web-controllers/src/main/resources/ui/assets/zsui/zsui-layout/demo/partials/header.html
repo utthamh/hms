@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" manifest="zsui.appcache">
+<head>
+	<title>ZSUI Layout</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<%- include('../../node_modules/zsui-core/demo/partials/zsEjs.ejs')%> 
+	<%- script(nodeModules + '/zsui-core/dist/polyfills/polyfills.js')%>
+	<%- script(nodeModules + '/zsui-core/dist/utils/customElements.js')%>
+	<%- link(nodeModules + '/zsui-core/dist/themes/{theme}/core.css')%>
+	<%- link(zsuiPath + '/themes/{theme}/accordion.min.css')%>
+	<%- link(zsuiPath + '/themes/{theme}/tabs.min.css')%>
+	<%- link(zsuiPath + '/themes/{theme}/wizard.min.css')%>
+	<%- link(zsuiPath + '/themes/{theme}/card.min.css')%>
+	<%- link(zsuiPath + '/themes/{theme}/drawer.min.css')%>
+	<%- link(zsuiPath + '/themes/{theme}/toggleTabs.min.css')%>
+
+	<%- link(nodeModules + '/zsui-core/dist/themes/{theme}/colorUtils.css')%>
+	<%- link(nodeModules + '/zsui-core/dist/themes/{theme}/displayUtils.css')%>
+	<%- link(nodeModules + '/zsui-core/dist/themes/{theme}/positionUtils.css')%>
+	<%- link(nodeModules + '/zsui-core/dist/themes/{theme}/alignUtils.css')%>
+	<%- link(nodeModules + '/zsui-core/dist/themes/{theme}/borderUtils.css')%>
+	<%- link(nodeModules + '/zsui-core/dist/themes/{theme}/spaceUtils.css')%>
+	<%- link(nodeModules + '/zsui-core/dist/themes/{theme}/sizeUtils.css')%>
+	<%- link(nodeModules + '/zsui-core/dist/themes/{theme}/shadowUtils.css')%>
+	<%- link(nodeModules + '/zsui-core/dist/themes/{theme}/floatUtils.css')%>
+	<%- link(nodeModules + '/zsui-core/dist/themes/{theme}/responsiveDisplayUtils.css')%>
+
+</head>
+<body class="zs-style zs-layout-table" style="padding:1em">

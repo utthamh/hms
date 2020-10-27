@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>ZSUI Configuration demo</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/core.css">
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/forms.css">
+	<script src="https://ui.zsservices.com/zsui/polyfills/polyfills.js"></script>
+	<script src="https://ui.zsservices.com/zsui/utils/customElements.js"></script>
+</head>
+
+<body class="zs-style">
+	<h1>Configuration</h1>
+	<p>It is a typical business case when our application needs to be configured for different clients.</p>
+	<p>We provide a pattern how we can create configurable components.</p>
+	<p>To start, we need to include our configuration behavior and define a default config. Explore the page source for details.</p>
+	<script src="configuration/configuration.js"></script>
+	<script>
+		var configuration = window.configurationM.default; // extract from the imported module
+
+		// Default config
+		var config = {
+			myButton: {
+				increment: 2
+			}
+		};
+	</script>
+	<h2>Listen to configure event</h2>
+	<p class="zs-field"><label>Config:<input type="text" readonly id="zs-demo-config"></label></p>
+	<script>
+		// Listen to global configuration
+		window.addEventListener('configure', function (event) {
+			config = event.detail.config;
+			console.log('configure', event);
+
+			// Display configuration
+			var el = document.getElementById('zs-demo-config');
+			el.value = JSON.stringify(config);
+
+			// Update increment input
+			var n = document.getElementById('zs-demo-increment');
+			if (n) {
+				n.value = Number(config.myButton.increment);
+			}
+		});
+	</script>
+	<h2>Use it with components</h2>
+	<p>We can enhance any web component with this configuration behavior.</p>
+	<script>
+		// Reusable function to update button
+		function renderValue(btnEl, text, value, increment) {
+			value = value || 0;
+			increment = increment || 0;
+			text = text
+			btnEl.innerHTML = 'Value: ' + value + '\
+					<br>(Click to increase by ' + increment + ')';
+		}
+
+		// Define our incremental button web component
+		zs.customElement(HTMLButtonElement, 'incremental-button', 'button', [configuration, {
+			increment: 1,
+			amount: 0,
+			handleEvent: function (event) {
+				if (event.type == 'configure') { // our component cares only for parts of the global configuration
+					this.configure(event.detail.config.myButton);
+				}
+			},
+			render: function () {
+				renderValue(this, '', this.amount, this.increment);
+			},
+			events: {
+				create: function () {
+					var el = this;
+					this.amount = 0;
+				},
+				click: function () {
+					this.amount += this.increment;
+					this.render();
+				},
+				attach: function () {
+					// Subscribe to global config
+					window.addEventListener('configure', this);
+				},
+				detach: function () {
+					// Unsubscribe from global config
+					window.removeEventListener('configure', this);
+				},
+				configure: function (event) {
+					console.log('increment button', 'configure', this.config);
+					this.increment = this.config.increment;
+					this.render();
+				}
+			}
+		}]);
+	</script>
+	<button is="incremental-button" class="zs-button"></button>
+
+	<p>Or our regular elements can subscribe to listen to <dfn>configure</dfn> event</p>
+	<button id="zs-demo-config-button" class="zs-button">Regular button</button>
+	<script>
+		var btn = document.querySelector('#zs-demo-config-button');
+		btn.handleEvent = function (event) {
+			// Handel clicks and configure event in one handler
+			this.increment = this.increment || 1;
+			this.amount = this.amount || 0;
+			if (event.type == 'configure') {
+				console.log('regular button', 'configure', event);
+				this.increment = event.detail.config.myButton.increment;
+			} else {
+				this.amount += this.increment;
+			}
+			renderValue(this, '', this.amount, this.increment);
+		}
+		btn.addEventListener('click', btn);
+		window.addEventListener('configure', btn);
+	</script>
+	<h2>Initialize configuration and update dynamically</h2>
+	<p>Normally we can initialize our configuration when DOM is ready.</p>
+	<script>
+		// Initialize
+		window.addEventListener('DOMContentLoaded', function () {
+			configuration.configure(config);
+		});
+
+		// Update
+		function update(newIncrement) {
+			newIncrement = Number(newIncrement);
+			configuration.configure({
+				myButton: {
+					increment: newIncrement
+				}
+			});
+		}
+	</script>
+	<p>We can update parts or the whole configuration dynamically.</p>
+	<p class="zs-field"><label>Increment by:<input type="number" id="zs-demo-increment" onchange="update(this.value)" min="-10" max="10" value="1"></label></p>
+</body>
+
+</html>

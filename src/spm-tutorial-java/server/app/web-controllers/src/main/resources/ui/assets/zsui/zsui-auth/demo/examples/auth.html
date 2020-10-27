@@ -1,0 +1,47 @@
+<p>ZSUI Auth Module</p>
+<p>Includes components to help with authentication and authorization in Web-applications.</p>
+<h2>Features</h2>
+<ul class="zs-list themes">
+	<li>
+		<a href="launchbar.html">IDM user bar</a>
+	</li>
+</ul>
+
+<h2>Themes</h2>
+<ul class="zs-list">
+	<li>
+		<a href="index.html?theme=zs">zs</a>
+	</li>
+	<li>
+		<a href="index.html?theme=blue">blue</a>
+	</li>
+	<li>
+		<a href="index.html?theme=blueLarge">blue large</a>
+	</li>
+</ul>
+
+<h2>Tests</h2>
+<ul class="zs-list">
+	<li>
+		<a href="../test/test.html">Test</a>
+	</li>
+</ul>
+
+<h2>Documentation</h2>
+<ul class="zs-list">
+	<li>
+		<a href="../docs/index.html">API documentation</a>
+	</li>
+</ul>
+
+<script>
+	$(function () {
+		// Add theme name to the links
+		$('.themes a').each(function () {
+			var $a = $(this);
+			var href = $a.attr('href');
+			var file = href.split('?')[0];
+			$a.attr('href', file + '?theme=' + theme);
+		});
+	});
+</script>

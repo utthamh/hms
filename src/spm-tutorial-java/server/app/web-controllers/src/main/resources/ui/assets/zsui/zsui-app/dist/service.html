@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ZSUI Service</title>    
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> 		
+	<meta name="viewport" content="width=device-width">	
+	
+	<!-- Decorative Styles -->
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/core.css">
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/forms.css">
+	<style>
+		.zs-style {padding: 2em;}
+	</style>
+
+	<!-- Dependencies -->
+	<script src="service/service.js"></script>
+</head>
+
+<body class="zs-style">
+<h1>Services and Data</h1>
+<p>Our applications usually work with data. They reflect it in components and update it with user inputs. Normally we get our data from the Web APIs provided by Browsers. 
+We have created several re-usable classes to help developers deal with data.</p>
+
+<p>In this example we create a service that can generate a random set of data and we call it to display the data.</p>
+<form class="zs-from" onsubmit="return false;">	
+	<p class="zs-field"><label>Data: <code id="zsDemoDataService"></code></label></p> 
+	<p><button class="zs-button" onclick="call();">Call the service</button></p>
+</form>
+
+<p>We could also dispatch an event and listen to data change to update our component.</p>
+<script>
+	'use strict';
+	var Service = window.serviceM.default;
+
+	// Create a service that returns random data
+	var dataService = new Service(function (params, resolve, reject) {
+		var arr = [];
+		var rowCount = params.rowCount;
+		var colCount = params.colCount
+		for (var i = 0; i < rowCount; i++) {
+			var row = [];
+			for (var j = 0; j < colCount; j++) {
+				row.push(colCount * i + j);
+			}
+			arr.push(row);
+		}
+		window.requestAnimationFrame(function() {
+			resolve(arr);
+		})		
+	});
+
+	// Call a service and emit an event
+	function call() {
+		dataService.get({
+			colCount: 1+~~(Math.random()*10), 
+			rowCount: 1+~~(Math.random()*10)
+		}).then(function(data) {
+			var event = new CustomEvent('dataservice', {detail: {data: data}});
+			window.dispatchEvent(event);
+		});
+	}
+
+	// Display data
+	function displayData(data, elementId) {
+		var el = document.getElementById(elementId);
+		el.innerHTML = JSON.stringify(data);
+	}
+
+	// Subscribe to an event
+	window.addEventListener('dataservice', function(event) {
+		console.log('recieved data', event);
+		displayData(event.detail.data, 'zsDemoDataService');
+	});	
+</script>
+</body>
+</html>

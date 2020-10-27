@@ -1,0 +1,49 @@
+<div data-page="toggleTabs">
+	<h2>Toggle Tabs</h2>
+	<zs-tabs-container toggletabs>
+		<ul>
+
+		</ul>
+		<div source-id="toggle1">
+			<h3>Toggle Tab 1</h3> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+			neque imperdiet dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean
+			at vulputate magna. Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat
+			sapien quis iaculis. Fusce ultricies vehicula posuere.
+		</div>
+		<div source-id="toggle2" style="display:none">
+			<h3>Toggle Tab 2</h3> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+			neque imperdiet dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean
+			at vulputate magna. Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat
+			sapien quis iaculis. Fusce ultricies vehicula posuere.
+		</div>
+		<div source-id="toggle3" style="display:none">
+			<h3>Toggle Tab 3</h3> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, dui id gravida mattis, tortor
+			neque imperdiet dolor, ut vehicula lectus massa at purus. Pellentesque dapibus elit molestie hendrerit rhoncus. Aenean
+			at vulputate magna. Suspendisse eget lorem et magna auctor pulvinar. Donec accumsan dictum dui. Maecenas pretium consequat
+			sapien quis iaculis. Fusce ultricies vehicula posuere.
+		</div>
+	</zs-tabs-container>
+</div>
+<%- script(zsuiPath + '/tab/zsTab.js')%>
+<script>
+	(function () {
+		var toggleTabsContainer = document.querySelector('[toggletabs]');
+		toggleTabsContainer.render();
+		var toggleItem = document.createElement('li',{is:'zs-tab'});
+		toggleItem.innerHTML = "<a href='javascript:void(0)'>Toggle Tab1</a>";
+		toggleItem.isActive = true;
+		toggleItem.tabId = "toggle1";
+		toggleTabsContainer.tabsContainer.appendChild(toggleItem);
+
+		toggleItem = document.createElement('li',{is:'zs-tab'});
+		toggleItem.innerHTML = "<a href='javascript:void(0)'>Toggle Tab2</a>";
+		toggleItem.tabId = "toggle2";
+		toggleTabsContainer.tabsContainer.appendChild(toggleItem);
+
+		toggleItem = document.createElement('li',{is:'zs-tab'});
+		toggleItem.innerHTML = "<a href='javascript:void(0)'>Toggle Tab3</a>";
+		toggleItem.tabId = "toggle3";
+		toggleTabsContainer.tabsContainer.appendChild(toggleItem);
+
+	})();
+</script>

@@ -1,0 +1,12 @@
+@zs-theme-name: 'zs';
+@zs-layout-less-path: '../../layout';
+
+//Core Components
+@zs-core-lib-path: '../../../node_modules/zsui-core/src';
+
+// Definitions
+@import '@{zs-core-lib-path}/less/theme.less';
+@import '@{zs-core-lib-path}/less/mixins.less';
+@import '@{zs-core-lib-path}/less/relative.less';
+@import "@{zs-core-lib-path}/themes/@{zs-theme-name}/custom.less";
+@import '../../drawer/drawer.less';

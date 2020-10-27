@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Menu</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Dependencies -->
+	<link rel="stylesheet" href="themes/zs/core.css">
+
+	<!-- For demo purposes -->
+	<style>
+		.zs-example {
+			padding: 1.42em;
+		}
+
+		/* Customize animation */
+		[animation="show"] {
+			visibility: hidden;
+			opacity: 0;			
+  			transition: visibility 0s, opacity 0.5s linear;
+		}
+
+		[animation="show"][animate] {
+			visibility: visible;
+  			opacity: 1;
+		}
+
+		[animation="hide"] {
+			visibility: visible;
+			opacity: 1;			
+  			transition: visibility 1s, opacity 0.5s linear;
+		}
+
+		[animation="hide"][animate] {
+			visibility: hidden;
+  			opacity: 0;
+		}
+	</style>
+	<script src="polyfills/polyfills.js"></script>
+	<script src="https://ui.zsservices.com/zsui/demo.js"></script>
+</head>
+<body class="zs-style zs-example">
+
+<h2>Menu</h2>
+<p>Our core module includes styles for menus.</p>
+<p>Use "zs-active" class to mark selected item.</p>
+</p>
+<div class="zs-menu">
+	<a href="#">Link 1</a>
+	<a href="#">Link 2</a>
+	<a href="#" class="zs-active">Link 3</a>
+	<a href="#">Link 4</a>
+</div>
+
+<h2>Menu with separator</h2>
+<div class="zs-menu">
+	<a href="#">All Links</a>
+	<hr/>
+	<a href="#">Link 1</a>
+	<a href="#">Link 2 </a>
+	<a href="#" class="zs-active">Link 3</a>				
+</div>
+
+<h2>Popup menu</h2>
+<p>You can build popup menus using simple javascript code to trigger visibility of the menus</p>
+<div>
+	<a href="javascript:;" onclick="toggleMenu(this);">Show</a>
+	<br/>
+	<div class="zs-menu" style="position:absolute;display:none">
+		<a href="#">Link 1</a>
+		<a href="#">link 2 </a>
+		<a href="#" class="zs-active">Link 3</a>
+		<a href="#">Link 4</a>
+	</div>
+</div>
+<div>
+	<p>With animation</p>
+	<a href="javascript:;" onclick="toggleMenu(this);" animation>Show</a>
+	<br/>
+	<div class="zs-menu" style="position:absolute;display:none">
+		<a href="#">Link 1</a>
+		<a href="#">link 2 </a>
+		<a href="#" class="zs-active">Link 3</a>
+		<a href="#">Link 4</a>
+	</div>
+</div>
+<h2>Long text</h2>
+<p>Sometimes menu items are too long.</p>
+<div class="zs-menu">
+	<a href="#">Link 1</a>
+	<a href="#">Long link 2 Donec bibendum, dui id gravida mattis, tortor neque </a>
+	<a href="#" class="zs-active">Link 3</a>
+	<a href="#">Link 4</a>
+</div>
+
+<h2>Using list</h2>
+<p>You can build menus using HTML lists with UL and LI tags.</p>
+<p>In this case you can use A tag to add link styles to the menu item.</p>
+<ul class="zs-menu">
+	<li href="#">Item</li>
+	<li href="#">Item</li>
+	<li href="#" class="zs-active">Item</li>
+	<li href="#">
+		<a href="#">Like a link</a>
+	</li>
+</ul>
+
+<script>
+	// This script for demo purposes only
+	'use strict';
+
+	
+	function toggleMenu(el) {
+		console.log(el);
+		var show = el.innerText == 'Show';
+		var withAnimation = false;
+
+		var menu = el.parentElement.querySelector('.zs-menu');
+
+		if (!menu) {
+			return false;
+		}
+
+		withAnimation = el.getAttribute('animation') != null;
+
+		menu.parentElement.style.position = 'relative';
+		menu.style.position = 'absolute';
+
+		menu.removeAttribute('animate');
+		if (show) {			
+			if (withAnimation) {
+				menu.setAttribute('animation', 'show');
+				menu.style.display = 'block';
+
+				// Need a delay
+				setTimeout(function() {
+					menu.setAttribute('animate','');
+				},100);
+			} else {
+				menu.style.display = 'block';
+			}
+		} else {
+			if (withAnimation) {
+				menu.setAttribute('animation', 'hide');
+				
+				// Need a delay
+				setTimeout(function() {
+					menu.setAttribute('animate','');
+				},100);
+				
+				// Hide
+				setTimeout(function() {
+					menu.style.display = 'none';
+				}, 500);
+
+			} else {
+				menu.style.display = 'none';
+			}
+		}
+
+		el.innerText = (show ? 'Hide' : 'Show');
+
+		return false;
+	};
+
+	// Polyfill foreEach on DOM elements for IE11
+	if (window.NodeList && !NodeList.prototype.forEach) {
+		NodeList.prototype.forEach = Array.prototype.forEach;
+	}
+
+	</script>
+</body>

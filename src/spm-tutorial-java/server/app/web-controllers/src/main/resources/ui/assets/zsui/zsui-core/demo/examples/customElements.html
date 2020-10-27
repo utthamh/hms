@@ -1,0 +1,171 @@
+<h2>Create a simple component</h2>
+<my-component id="c1">...</my-component>
+<script>
+	'use strict';
+	var MyComponent = zs.customElement(HTMLElement, 'my-component', null, {
+		prop1: 1,
+		showId: function() {
+			this.innerHTML += ' #' + this.id;
+		},
+		events: {
+			attach: function () {
+				this.innerHTML = 'My component';
+				this.showId();
+			}
+		}
+	});
+</script>
+
+<p>add more instances</p>
+<my-component id="c2"></my-component>
+<script>
+	var el = document.createElement('my-component'); // always use document.createElement instead of new MyComponent();
+	el.id = "m1";
+	document.body.appendChild(el);
+</script>
+
+<h2>Handle life-cycle events</h2>
+
+<my-component-2 my-attr="initial">Events log: </my-component-2>
+<script>
+	var MyComponent2 = zs.customElement(HTMLElement, 'my-component-2', null, {
+		log: function(event) {
+			console.log(event);
+			this.innerHTML += ' ' + event.type;
+		},
+		observedAttributes: ['my-attr'],
+		// Handle events at a class level for all instances
+		events: {
+			create: function(event) {
+				this.log(event);
+			},
+			detach: function(event) {
+				this.log(event);
+			},
+			attach: function (event) {
+				this.log(event);
+			},
+			attributeChange: function(event) {
+				this.log(event);
+			}
+		}
+	});
+
+	// Handle event at an instance level 
+	el = document.querySelector('my-component-2');	
+	el.addEventListener('attributeChange', function(event) {
+		this.innerHTML += '(' + event.detail.attributeName + ' = <strike>' + event.detail.oldValue + '</strike>' + event.detail.newValue + ')';
+	});
+	el.setAttribute('my-attr', 'new');
+</script>
+
+<h2>Extend native components</h2>
+<button is="my-button">...</button>
+<script>																	
+	var MyButton = zs.customElement(HTMLButtonElement, 'my-button', 'button', {
+		events: {
+			click: function(event) {
+				this.innerHTML = 'Clicked';
+			},
+			attach: function (event) {
+				this.innerHTML = 'My Button';
+			}
+		}
+	});
+	el = document.createElement('button', {is: 'my-button'});
+	document.body.appendChild(el);
+</script>
+
+<h2>Inheritance and composition with powerful properties</h2>
+<button is="my-super-button">...</button>
+<script>
+	// Create a reusable behavior
+	var counter = {
+		properties: { 
+			clicksCount: { // Property descriptor for "clicksCount" property
+				get: function() { // getter
+					return this._clicksCount || 0;
+				},
+				set: function(newValue) { // setter
+					if (newValue >0 && newValue != this._clicksCount) {
+						this.innerHTML = 'Clicked ('+ newValue +')';
+					}
+					this._clicksCount = newValue;
+				}
+			}
+		},
+		events: {
+			click: function() {
+				this.clicksCount++;
+			}
+		}
+	}
+
+	// Extend MyButton and add more features
+	var MySupperButton = zs.customElement(MyButton, 'my-super-button', 'button', [
+		// Mix in counter behavior
+		counter,
+		
+		// Mix in another feature 
+		{ 		
+			anotherProp: 1,
+			anotherMethod: function() {}
+			//...
+			// Special members
+			// observedAttributes: [...]
+			// properties: {propName: {descriptor}, ...}
+			// events: {name: function(event){}, ...}
+		}
+		
+		// More features...
+	]);
+</script>
+
+<h2>Override default behavior</h2>
+<button is="my-special-button">...</button>
+<script>
+
+	// We can change existing behaviors by overriding callbacks
+	var SpecialButton = zs.customElement(MySupperButton, 'my-special-button', 'button', {
+		
+		init: function() {
+			if (this._isCreated) {return;} // Call only once per element
+
+			// Keep in mind that event listeners defined using `events: {...}` won't work anymore		
+
+			
+			// Avoid changing DOM in the constructor. But we can setup listeners.
+			this.addEventListener('click', function() {
+				this.clicksCount += 10;
+				this.myMethod();
+			});
+			
+			this._isCreated = true;
+		},
+		connectedCallback: function() {
+			this.init(); // normalize behavior first
+
+			// Patch "is" attribute for backward compatibility. Can't do it in the constructor
+			if (this._is) {
+				if (this.getAttribute('is') != this._is) {
+					this.setAttribute('is', this._is);
+				}
+			}
+
+			// Keep in mind that attach event won't fire anymore
+			this.innerHTML = 'Overridden';
+		},
+		//attributeChangedCallback
+		//adoptedCallback
+		//attributeChangedCallback
+		//disconnectedCallback
+
+		myMethod: function() {
+			console.log('My Method');
+		}
+	});	
+
+	// Fun fact: We can't override life-cycle callbacks after defining a custom element but we can override regular properties and methods.
+	SpecialButton.prototype.myMethod = function() {console.log('My Overridden Method');}
+</script>
+

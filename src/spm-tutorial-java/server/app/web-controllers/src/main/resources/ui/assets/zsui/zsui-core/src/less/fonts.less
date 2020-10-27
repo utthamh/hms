@@ -1,0 +1,52 @@
+//variable to decide if CDN should be the primary font resource
+@use-cdn: false;
+
+@cdn-url: 'http://fonts.gstatic.com/s/roboto/v20/';
+@Regular-woff: 'KFOmCnqEu92Fr1Mu4mxM.woff';
+@Regular-woff2: 'KFOmCnqEu92Fr1Mu4mxK.woff2';
+@Bold-woff: 'KFOlCnqEu92Fr1MmWUlfBBc-.woff';
+@Bold-woff2: 'KFOlCnqEu92Fr1MmWUlfBBc4.woff2';
+@Italic-woff: 'KFOkCnqEu92Fr1Mu51xIIzQ.woff';
+@Italic-woff2: 'KFOkCnqEu92Fr1Mu51xIIzI.woff2';
+@Bold-Italic-woff: 'KFOjCnqEu92Fr1Mu51TzBic6CsI.woff';
+@Bold-Italic-woff2: 'KFOjCnqEu92Fr1Mu51TzBic6CsQ.woff2';
+
+.fontSource(@cdn: false, @type) {
+    & when(@cdn = true) {
+        src: url('@{cdn-url}@{@{type}-woff}'), url('@{zs-fonts}/Roboto-@{type}.woff')  format('woff'),
+             url('@{cdn-url}@{@{type}-woff2}'), url('@{zs-fonts}/Roboto-@{type}.woff2') format('woff2'); 
+    }
+
+    & when(@cdn = false) {
+        src: url('@{zs-fonts}/Roboto-@{type}.woff')  format('woff'),
+             url('@{zs-fonts}/Roboto-@{type}.woff2') format('woff2');
+    }    
+}
+
+@font-face {
+    font-family: 'Roboto';
+    .fontSource(@use-cdn, 'Regular');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    .fontSource(@use-cdn, 'Bold');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    .fontSource(@use-cdn, 'Italic');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    .fontSource(@use-cdn, 'Bold-Italic');
+    font-weight: bold;
+    font-style: italic;
+}

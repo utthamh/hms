@@ -1,0 +1,28 @@
+// ZSUI library core styles package for blueLarge theme
+
+// Variables
+@zs-lib-path: '../..';
+
+// Definitions
+@import '@{zs-lib-path}/less/theme.less';
+@import '@{zs-lib-path}/less/mixins.less';
+
+// Styles
+@import '@{zs-lib-path}/less/global.less'; // should go first
+@import '@{zs-lib-path}/less/fonts.less';
+@import '@{zs-lib-path}/less/icons.less';
+@import '@{zs-lib-path}/less/relative.less';
+@import '@{zs-lib-path}/less/popupMenu.less';
+//@import '@{zs-lib-path}/less/responsive.less'; // optional
+
+// Components
+@import '@{zs-components-path}/tooltip/tooltip.less';
+//@import '@{zs-components-path}/tooltip/zsTooltip.less';
+
+// Application custom overrides
+@import 'custom.less'; 
+
+// Package level overrides should be at the bottom
+@zs-components-path: '../..'; 
+@zs-images: '@{zs-lib-path}/images';
+@zs-fonts: '@{zs-lib-path}/fonts';

@@ -1,0 +1,23 @@
+.visibility-utils-mixin(@breakpoint: xsw){
+    .zs-visibility{
+        &-visible-@{breakpoint}{
+            visibility: visible !important;
+        }
+        &-hidden-@{breakpoint}{
+            visibility: hidden !important;
+        }
+    }
+}
+
+@media (max-width: @screen-sm-min){
+    .visibility-utils-mixin(xsw);
+}
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max){
+    .visibility-utils-mixin(sw);
+}
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max){
+    .visibility-utils-mixin(mw);
+}
+@media (min-width: @screen-lg-min){
+    .visibility-utils-mixin(lw);
+}

@@ -1,0 +1,104 @@
+<%- link(zsuiPath + '/themes/{theme}/layoutGrid.css') %>
+<h2>Flex box</h2>
+<style>
+	/* Use this classes to generate text inside cards */
+	.tall {
+		white-space:pre; 
+		
+	}
+	.tall::after {				
+		content: 'Toll \A Line1 \A Line2 \A Line3';
+	}
+	.normal::after {
+		content: 'Normal text with normal words.';
+	}
+	.unbreak::after {
+		content: 'Unbreakable_text_Unbreakable_text_Unbreakable_text_Unbreakable_text';
+	}	
+
+
+
+	.box {
+		border: 2px dotted blue;		
+	}
+	.box >div, .item {
+		border:1px solid green;
+		border-radius: 10px;
+		padding:5px;
+	}
+
+	.box {		
+		display: flex;
+	}
+
+</style>
+<h3>Normal</h3>
+<div class="box" id="flexbox1">
+	<div class="unbreak"></div>
+	<div class="normal"></div>
+	<div class="tall"></div>
+</div>	
+
+<h3>Reverse</h3>
+<style>
+#flexbox2 {
+	flex-direction: row-reverse;
+}
+</style>
+<div class="box" id="flexbox2">
+	<div class="unbreak"></div>
+	<div class="normal"></div>
+	<div class="tall"></div>
+</div>
+
+
+<h3>Wrap</h3>
+<style>
+#flexbox3 {
+	flex-wrap: wrap;
+}
+</style>
+<div class="box" id="flexbox3">
+	<div class="unbreak"></div>
+	<div class="normal"></div>
+	<div class="tall"></div>
+</div>
+
+<h2>Grow/shrink</h2>
+<p>This example reveals an issue with flexbox when text won't wrap in IE11.</p>
+<style>
+	#flexbox4 div {
+		flex: 0 0 200px;
+	}
+	#flexbox4 div:first-child + .normal + .normal {
+		flex: 1 1 100%; /*Solution for IE11 is to use 0% here instead of 200px */
+		border:1px solid red;
+	}
+	
+</style>
+<div class="box" id="flexbox4">
+	<div class="unbreak"></div>
+	<div class="normal"></div>
+	<div class="normal"></div>
+	<div class="normal"></div>
+	<div class="tall"></div>
+</div>
+
+<h2>Align items, justify content</h2>
+<style>
+	#flexbox5 {
+		align-items:flex-end;
+		justify-content: space-between;
+	}
+</style>
+	
+<div class="box" id="flexbox5">
+	<div class="unbreak"></div>
+	<div class="normal"></div>
+	<div class="normal"></div>
+	<div class="normal"></div>
+	<div class="tall"></div>
+</div>
+	
+
+

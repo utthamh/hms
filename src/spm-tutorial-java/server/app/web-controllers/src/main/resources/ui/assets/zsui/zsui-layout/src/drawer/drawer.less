@@ -1,0 +1,286 @@
+/* IE11 scroll fix */
+body {-ms-overflow-style: scrollbar;}
+
+.zs-style .zs-drawer, .zs-style zs-drawer, .zs-drawer, .zs-style [role="drawer"] {
+    background: @zs-background;
+	border-radius: 0;
+	border: 1px solid @zs-border-color;
+	box-shadow: 0 3px 6px @zs-shadow-color;
+	display: inline-block;
+    position: fixed;
+    .padding(2,2,2,2);
+    min-width:20em;
+    min-height:10em;
+    
+    // Toggle width and height need to be in pixels
+    @zs-toggle-height: @zs-gutter*3px; //
+    @zs-toggle-width: @zs-gutter*6px;
+    @zs-toggle-max-width: @zs-gutter*12px;
+    @zs-shadow-size: 7px;
+
+
+    text-align:left;
+    z-index: @zs-layer-5 + 1; // Drawer is on the top of layers stack above others.
+
+    &[embeded] {
+        z-index: auto;
+    }
+
+    >section {
+        position: absolute;
+        top:0px;
+        .padding(2,2,2,2);
+        bottom:0;
+        right:0;
+        left:0;
+        overflow-y:auto;
+        z-index:2;
+    }
+
+    // Default is horizontal panel
+    >tag, >toggle, [role="toggle"] {
+        -webkit-tap-highlight-color: transparent;
+        z-index:1;
+        position:absolute;
+        background: @zs-background;
+        border-radius: @zs-border-radius;
+        border: 1px solid @zs-border-color;
+        box-shadow: 0 3px 6px @zs-shadow-color;
+        transform: rotate(0deg);
+        cursor: pointer;                
+        text-align: center;     
+        height: @zs-toggle-height;   
+
+        >span, >a {
+            display:inline-block;            
+            width:@zs-toggle-max-width;
+            line-height:@zs-toggle-height;
+            white-space: nowrap;
+            user-select: none;
+            overflow:hidden;
+            text-overflow: ellipsis;
+            .padding(0,0,0,0);
+            &.zs-icon-large {                
+                width:@zs-toggle-width;
+                line-height:@zs-toggle-height;              
+            }
+
+            &.zs-icon {
+                width:@zs-toggle-width;
+                line-height:@zs-toggle-height;  
+            }
+     
+        }
+
+        border-bottom:0px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+
+
+        &::after {
+            content:'';
+            position:absolute;
+            display:block;
+            left:-@zs-shadow-size;
+            bottom:-@zs-shadow-size;
+            right:-@zs-shadow-size;
+            background:@zs-background;
+            z-index:1;
+            overflow:hidden;
+            //border:1px solid red; 
+            height:@zs-shadow-size;               
+        }
+    }
+
+    &[align="top"] {
+        top:0;
+        left:0;
+        right:0;    
+        transform:translateY(-100%);
+    
+        >tag, >toggle, [role="toggle"] {
+            >.zs-icon {
+                transform:rotate(180deg);
+            }
+            &::after {
+                top: -@zs-shadow-size;
+                bottom:auto;
+            }
+            
+            left:50%;
+            margin-left:-@zs-toggle-width/2;
+            bottom:0;
+            border-top:0;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            
+            border-bottom:1px solid @zs-border-color;
+            border-bottom-right-radius: @zs-border-radius;
+            border-bottom-left-radius: @zs-border-radius;
+
+            margin-bottom:-1px*@zs-toggle-height;
+            border-top:0px;
+
+
+            &[align="right"] {
+                left:auto;
+                right:-1px;
+                margin-left:0;
+
+                &::after {
+                    left: -@zs-shadow-size*2;
+                    right:0; // don't cover the right border (consider rotation)
+                }
+            }
+
+            &[align="left"] {
+                left:-1px;
+                right:auto;
+                margin-left:0;
+
+                &::after {
+                    left: 0;
+                    right: -@zs-shadow-size*2; // don't cover the right border (consider rotation)
+                }
+            }
+
+           
+        }
+    }
+
+    &[align="right"] {
+        transform: translate(100%, 0);
+        top:0;        
+        bottom:0;
+        right:0;
+        >tag, >toggle, [role="toggle"] {
+         
+            transform-origin: left bottom;
+            transform: rotate(270deg);
+            top:50%;
+            bottom:auto;            
+            left:0;
+
+            &[valign="top"] {
+                bottom:auto;
+                top:@zs-shadow-size + 1;
+                margin-top:@zs-toggle-max-width/2;
+                margin-left:0;
+
+                &::after {
+                    right:0px;
+                }
+            }
+
+            &[valign="bottom"] {
+                //border:1px solid red!important;                
+                bottom:-1px;
+                top:auto;
+                margin-top:0;
+                margin-bottom:0px;//@zs-toggle-max-width/2;
+                margin-left:0;
+                //transform: rotate(0deg);
+
+                &::after {
+                    left:0px;
+                }
+            }
+          
+        }
+    }
+
+    &[align="bottom"] {
+        transform: translate(0, 100%);
+        bottom:0;
+        right:0;
+        left:0;
+        >tag, >toggle, [role="toggle"] {         
+            transform: rotate(0deg);
+            top:0;
+            margin-top:-1px*@zs-toggle-height;
+            left:50%;
+            margin-left:-1px*@zs-toggle-height;
+            border-bottom:0px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            
+            &[align="right"] {
+                left:auto;
+                right:-1px;
+                margin-left:0;
+
+                &::after {
+                    left: -@zs-shadow-size*2;
+                    right:0; // don't cover the right border (consider rotation)
+                }
+            }
+
+            &[align="left"] {
+                left:-1px;
+                right:auto;
+                margin-left:0;
+
+                &::after {
+                    left: 0;
+                    right: -@zs-shadow-size*2; // don't cover the right border (consider rotation)
+                }
+            }
+
+        }
+    }
+
+    &[align="left"] {
+        transform: translate(-100%, 0);
+        top:0;
+        bottom:0;
+        left:0;
+        >tag, >toggle, [role="toggle"] {         
+            transform-origin: right bottom;
+            transform: rotate(90deg);
+            top:50%;
+            bottom:auto;
+            right:0;
+            border-bottom:0px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+
+            &[valign="top"] {
+                bottom:auto;
+                top:1px;
+                margin-top:@zs-toggle-max-width - @zs-toggle-height;
+                margin-left:0;
+
+                &::after {
+                    left:0px;
+                }
+            }
+
+            &[valign="bottom"] {
+                bottom:-1px;
+                top:auto;
+                margin-top:0;
+                margin-bottom:0;
+                margin-left:0;
+                &::after {
+                    margin-right:@zs-shadow-size;
+                }
+            }
+        }
+    }
+
+    &.zs-gray {
+        @zs-gray-drawer-background: lighten(@zs-background-tab,5%);
+        background: @zs-gray-drawer-background;
+        >tag, >toggle, [role="toggle"], >tag::after, >toggle::after, [role="toggle"]::after {
+            
+            background: @zs-gray-drawer-background;
+        }
+    }
+
+    &.zs-notag {
+        >tag, >toggle, [role="toggle"] {
+            display:none;
+        }
+    }
+}
+

@@ -1,0 +1,18 @@
+.size-generator(@list, @i: 1) when (@i <= length(@list)) {
+	
+	@size: extract(@list, @i);
+	@selector: e(replace("@{size}", "%", ""));
+	
+	.zs-height-@{selector} {
+	height: ~"@{size}" !important;
+	}
+	
+	.zs-width-@{selector} {
+	width: ~"@{size}" !important;
+	}
+	
+	.size-generator(@list, @i + 1);
+}
+
+@sizes: 25%, 50%, 75%, 100%, auto;
+.size-generator(@sizes);

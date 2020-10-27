@@ -1,0 +1,204 @@
+
+/** Sw start and end column**/
+.gridColumnSw(@col, @max) when (@col<=@max){
+	@selectorSw: ~'[class*="zs-grid-"] > .zs-col-sw-@{col}:nth-of-type(n)';
+	@selectorSwEnd: ~ '.zs-col-sw-span-@{col}';
+	@{selectorSw} {
+		.gridCell(@startColumn: @col);		
+	}
+	@{selectorSwEnd} {
+		.gridCell(@spanColumns: @col);		
+	}	
+	.gridColumnSw(@col+1, @max);
+}
+/** mw start and end column**/
+.gridColumnMw(@col, @max) when (@col<=@max){
+	@selectorMw: ~'[class*="zs-grid-"] > .zs-col-mw-@{col}:nth-of-type(n)';
+	@selectorMwEnd: ~ '.zs-col-mw-span-@{col}';
+	@{selectorMw} {
+		.gridCell(@startColumn: @col);		
+	}
+	@{selectorMwEnd} {
+		.gridCell(@spanColumns: @col);		
+	}
+	.gridColumnMw(@col+1, @max);
+}
+/** Lw start and end column**/
+.gridColumnLw(@col, @max) when (@col<=@max){
+	@selectorLw: ~'[class*="zs-grid-"] > .zs-col-lw-@{col}:nth-of-type(n)';
+	@selectorLwEnd: ~ '.zs-col-lw-span-@{col}';
+	@{selectorLw} {
+		.gridCell(@startColumn: @col);		
+	}
+	@{selectorLwEnd} {
+		.gridCell(@spanColumns: @col);		
+	}
+	.gridColumnLw(@col+1, @max);
+}
+
+
+.gridRowSw(@row, @max) when (@row<=@max){
+	@selectorSw:  ~'[class*="zs-grid-"] > .zs-row-sw-@{row}:nth-of-type(n)';
+	@selectorSwEnd: ~'.zs-row-sw-span-@{row}';
+	@{selectorSw} {
+		.gridCell(@startRow: @row);		
+	}
+	@{selectorSwEnd} {
+		.gridCell(@spanRows: @row);		
+	}
+	.gridRowSw(@row+1, @max);
+}
+
+.gridRowMw(@row, @max) when (@row<=@max){
+	@selectorMw: ~'[class*="zs-grid-"] > .zs-row-mw-@{row}:nth-of-type(n)';
+	@selectorMwEnd: ~'.zs-row-mw-span@{row}';
+	@{selectorMw} {
+		.gridCell(@startRow: @row);		
+	}
+	@{selectorMwEnd} {
+		.gridCell(@spanRows: @row);		
+	}
+	.gridRowMw(@row+1, @max);
+}
+.gridRowLw(@row, @max) when (@row<=@max){
+	@selectorLw: ~'[class*="zs-grid-"] > .zs-row-lw-@{row}:nth-of-type(n)';
+	@selectorLwEnd: ~'.zs-row-lw-span-@{row}';
+	@{selectorLw} {
+		.gridCell(@startRow: @row);		
+	}
+	@{selectorLwEnd} {
+		.gridCell(@spanRows: @row);		
+	}
+	.gridRowLw(@row+1, @max);
+}
+//Portrait mode...
+
+.gridColumnPort(@col, @max) when (@col<=@max){
+	@selectorh: ~'[class*="zs-grid-"] > .zs-col-p-@{col}:nth-of-type(n)';
+	@selectorhEnd: ~ '.zs-col-p-span-@{col}';
+	@{selectorh} {
+		.gridCell(@startColumn: @col);		
+	}
+	@{selectorhEnd} {
+		.gridCell(@spanColumns: @col);		
+	}
+	.gridColumnPort(@col+1, @max);
+}
+
+
+.gridColumnSwPort(@col, @max) when (@col<=@max){
+	@selectorSwh: ~'[class*="zs-grid-"] > .zs-col-sp-@{col}:nth-of-type(n)';
+	@selectorSwhEnd: ~ '.zs-col-sp-span-@{col}';
+	@{selectorSwh} {
+		.gridCell(@startColumn: @col);		
+	}
+	@{selectorSwhEnd} {
+		.gridCell(@spanColumns: @col);		
+	}
+	.gridColumnSwPort(@col+1, @max);
+}
+.gridColumnMwPort(@col, @max) when (@col<=@max){
+	@selectorMwh: ~'[class*="zs-grid-"] > .zs-col-mp-@{col}:nth-of-type(n)';
+	@selectorMwhEnd: ~ '.zs-col-mp-span-@{col}';
+	@{selectorMwh} {
+		.gridCell(@startColumn: @col);		
+	}
+	@{selectorMwhEnd} {
+		.gridCell(@spanColumns: @col);		
+	}
+	.gridColumnMwPort(@col+1, @max);
+}
+
+.gridColumnLwPort(@col, @max) when (@col<=@max){
+	@selectorLwh: ~'[class*="zs-grid-"] > .zs-col-lp-@{col}:nth-of-type(n)';
+	@selectorLwhEnd: ~ '.zs-col-lp-span-@{col}';
+	@{selectorLwh} {
+		.gridCell(@startColumn: @col);		
+	}
+	@{selectorLwhEnd} {
+		.gridCell(@spanColumns: @col);		
+	}
+	.gridColumnLwPort(@col+1, @max);
+}
+
+.gridRowPort(@row, @max) when (@row<=@max){
+	@selectorh:  ~'[class*="zs-grid-"] > .zs-row-p-@{row}:nth-of-type(n)';
+	@selectorhEnd: ~'.zs-row-p-span-@{row}';
+	@{selectorh} {
+		.gridCell(@startRow: @row);		
+	}
+	@{selectorhEnd} {
+		.gridCell(@spanRows: @row);		
+	}
+	.gridRowPort(@row+1, @max);
+}
+.gridRowSwPort(@row, @max) when (@row<=@max){
+	@selectorSwh:  ~'[class*="zs-grid-"] > .zs-row-sp-@{row}:nth-of-type(n)';
+	@selectorSwhEnd: ~'.zs-row-sp-span-@{row}';
+	@{selectorSwh} {
+		.gridCell(@startRow: @row);		
+	}
+	@{selectorSwhEnd} {
+		.gridCell(@spanRows: @row);		
+	}
+	.gridRowSwPort(@row+1, @max);
+}
+
+.gridRowMwPort(@row, @max) when (@row<=@max){
+	@selectorMwh: ~'[class*="zs-grid-"] > .zs-row-mp-@{row}:nth-of-type(n)';
+	@selectorMwhEnd: ~'.zs-row-mp-span@{row}';
+	@{selectorMwh} {
+		.gridCell(@startRow: @row);		
+	}
+	@{selectorMwhEnd} {
+		.gridCell(@spanRows: @row);		
+	}
+	.gridRowMwPort(@row+1, @max);
+}
+.gridRowLwPort(@row, @max) when (@row<=@max){
+	@selectorLwh: ~'[class*="zs-grid-"] > .zs-row-lp-@{row}:nth-of-type(n)';
+	@selectorLwhEnd: ~'.zs-row-lp-span-@{row}';
+	@{selectorLwh} {
+		.gridCell(@startRow: @row);		
+	}
+	@{selectorLwhEnd} {
+		.gridCell(@spanRows: @row);		
+	}
+	.gridRowLwPort(@row+1, @max);
+}
+@zs-grid-max-rows: 6;
+@zs-grid-max-cols: 6;
+@media (min-width: @screen-sm) {
+	.gridColumnSw(1, @zs-grid-max-cols);
+	.gridRowSw(1, @zs-grid-max-rows);
+} 
+
+@media (min-width: @screen-md) {
+	.gridColumnMw(1, @zs-grid-max-cols );
+	.gridRowMw(1, @zs-grid-max-rows);
+} 
+
+@media (min-width: @screen-lg) {
+	.gridColumnLw(1, @zs-grid-max-cols );
+	.gridRowLw(1, @zs-grid-max-rows);
+} 
+
+@media screen and (orientation: portrait){
+	.gridColumnPort(1,@zs-grid-max-cols);
+	.gridRowPort(1, @zs-grid-max-rows);
+}
+@media (min-width: @screen-sm) and (orientation: portrait){
+	.gridColumnSwPort(1,@zs-grid-max-cols);
+	.gridRowSwPort(1,@zs-grid-max-rows);
+}
+@media (min-width: @screen-md) and (orientation: portrait){
+	.gridColumnMwPort(1,@zs-grid-max-cols);
+	.gridRowMwPort(1,@zs-grid-max-rows);
+}
+@media (min-width: @screen-lg) and (orientation: portrait){
+	.gridColumnLwPort(1,@zs-grid-max-cols);
+	.gridRowLwPort(1,@zs-grid-max-rows);
+}
+
+
+

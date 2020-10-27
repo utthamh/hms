@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+
+<head>
+	<title>Events</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- For demo purposes -->
+	<link rel="stylesheet" href="themes/zs/core.css">
+	<link rel="stylesheet" href="https://ui.zsservices.com/zsui/themes/zs/forms.css">
+	<script src="polyfills/polyfills.js"></script>
+	<script src="https://ui.zsservices.com/zsui/demo.js"></script>	
+	<style>
+		.zs-example {
+			margin:2em;
+		}
+	</style>
+
+	
+</head>
+<body class="zs-style zs-example">
+	<p>There are several way we could handle events.</p>
+	<h2>Using built-in event handlers</h2>
+
+	<script>
+		var button = document.createElement('button');
+		button.innerText = 'Click me';
+		button.classList.add('zs-button');
+		button.onclick = function() {
+			this.innerText = 'Clicked';
+		}
+		document.body.appendChild(button);
+	</script>
+
+	<h2>Handling events declaratively</h2>
+	<button class="zs-button" onclick="this.innerText = 'Clicked'">Click me</button>
+
+	<h2>Using event listener</h2>
+	<script>
+		var button2 = document.createElement('button');
+		button2.innerText = 'Click me';
+		button2.classList.add('zs-button');
+		button2.addEventListener('click', function (event) {
+			this.innerText = 'Clicked';
+		});
+		document.body.appendChild(button2);
+	</script>
+
+	<h2>By delegating</h2>
+	<script>
+		var someObj = {
+			handleEvent: function(event) {				
+				event.target.innerText = 'Clicked';
+			}
+		}
+		var button3 = document.createElement('button');
+		button3.innerText = 'Click me';
+		button3.classList.add('zs-button');
+		button3.addEventListener('click', someObj);
+		document.body.appendChild(button3);
+	</script>
+	
+	<h2></h2>
+	<p>We can use the benefits of delegating events in our components</p>
+	<script src="smart/mixin.js"></script>
+	<script src="smart/events.js"></script>
+	<script src="eventsDemo.js"></script> <!-- custom button component-->
+	<script>
+		let button4 = document.createElement('button', {is: 'my-button'});
+		button4.classList.add('zs-button');
+		button4.innerText = 'Click me';
+		document.body.appendChild(button4);
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" manifest="zsui.appcache">
+	<head>
+        <title>ZSUI Navigation demo</title>
+        <meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		
+		
+	<!-- Demo scripts  -->
+	<script src="demo.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+	<style>
+	.hljs {
+    	padding: 0.5em !important; /*Since core.css loads later and resets all spacing, we need to use !important here.*/
+	}
+	</style>
+	<script>
+	zs.demo.setPaths();
+	zs.demo.addUrlFixes({"nodejs":{},"npm":{"../node_modules/":"../../"},"nuget":{"../node_modules/zsui-[\\w]+/dist":"./"}});
+	</script>
+ 
+
+		<!-- Dependencies -->
+		<script>zs.demo.script("../node_modules/zsui-core/dist/polyfills/polyfills.js");</script>
+		<script>zs.demo.script("../node_modules/zsui-core/dist/utils/customElements.js");</script>
+
+		<!-- Styles -->
+		<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/core.css");</script>
+		<script>zs.demo.link("./themes/{theme}/pagination.css");</script>
+		<script>zs.demo.link("./themes/{theme}/tree.css");</script>
+		<script>zs.demo.link("./themes/{theme}/topNav.css");</script>
+		<script>zs.demo.link("./themes/{theme}/sideNav.css");</script>
+		<script>zs.demo.link("./themes/{theme}/breadcrumbs.css");</script>
+</head>
+<body class="zs-style" style="padding:1em">
+
+<div data-page="pagination">
+	<h2>Pagination</h2>
+	<form class="zs-form">
+		<fieldset class="zs-fieldset-vertical">
+			<p>
+				<label>Items to display</label>
+				<input class="zs-input" name="itemsCount" type="number" min="1" max="999" value="100" placeholder="Items to display" />
+			</p>
+			<p>
+				<label>Page size</label>
+				<input class="zs-input" type="number" name="pageSize" min="1" max="99" value="25" placeholder="Page size" />
+			</p>
+		</fieldset>
+	</form>
+	<table class="zs-data-table" width="100%">
+		<thead>
+			<tr>
+				<td colspan="10" class="zs-pagination"></td>
+			</tr>
+		</thead>
+		<thead></thead>
+		<tbody></tbody>
+		<tfoot>
+			<tr>
+				<td colspan="10" class="zs-pagination" align="right"></td>
+			</tr>
+		</tfoot>
+	</table>
+</div>
+
+<script>zs.demo.script("./pagination/jquery.zsPagination.js");</script>
+
+<script>
+	$(document).ready(function() {	
+	var pageCache = {}, itemsCount = 100, pageSize = 15;
+	
+	function generateTablePage(currentPage, pageSize, itemsCount) {
+		var columns = 10, 
+			html = '',
+			i;
+		var $table = $('[data-page="pagination"] .zs-data-table');
+		if (!$table.length) {
+			return;
+		}
+		
+		// Generate columns
+		if (!$table.find('thead:nth-child(2)').html()) {
+			for(i=1;i<=columns;i++) {
+				html += '<th>Column ' + i + '</th>';
+			}	
+			
+			$table.find('thead:nth-child(2)').html('<tr>' + html + '</tr>');
+				
+		}
+		
+		// Generate rows	
+		if (pageCache[currentPage]) { // From cache
+			$table.find('tbody').html(pageCache[currentPage]);
+			return;
+		} else { // Generate
+			html = '';
+			for (i= (currentPage - 1)*pageSize + 1; i<=currentPage*pageSize;i++) {
+				if (i>itemsCount) {break;}
+				html += '<tr>';
+				for (j=1;j<=columns;j++) {
+					html += '<td>Cell ' + i + ',' + j + '</td>';
+				}	
+				html += '</tr>';
+				
+			}
+			$table.find('tbody').html(html);	
+			
+		}		
+	}
+	
+	var $container = $('[data-page="pagination"] .zs-pagination'), $pageSelect;
+		
+	$container.zsPagination({
+		itemsCount: itemsCount,
+		pageSize: pageSize,
+		onPageChange: function (oldPage, newPage) {
+
+			// Goto specified page in the table		
+			generateTablePage(this.currentPage, this.options.pageSize, this.options.itemsCount);
+
+			// Sync top and bottom pagination
+			var $otherContainers = $('[data-page="pagination"] .zs-pagination'), self = this, pagination;			
+			$otherContainers.each(function() {
+				pagination = $(this).data('zsPagination');
+				if (pagination != self) {
+					$(this).zsPagination({
+						currentPage: newPage
+					});
+				}
+			});	
+			
+		}		
+	}).addClass('zs-pagination');	
+	
+	function changePagination(itemsCount, pageSize) {
+		var $containers = $('[data-page="pagination"] .zs-pagination')
+		$containers .zsPagination({
+			itemsCount: itemsCount,
+			pageSize: pageSize
+		});
+		generateTablePage(pagination.currentPage, pagination.options.pageSize, pagination.options.itemsCount);		
+	}
+	
+		
+	var pagination = $container.data('zsPagination');	
+	generateTablePage(pagination.currentPage, pagination.options.pageSize, pagination.options.itemsCount);
+	
+	var $pageSize = $('[data-page="pagination"] [name="pageSize"]');
+	var $itemsCount = $('[data-page="pagination"] [name="itemsCount"]');
+	$pageSize.val(pageSize);
+	$itemsCount.val(itemsCount);
+	$pageSize.on('change', function() {
+		pageSize = $(this).val();
+		changePagination(itemsCount, pageSize);
+	});
+	$itemsCount.on('change', function() {
+		itemsCount = $(this).val();
+		changePagination(itemsCount, pageSize);
+	});
+	
+});
+
+</script>
+
+<h2>Pagination custom element</h2>
+<p>You can use custom element zs-pagination too. Set attributes and listen to "pagechange" event to implement your business
+	logic
+</p>
+
+<script>zs.demo.script("./pagination/pagination.js");</script>	
+
+<zs-pagination total="30" size="10" page="2"></zs-pagination>
+<script>
+	var el = document.querySelector('zs-pagination');
+	el.addEventListener('pagechange', function(event) {
+		alert('Page ' + event.detail.currentPage + ' selected');
+	});
+
+</script>
+
+	<!-- Demo scripts -->
+	<script>		
+	
+		if (zs && zs.demo) {
+			zs.demo.adjustCss();
+			zs.demo.applyTheme();
+			zs.demo.highlight();
+		}
+	</script>
+</body>
+</html>

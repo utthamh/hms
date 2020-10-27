@@ -1,0 +1,50 @@
+<h2>Toggle initially ON</h2>
+<div class="toggle-component" on="true"></div>
+<h2>Toggle initially OFF</h2>
+<div class="toggle-component" on="false"></div>
+<h2>Toggle Programatically</h2>
+<p><button class="zs-button" program-eg>Turn OFF</button></p>
+<div class="toggle-component" on="true" program-eg-toggle></div>
+<h2>Hidden Toggle</h2>
+<p>
+	<button class="zs-button" hidden-eg>Show</button>
+	<div style="display:none" hidden>
+		<div class="toggle-component" on="false"></div>
+	</div>
+</p>
+<script src="<%=zsuiPath%>/toggle/jquery.zsToggle.js"></script>
+<script>
+	$(document).ready(function () {
+		$('.toggle-component').zsToggle({
+			on: function () {
+				if (this.$container.is('[on="true"]')) {
+					return true;
+				} else {
+					return false;
+				}
+			},
+			onClick: function () {
+				console.log('is active? ' + this.isActive);
+			}
+		});
+
+		$('[hidden-eg]').click(function () {
+			$('[hidden]').show();
+		});
+
+		$('[program-eg]').click(function () {
+			var comp = $('[program-eg-toggle]').data('zsToggle');
+			if (this.hasAttribute('reset')) {
+				comp.isActive = true;
+				comp.update('zsToggle');
+				this.removeAttribute('reset');
+				this.textContent = 'Turn OFF';
+			} else {
+				comp.isActive = false;
+				comp.update('zsToggle');
+				this.setAttribute('reset', '');
+				this.textContent = 'Turn ON';
+			}
+		});
+	});
+</script>

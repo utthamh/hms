@@ -1,0 +1,27 @@
+<%
+	// Detect environment flag
+	this.urlFixes = this.urlFixes || false;
+
+	// Add link to the list of dependecies
+	this.link = this.link || function(src) {
+		return '<script>zs.demo.link("'+src+'");</script>';
+	}
+
+	// Add script to the list of dependencies
+	this.script = this.script || function(src) {
+		return '<script>zs.demo.script("'+src+'");</script>';
+	}	
+%>
+	<!-- Demo scripts  -->
+	<script src="demo.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+	<style>
+	.hljs {
+    	padding: 0.5em !important; /*Since core.css loads later and resets all spacing, we need to use !important here.*/
+	}
+	</style>
+	<script>
+	zs.demo.setPaths();
+	zs.demo.addUrlFixes(<%- JSON.stringify(urlFixes || {})%>);
+	</script>

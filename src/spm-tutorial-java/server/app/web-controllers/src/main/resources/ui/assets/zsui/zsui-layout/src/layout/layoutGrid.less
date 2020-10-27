@@ -1,0 +1,178 @@
+@import 'gridMixins.less';
+
+// Mixins to create styles for explicit placement of cells in the grid
+.gridColumn(@col, @max) when (@col<=@max) {
+	@selector: ~'[class*="zs-grid-"] > .zs-col-@{col}:nth-of-type(n)'; // We want to increase priority of this selector compared to :nth-of-type(5n+1) used for auto placement
+	@{selector} {
+		.gridCell(@startColumn: @col);		
+	}
+	@selectorEnd: ~'.zs-col-span-@{col}';
+	@{selectorEnd} {
+		.gridCell(@spanColumns: @col);		
+	}
+	.gridColumn(@col+1, @max);
+}
+.gridRow(@row, @max) when (@row<=@max) {
+	@selector: ~'[class*="zs-grid-"] > .zs-row-@{row}:nth-of-type(n)';	
+	@{selector} {
+		.gridCell(@startRow: @row);
+		
+	}
+	@selectorEnd: ~'.zs-row-span-@{row}';	
+	@{selectorEnd} {
+		.gridCell(@spanRows: @row);		
+	}
+	.gridRow(@row+1, @max);
+}
+
+// Build grid lines with 3 sizing modes auto, 1fr, minmax(min-content, 1fr) 
+.buildGridCols(@cols, @max) when (@cols<=@max) {
+	@sizeColumnsAuto: ~`"auto ".repeat(@{cols})`;
+	@sizeColumnsEqual: ~`"1fr ".repeat(@{cols})`;
+	@sizeColumnsContent: ~`"minmax(min-content, 1fr) ".repeat(@{cols})`;
+	
+	@selectorAuto: ~'.zs-grid-@{cols}cols-auto';	
+	@{selectorAuto} {
+		.gridLayout(@columns: @sizeColumnsAuto);		
+	}	
+
+	@selectorEqual: ~'.zs-grid-@{cols}cols-equal';
+	@{selectorEqual} {
+		.gridLayout(@columns: @sizeColumnsEqual);		
+	}
+
+	@selectorContent: ~'.zs-grid-@{cols}cols';
+	@{selectorContent} {
+		.gridLayout(@columns: @sizeColumnsContent);		
+	}
+		
+	.buildGridCols(@cols+1, @max);
+}
+.buildGridRows(@rows, @max) when (@rows<=@max) {
+	@sizeRowsAuto: ~`"auto ".repeat(@{rows})`;
+	@sizeRowsEqual: ~`"1fr ".repeat(@{rows})`;
+	@sizeRowsContent: ~`"minmax(min-content, 1fr) ".repeat(@{rows})`;
+
+	@selectorAuto: ~'.zs-grid-@{rows}rows-auto';
+	@{selectorAuto} {
+		.gridLayout(@rows: @sizeRowsAuto);		
+	}
+
+	@selectorEqual: ~'.zs-grid-@{rows}rows-equal';
+	@{selectorEqual} {
+		.gridLayout(@rows: @sizeRowsEqual);		
+	}
+
+	@selectorContent: ~'.zs-grid-@{rows}rows';
+	@{selectorContent} {
+		.gridLayout(@rows: @sizeRowsContent);		
+	}
+	.buildGridRows(@rows+1, @max);
+}
+
+// This will help to reduce CSS size by using selectors like :nth-of-type(5n+1) for 5-column grid.
+.nthCol(@col, @start, @end) when (@start<=@end) {
+	@selector: ~':nth-of-type(@{col}n+@{start})';
+	@{selector} {
+		.gridCell(@startColumn: @start);
+	}	
+	.nthCol(@col, @start+1, @end);
+}
+
+// This will help to reduce CSS size by using selectors like :nth-of-type(5n+1) to 5-column grid.
+.nthRow(@col, @row, @end) when (@row<=@end) {
+
+	@n: @row * @col + 1;
+	@selector: ~':nth-of-type(n + @{n})'; // Magic ;)
+	@{selector} {
+		.gridCell(@startRow: @row + 1);
+	}	
+	.nthRow(@col, @row+1, @end);
+}
+
+// Auto place grid cells based on their order in the grid container using :nth-of-type selector.
+.autoPlace(@cols, @maxCols, @maxRows) when (@cols<=@maxCols) {
+	@selector: ~'[class*="zs-grid-@{cols}cols"] > ';
+	@{selector} {
+		.nthCol(@cols, 1, @cols);
+		.nthRow(@cols, 0, @maxRows);
+	}
+	.autoPlace(@cols+1, @maxCols, @maxRows);
+}
+
+
+// Build grid
+@zs-grid-max-rows: 6;
+@zs-grid-max-cols: 6;
+.gridColumn(1, @zs-grid-max-rows); 
+.gridRow(1, @zs-grid-max-cols);
+.buildGridCols(1, @zs-grid-max-rows);
+.buildGridRows(1, @zs-grid-max-cols);
+.autoPlace(1, @zs-grid-max-cols, @zs-grid-max-rows);
+
+// Alignment
+.zs-justify-end {
+	> * {
+		.gridAlign(@column: end);
+	}
+}
+.zs-justify-self-end {
+	.gridAlign(@column: end);
+}
+.zs-align-end {
+	> * {
+		.gridAlign(@row: end);
+	}
+}
+.zs-align-self-end {
+	.gridAlign(@row: end);
+}
+.zs-justify-start {
+	> * {
+		.gridAlign(@column: start);
+	}
+}
+.zs-justify-self-start {
+	.gridAlign(@column: start);
+}
+.zs-align-self-start {
+	.gridAlign(@row: start);
+}
+.zs-align-start {
+	> * {
+		.gridAlign(@row: start);
+	}
+}
+.zs-justify-center {
+	> * {
+		.gridAlign(@column: center);
+	}
+}
+.zs-justify-self-center {
+	.gridAlign(@column: center);
+}
+.zs-align-center {
+	> * {
+		.gridAlign(@row: center);
+	}
+}
+.zs-align-self-center {
+	.gridAlign(@row: center);
+}
+
+.zs-justify-stretch {
+	> * {
+		.gridAlign(@column: stretch);
+	}
+}
+.zs-justify-self-stretch {
+	.gridAlign(@column: stretch);
+}
+.zs-align-stretch {
+	> * {
+		.gridAlign(@row: stretch);
+	}
+}
+.zs-align-self-stretch {
+	.gridAlign(@row: stretch);
+}

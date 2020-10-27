@@ -1,0 +1,108 @@
+.zs-padding(@t:1, @r:1, @b:1, @l:1) {
+	@zs-padding-gutter: @zs-font-padding-ratio; 
+	padding: 1*@t*@zs-padding-gutter*1em @r*@zs-padding-gutter*1em 1*@b*@zs-padding-gutter*1em @l*@zs-padding-gutter*1em;
+}
+
+.zs-margin(@t:1, @r:1, @b:1, @l:1) {
+	@zs-padding-gutter: @zs-font-padding-ratio; 
+	margin: 1*@t*@zs-padding-gutter*1em @r*@zs-padding-gutter*1em 1*@b*@zs-padding-gutter*1em @l*@zs-padding-gutter*1em;
+}
+
+.zs-spaceType(@type, @t, @r, @b, @l) when (@type = padding) {
+	.zs-padding(@t, @r, @b, @l);
+}
+
+.zs-spaceType(@type, @t, @r, @b, @l) when (@type = margin) {
+	.zs-margin(@t, @r, @b, @l);
+}
+
+.zs-space(@type, @t:1) {
+	@handleFraction: e(replace("@{t}", "\.", "_"));
+	@selector: ~'.zs-@{type}-@{handleFraction}';
+	@{selector} {
+		.zs-spaceType(@type, @t, @t, @t, @t);
+	}
+}
+
+.zs-space(@type, @t, @r) {
+	@handleFractionT: e(replace("@{t}", "\.", "_"));
+	@handleFractionR: e(replace("@{r}", "\.", "_"));
+	@selector: ~'.zs-@{type}-@{handleFractionT}-@{handleFractionR}';
+	@{selector} {
+		.zs-spaceType(@type, @t, @r, @t, @r);
+	}	
+}
+.zs-space(@type, @t, @r, @b, @l) {		
+	@handleFractionT: e(replace("@{t}", "\.", "_"));
+	@handleFractionR: e(replace("@{r}", "\.", "_"));
+	@handleFractionB: e(replace("@{b}", "\.", "_"));
+	@handleFractionL: e(replace("@{l}", "\.", "_"));
+	@selector: ~'.zs-@{type}-@{handleFractionT}-@{handleFractionR}-@{handleFractionB}-@{handleFractionL}';
+	@{selector} {
+		.zs-spaceType(@type, @t, @r, @b, @l);				
+	}		
+}
+
+// Generate some basic margins and paddings for 0, 1, and 2
+@options: 0, 1, 2;
+
+// Loop for creating single value selector(all values equal) like .zs-padding-1, .zs-margin-0 etc.
+.loop(@i: 1) when (@i =< length(@options)) {
+  @value: extract(@options, @i);
+
+  .zs-space(padding, @value);
+  .zs-space(margin, @value);
+  
+  .loop((@i + 1));
+}    
+.loop();
+
+// Loop for creating two values selector(top-bottom and right-left) like .zs-padding-1-0, .zs-margin-0-1 etc.
+.loop1(@i: 1) when (@i =< length(@options)) {
+  @value1: extract(@options, @i);
+  
+  .loop2(@j: 1) when (@j =< length(@options)) {
+    @value2: extract(@options, @j);
+
+    .zs-space(padding, @value1, @value2);
+    .zs-space(margin, @value1, @value2);
+
+    .loop2((@j + 1));
+  }
+  .loop2(1);
+    
+  .loop1((@i + 1));
+}    
+.loop1();
+
+// Loop for creating four values selector(all values different) like .zs-padding-1-0-0-1, .zs-margin-0-1-1-1 etc.
+.loop3(@i: 1) when (@i =< length(@options)) {
+  @value1: extract(@options, @i);
+  
+  .loop4(@j: 1) when (@j =< length(@options)) {
+    @value2: extract(@options, @j);
+    
+    .loop5(@m: 1) when (@m =< length(@options)) {
+      @value3: extract(@options, @m);
+
+      .loop6(@n: 1) when (@n =< length(@options)) {
+        @value4: extract(@options, @n);
+
+        .zs-space(padding, @value1, @value2, @value3, @value4);
+        .zs-space(margin, @value1, @value2, @value3, @value4);
+        
+        .loop6((@n + 1));
+      }
+      .loop6(1);
+
+      .loop5((@m + 1));
+    }    
+    .loop5();
+
+    .loop4((@j + 1));
+  }
+  .loop4(1);
+    
+  .loop3((@i + 1));
+}    
+.loop3();

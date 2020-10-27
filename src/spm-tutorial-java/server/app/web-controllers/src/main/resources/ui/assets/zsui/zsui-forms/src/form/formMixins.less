@@ -1,0 +1,127 @@
+// Defined this once again for zsui-forms package. Original definition in global.less
+@zs-highlight-color: lighten(@zs-status-warning, 30%);
+
+// Defined this once again for zsui-forms package. Original definition in table.less
+@zs-table-header-background:@zs-background-tab;
+
+.zs-button(){
+	border: 1px solid @zs-link-normal;
+	color: @zs-brand-dark;
+	background-color: @zs-background;
+	border-radius: @zs-border-radius;
+    .padding(@zs-input-padding,2,@zs-input-padding,2);
+	min-height: 34em/14px;
+    white-space: nowrap;	
+	&:hover {
+		cursor: pointer;
+		color: saturate(@zs-brand-dark, 50%);
+		.zs-icon {
+			color: saturate(@zs-brand-dark, 50%);
+		}
+		border: 1px solid saturate(@zs-link-normal,50%);
+	}	
+	-webkit-appearance: none;
+}
+
+.zs-input(){
+	background-color: transparent;
+	outline: 0;
+	font-weight: normal;
+	border: 1px solid @zs-brand-gray;
+	color: @zs-text-color;
+    .padding(@zs-input-padding,0.8,@zs-input-padding,0.8); 
+	-webkit-appearance: none;
+	 border-radius: 0;
+	 min-width: 250em/14;
+	 &[type="number"] {
+		 text-align: right;
+	 }
+}
+
+.zs-input-icon(){
+	overflow: hidden;	
+	display: inline;
+	position: relative;
+	&.zs-field {
+		//display:inline;
+	}
+	input {
+		display: inline-block;
+		position: relative;
+		padding-right: 1.5*@zs-icon-width !important;
+	}
+
+	&:before {
+		.zs-icon-font;
+		font-size: @zs-icon-width*1;
+		pointer-events: none;
+		right: 0.5em;
+		top: 50%;
+		margin-top: -1*@zs-icon-height/2.25;
+		color: @zs-icon-inactive-color;
+		position: absolute;
+		z-index:1;
+	}	
+
+	[clear] {
+		@width: 2em;
+		@height: 2em;
+		display: inline-block;
+		padding: (@height - @zs-icon-height)/2 (@width - @zs-icon-width)/2;
+		right: 0.25em;
+		top: 50%;
+		margin-top: -@height/2 + 0.1em;
+		background: transparent;
+	}
+	
+	.zs-icon-remove {
+		background:@zs-background;
+	}
+}
+
+.zs-select(){
+	position:relative;
+	padding: 0;
+	display:inline-block;
+	select, select:focus {
+		font-family: @zs-font-family-base;
+		font-size: 1em;
+		
+		-moz-appearance:none; // Required for Mozilla see https://bugzilla.mozilla.org/show_bug.cgi?id=649849
+		appearance: none;
+		-webkit-appearance:none;
+		background-color: transparent;
+		border: 0;
+		border-radius:0;
+		outline: 0;
+		font-weight: normal;
+		border: 1px solid @zs-brand-gray;
+		color: @zs-text-color;
+		.padding(@zs-input-padding,0.6,@zs-input-padding,0.6);
+		padding-right: (@zs-padding-horizontal-large - 1) + 1em;
+		cursor:pointer;		
+		width:100%;
+	}
+	select::-ms-expand { // Fix for IE to remove border arround arrow
+	   display: none;
+	}
+	min-width: 250em/14;
+
+	&:after{
+		content: '\4b';
+		.zs-icon-font();
+		font-size: @zs-icon-width;
+		color: @zs-brand-dark;
+		right: 0.25em;
+		top:50%;
+		margin-top:-@zs-icon-width/2;
+		
+		position:absolute;
+		pointer-events:none;
+		display:inline-block;
+	}
+
+	&:hover&:after{
+		color: darken(@zs-brand-dark, 10%);
+	}
+}

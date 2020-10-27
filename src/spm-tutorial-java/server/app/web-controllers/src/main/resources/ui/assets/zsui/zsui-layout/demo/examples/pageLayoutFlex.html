@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Page Layout</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	 crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="../../dist/themes/zs/layoutFlex.css">
+	<style>
+		.layout>section>main {
+			background: rgba(0, 255, 0, 0.5);
+		}
+
+		.layout>header {
+			background: rgba(255, 0, 0, 0.5);
+		}
+
+		.layout>section>nav {
+			background: rgba(127, 128, 0, 0.5);
+		}
+
+		.layout>section>aside {
+			background: rgba(127, 0, 128, 0.5);
+		}
+
+		.layout>footer {
+			background: rgba(0, 128, 127, 0.5);
+		}
+
+		.padding {
+			padding: 5px;
+		}
+
+		.margin {
+			margin: 5px;
+		}
+
+		.border {
+			border-radius: 5px;
+			border: 1px solid #c0c0c0;
+			box-shadow: 1px 1px 2px #c0c0c0;
+		}
+
+		body,
+		html {
+			padding: 0px;
+			margin: 0px;
+			height: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="zs-page-layout-flex layout">
+		<header>header
+			<br>header
+			<br> header</header>
+		<section>
+			<nav>Nav</nav>
+			<main class="padding margin border">
+				Lorem ipsum dolor sit amet, cu mea quando dicant torquatos, te summo debitis elaboraret usu. Quis sanctus ut has. Eos autem
+				maiorum at, cum at omnes quando. Harum tritani gubergren his no, vim ne primis tamquam dolorem. Liber audire placerat
+				ad ius. Ut graeco praesent nec, vis illum graece commodo te. Sed ea doming erroribus, senserit mediocrem id eos, idque
+				officiis ad vis. Ne vix duis laudem, qui te laudem oporteat conclusionemque. Vis probo deterruisset ad, idque nobis ea
+				qui. At nam magna virtute, at vel vero scripserit interesset. Eam quando dolorum an. Reformidans referrentur per no.
+				No illum graeco appellantur has, in nec nusquam minimum. Solum reque at pri. Nam et solum facilisis patrioque, ei has
+				prompta facilisi. Platonem moderatius ius no, no usu malorum patrioque, nam nibh laoreet suscipiantur eu. Facer errem
+				efficiantur no his. Qui tollit sadipscing ei. Harum maiorum at nam, malis maluisset sententiae mea at. Primis indoctum
+				explicari est cu, cum no elit laudem, paulo inciderint instructior pri ea. At rebum principes honestatis vim. Mucius
+				nostro bonorum vis an. Qui id assum doctus, probo nobis pericula et vel. Sumo nominati vix no, vix ut exerci appellantur.
+				Exerci mollis consetetur ne pri
+			</main>
+			<aside>Aside</aside>
+		</section>
+		<footer>footer
+			<br> footer
+			<br> footer</footer>
+	</div>
+</body>
+
+</html>

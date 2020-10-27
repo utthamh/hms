@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jquery.zsModal.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="zs.dialog.html">dialog</a><ul class='methods'><li data-type='method'><a href="zs.dialog.html#.close">close</a></li><li data-type='method'><a href="zs.dialog.html#.configurePlugin">configurePlugin</a></li><li data-type='method'><a href="zs.dialog.html#.open">open</a></li><li data-type='method'><a href="zs.dialog.html#.removePlugin">removePlugin</a></li><li data-type='method'><a href="zs.dialog.html#.syncAttribute">syncAttribute</a></li></ul></li><li><a href="zsModalDialog.html">zsModalDialog</a><ul class='methods'><li data-type='method'><a href="zsModalDialog.html#close">close</a></li><li data-type='method'><a href="zsModalDialog.html#configure">configure</a></li><li data-type='method'><a href="zsModalDialog.html#destroy">destroy</a></li><li data-type='method'><a href="zsModalDialog.html#escapeClick">escapeClick</a></li><li data-type='method'><a href="zsModalDialog.html#fixPosition">fixPosition</a></li><li data-type='method'><a href="zsModalDialog.html#open">open</a></li><li data-type='method'><a href="zsModalDialog.html#render">render</a></li><li data-type='method'><a href="zsModalDialog.html#renderOverlay">renderOverlay</a></li><li data-type='method'><a href="zsModalDialog.html#submitOnEnter">submitOnEnter</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">jquery.zsModal.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>﻿// zsui jquery modal dialog components
+(function () {
+    var defaults = {
+        autoOpen: false,
+        closeOnEscape: true,
+        submitOnEnter: 'input[submit-on-enter]', // A selector for the elements to use save on enter logic
+        autoFocus: 'input[focus]', // Selector for the element to take focus
+        closeSelector: '[close]',	// Selector for elements to close the dialog when clicked
+        submitSelector: '>footer button', // Selector for the submit button
+        style: {
+            position: 'fixed',
+            display: 'none',
+            top: '50%',
+            left: '50%',
+            marginTop: 0, // will be overwritten on ie8 mode
+            marginLeft: 0, // will be overwritten on ie8 mode
+            translateY: '-50%',
+            translateX: '-50%',
+        },
+        render: {
+            closeIcon: '&lt;a href="javascript:void(0)" class="zs-icon zs-icon-close zs-icon-large" close>&lt;/a>',
+            header: function () {
+                return '&lt;header>&lt;span>' + this.options.title + '&lt;/span>&lt;/header>';
+            },
+            overlay: '&lt;div class="zs-overlay" style="display:none">&lt;/div>'
+        },
+        events: {
+            submit: function () {
+                this.close();
+            },
+            open: function () {
+
+            },
+            close: function () {
+
+            }
+        }
+    }
+    /**
+     * zsModalDialog jquery plugin : opens a temporary window that conveys the information or required some action from the user.  
+     * @namespace zsModalDialog
+     * @param {object} options Configuration options.
+     * @param {HTMLElement} $container HTML element in which the component gets binded. 
+    */
+    function zsModalDialog(options, $container) {
+        this.$container = $container;
+        this.configure(options);
+        this.render();
+
+    }
+
+    zsModalDialog.prototype.defaults = defaults;
+    /**
+     * Handles submit action on the press of "Enter" key
+     * @memberof  zsModalDialog  
+    */
+    zsModalDialog.prototype.submitOnEnter = function (e) {
+        if (e.keyCode == 13) {
+            if (this.options.events.submit) {
+                this.options.events.submit.apply(this);
+            }
+            return false;
+        }
+    }
+    /**
+     * Configures the dialog with the provided options
+     * @memberof zsModalDialog
+     */
+    zsModalDialog.prototype.configure = function (options) {
+
+        if (options) {
+            /**
+             * 'options' includes values that consumer could pass to override the defaults.
+             * @memberof zsModalDialog
+             * @property {object}  options - Configuration options
+             * @property {boolean}  options.autoOpen - Dialog should be opened or closed when configured
+             * @property {boolean} options.closeOnEscape - Dialog should get closed on "esc" button press or not 
+             * @property {string} options.submitOnEnter - Selector for the elements to use save on enter logic
+             * @property {string} options.autoFocus - Selector for the element to take focus
+             * @property {string} options.closeSelector - Selector for elements to close the dialog when clicked
+             * @property {string} options.submitSelector - Selector for the submit button
+             * @property {object} options.style - Default styles for the dialog plugin
+             * @property {object} options.render - Renders the dialog component
+             * @property {object} options.events -  Provides callback handles for events : submit, open and close.
+             */
+            this.options = options;
+        }
+    }
+
+    /**
+     * Renders the overlay of the dialog
+     * @memberof zsModalDialog
+     */
+    zsModalDialog.prototype.renderOverlay = function () {
+        if (!this.$overlay) {
+            this.$overlay = $('body>.zs-overlay');
+            if (!this.$overlay.length) {
+                this.$overlay = $(this.renderElement('overlay'));
+                this.$overlay.appendTo($('body'));
+            }
+        }
+    }
+
+    zsModalDialog.prototype.renderElement = function (name) {
+        if (this.options.render &amp;&amp; this.options.render[name]) {
+            if (typeof this.options.render[name] == 'function') {
+                return this.options.render[name].apply(this);
+            } else {
+                return this.options.render[name];
+            }
+        } else {
+            return '';
+        }
+    }
+    /**
+     * Renders the dialog component that includes its header, close icon, submit and cancel button
+     * @memberof zsModalDialog
+     */
+    zsModalDialog.prototype.render = function () {
+        this.renderOverlay();
+        this.$container.css(this.options.style);
+
+        // Header
+        if (!this.$header) {
+            this.$header = this.$container.find('>header');
+            if (!this.$header.length) {
+                this.$header = $(this.renderElement('header'));
+                this.$container.prepend(this.$header);
+            } else {
+                this.$header.html('&lt;span>' + this.$header.text() + '&lt;/span>');
+            }
+            this.$title = this.$header.find('>span');
+        }
+
+        // Close icon
+        if (!this.$closeIcon &amp;&amp; this.options.closeSelector) {
+            this.$closeIcon = this.$header.find(this.options.closeSelector);
+            if (!this.$closeIcon.length) {
+                this.$closeIcon = $(this.renderElement('closeIcon'));
+                this.$header.append(this.$closeIcon);
+            }
+        }
+
+        // Close on cancel click
+        if (!this.closeBind) {
+            this.closeBind = this.close.bind(this);
+        }
+        this.$container.find(this.options.closeSelector).click(this.closeBind);
+
+        // Submit
+        if (this.options.events.submit &amp;&amp; this.options.submitSelector) {
+            this.$container.find(this.options.submitSelector).click(this.options.events.submit.bind(this));
+        }
+
+        // Submit on enter
+        if (this.options.submitOnEnter) {
+            if (!this.submitOnEnterBind) {
+                this.submitOnEnterBind = this.submitOnEnter.bind(this);
+            }
+            this.$container.find(this.options.submitOnEnter).bind('keyup.enter', this.submitOnEnterBind);
+        }
+
+        // Render
+        if (this.options.autoOpen) {
+            this.open();
+        }
+
+        // Update title
+        if (this.options.title) {
+            this.$title.html(this.options.title);
+        }
+    }
+    /**
+     * Handles the closing action of dialog
+     * @memberof zsModalDialog
+     */
+    zsModalDialog.prototype.close = function () {
+        this.$overlay.hide();
+        if (this.closeBind) {
+            this.$overlay.off('click', this.closeBind);
+        }
+        this.$container.css('display', 'none');
+        if (this.escapeClickBind) {
+            $(document).off('keyup', this.escapeClickBind);
+        }
+        if (typeof this.options.events.close == 'function') {
+            this.options.events.close.apply(this);
+        }
+    }
+    /**
+     * Handles the positioning of the dialog
+     * @memberof zsModalDialog
+     */
+    zsModalDialog.prototype.fixPosition = function () {
+        if (document.documentMode === 8) {
+            this.options.style.marginLeft = -1 * this.$container.width() / 2;
+            this.options.style.marginTop = -1 * this.$container.height() / 2;
+        }
+
+        this.$container.css({
+            top: this.options.style.top,
+            left: this.options.style.left,
+            marginLeft: this.options.style.marginLeft,
+            marginTop: this.options.style.marginTop,
+            transform: 'translate(' + this.options.style.translateX + ',' + this.options.style.translateY + ')'
+        });
+
+        var box = this.$container[0].getBoundingClientRect();
+
+        //let's save window size
+        var win = {
+            h: $(window).height(),
+            w: $(window).width()
+        };
+
+        var topEdgeInRange = box.top >= 0 &amp;&amp; box.top &lt;= win.h;
+        var leftEdgeInRange = box.left >= 0 &amp;&amp; box.left &lt;= win.w;
+
+        var top = this.options.style.top,
+            left = this.options.style.left,
+            marginTop = this.options.style.marginTop,
+            marginLeft = this.options.style.marginLeft,
+            translateY = this.options.style.translateY,
+            translateX = this.options.style.translateX;
+
+        if (!topEdgeInRange) {
+            top = 0;
+            marginTop = 0,
+                translateY = 0;
+        }
+        if (!leftEdgeInRange) {
+            left = 0;
+            marginLeft = 0;
+            translateX = 0;
+        }
+
+        if (!topEdgeInRange || !leftEdgeInRange) {
+            this.$container.css({
+                top: top,
+                left: left,
+                marginTop: marginTop,
+                marginLeft: marginLeft,
+                transform: 'translate(' + translateX + ', ' + translateY + ')'
+            });
+        }
+    }
+    /**
+     * Opens a dialog 
+     * @memberof zsModalDialog 
+    */
+    zsModalDialog.prototype.open = function () {
+        if (!this.$overlay || !this.$overlay.length) { // We share the same overlay
+            this.renderOverlay();
+        }
+        this.$overlay.show();
+        this.$overlay.on('click', this.closeBind);
+        this.$container.css('display', 'inline-block');
+        this.fixPosition();
+        var self = this;
+        if (this.options.closeOnEscape) {
+            if (!this.escapeClickBind) {
+                this.escapeClickBind = this.escapeClick.bind(this);
+            }
+            $(document).on('keyup', this.escapeClickBind);
+        }
+        if (this.options.autoFocus) {
+            this.$container.find(this.options.autoFocus).focus();
+        }
+
+        if (typeof this.options.events.open == 'function') {
+            this.options.events.open.apply(this);
+        }
+
+    }
+    /**
+     * Looks into the action done by "esc" key
+     * @memberof zsModalDialog
+     */
+    zsModalDialog.prototype.escapeClick = function (e) {
+        if (e.keyCode == 27) {
+            this.close();
+        }
+    }
+    /**
+     * Destroys the component that means closing the dialog, removing the overlay and removing all the data.
+     * @memberof zsModalDialog
+     */
+    zsModalDialog.prototype.destroy = function () {
+        this.close();
+        this.$overlay.remove();
+        this.$container.removeData('zsModalDialog');
+    }
+
+    $.fn.zsModalDialog = function (opt) {
+        var options = ($.isPlainObject(opt) || !opt) ? $.extend(true, {}, zsModalDialog.prototype.defaults, opt) : $.extend(true, {}, zsModalDialog.prototype.defaults);
+
+        // Override mode
+        if (this == $.fn) {
+            $.extend(zsModalDialog.prototype, opt);
+            return;
+        }
+
+        return this.each(function () {
+            var plugin = $(this).data('zsModalDialog');
+            if (plugin) {
+                if (typeof opt == 'string') {
+                    switch (opt) {
+                        case 'open':
+                            plugin.open();
+                            break;
+                        case 'close':
+                            plugin.close();
+                            break;
+                        case 'destroy':
+                            plugin.destroy($(this));
+                            break;
+                        case 'update':
+                            plugin.update();
+                            break;
+
+                    }
+                } else {
+                    plugin.configure($.extend(true, plugin.options, opt));
+                    plugin.render();
+                }
+                return;
+            }
+            if (typeof opt != 'string') {
+                $(this).data('zsModalDialog', new zsModalDialog(options, $(this)));
+                return;
+            }
+        });
+    }
+}(jQuery));</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Mar 05 2019 15:20:23 GMT+0530 (India Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

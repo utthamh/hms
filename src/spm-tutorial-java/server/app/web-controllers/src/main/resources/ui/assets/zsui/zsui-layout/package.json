@@ -1,0 +1,67 @@
+{
+  "_from": "zsui-layout",
+  "_id": "zsui-layout@3.4.0",
+  "_inBundle": false,
+  "_integrity": "sha1-YTCzLoqoTkYvVLmd4nPBJxIWopM=",
+  "_location": "/zsui-layout",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "zsui-layout",
+    "name": "zsui-layout",
+    "escapedName": "zsui-layout",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://zs-sd.pkgs.visualstudio.com/_packaging/sd/npm/registry/zsui-layout/-/zsui-layout-3.4.0.tgz",
+  "_shasum": "6130b32e8aa84e462f54b99de273c1271216a293",
+  "_spec": "zsui-layout",
+  "_where": "C:\\ZS\\zsui",
+  "author": {
+    "name": "ZS UI Architecture team"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "zsui-core": "^3.5.1"
+  },
+  "deprecated": false,
+  "description": "ZSUI library layout module",
+  "devDependencies": {
+    "docdash": "^0.4.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-less": "^2.0.0",
+    "grunt-contrib-uglify": "^3.1.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-ejs": "^0.3.0",
+    "grunt-eslint": "^20.1.0",
+    "grunt-jsdoc": "^2.2.0",
+    "jasmine-core": "^2.8.0"
+  },
+  "homepage": "https://bitbucket.org/zssd/zsui-layout#readme",
+  "keywords": [
+    "zsui",
+    "layout"
+  ],
+  "license": "MIT",
+  "name": "zsui-layout",
+  "repository": {
+    "type": "git",
+    "url": "git+https://bitbucket.org/zssd/zsui-layout.git"
+  },
+  "scripts": {
+    "build": "grunt build",
+    "prepublish": "grunt build",
+    "start": "grunt",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "3.4.0"
+}

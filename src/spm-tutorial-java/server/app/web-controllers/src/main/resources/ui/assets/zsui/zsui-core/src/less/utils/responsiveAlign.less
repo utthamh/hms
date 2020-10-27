@@ -1,0 +1,36 @@
+
+.align-mixin(@breakpoint: xsw){
+    .zs-align{
+        &-baseline-@{breakpoint}{
+            vertical-align: baseline !important;
+        }
+        &-top-@{breakpoint}{
+            vertical-align: top !important;
+        }
+        &-middle-@{breakpoint}{
+            vertical-align: middle !important;
+        }
+        &-bottom-@{breakpoint}{
+            vertical-align: bottom !important;
+        }
+        &-text-bottom-@{breakpoint}{
+            vertical-align: text-bottom !important;
+        }
+        &-text-top-@{breakpoint}{
+            vertical-align: text-top !important;
+        }
+    }
+}
+    
+@media (max-width: @screen-sm-min){
+    .align-mixin(xsw);
+}
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max){
+    .align-mixin(sw);
+}
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max){
+    .align-mixin(mw);
+}
+@media (min-width: @screen-lg-min){
+    .align-mixin(lw);
+}

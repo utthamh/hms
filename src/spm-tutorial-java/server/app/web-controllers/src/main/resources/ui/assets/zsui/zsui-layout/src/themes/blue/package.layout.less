@@ -1,0 +1,28 @@
+@zs-theme-name: 'blue';
+@zs-layout-less-path: '../../layout';
+
+//Core Components
+@zs-core-lib-path: '../../../node_modules/zsui-core/src';
+
+// Definitions
+@import '@{zs-core-lib-path}/less/theme.less';
+@import '../missingVars.less'; 
+@import '@{zs-core-lib-path}/less/mixins.less';
+@import '@{zs-core-lib-path}/less/relative.less';
+// Styles
+
+@import '@{zs-layout-less-path}/layout.less';
+@import '@{zs-layout-less-path}/grid.less';
+@import '@{zs-layout-less-path}/complexGrids.less';
+@import '@{zs-core-lib-path}/less/responsive.less';
+
+@import "@{zs-core-lib-path}/themes/@{zs-theme-name}/custom.less";
+
+// Package level overrides should be at the bottom
+@zs-component-path: '../..';
+@zs-images: '@{zs-component-path}/images';
+@zs-fonts: '@{zs-component-path}/fonts'; 
+
+
+
+

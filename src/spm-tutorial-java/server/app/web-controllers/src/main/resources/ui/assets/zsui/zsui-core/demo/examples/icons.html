@@ -1,0 +1,334 @@
+<h2>
+	Icons preview</h2>
+<span id="demo-icon-list"></span>
+
+<h2>Standalone icon</h2>
+<span class="zs-icon zs-icon-folder-open zs-icon-large"></span>
+
+<h2>Compound icons</h2>
+<span class="zs-icon zs-icon-large zs-icon-javelin">
+	<span class="zs-icon-javelin-shadow"></span>
+</span>
+<span class="zs-icon zs-icon-tasks zs-icon-large">
+	<span class="zs-badge zs-success zs-badge-current-item"></span>
+</span>
+
+<h2>Link with an icon</h2>
+<p>You can create standalone icon with links.<br>
+	<a href="#" class="zs-icon zs-icon-download"></a>
+	<a href="#" class="zs-icon zs-icon-download zs-icon-large"></a>
+	<a href="#" class="zs-icon zs-icon-download zs-icon-large" disabled></a>
+</p>
+<p>Or you can put an icon inside a link with a text <br>
+	<a href="#" class="zs-display-inline-flex"><span class="zs-icon zs-icon-download zs-font-small"></span>Download</a><br>
+	<a href="#" class="zs-display-inline-flex"><span class="zs-icon zs-icon-rep zs-font-small"></span><label>Download</label></a><br>
+	<a href="#" class="zs-display-inline-flex" disabled="disabled"><span class="zs-icon zs-icon-download zs-font-small"></span>Disabled</a>
+</p>
+<h2>Badge</h2>
+<div id="demo-badge">
+	<p>
+		Font size:
+		<input type="number" max="100" min="1" value="22" class="zs-input" />
+	</p>
+
+	<p id="demo-badges">
+		<span class="zs-icon zs-icon-tasks">
+			<span class="zs-badge zs-success zs-badge-current-item"></span>
+		</span>
+		&nbsp;
+		<span class="zs-icon zs-icon-tasks">
+			<span class="zs-badge zs-error zs-badge-current-item"></span>
+		</span>
+		&nbsp;
+		<span class="zs-icon zs-icon-tasks">
+			<span class="zs-badge zs-warning zs-badge-current-item"></span>
+		</span>
+		&nbsp;
+		<span class="zs-icon zs-icon-tasks">
+			<span class="zs-badge zs-info zs-badge-current-item"></span>
+		</span>
+		&nbsp;
+		<span class="zs-icon zs-icon-tasks">
+			<span class="zs-badge zs-error zs-badge-error zs-badge-rectangle"></span>
+		</span>
+		&nbsp;
+		<span class="zs-icon zs-icon-tasks">
+			<span class="zs-badge zs-warning zs-badge-warning zs-badge-triangle"></span>
+		</span>
+		&nbsp;
+		<span class="zs-icon zs-icon-tasks">
+			<span class="zs-badge zs-success zs-badge-check-success zs-badge-circle"></span>
+		</span>
+	</p>
+</div>
+
+<h2>Doctype Icons</h2>
+<div>
+	<p id="demo-doctypes">
+		<span class="zs-icon zs-icon-document">
+			<span class="zs-badge zs-badge-word"></span>
+		</span>
+		<span class="zs-icon zs-icon-document">
+			<span class="zs-badge zs-badge-excel"></span>
+		</span>
+		<span class="zs-icon zs-icon-document">
+			<span class="zs-badge zs-badge-ppt"></span>
+		</span>
+		<span class="zs-icon zs-icon-document">
+			<span class="zs-badge zs-badge-pdf"></span>
+		</span>
+		<span class="zs-icon zs-icon-document">
+			<span class="zs-badge zs-badge-txt"></span>
+		</span>
+		<span class="zs-icon zs-icon-document">
+			<span class="zs-badge zs-badge-zip"></span>
+		</span>
+	</p>
+</div>
+
+
+<h2>Status icons</h2>
+<span class="zs-success zs-icon zs-icon-check-success"></span>
+<span class="zs-icon zs-icon-error zs-error"></span>
+<span class="zs-icon-warning zs-warning zs-icon"></span>
+<span class="zs-icon-info zs-info zs-icon"></span>
+<span class="zs-icon-info zs-success zs-icon"></span>
+<br>
+<a href="javascript:void">
+	<span class="zs-icon zs-error zs-icon-folder-open"></span>
+</a>
+<a href="javascript:void">
+	<span class="zs-icon zs-warning zs-icon-folder-open"></span>
+</a>
+<a href="javascript:void">
+	<span class="zs-icon zs-info zs-icon-folder-open"></span>
+</a>
+<a href="javascript:void">
+	<span class="zs-icon zs-success zs-icon-folder-open"></span>
+</a>
+</div>
+
+<h2>Apply special colors</h2>
+<span class="zs-icon zs-icon-folder-open zs-icon-text"></span> text color
+<span class="zs-icon zs-icon-folder-open zs-icon-inactive"></span> inactive icon
+
+<script>
+	$(document).ready(function () {
+		// Generate list of symbol codes for icons
+		var iconList = [];
+		var fontSize = 14;
+		var badgeFontSize = 22;
+
+		// Icon list
+		var $iconList = $('#demo-icon-list');
+
+		var codes = [];
+		if ($iconList.length) {
+			for (i = 33; i < 127; i++) {
+				if (i >= 91 && i < 96 || i >= 107 && i < 112) { continue; }
+				codes.push(i);
+			}
+		}
+
+		// Add special characters
+		codes.push(162, 163, 182, 223, 228, 230, 248, 249, 250, 252, 8208, 8209, 8210, 8211, 8212, 8249, 8250, 8250, 9724);
+
+		var dec, hex;
+		for (var i in iconClasses) {
+			dec = iconClasses[i];
+			hex = dec.toString(16);
+			$iconList.append('<div class="zs-box" style="margin:0 0.71em 0.71em 0"><a href="javascript:void(0)" class="zs-icon zs-icon-large ' + i + '" title="Class: ' + i + ', Hex: ' + hex + ', Dec: ' + dec + '"></a></div>');
+			//$iconList.append('<div class="zs-box"><span class="zs-icon-font">&#' + dec + ';</span></div>'); // use this to verify codes
+		}
+
+		// Badge		
+		$('#demo-badges').css('fontSize', badgeFontSize + 'px');
+		$('#demo-doctypes').css('fontSize', badgeFontSize + 'px');
+		$('#demo-badge input').on('change', function () {
+			var value = $(this).val();
+			badgeFontSize = value;
+			$('#demo-badges').css('fontSize', badgeFontSize + 'px');
+			$('#demo-doctypes').css('fontSize', badgeFontSize + 'px');
+		});
+	});
+
+</script>
+<script>
+	// Match classes to icon codes
+	var iconClasses = {
+		'zs-icon-key': 182,
+		'zs-icon-error': 0x21,
+		'zs-icon-warning': 0x22,
+		'zs-icon-user-permissions': 0x23,
+		'zs-icon-group-permissions': 0x24,
+		'zs-icon-group': 0x25,
+		'zs-icon-ungroup': 0x26,
+		'zs-icon-tasks': 0x27,
+		'zs-icon-upload': 0x28,
+		'zs-icon-download': 0x29,
+		'zs-icon-validations': 0x2a,
+		'zs-icon-report-template': 0x2b,
+		'zs-icon-search': 0x2c,
+		'zs-icon-source': 0x2d,
+		'zs-icon-preview': 0x2e,
+		'zs-icon-rules': 0x2f,
+		'zs-icon-expand-frame': 0x30,
+		'zs-icon-restore-frame': 0x31,
+		'zs-icon-pending-approval': 0x32,
+		'zs-icon-rejected-approval': 0x33,
+		'zs-icon-revisions-requested': 0x34,
+		'zs-icon-refresh': 0x35,
+		'zs-icon-check-success': 0x36,
+		'zs-icon-refinement': 0x37,
+		'zs-icon-print': 0x38,
+		'zs-icon-map': 0x39,
+		'zs-icon-lock': 0x3a,
+		'zs-icon-info': 0x3b,
+		'zs-icon-help': 0x3c,
+		'zs-icon-generatedreport': 0x3d,
+		'zs-icon-folder-shortcut': 0x3e,
+		'zs-icon-folder-open': 0x3f,
+		'zs-icon-folder-closed': 0x40,
+		'zs-icon-external-bio': 0x41,
+		'zs-icon-expand': 0x42,
+		'zs-icon-collapse': 0x4b,
+		'zs-icon-edit': 0x43,
+		'zs-icon-duplicate': 0x44,
+		'zs-icon-delete': 0x45,
+		'zs-icon-add-value-key': 0x46,
+		'zs-icon-add': 0x47,
+		'zs-icon-dashboard': 0x48,
+		'zs-icon-current-item': 0x49,
+		'zs-icon-constant': 0x4a,
+		'zs-icon-close': 0x4c,
+		'zs-icon-calendar': 0x4d,
+		'zs-icon-calculated-value': 0x4e,
+		'zs-icon-added-value': 0x4f,
+		'zs-icon-building': 0x50,
+		'zs-icon-arrow-previous': 0x51,
+		'zs-icon-arrow-next': 0x52,
+		'zs-icon-pdf': 0x54,
+		'zs-icon-excel': 0x55,
+		'zs-icon-misc': 0x56,
+		'zs-icon-delta-arrow-up': 0x58,
+		'zs-icon-expand-left': 0x59,
+		'zs-icon-ppt': 0x5a,
+		'zs-icon-img': 0x60,
+		'zs-icon-background-check-success': 0x61,
+		'zs-icon-background-error': 0x62,
+		'zs-icon-backgroundwarning': 0x63,
+		'zs-icon-spinner': 0x64,
+		'zs-icon-hamburger': 0x65,
+		'zs-icon-logout': 0x66,
+		'zs-icon-move-up': 0x67,
+		'zs-icon-home': 0x69,
+		'zs-icon-move-down': 0x6a,
+		'zs-icon-publish': 0x70,
+		'zs-icon-published': 0x71,
+		'zs-icon-grid': 0x72,
+		'zs-icon-dragger': 0x73,
+		'zs-icon-warning-diamond': 0x74,
+		'zs-icon-link': 0x75,
+		'zs-icon-table': 0x76,
+		'zs-icon-filter': 0x77,
+		'zs-icon-trend': 0x7a,
+		'zs-icon-settings': 0x7c,
+		'zs-icon-txt': 0x7d,
+		'zs-icon-zip': 0x7e,
+		'zs-icon-document': 0xdf,
+		'zs-icon-trophy': 0xe4,
+		'zs-icon-rep': 0xe6,
+		'zs-icon-manually-defined': 0xf8,
+		'zs-icon-suggested-action': 0xf9,
+		'zs-icon-product': 0xfa,
+		'zs-icon-statistically-derived': 0xfc,
+		'zs-icon-popout': 0x17e,
+		'zs-icon-prev': 0x2039,
+		'zs-icon-next': 0x203a,
+		'zs-icon-first': 0x2264,
+		'zs-icon-last': 0x2265,
+		'zs-icon-tag': 0xe5,
+		'zs-icon-square': 0x25fc,
+		'zs-icon-diamond': 0xb4,
+		'zs-icon-word': 0xe621,
+		'zs-icon-key': 0xb6,
+		'zs-icon-positive': 0xa2,
+		'zs-icon-negative': 0xa3,
+		'zs-icon-notes': 0x7b,
+		'zs-icon-frame': 0x78,
+		'zs-icon-clipnote': 0x79,
+		'zs-icon-envelope': 0x68,
+		'zs-icon-frame-next': 0x57,
+		'zs-icon-eye': 0xb1,
+		'zs-icon-eye-closed': 0xb2,
+		'zs-icon-globe': 0xb3,
+		'zs-icon-tiles': 0xa1,
+		'zs-icon-speech-bubble': 0xc1,
+		'zs-icon-flag': 0xff,
+		'zs-icon-resize': 0xe0,
+		'zs-icon-territory-l1': 0xe01,
+		'zs-icon-territory-l2': 0xe02,
+		'zs-icon-territory-l3': 0xe03,
+		'zs-icon-territory-l4': 0xe04,
+		'zs-icon-territory-l5': 0xe05,
+		'zs-icon-territory-l6': 0xe06,
+		'zs-icon-territory-l7': 0xe07,
+		'zs-icon-territory-l8': 0xe08,
+		'zs-icon-territory-l9': 0xe09,
+		'zs-icon-territory-l10': 0xe10,
+		'zs-icon-flowchart': 0xb5,
+		'zs-icon-scissors': 0xc2,
+		'zs-icon-derived': 0xd1,
+		'zs-icon-play': 0xd2,
+		'zs-icon-select-lasso': 0x6b,
+		'zs-icon-select-rectangle': 0x6c,
+		'zs-icon-zoom-rectangle': 0x6d,
+		'zs-icon-icon-plus': 0x6e,
+		'zs-icon-icon-minus': 0x6f,
+		'zs-icon-horn': 0x5f,
+		'zs-icon-handshake': 0x301,
+		'zs-icon-stop': 0x300,
+		'zs-icon-pause': 0x5e,
+		'zs-icon-redo': 0x53,
+		'zs-icon-user-settings': 0x5d,
+		'zs-icon-user-deligate': 0x5b,
+		'zs-icon-backupcloud': 0x2286,
+		'zs-icon-site': 0x2287,
+		'zs-icon-divide': 0x2285,
+		'zs-icon-open-parens': 0x2282,
+		'zs-icon-closed-parens': 0x2283,
+		'zs-icon-save': 0xa4,
+		'zs-icon-multiply':0x2284,
+		'zs-icon-objectgroup':0xe903,
+		'zs-icon-codepen':0xe904,
+		'zs-icon-add-child':0x2300,
+		'zs-icon-add-sibling':0x2301,
+		'zs-icon-layers':0x2290,
+		'zs-icon-briefcase':0x2302,
+		'zs-icon-zoom-to-fit':0x2598,
+		'zs-icon-zoom-to-actual':0x256c,
+		'zs-icon-more':0x2026,
+		'zs-icon-video':0x258b,
+		'zs-icon-palette':0x214e,
+		'zs-icon-south-west-double-arrow':0x21d9,
+		'zs-icon-calculator':0x25A9,
+		'zs-icon-goal-report':0x2689,
+		'zs-icon-xml': 0x9776,
+		'zs-icon-unlock': 0x9777,
+		'zs-icon-territory': 0xe90e,
+		'zs-icon-locate': 0x238,
+		'zs-icon-font-size': 0xe907,
+		'zs-icon-spark': 0xe901,
+		'zs-icon-sql': 0xe900,
+		'zs-icon-rotate-labels': 0xe905,
+		'zs-icon-write-file': 0xe902,
+		'zs-icon-write-table': 0xe950,
+		'zs-icon-pass-through-temp': 0xe951,
+		'zs-icon-label': 0xe908,
+		'zs-icon-pin': 0xe909,
+		'zs-icon-unpin': 0xe90f,
+		'zs-icon-measure': 0xe90a,
+		'zs-icon-route': 0xe90c,
+		'zs-icon-select': 0xe90d
+	}
+</script>

@@ -1,0 +1,170 @@
+/*
+zs Card
+Markup:
+<zs-card class="zs-card">
+	<header>
+		<span>Title</span>
+	</header>
+	<section>
+		Active Card
+	</section>
+	<footer>
+		<a>View More</a>
+	</footer>
+</zs-card>
+
+Styleguide Components.card
+
+*/
+.zs-card {
+	@zs-card-width: 400px;
+	@zs-card-height: 150px;
+	@zs-tile-width:150px;
+	@zs-tile-height:120px;
+	@zs-tile-hover-color: saturate(@zs-link-normal,50%);
+	background: @zs-background;
+	border-radius: @zs-border-radius;
+	border: 1px solid @zs-border-color;
+	box-shadow: 3px 3px 3px @zs-shadow-color;
+	display: inline-block;	
+	width:@zs-card-width;
+	.margin(0,2,2,0);
+	&[non-clickable]{
+		box-shadow: none;
+	}
+	&[filter]{
+		cursor:pointer;
+	}
+	&[filter='on']{
+		background: darken(@zs-background, 3%);
+		box-shadow: 0px 3px 5px 0px @zs-shadow-color inset;
+		footer{
+			background: none;
+		} 
+	}
+	.zs-card-icon{
+		float:right;
+		.margin(0,0,0,1);
+	}
+	header{	
+		font-size:@zs-font-size-large + 2; 
+		font-weight: normal;
+		.margin(0,1,0,1);
+		border:0;	
+		.padding(0.5,0,0.5,0);
+		border-bottom: 1px solid @zs-border-color;
+	}
+	section {
+		.margin(1.5,1.5,1.5,1.5);
+		min-height:80px;
+	}
+	footer {
+		.padding(1.5,1.5,1.5,1.5);
+		background: darken(@zs-background, 3%);
+	}
+	&[flippable]{
+		perspective: 800px;	
+		border: 0px;		
+		box-shadow: none;
+		&[flip]{
+			 .zs-flip-card{
+				.back {
+					transform: rotateY(0deg);
+				}
+				.front {
+					transform: rotateY(180deg);
+				}
+			 }			
+		}
+		.zs-flip-card {
+			width: 100%;
+			transform-style: preserve-3d;
+			transition: all ease 1s;
+			position: relative;
+			.front, .back {
+				backface-visibility: hidden;
+				-webkit-backface-visibility: hidden;
+				transition: all ease 1s;
+				transform-style: preserve-3d;
+				width: 100%;				
+			}
+			.front {
+				position: absolute;
+				transform: rotateY(0deg);
+				border-radius: @zs-border-radius;
+				border: 1px solid @zs-border-color;
+				box-shadow: 3px 3px 3px @zs-shadow-color;
+			}
+			.back {
+				transform: rotateY(-180deg);
+				border-radius: @zs-border-radius;
+				border: 1px solid @zs-border-color;
+				box-shadow: -3px 3px 3px @zs-shadow-color;
+			}		
+		}
+	}
+	&[tile]{
+		width: @zs-tile-width;
+		text-align: center;
+		border: 1px solid @zs-link-normal;
+		min-height: @zs-tile-height;
+		header{
+			color: @zs-link-normal;
+			font-size:@zs-font-size-large;
+			.padding(1,1,1,1);
+			.margin(0,0,0,0);
+			border: 0;
+		}
+		section{
+			font-size:@zs-font-size-large + 20;
+			.margin(0,1,0,1);
+			min-height: 0px;
+			overflow: hidden;	
+		}
+		footer {
+			font-size:@zs-font-size-small + 1;
+			.margin(0,1,1,1);
+			padding: 0;
+			background: none;
+		}
+		.zs-card-icon{
+			.margin(0,0,0,0);
+		}
+		&:hover{
+			border-color: @zs-tile-hover-color;
+			> header{
+				color: @zs-tile-hover-color;
+			}
+			
+		}
+		&[non-clickable]{
+			box-shadow: none;
+			border: 1px solid  @zs-border-color;
+			> header{
+				color: @zs-text-color;
+			}
+		}
+		&[flippable]{
+			border: none;
+			box-shadow: none;
+			.zs-flip-card {	
+				&:hover{
+					border-color: @zs-tile-hover-color;
+					header{
+						color: @zs-tile-hover-color;
+					}
+					.front, .back{
+						border-color: @zs-tile-hover-color;
+					}
+				}
+				.front, .back{
+					border-radius: @zs-border-radius;
+					border: 1px solid @zs-link-normal;
+					box-shadow: 3px 3px 3px @zs-shadow-color;
+					min-height: @zs-tile-height;
+				}
+			}
+		}
+	} 
+}
+

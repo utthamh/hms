@@ -1,0 +1,17 @@
+.shadow-generator (@string: 0px 1px 3px 0px @zs-shadow-color) {
+	-webkit-box-shadow: @string;
+	-moz-box-shadow: @string;
+	box-shadow: @string;
+}
+
+.zs-shadow-none {
+	box-shadow: none !important;
+}
+
+.zs-box-shadow {
+	.shadow-generator();
+}
+
+.zs-shadow-inset {
+	.shadow-generator(0px 3px 5px 0px @zs-shadow-color inset);
+}

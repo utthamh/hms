@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>zsui-tables</id>
+    <version>3.2.2</version>
+    <authors>UI architecture team</authors>
+    <owners>UI architecture team</owners>    
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ZSUI library table module</description>
+    <releaseNotes>		
+        Nuget Package for zsui-tables module of ZSUI library
+	  </releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <dependencies>
+      <dependency id="zsui-core" version="3.4.1" />      
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="dist\**\*.*" target="Content\zsui\" />    
+    <file src="src\**\*.*" target="src" />
+    <file src="docs\**\*.*" target="docs" />
+    <file src="demo\**\*.*" target="demo" />
+  </files>  
+</package>

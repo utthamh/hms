@@ -1,0 +1,93 @@
+.zs-date-range-picker {
+    display: inline-block;
+    .zs-input {
+        .zs-input();
+    }
+    .zs-input-icon {
+        .zs-input-icon();
+        .zs-icon-calendar {
+            .zs-icon-calendar();
+        }
+    }
+}
+
+.zs-range-calendar {
+    //min-width: 320px; //TODO: remove min-width
+    .zs-calendar();
+    z-index: @zs-layer-5;
+    .padding(1.5, 1, 1.5, 1);
+    >header {
+        position: relative;
+        white-space: nowrap;
+        [role="prev"]:extend(.zs-icon all, .zs-icon-prev all, .zs-icon-large all),
+        [role="next"]:extend(.zs-icon all, .zs-icon-next all, .zs-icon-large all) {
+            .zs-icon-font();
+            font-family: @zs-icon-font-family;
+            font-size: @zs-icon-height*24/16;
+            color: @zs-brand-dark;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        [role="prev"] {
+            &:before {
+                content: "\2039";
+            }
+        }
+        [role="next"] {
+            &:before {
+                content: "\203A";
+            }
+        }
+        a:hover:before {
+            color: @zs-link-hover;
+        }
+        .prev-btn-container, 
+        .next-btn-container {
+            >span {
+                font-size: @zs-font-size-large;
+                font-weight: bold;
+                vertical-align: middle;
+            }
+        }
+        .prev-btn-container {
+            float: left;
+        }
+        .next-btn-container {
+            float: right;
+        }
+    }
+    >section {
+        .padding(0.5,0,1,0);
+
+        >table {
+            display: inline-table;
+            border-spacing: @zs-font-padding-ratio;
+            td {
+                .zs-calendar-table-td();
+                
+                border-radius: @zs-border-radius;
+                width: 44/14em;
+                height: 44/14em;
+                
+                &:not([disabled]):not([current]){
+                    color: @zs-link-normal;
+                    border: 1px solid @zs-link-normal;
+                }
+                &:not([disabled]):not([current]):hover{
+                    color: @zs-link-hover;
+                    border: 1px solid @zs-link-hover;
+                }
+            }
+
+            &:first-child{
+                .margin(0,1,0,0);
+            }
+        }
+    }
+    >footer {
+        text-align: center;
+        a {
+            cursor: pointer;
+        }
+    }
+}

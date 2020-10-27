@@ -1,0 +1,14 @@
+<div data-page="datePicker">
+	<h2>Date picker</h2>
+	<div class="zs-input-icon">
+		<input type="text" class="zs-input" />
+		<a href="javascript:void(0)" class="zs-icon zs-icon-calendar"></a>
+	</div>
+</div>
+<script src="<%=zsuiPath%>/dateTime/jquery.zsDatePicker.js" defer></script>
+<script defer>
+	$(document).ready(function () {
+		$('[data-page="datePicker"] input').zsDatePicker({
+		});
+	});
+</script>

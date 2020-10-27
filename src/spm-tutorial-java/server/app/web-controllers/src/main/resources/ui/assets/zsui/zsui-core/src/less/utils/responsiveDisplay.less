@@ -1,0 +1,27 @@
+@display-options: block, inline, inline-block, none, table, table-row, table-cell, flex;
+.display-utils-mixin(@breakpoint: xsw){
+    .zs-display {
+        .loop(@i: length(@display-options)) when (@i > 0) {
+            @display-prop: extract(@display-options, @i);
+    
+            &-@{display-prop}-@{breakpoint} {
+                display: @display-prop !important;
+            }
+            .loop((@i - 1));
+        }    
+        .loop();
+    }
+}
+
+@media (max-width: @screen-sm-min){
+    .display-utils-mixin(xsw);
+}
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max){
+    .display-utils-mixin(sw);
+}
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max){
+    .display-utils-mixin(mw);
+}
+@media (min-width: @screen-lg-min){
+    .display-utils-mixin(lw);
+}

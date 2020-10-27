@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>drawer/drawer.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module-drawer-zs.drawerElement.html">drawerElement</a></li></ul><h3>Modules</h3><ul><li><a href="module-drawer.html">drawer</a></li><li><a href="zs.module_drawer.html">drawer</a><ul class='methods'><li data-type='method'><a href="zs.module_drawer.html#.render">render</a></li><li data-type='method'><a href="zs.module_drawer.html#.renderToggle">renderToggle</a></li><li data-type='method'><a href="zs.module_drawer.html#.toggleDrawer">toggleDrawer</a></li></ul></li></ul><h3>Events</h3><ul><li><a href="zs.module_drawer.html#~event:beforetoggle">beforetoggle</a></li><li><a href="zs.module_drawer.html#~event:toggle">toggle</a></li></ul><h3>Namespaces</h3><ul><li><a href="submenu.html">submenu</a><ul class='methods'><li data-type='method'><a href="submenu.html#.clickAnywhere">clickAnywhere</a></li><li data-type='method'><a href="submenu.html#.collapse">collapse</a></li><li data-type='method'><a href="submenu.html#.delayedCollapse">delayedCollapse</a></li><li data-type='method'><a href="submenu.html#.delayedExpand">delayedExpand</a></li><li data-type='method'><a href="submenu.html#.expand">expand</a></li></ul></li><li><a href="zs.card.html">card</a><ul class='methods'><li data-type='method'><a href="zs.card.html#._checkAndUpdateAttrByProp">_checkAndUpdateAttrByProp</a></li><li data-type='method'><a href="zs.card.html#._checkAndUpdatePropByAttr">_checkAndUpdatePropByAttr</a></li><li data-type='method'><a href="zs.card.html#.addClass">addClass</a></li><li data-type='method'><a href="zs.card.html#.flipCard">flipCard</a></li><li data-type='method'><a href="zs.card.html#.render">render</a></li><li data-type='method'><a href="zs.card.html#.renderBackFooter">renderBackFooter</a></li><li data-type='method'><a href="zs.card.html#.renderBackHeader">renderBackHeader</a></li><li data-type='method'><a href="zs.card.html#.renderBackSection">renderBackSection</a></li><li data-type='method'><a href="zs.card.html#.renderFlipCard">renderFlipCard</a></li><li data-type='method'><a href="zs.card.html#.renderFooter">renderFooter</a></li><li data-type='method'><a href="zs.card.html#.renderHeader">renderHeader</a></li><li data-type='method'><a href="zs.card.html#.renderSection">renderSection</a></li><li data-type='method'><a href="zs.card.html#.setHeight">setHeight</a></li></ul></li><li><a href="zs.tab.html">tab</a><ul class='methods'><li data-type='method'><a href="zs.tab.html#.render">render</a></li></ul></li><li><a href="zs.tabsContainer.html">tabsContainer</a><ul class='methods'><li data-type='method'><a href="zs.tabsContainer.html#.navigateTo">navigateTo</a></li><li data-type='method'><a href="zs.tabsContainer.html#.render">render</a></li></ul></li><li><a href="zs.wizard.html">wizard</a><ul class='methods'><li data-type='method'><a href="zs.wizard.html#.addNavigationListeners">addNavigationListeners</a></li><li data-type='method'><a href="zs.wizard.html#.handleNextAction">handleNextAction</a></li><li data-type='method'><a href="zs.wizard.html#.handlePrevAction">handlePrevAction</a></li><li data-type='method'><a href="zs.wizard.html#.render">render</a></li></ul></li><li><a href="zsAccordion.html">zsAccordion</a><ul class='methods'><li data-type='method'><a href="zsAccordion.html#barClick">barClick</a></li><li data-type='method'><a href="zsAccordion.html#closePanel">closePanel</a></li><li data-type='method'><a href="zsAccordion.html#destroy">destroy</a></li><li data-type='method'><a href="zsAccordion.html#openPanel">openPanel</a></li><li data-type='method'><a href="zsAccordion.html#render">render</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">drawer/drawer.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * ZSUI Drawer 
+ * @module drawer
+ * @requires animate
+ */
+
+var zs = (function (zs) {
+	'use strict';
+
+    /**
+	 * Drawers are panels with tags user can slide in or out 
+	 * @exports zs.drawer
+	 * @property open {boolean} Set open or close state of the panel
+ 	 * @property align {string} Set alignment of the panel "top", "right", "bottom", "left"
+	 * @property embeded {boolean} Use to place a panel in the container 		
+	 * @memberof drawer
+ 	 */
+	zs.drawer = {
+		/** @private */
+		_duration: 500,
+
+		/** @private */
+		_isRendered: false,
+
+		/** @private */
+		_toggleElement: null,
+
+		/** properties */
+		_open: false,
+		_align: 'top', // top, right, bottom, left
+		_embeded: false,
+		properties: {
+			open: {
+				set: function (newValue) {
+					var shouldToggle = false;
+					if (newValue != this._open &amp;&amp; this._isRendered) {
+						shouldToggle = true;
+					}
+					this._open = newValue;
+					if (newValue != (this.getAttribute('open') != null)) {
+						if (newValue) {
+							this.setAttribute('open', '');
+						} else {
+							this.removeAttribute('open');
+						}
+					}
+					if (shouldToggle) {
+						this.toggleDrawer(newValue);
+					}
+				},
+				get: function () {
+					return this._open;
+				}
+			},
+			align: {
+				set: function (newValue) {
+					var shouldRender = false;
+					if (newValue != this._align &amp;&amp; this._isRendered) {
+						shouldRender = true;
+					}
+					this._align = newValue;
+					if (newValue != this.getAttribute('align')) {
+						this.setAttribute('align', newValue);
+					}
+					if (shouldRender) { this.render(); }
+				},
+				get: function () {
+					return this._align;
+				}
+			},
+			embeded: {
+				set: function (newValue) {
+					var shouldRender = false;
+					if (newValue != this._embeded &amp;&amp; this._isRendered) {
+						shouldRender = true;
+					}
+					this._embeded = newValue;
+					if (newValue != (this.getAttribute('embeded') != null)) {
+						if (newValue) {
+							this.setAttribute('embeded', '');
+						} else {
+							this.removeAttribute('embeded');
+						}
+					}
+					if (shouldRender) { this.render(); }
+				},
+				get: function () {
+					return this._embeded;
+				}
+			}
+		},
+
+
+		/**
+		 *  Open or close the drawer
+		 * @param {boolean=} open Open or close
+		 * @fires toggle 
+		 */
+		toggleDrawer: function (open) {
+			var self = this;
+			var transform = '';
+			var toggleOpen = open == null ? this.open : open;
+			switch (this.align) {
+				case 'top':
+					if (toggleOpen) {
+						transform = 'translateY(0%)';
+					} else {
+						transform = 'translateY(-100%)';
+					}
+					break;
+
+				case 'left':
+					if (toggleOpen) {
+						transform = 'translateX(0%)';
+					} else {
+						transform = 'translateX(-100%)';
+					}
+					break;
+
+				case 'right':
+					if (toggleOpen) {
+						transform = 'translateX(0%)';
+					} else {
+						transform = 'translateX(100%)';
+					}
+					break;
+
+				case 'bottom':
+					if (toggleOpen) {
+						transform = 'translateY(0%)';
+					} else {
+						transform = 'translateY(100%)';
+					}
+					break;
+
+			}
+
+			var duration = this._duration || 0;
+			if (!this._isRendered) { // Initial open/close
+				duration = 0;
+			}
+
+			var toggleAnchor = this._toggleElement.querySelector('a');
+
+			if (toggleAnchor &amp;&amp; (toggleAnchor.classList.contains("zs-icon-delta-arrow-up") || toggleAnchor.classList.contains("zs-icon-collapse"))) {
+				if (toggleOpen) {
+					toggleAnchor.classList.remove("zs-icon-delta-arrow-up");
+					toggleAnchor.classList.add("zs-icon-collapse");
+				} else {
+					toggleAnchor.classList.add("zs-icon-delta-arrow-up");
+					toggleAnchor.classList.remove("zs-icon-collapse");
+				}
+			}
+
+
+			var self = this;
+			this.startAnimation('slide', duration, {
+				before: {
+					transitionProperty: 'transform',
+				},
+				after: {
+					transform: transform
+				},
+			}).then(function () {
+				if (self._isRendered) {
+					/**
+					* After ending sliding drawer
+					* @event toggle
+					* @type {object}
+					*/
+					var event = new CustomEvent('toggle');
+					self.dispatchEvent(event);
+				}
+			});
+
+		},
+
+		/**
+		 * Render a tag element to close or open drawer when clicked
+		 * @fires beforetoggle
+		 */
+		renderToggle: function () {
+			if (!this._toggleElement) {
+				this._toggleElement = this.querySelector('toggle,[role="toggle"],tag');
+				if (!this._toggleElement) {
+					this._toggleElement = document.createElement('toggle');
+					this._toggleElement.innerHTML = '&lt;a href="javascript:;" class="zs-icon zs-icon-large zs-icon-delta-arrow-up">&lt;/a>';
+				}
+
+				this.appendChild(this._toggleElement);
+				var self = this;
+				this._toggleElement.addEventListener('click', function () {
+					/**
+					 * Before starting sliding drawer
+					 * @event beforetoggle
+					 * @type {object}
+					 */
+					var event = new CustomEvent('beforetoggle');
+					self.dispatchEvent(event);
+					self.open = !self.open;
+				});
+			}
+		},
+
+		/**
+		 * Render a drawer
+		 */
+		render: function () {
+			console.log('render', this.getAttribute('embeded'), this.embeded);
+			if (this.embeded &amp;&amp; this.parentElement) {
+				if (this.parentElement.position == 'static' || this.parentElement.position == null || this.parentElement.position == '') {
+					this.parentElement.style.position = 'relative';
+				}
+				this.parentElement.style.overflow = 'hidden';
+				this.style.position = 'absolute';
+				this.style.zIndex = 1;
+
+			}
+			this.renderToggle();
+			this.toggleDrawer();
+			this._isRendered = true;
+
+
+		},
+		observedAttributes: ['align', 'embeded', 'open'],
+		events: {
+			attach: function (e) {
+				var self = this;
+				setTimeout(function () {
+					self.render();
+				}, 0);
+			},
+			attributeChange: function (e) {
+				if (e.detail.attributeName == 'align') {
+					this.align = this.getAttribute('align');
+				}
+				if (e.detail.attributeName == 'embeded') {
+					this.embeded = this.getAttribute('embeded') != null;
+				}
+				if (e.detail.attributeName == 'open') {
+					console.log('attr change', 'open', this.getAttribute('open'), e.detail.newValue);
+					this.open = this.getAttribute('open') != null;
+				}
+			}
+		}
+
+
+
+	};
+
+	/**
+	 * Drawer component
+	 * @constructor 
+	 * @extends HTMLElement
+	 * @requires animate 
+	 */
+	zs.drawerElement = zs.customElement(HTMLElement, 'zs-drawer', null, [zs.drawer, zs.animate]);
+
+	return zs;
+})(window.zs || {});</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu May 30 2019 15:58:39 GMT+0530 (India Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" manifest="zsui.appcache">
+
+<head>
+	<title>ZSUI Form demo</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	
+	<!-- Demo scripts  -->
+	<script src="demo.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+	<style>
+	.hljs {
+    	padding: 0.5em !important; /*Since core.css loads later and resets all spacing, we need to use !important here.*/
+	}
+	</style>
+	<script>
+	zs.demo.setPaths();
+	zs.demo.addUrlFixes({"nodejs":{},"npm":{"../node_modules/":"../../"},"nuget":{"../node_modules/zsui-[\\w]+/dist":"./"}});
+	</script>
+
+	<script>zs.demo.link("../node_modules/zsui-core/dist/themes/{theme}/core.css");</script>
+	<script>zs.demo.link("./themes/{theme}/forms.css");</script>
+	<script>zs.demo.link("./themes/{theme}/choice.css");</script>
+	<script>zs.demo.link("./themes/{theme}/datePicker.css");</script>
+	<script>zs.demo.link("./themes/{theme}/select.css");</script>
+	<script>zs.demo.link("./themes/{theme}/timePicker.css");</script>
+	<script>zs.demo.link("./themes/{theme}/slider.css");</script>
+	<script>zs.demo.link("./themes/{theme}/progressBar.css");</script>
+	<script>zs.demo.link("./themes/{theme}/toggle.css");</script>
+	<script>zs.demo.link("./themes/{theme}/tags.css");</script>
+	<script>zs.demo.link("./themes/{theme}/filter.css");</script>
+	<script>zs.demo.link("./themes/{theme}/dateRangePicker.css");</script>
+
+	<script>zs.demo.script("../node_modules/zsui-core/dist/polyfills/polyfills.js");</script>
+	<!-- <script>zs.demo.script("../node_modules/zsui-core/dist/utils/customElements.poly.js");</script> -->
+	<script>zs.demo.script("../node_modules/zsui-core/dist/utils/customElements.js");</script>
+	<style>
+		code.html {
+			max-height:25vh;
+		}
+	</style>
+</head>
+
+<body class="zs-style" style="padding:1em">
+
+
+<h2>Single Select Autocomplete</h2>
+<div class="zs-paragraph">
+    <div class="zs-select">
+        <select zs>
+
+        </select>
+    </div>
+</div>
+
+<h2>Multiselect Autocomplete</h2>
+<div class="zs-paragraph">
+    <div class="zs-select">
+        <select zs1 multiple>
+
+        </select>
+    </div>
+</div>
+
+<h2>Multiselect with select all Autocomplete</h2>
+<div class="zs-paragraph">
+    <div class="zs-select">
+        <select zs2 multiple>
+
+        </select>
+    </div>
+</div>
+<script src="./select/jquery.zsSearchDropdown.js"></script>
+<script>
+    var zs = function (zs) {
+        zs.autocomplete = function (selector,getData,options ) {
+
+            var selectEle = document.querySelector(selector);
+            var options = options || {};
+            //binding with the plugin
+            $(selectEle).zsSearchDropdown(options);
+
+            var pluginRef = $(selectEle).data('zsSearchDropdown');
+            if (!pluginRef.$select[0].querySelector('option')) {
+                hideSelectAll();
+            }
+
+            pluginRef.$nav.parent()[0].style.minHeight = "auto";
+
+            //removing plugin listeners as we need to get rid off plugin default search functionality that gets called on listeners 
+
+            pluginRef.$input.off('keyup');
+            pluginRef.$input.off('blur');
+            pluginRef.$input.off('paste');
+            pluginRef.$input.off('change');
+            pluginRef.$nav.off('keyup');
+
+            //override onKeyup function so that it doesnt call search function of the plugin
+            function onKeyup(event) {
+                switch (event.keyCode) {
+                    case 8: // Backspace
+                        // ?	
+                        break;
+                    case 27: // Escape
+                    // ?
+                    case 9: // Tab
+                        //
+                        event.preventDefault();
+                        event.stopPropagation();
+                        break;
+                    case 37:
+                    case 39:
+                    case 16:
+                    case 91:
+                    case 17:
+                        break;
+
+                    case 38: // Up
+                        event.preventDefault();
+                        event.stopPropagation();
+                        pluginRef.up();
+                        break;
+                    case 40:
+                        event.preventDefault();
+                        event.stopPropagation();
+                        pluginRef.down();
+                        break;
+
+                }
+            };
+
+            pluginRef.$input.on('keyup', onKeyup);
+            pluginRef.$input.on('blur', onKeyup);
+            pluginRef.$input.on('paste', onKeyup);
+            pluginRef.$input.on('change', onKeyup);
+            pluginRef.$nav.on('keyup', onKeyup);
+
+            var nodeRemoveCallback = function (event) {
+                event.stopPropagation();
+            }
+
+            //need to hide selectall if no option is there 
+            function hideSelectAll() {
+                if (pluginRef.$nav[0].querySelector('a')) {
+                    pluginRef.$nav[0].querySelector('a').style.display = "none";
+                }
+            }
+
+            function setData(response, keyword) {
+                pluginRef.$nav[0].classList.remove('zs-loading');
+
+                var optionData = response;
+                
+                //if any option gets removed plugin calls the destroy function, we need to stop that here 
+                pluginRef.$select[0].addEventListener('DOMNodeRemoved', nodeRemoveCallback, true);
+
+                var selectedArr = pluginRef.$select.val() || [];
+
+                var optionArr = selectEle.querySelectorAll('option');
+                var tmpArr = [];
+
+                for (var y = 0; y < optionArr.length; y++) {
+                    if (selectedArr.indexOf(optionArr[y].value) !== -1) {
+                        var eleClone = optionArr[y].cloneNode(true);
+                        tmpArr.push(eleClone);
+                    }
+                }
+
+                pluginRef.clearAllSelection();
+
+                while (selectEle.firstElementChild) {
+                    selectEle.removeChild(selectEle.firstElementChild);
+                }
+
+                if (pluginRef.options.multiple) {
+                    for (var x = 0; x < tmpArr.length; x++) {
+                        selectEle.appendChild(tmpArr[x]);
+                    }
+                }
+
+                for (var i = 0; i < optionData.length; i++) {
+                    if (selectedArr.indexOf(optionData[i].value) == -1) {
+                        var optionEle = document.createElement('option');
+                        selectEle.appendChild(optionEle);
+                        optionEle.innerText = optionData[i].name;
+                        optionEle.setAttribute('value', optionData[i].value);
+                        if (optionData[i].disabled) {
+                            optionEle.setAttribute('disabled', '');
+                        }
+                    }
+                }
+
+                pluginRef.update();
+
+                if ((!response.length && !selectedArr.length)) {
+                    pluginRef.$nav[0].style.display = "none";
+                }
+                else {
+                    pluginRef.$nav[0].style.display = "block";
+                }
+
+                pluginRef.$nav.parent()[0].style.minHeight = "auto";
+
+                if (!pluginRef.$select[0].querySelector('option')) {
+                    hideSelectAll();
+                }
+                //update function doesnt update the options with selected behaviour 
+                if (pluginRef.options.multiple) {
+                    for (var y = 0; y < tmpArr.length; y++) {
+                        pluginRef.$nav.find('[index = ' + y + ']').trigger('click');
+                    }
+                }
+                // as deafult search has not been used, we need to highlight the options
+                var allAnchors = pluginRef.$nav[0].querySelectorAll('a');
+                if (keyword) {
+                    var j = 0;
+                    if (pluginRef.options.addSelectAll) {
+                        j = 1;
+                    }
+                    for (j; j < allAnchors.length; j++) {
+                        var $a = $(allAnchors[j]);
+                        pluginRef.highlight(true, $a, keyword);
+                    }
+                }
+
+                pluginRef.$select[0].removeEventListener('DOMNodeRemoved', nodeRemoveCallback, true);
+            }
+
+            var searchInput = pluginRef.$container[0].querySelector('input');
+
+            var debouncedInputListener = zs.debounce(function () {
+                if (this.value == "") {
+                    hideSelectAll();
+                    setData([]);
+                    return;
+                }
+                pluginRef.$nav[0].classList.add('zs-loading');
+                var queryParam = this.value;
+                getData(queryParam).then(function (response) {
+                    setData(response, queryParam);
+                    pluginRef.$nav.parent()[0].style.minHeight = "0";
+                });
+            }, 300);
+
+            searchInput.addEventListener('input', debouncedInputListener.bind(searchInput));
+
+        }
+        return zs;
+    }(window.zs || {})
+
+
+    //To be overridden in business logic
+    function getData(searchKeyword) {
+        return new Promise(function (resolve, reject) {
+            var toReturnArr = [];
+            var dataArr = ["apple1", "banana2", "guava3", "kiwi4", "pear5", "apple6", "banana7", "guava8", "kiwi9", "pear10", "apple11", "banana12", "guava13", "kiwi14", "pear15", "apple16", "banana17", "guava18", "kiwi19", "pear20", "apple21", "banana22", "guava23", "kiwi24", "pear25", "apple26", "banana27", "guava28", "kiwi29", "pear30"];
+            for (var i = 0; i < dataArr.length; i++) {
+                if (dataArr[i].indexOf(searchKeyword) !== -1) {
+                    var obj = { "name": dataArr[i], "value": dataArr[i] };
+                    toReturnArr.push(obj);
+                }
+            }
+            resolve(toReturnArr);
+        });
+
+    }
+
+    var options1 = {
+        minOptionsForSearch: 0,
+        multiple: false,
+        addCheckboxes: false,
+        addSelectAll: false
+    }
+    var options2 = {
+        minOptionsForSearch: 0,
+        multiple: true,
+        addCheckboxes: true,
+        addSelectAll: false
+    }
+    var options3 = {
+        minOptionsForSearch: 0,
+        multiple: true,
+        addCheckboxes: true,
+        addSelectAll: true
+    }
+
+    zs.autocomplete('[zs]', getData, options1); //single select
+    zs.autocomplete('[zs1]', getData, options2); //multi select
+    zs.autocomplete('[zs2]', getData, options3); //muti select with select all
+
+</script>
+
+<script>
+	if (zs && zs.demo) {
+		zs.demo.adjustCss();
+		zs.demo.applyTheme();
+		zs.demo.highlight();
+	}
+</script>
+</body>
+</html>

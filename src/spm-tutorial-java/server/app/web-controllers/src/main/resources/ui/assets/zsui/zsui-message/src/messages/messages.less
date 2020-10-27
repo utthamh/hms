@@ -1,0 +1,114 @@
+/*
+Action message
+
+A message at the page level related to a page action
+
+Markup:
+<div class="zs-layout-table {{modifier_class}}">
+	<header>Header</header>
+	<section>
+		<main>
+			<div class="zs-action-message">Message text<div class="zs-right"><a href="#">Cancel</a><button class="zs-button zs-button-action">OK</button></div></div>
+			<header>Page title</header>
+			<section>Content</section>
+			<aside>
+				Side nav
+			</aside>			
+		</main>
+	</section>
+	<footer>footer</footer>
+</div>
+
+.zs-layout-1col - 1 column layout
+
+Styleguide Layout.ActionMessage
+*/
+main>.zs-action-message {
+	margin-left: @zs-layout-aside-width ;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+
+}
+main>section>.zs-action-message{
+	margin-left:-1.42em;
+	margin-top:-1.42em;
+	margin-right:-1.42em;	
+}
+.zs-action-message {
+	font-size:@zs-font-size-base;
+	background: lighten(@zs-status-warning, 52%);
+	display:block;
+	border-top-left-radius: @zs-border-radius;
+	border-top-right-radius: @zs-border-radius;	
+	position:relative;
+	line-height:2.2em;
+	.padding(1,2,1,2);
+	button {
+		.margin(0,0,0,3);
+		line-height:1.25em; // IE11 fix
+	}
+	border-bottom:1px solid @zs-border-color;
+	&:before,
+    &:after {
+        content:"";
+        display:table;
+    }
+    &:after {
+        clear:both;
+    }		
+}
+
+
+// Application-level messages
+.zs-app-message {
+	margin-left: @zs-layout-aside-width;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	font-size:@zs-font-size-base;
+	background: lighten(@zs-status-warning, 52%);
+	display:block;
+	border-top-left-radius: @zs-border-radius;
+	border-top-right-radius: @zs-border-radius;	
+	position:relative;
+	line-height:2.2em;
+	.padding(1,2,1,2);
+	button {
+		.margin(0,0,0,3);
+		line-height:1.25em; // IE11 fix
+	}
+	border:1px solid @zs-border-color;
+	&:before,&:after {
+		content:"";
+		display:table;
+	}
+	&:after {
+		clear:both;
+	}
+    @zs-app-message-width: 90%;
+    display: none;
+    position: fixed;
+    bottom: 0;
+    width: @zs-app-message-width;
+    left: 50%;
+    margin-left: @zs-app-message-width / -2;
+
+    .zs-icon.zs-icon-rejected-approval {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        margin-top: @zs-icon-height / -2;
+        margin-right: @zs-font-padding-ratio * 2;
+    }
+}
+
+// For Desktop, show Application-level messages on top
+@media (min-width:1025px) {
+	.zs-app-message{
+		position: relative;
+		border-radius: 0;
+		border: none;
+		width: auto;
+    	left: 0;
+    	margin: 0 auto;
+	}
+}
