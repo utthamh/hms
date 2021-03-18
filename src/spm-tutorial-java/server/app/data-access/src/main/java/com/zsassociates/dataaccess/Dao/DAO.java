@@ -34,5 +34,4 @@ public interface DAO<T extends BaseEntity> {
 
     List<Map<String, Object>> executeSql(String sqlQuery, Map<String, Object> params);
 
-    T getById(long id);
 }

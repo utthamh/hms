@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   environmentName: "(DEV)",
-  baseUrl:"https://localhost:44318/api",
+  baseUrl:"http://localhost:9096/sd-tutorial",
 };
 
 /*

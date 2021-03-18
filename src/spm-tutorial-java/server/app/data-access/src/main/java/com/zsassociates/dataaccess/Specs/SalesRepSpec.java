@@ -9,4 +9,7 @@ public class SalesRepSpec extends Specs.BaseSpec {
     @NoArgsConstructor
     public static class GetAllSalesRep extends Specs.BaseSpec {
     }
+    @NoArgsConstructor
+    public static class SaveSalesRep extends Specs.BaseSpec {
+    }
 }

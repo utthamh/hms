@@ -1,14 +1,13 @@
 package com.zsassociates.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
+@Data
 public class SalesRep extends BaseEntity{
     @JsonProperty("name")
 private String Name;
