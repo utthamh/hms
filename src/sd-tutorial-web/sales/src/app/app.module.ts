@@ -9,6 +9,7 @@ import { RepOfMonthComponent } from './rep-of-month/rep-of-month.component';
 import { DrugOfMonthComponent } from './drug-of-month/drug-of-month.component';
 import { WebCoreModule } from 'src/web-core/web-core.module';
 import { UrlFormationService } from '@app/url-formation.service';
+import {FormsModule } from '@angular/forms';  
 
 
 
@@ -23,7 +24,9 @@ import { UrlFormationService } from '@app/url-formation.service';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    WebCoreModule
+   
+    WebCoreModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

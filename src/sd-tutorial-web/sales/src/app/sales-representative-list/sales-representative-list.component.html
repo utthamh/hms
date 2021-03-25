@@ -1,24 +1,91 @@
-<h2>Sales Representative Table</h2>
-<app-zs-textbox></app-zs-textbox>
-<table class="zs-data-table">
+<div>
+<div *ngIf="isTrue" class='modal'>
+    
+    <div *ngIf="isDelete" style="border-radius:20px;text-align:center;background-color: white;max-width:400px;width:100%;z-index:1000;padding:30px">
+        <h4 style="display:flex;"><div style="flex:1;text-align: center;color: black;">Delete User</div><span class="zs-icon zs-size-sm zs-icon-close" style="cursor:pointer" (click)="cancel()"></span></h4>
+       <div class="p-2 mb-2">
+        Are You Sure want to delete :<b>{{formdata.name}}</b> ?
+       </div>
+        <button class="zs-button"(click)="cancel()" >Cancel</button>
+        <button class="zs-button zs-button-action" (click)="userdelete()">Ok</button>
+    </div>
+    <form *ngIf="!isDelete" (submit)="onSubmit()" style="border-radius:40px;background-color: white;max-width:500px;width:100%;z-index:1000;padding:30px">
+        <h4 class="text-right pr-2"><span class="zs-icon zs-size-sm zs-icon-close" style="cursor: pointer;" (click)=cancel()></span></h4>
+        <div class="mb-3">
+            <h2 class='text-center'>{{isEdit?"Edit ":"Add " }} Users</h2>
+          </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Name</label>
+        <input type="text" class="form-control" name='name'  [(ngModel)]="formdata.name"/>
+        <span style='color:red'>{{errordata?.name}}</span>
+      </div>
+      <div class="mb-3 ">
+        <label for="exampleFormControlInput1" class="form-label">Gender </label>
+        <div>
+        <input id='male' type="radio" name='gender' value='male'  [(ngModel)]="formdata.gender" />
+        Male
+        <input for="female" type="radio"  name='gender' value='female' [(ngModel)]="formdata.gender" />
+        Female 
+         </div>
+        <span style='color:red'>{{errordata?.gender}}</span>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">City</label>
+        <input type="text" class="form-control" name='city'  [(ngModel)]="formdata.city" />
+        <span style='color:red'>{{errordata?.city}}</span>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Country</label>
+        <input type="text" class="form-control"  name='country'  [(ngModel)]="formdata.country"/>
+        <span style='color:red'>{{errordata?.country}}</span>
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">ZipCode</label>
+        <input type="number" class="form-control"  name='zipcode'  [(ngModel)]="formdata.zipcode" />
+        <span style='color:red'>{{errordata?.zipcode}}</span>
+      </div>
+      <div class="mb-3 text-right">
+       <button class="zs-button" (click)="cancel()" >Cancel</button>
+       <button class="zs-button zs-button-action" type="submit">{{isEdit?"Update":"Add"}}</button>
+      </div>
+    </form>
+</div>
+
+<div><h2>Sales Representative Table</h2>
+<div style='display: flex;justify-content: space-between;align-items: center;'>
+<div class='d-flex'><app-zs-textbox></app-zs-textbox>
+    <div class="upload-btn-wrapper">
+        <button class="zs-button m-0"><span class='zs-icon zs-icon-upload'></span>Upload</button>
+        <input type="file" accept="image/*" name="myfile" />
+      </div>
+
+</div>
+<div style="cursor: pointer;" (click)="openform()"><span class="zs-icon zs-size-l zs-icon-add"></span> Create New</div>
+</div>
+<div style="overflow: auto;">
+<table class="zs-data-table" style="width:100%">
     <thead>
-        <th>Id</th>
+        <th>Sl.No</th>
         <th>Name</th>
         <th>Country</th>
         <th>City</th>
         <th>ZipCode</th>
         <th>Gender</th>
+        <th>Actions</th>
     </thead>
     <tbody>
         <tr *ngFor="let sr of data ;let i=index">
-            <td>{{sr.id}}</td>
+            <td>{{i+1}}</td>
             <td>{{sr.name}}</td>
             <td>{{sr.country}}</td>
             <td>{{sr.city}}</td>
             <td>{{sr.zipcode}}</td>
             <td>{{sr.gender}}</td>
+            <td><span class="zs-icon zs-size-sm zs-icon-edit" style="cursor: pointer;" (click)="editsalesrep(sr)"></span><span style="cursor: pointer;" class="zs-icon zs-size-l zs-icon-delete" (click)="deletesalesrep(sr)"></span></td>
         </tr>
     </tbody>
 </table>
+</div>
 
-
+</div>

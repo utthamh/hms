@@ -34,8 +34,8 @@ public class SalesRepService implements SalesRepDaoService {
     }
 
     @Override
-    public SalesRep update(SalesRep s, Integer id) throws Exception {
-        s.setId(id);
+    public SalesRep update(SalesRep s) throws Exception {
+
         int i=this.salesRepDao.updates(s);
        // s.Id=id;
         if(i>0){

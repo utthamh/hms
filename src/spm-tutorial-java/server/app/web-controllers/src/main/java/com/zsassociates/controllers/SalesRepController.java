@@ -39,11 +39,10 @@ public class SalesRepController {
         }
     }
     @PUT
-    @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response update(SalesRep rep,@PathParam("id")Integer id) {
-      try{  SalesRep salesReps = salesRepDaoServices.update(rep, id);
+    public Response update(SalesRep rep) {
+      try{  SalesRep salesReps = salesRepDaoServices.update(rep);
         return Response.ok().entity(rep).build();
     } catch(Exception e){
         return  Response.status(404,"Not Found").build();
