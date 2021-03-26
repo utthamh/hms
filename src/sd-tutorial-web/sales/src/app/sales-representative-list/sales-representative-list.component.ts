@@ -14,6 +14,8 @@ export class SalesRepresentativeListComponent implements OnInit {
   isTrue:boolean=false;
   isEdit:boolean=false;
   isDelete:boolean=false;
+  isFileUpload:boolean=false;
+  file:any;
   name:String='';
   formdata:SalesRepModel;
   errordata:any={};
@@ -27,9 +29,30 @@ export class SalesRepresentativeListComponent implements OnInit {
      
       this.data=res;
       this.Sname=this.data[0].name;
+     // this.isFileUpload=true
     console.log(this.data);
     });
   }
+
+  fileUpload(){
+    this.isFileUpload=false
+    this.isTrue=false
+//alert("file uploaded successfully")
+  }
+onChangeFile (e){
+  //this.isFileUpload=true
+  this.isTrue=true;
+  this.isFileUpload=true
+   const {files}=e.target
+   this.file=files[0]
+  console.log(this.file)
+
+}
+mypopupforfile(){
+ // alert("file uploaded successfully")
+
+}
+
   onSubmit(){
     if(this.validate()){
     if(this.isEdit){
@@ -62,6 +85,7 @@ return Object.keys(this.errordata).length>0?false:true;
   cancel(){
     this.isTrue=false;
     this.isDelete=false;
+    this.isFileUpload=false;
     this.errordata={};
   }
 
@@ -75,6 +99,7 @@ return Object.keys(this.errordata).length>0?false:true;
   deletesalesrep(d:SalesRepModel){
     this.isTrue=true
     this.isDelete=true
+    //this.isFileUpload=true
     this.formdata=d;
 
    

@@ -1,6 +1,13 @@
 <div>
 <div *ngIf="isTrue" class='modal'>
-    
+    <div *ngIf="isFileUpload" style="border-radius:20px;text-align:center;background-color: white;max-width:400px;width:100%;z-index:1000;padding:30px">
+        <h4 style="display:flex;"><div style="flex:1;text-align: center;color: black;"></div><span class="zs-icon zs-size-sm zs-icon-close" style="cursor:pointer" (click)="cancel()"></span></h4>
+       <div class="p-2 mb-2">
+        Are you sure want to upload file :<b>{{file.name +" with size="+(file.size/1024) +"KB"}}</b> ?
+       </div>
+        <button class="zs-button"(click)="cancel()" >Cancel</button>
+        <button class="zs-button zs-button-action" (click)="fileUpload()">Ok</button>
+    </div>
     <div *ngIf="isDelete" style="border-radius:20px;text-align:center;background-color: white;max-width:400px;width:100%;z-index:1000;padding:30px">
         <h4 style="display:flex;"><div style="flex:1;text-align: center;color: black;">Delete User</div><span class="zs-icon zs-size-sm zs-icon-close" style="cursor:pointer" (click)="cancel()"></span></h4>
        <div class="p-2 mb-2">
@@ -9,7 +16,7 @@
         <button class="zs-button"(click)="cancel()" >Cancel</button>
         <button class="zs-button zs-button-action" (click)="userdelete()">Ok</button>
     </div>
-    <form *ngIf="!isDelete" (submit)="onSubmit()" style="border-radius:40px;background-color: white;max-width:500px;width:100%;z-index:1000;padding:30px">
+    <form *ngIf="!isDelete && !isFileUpload" (submit)="onSubmit()" style="border-radius:40px;background-color: white;max-width:500px;width:100%;z-index:1000;padding:30px">
         <h4 class="text-right pr-2"><span class="zs-icon zs-size-sm zs-icon-close" style="cursor: pointer;" (click)=cancel()></span></h4>
         <div class="mb-3">
             <h2 class='text-center'>{{isEdit?"Edit ":"Add " }} Users</h2>
@@ -57,7 +64,7 @@
 <div class='d-flex'><app-zs-textbox></app-zs-textbox>
     <div class="upload-btn-wrapper">
         <button class="zs-button m-0"><span class='zs-icon zs-icon-upload'></span>Upload</button>
-        <input type="file" accept="image/*" name="myfile" />
+        <input type="file" accept=".txt" name="myfile" (change)="onChangeFile($event)"/>
       </div>
 
 </div>
